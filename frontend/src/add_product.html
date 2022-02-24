@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Fruits & Veggies</title>
+
+<link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+<link rel="stylesheet" href="addproduct.css">
+<meta name="robots" content="noindex, follow">
+<script nonce="08a1f48b-2669-417c-abdb-bf3c8e5b23f2">(function(w,d){!function(a,e,t,r,z){a.zarazData=a.zarazData||{},a.zarazData.executed=[],a.zarazData.tracks=[],a.zaraz={deferred:[]};var s=e.getElementsByTagName("title")[0];s&&(a.zarazData.t=e.getElementsByTagName("title")[0].text),a.zarazData.w=a.screen.width,a.zarazData.h=a.screen.height,a.zarazData.j=a.innerHeight,a.zarazData.e=a.innerWidth,a.zarazData.l=a.location.href,a.zarazData.r=e.referrer,a.zarazData.k=a.screen.colorDepth,a.zarazData.n=e.characterSet,a.zarazData.o=(new Date).getTimezoneOffset(),a.dataLayer=a.dataLayer||[],a.zaraz.track=(e,t)=>{for(key in a.zarazData.tracks.push(e),t)a.zarazData["z_"+key]=t[key]},a.zaraz._preSet=[],a.zaraz.set=(e,t,r)=>{a.zarazData["z_"+e]=t,a.zaraz._preSet.push([e,t,r])},a.dataLayer.push({"zaraz.start":(new Date).getTime()}),a.addEventListener("DOMContentLoaded",(()=>{var t=e.getElementsByTagName(r)[0],z=e.createElement(r);z.defer=!0,z.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(a.zarazData))),t.parentNode.insertBefore(z,t)}))}(w,d,0,"script");})(window,document);</script></head>
+<body>
+<div class="main">
+<div class="container">
+<form method="POST" class="land-form" id="land-form">
+<h2 align="center">Fruits & Veggies</h2>
+<div class="form-group-1">
+<input type="text" name="title" id="title" placeholder="Title" required />
+<input type="text" name="description" id="description" placeholder="Description" required />
+<input type="text" name="crop" id="crop" placeholder="Crop" required />
+<input type="text" name="cropsubtype" id="cropsubtype" placeholder="Crop - Subtype" />
+<input type="number" name="price" id="price" placeholder="Price (per kg.)" min="1" required />
+<input type="number" name="pbh" id="pbh" placeholder="Payment before Harvest" min="1" required />
+<input type="number" name="mincty" id="mincty" placeholder="Minimum Production Capacity (kg.)" min="1" required />
+<input type="number" name="maxcty" id="maxcty" placeholder="Maximum Production Capacity (kg.)" min="1" required />
+<div style="color: black;">Harvest Month<input type="month" id="harvestmonth" name="harvestmonth"></div>
+<div style="color: black;">Delivery Month<input type="month" id="deliverymonth" name="deliverymonth"></div>
+<div style="color: black;"><p style="font-size: medium;">Product Image </p><input type="file" name="productimage" accept="image/*" id="productimage" /></div>
+</div>
+<div class="form-submit" style="margin-top: 10%;margin-left: 40%;">
+<input type="submit" name="submit" id="submit" class="submit" value="Submit" />
+</div>
+</form>
+</div>
+</div>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="js/main.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"6e100cfb1bdc85f1","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.12.0","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>
