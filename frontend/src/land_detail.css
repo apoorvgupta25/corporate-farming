@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    line-height: 1.5;
+    background-image: url('bgimage-land.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+}
+
+.content-section {
+    display: none;
+    margin-top: 3%;
+    font-weight: bolder;
+}
+
+.segmentedButton{
+    width: 33.3%;
+}
+
+.card-wrapper{
+    /* width: 70%;
+    height: 70%; */
+    margin: 1%;
+    height: auto;
+    padding: 2%;
+    /* padding-right: 3%; */
+    border-radius: 15px;
+    /* margin-top: 15%;
+    margin-bottom: 15%; */
+}
+
+img{
+    margin-bottom: 2%;
+    /* height: auto; */
+    /* padding-bottom: 2%; */
+    width: 100%;
+    display: block;
+}
+
+.land-content{
+    padding: 2rem 1rem;
+    /* margin-bottom: 8%; */
+}
+.land-title{
+    font-size: 3rem;
+    text-transform: capitalize;
+    font-weight: 700;
+    position: relative;
+    color: #12263a;
+    margin: 1rem 0;
+}
+.land-title::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    height: 4px;
+    width: 80px;
+    background: #12263a;
+}
+
+.land-price{
+    margin: 1rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+.land-price span{
+    font-weight: 400;
+}
+
+.land-detail h2{
+    text-transform: capitalize;
+    color: #12263a;
+    padding-bottom: 0.6rem;
+}
+.land-detail p{
+    font-size: 0.9rem;
+    padding: 0.3rem;
+    opacity: 0.8;
+}
+.land-detail ul{
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+.land-detail ul li{
+    margin: 0;
+    list-style: none;
+    background: url(shoes_images/checked.png) left center no-repeat;
+    background-size: 18px;
+    padding-left: 1.7rem;
+    margin: 0.4rem 0;
+    font-weight: 600;
+    opacity: 0.9;
+}
+.land-detail ul li span{
+    font-weight: 400;
+}
+.purchase-info{
+    margin: 1.5rem 0;
+}
+.purchase-info input,
+.purchase-info .btn{
+    border: 1.5px solid #ddd;
+    border-radius: 25px;
+    text-align: center;
+    padding: 0.45rem 0.8rem;
+    outline: 0;
+    margin-right: 0.2rem;
+    margin-bottom: 1rem;
+}
+.purchase-info input{
+    width: 60px;
+}
+.purchase-info .btn{
+    cursor: pointer;
+    color: #fff;
+}
+.purchase-info .btn:first-of-type{
+    background: #256eff;
+}
+.purchase-info .btn:last-of-type{
+    background: #f64749;
+}
+.purchase-info .btn:hover{
+    opacity: 0.9;
+}
+
+@media screen and (min-width: 992px){
+    .card{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1.5rem;
+    }
+    .card-wrapper{
+        height: 95vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .land-imgs{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .land-content{
+        padding-top: 0;
+    }
+
+    .segmentedButton{
+        width: 33.3%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .segmentedButton{
+        width: 50%;
+    }
+
+    .land-imgs{
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .landimg{
+        margin-top: 0%;
+    }
+}
