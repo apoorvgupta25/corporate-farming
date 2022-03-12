@@ -104,8 +104,8 @@ function Card({land}) {
                 <div className="land__body">
                     <h2 className="land__title">{title}</h2>
                     <p className="land__location">{location}</p>
-                    <p className="land__duration">{duration}</p>
-                    <p className="land__size">{landSize}</p>
+                    <p className="land__duration">{duration} months</p>
+                    <p className="land__size">{landSize} acres</p>
                     <h3 className="land__price">{price}</h3>
                 </div>
             </Link>

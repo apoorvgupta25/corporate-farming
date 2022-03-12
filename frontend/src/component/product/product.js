@@ -3,6 +3,7 @@ import React, {useState, useEffect}  from "react";
 import {getProduct} from './productAPICall'
 import {useParams} from 'react-router-dom';
 import {API} from '../../backend';
+import Navbar from '../Navbar';
 
 // import './product.css';
 import '../land_product_style.css';
@@ -40,6 +41,8 @@ const Product = () => {
     var imgsrc = 'https://images-prod.healthline.com/hlcmsresource/images/AN_images/tomatoes-1296x728-feature.jpg';
 
     return (
+        <>
+        <Navbar/>
         <div className="card-wrapper">
             <div className="card">
                 <div className="imgs">
@@ -92,6 +95,7 @@ const Product = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 
 }

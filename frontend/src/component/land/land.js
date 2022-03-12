@@ -3,6 +3,7 @@ import React, {useState, useEffect}  from "react";
 import {getLand} from './landAPICall'
 import {useParams} from 'react-router-dom';
 import {API} from '../../backend';
+import Navbar from '../Navbar';
 
 // import './land.css';
 import '../land_product_style.css';
@@ -37,6 +38,8 @@ const Land = () => {
     var imageURL = `${API}/land/photo/${land._id}`;
 
     return (
+        <>
+        <Navbar/>
         <div className="">
             <div className="card-wrapper" >
                 <div className="card">
@@ -93,6 +96,7 @@ const Land = () => {
                 </div>
             </div>
         </div>
+        </>
 
     )
 
