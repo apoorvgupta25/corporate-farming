@@ -127,7 +127,8 @@ body {
 }
 
 .land:hover {
-    transform: scale(1.03);
+    transform: translateY(0) scale(1.05);
+    transition: all .3s ease-in-out
 }
 
 @media screen and (min-width: 600px) {

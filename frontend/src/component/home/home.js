@@ -11,7 +11,7 @@ import {API} from '../../backend';
 function Home() {
 
     const [lands, setLands] = useState([]);
-    const [product, setProduct] = useState([]);
+    const [products, setProducts] = useState([]);
     const [error, setError] = useState(false);
 
     const getLandData = () => {
@@ -33,12 +33,12 @@ function Home() {
                 setError(data.error);
                 console.log(error);
             } else {
-                setProduct(data);
+                setProducts(data);
             }
         })
     };
 
-    console.log(lands);
+
     useEffect(() => {
         getLandData()
         getProductData()
@@ -47,8 +47,8 @@ function Home() {
       return (
           <div>
             <Navbar/>
+            <h2 className="text-center font-weight-bold">Land for Lease</h2>
             <div className="wrapper">
-
                 {lands.map((land, index) => {
                     return (
                         <div key={index}>
@@ -56,12 +56,27 @@ function Home() {
                         </div>
                     )
                 })}
-
             </div>
+
+            <h2 className="text-center font-weight-bold">Products</h2>
+            <div className="list-container">
+                {products.map((prod, index) => {
+                    return (
+                        <div key={index}>
+                            <List prod={prod}/>
+                        </div>
+                    )
+                })}
+            </div>
+
           </div>
       );
 }
 
+/*
+
+
+*/
 function Card({land}) {
 
     var title = "title";
@@ -92,6 +107,46 @@ function Card({land}) {
             </div>
         </div>
     );
+}
+
+function List({prod}){
+
+    var title = "title";
+    var cropName = "Potato";
+    var price = "5000";
+    var harvestMonth = "Nov-22";
+    var deliveryMonth = "Feb-23";
+
+    if(prod._id){
+        title = prod.title;
+        price = prod.price;
+        cropName = prod.cropName;
+        harvestMonth = prod.harvestMonth;
+        deliveryMonth = prod.deliveryMonth;
+    }
+
+    return (
+        <div className="list-item">
+            <div className="item-title">{title}</div>
+            <div className="item-crop">
+                <p className="tiny-text">Crop Name</p>
+                <p className="regular-text">{cropName}</p>
+            </div>
+            <div className="item-price">
+                <p className="tiny-text">Price</p>
+                <p className="regular-text">{price}</p>
+            </div>
+            <div className="item-harvest">
+                <p className="tiny-text">Harvest Month</p>
+                <p className="regular-text">{harvestMonth}</p>
+            </div>
+            <div className="item-delivery">
+                <p className="tiny-text">Delivery Month</p>
+                <p className="regular-text">{deliveryMonth}</p>
+            </div>
+        </div>
+
+    )
 }
 
 export default Home;

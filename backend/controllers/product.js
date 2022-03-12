@@ -24,8 +24,6 @@ exports.createProduct = (req, res) => {
         maximumOrderQuantity, harvestMonth, deliveryMonth
     } = product;
 
-    console.log(product);
-
     if(!title || !description || !cropName || !cropSubType || !price || !paymentBeforeharvest  ||
         !minimumOrderQuantity || !maximumOrderQuantity || !harvestMonth || !deliveryMonth){
             return res.status(400).json({
