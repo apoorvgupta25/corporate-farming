@@ -87,21 +87,22 @@ const AddProduct = () => {
                 {errorMessage()}
 
                 <form method="POST" className="add-form" id="land-form">
+                    <Link to={`/farmer/dashboard/${isAuth().user._id}`} className="btn btn-md btn-dark mr-4">Dashboard</Link>
                     <h2 className="add-heading" align="center">Fruits & Veggies</h2>
                     <div className="form-group-1">
-                        <input type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
-                        <input type="text" name="description" onChange={handleChange("description")} value={description} placeholder="Description" required />
-                        <input type="text" name="cropName" onChange={handleChange("cropName")} value={cropName} placeholder="Crop" required />
-                        <input type="text" name="cropSubType" onChange={handleChange("cropSubType")} value={cropSubType} placeholder="Crop - Subtype" />
-                        <input type="number" name="price" onChange={handleChange("price")} value={price} placeholder="Price (per kg.)" min="1" required />
-                        <input type="number" name="paymentBeforeharvest" onChange={handleChange("paymentBeforeharvest")} value={paymentBeforeharvest} placeholder="Payment before Harvest" min="1" required />
-                        <input type="number" name="minimumOrderQuantity" onChange={handleChange("minimumOrderQuantity")} value={minimumOrderQuantity} placeholder="Minimum Production Capacity (kg.)" min="1" required />
-                        <input type="number" name="maximumOrderQuantity" onChange={handleChange("maximumOrderQuantity")} value={maximumOrderQuantity} placeholder="Maximum Production Capacity (kg.)" min="1" required />
+                        <input className="add-input-select" type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
+                        <input className="add-input-select" type="text" name="description" onChange={handleChange("description")} value={description} placeholder="Description" required />
+                        <input className="add-input-select" type="text" name="cropName" onChange={handleChange("cropName")} value={cropName} placeholder="Crop" required />
+                        <input className="add-input-select" type="text" name="cropSubType" onChange={handleChange("cropSubType")} value={cropSubType} placeholder="Crop - Subtype" />
+                        <input className="add-input-select" type="number" name="price" onChange={handleChange("price")} value={price} placeholder="Price (per kg.)" min="1" required />
+                        <input className="add-input-select" type="number" name="paymentBeforeharvest" onChange={handleChange("paymentBeforeharvest")} value={paymentBeforeharvest} placeholder="Payment before Harvest" min="1" required />
+                        <input className="add-input-select" type="number" name="minimumOrderQuantity" onChange={handleChange("minimumOrderQuantity")} value={minimumOrderQuantity} placeholder="Minimum Production Capacity (kg.)" min="1" required />
+                        <input className="add-input-select" type="number" name="maximumOrderQuantity" onChange={handleChange("maximumOrderQuantity")} value={maximumOrderQuantity} placeholder="Maximum Production Capacity (kg.)" min="1" required />
                         <div style={{color:'black'}}>Harvest Month<input type="month" name="harvestMonth" onChange={handleChange("harvestMonth")} value={harvestMonth}/></div>
                         <div style={{color:'black'}}>Delivery Month<input type="month" name="deliveryMonth" onChange={handleChange("deliveryMonth")} value={deliveryMonth}/></div>
                     </div>
                     <div className="form-submit" style={{marginTop: '10%', marginLeft: '40%'}}>
-                        <input type="submit" name="submit" onClick={onSubmit} className="submit" value="Submit" />
+                        <input className="add-input-select" type="submit" name="submit" onClick={onSubmit} className="submit" value="Submit" />
                     </div>
                 </form>
             </div>

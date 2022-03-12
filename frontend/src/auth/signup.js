@@ -87,7 +87,7 @@ const Signup = () => {
                     <input className="input-field" placeholder="Enter Password" type="password" onChange={handleChange("password")} value={password} required/>
 
 
-                    <div className="form-check mt-4">
+                    <div className="mt-4">
                         <input className="form-check-input" type="radio" name="Type" value="0" checked={role === "0"} {...roleInputProps}/>
                         <label className="form-check-label"> Farmer </label>
 

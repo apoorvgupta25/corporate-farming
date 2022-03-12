@@ -24,16 +24,16 @@ const FarmerDashboard = ({ match }) => {
                 <h4 className="card-header bg-dark"><Link to="/" style={{ textDecoration:'none', color: 'white'}}>Corp-Farm</Link></h4>
                 <ul className="list-group">
                     <li className="list-group-item">
-                        <Link to="/farmer/add/land" className="text-success" target="_blank" style={{ textDecoration:'none'}}>Create Land</Link>
+                        <Link to="/farmer/add/land" className="text-success" style={{ textDecoration:'none'}}>Create Land</Link>
                     </li>
                     <li className="list-group-item">
-                        <Link to="/farmer/manage/land" className=" text-success" target="_blank" style={{ textDecoration:'none'}}>Manage Land</Link>
+                        <Link to="/farmer/manage/land" className=" text-success" style={{ textDecoration:'none'}}>Manage Land</Link>
                     </li>
                     <li className="list-group-item">
-                        <Link to="/farmer/add/product" className=" text-success" target="_blank" style={{ textDecoration:'none'}}>Create Product</Link>
+                        <Link to="/farmer/add/product" className=" text-success" style={{ textDecoration:'none'}}>Create Product</Link>
                     </li>
                     <li className="list-group-item">
-                        <Link to="/farmer/manage/product" className=" text-success" target="_blank" style={{ textDecoration:'none'}}>Manage Product</Link>
+                        <Link to="/farmer/manage/product" className=" text-success" style={{ textDecoration:'none'}}>Manage Product</Link>
                     </li>
                 </ul>
             </div>

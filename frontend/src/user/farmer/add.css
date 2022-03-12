@@ -56,8 +56,7 @@ display-flex {
 	padding: 20px 60px;
 }
 
-input,
-select {
+.add-input-select {
 	width: 100%;
 	display: block;
 	border: none;
@@ -65,23 +64,20 @@ select {
 	padding: 5px 0;
 	color: #222;
 	margin-bottom: 31px;
-	font-family: roboto slab
-}
-input:focus,
-select:focus {
-	color: #222;
-	border-bottom: 2px solid #4966b1
-}
+	font-family: roboto slab;
 
-input,
-select,
-textarea {
 	outline: none;
 	appearance: unset!important;
 	-moz-appearance: unset!important;
 	-webkit-appearance: unset!important;
 	-o-appearance: unset!important;
 	-ms-appearance: unset!important
+}
+
+input:focus,
+select:focus {
+	color: #222;
+	border-bottom: 2px solid #4966b1
 }
 
 input::-webkit-outer-spin-button,

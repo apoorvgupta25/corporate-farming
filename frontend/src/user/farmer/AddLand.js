@@ -156,42 +156,43 @@ const AddLand = () => {
                 {errorMessage()}
 
                 <form method="POST" className="add-form" id="land-form">
+                    <Link to={`/farmer/dashboard/${isAuth().user._id}`} className="btn btn-md btn-dark">Dashboard</Link>
                     <h2 className="add-heading" align="center">Land Lease</h2>
 
                     <div className="form-group-1">
-                        <input type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
-                        <input type="text" name="description" onChange={handleChange("description")} value={description} placeholder="Description" required />
+                        <input className="add-input-select" type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
+                        <input className="add-input-select" type="text" name="description" onChange={handleChange("description")} value={description} placeholder="Description" required />
 
-                        <input type="number" name="exactAmount" onChange={handleChangeExpectedProfit("exactAmount")} value={expectedProfit.exactAmount} placeholder="Land Leasing Price" min="1" required />
-                        <input type="number" name="percentage" onChange={handleChangeExpectedProfit("percentage")} value={expectedProfit.percentage} placeholder="Percentage of land Price" min="1" required />
+                        <input className="add-input-select" type="number" name="exactAmount" onChange={handleChangeExpectedProfit("exactAmount")} value={expectedProfit.exactAmount} placeholder="Land Leasing Price" min="1" required />
+                        <input className="add-input-select" type="number" name="percentage" onChange={handleChangeExpectedProfit("percentage")} value={expectedProfit.percentage} placeholder="Percentage of land Price" min="1" required />
 
-                        <select name="state" onChange={handleChangeLocation("state")} >
+                        <select className="add-input-select" name="state" onChange={handleChangeLocation("state")} >
                             <option>Select</option>
                             {states.map((state, index) => {
                                 return ( <option value={state} key={state} >{state}</option> )
                                 })
                             }
                         </select>
-                        <input type="text" name="city" onChange={handleChangeLocation("city")} value={landProperties.city} placeholder="City" required />
-                        <input type="number" name="totalArea" onChange={handleChangeLocation("totalArea")} value={landProperties.totalArea} placeholder="Land Area (in acres)" min="1" required />
-                        <input type="text" name="location" onChange={handleChangeLocation("location")} value={landProperties.location} placeholder="Location" required />
+                        <input className="add-input-select" type="text" name="city" onChange={handleChangeLocation("city")} value={landProperties.city} placeholder="City" required />
+                        <input className="add-input-select" type="number" name="totalArea" onChange={handleChangeLocation("totalArea")} value={landProperties.totalArea} placeholder="Land Area (in acres)" min="1" required />
+                        <input className="add-input-select" type="text" name="location" onChange={handleChangeLocation("location")} value={landProperties.location} placeholder="Location" required />
 
-                        <input type="number" name="bondTime" onChange={handleChange("bondTime")} value={bondTime} placeholder="Bond Time (in months)" min="1" required />
-                        <input type="number" name="rainfall" onChange={handleChange("rainfall")} value={rainfall} placeholder="Rainfal in area (mm)" min="1" required />
+                        <input className="add-input-select" type="number" name="bondTime" onChange={handleChange("bondTime")} value={bondTime} placeholder="Bond Time (in months)" min="1" required />
+                        <input className="add-input-select" type="number" name="rainfall" onChange={handleChange("rainfall")} value={rainfall} placeholder="Rainfal in area (mm)" min="1" required />
 
-                        <input type="number" name="nitrogen" onChange={handleChangeSoil("nitrogen")} value={soil.nitrogen} placeholder="Land Nitrogen Content" min="1" required />
-                        <input type="number" name="phosphorous" onChange={handleChangeSoil("phosphorous")} value={soil.phosphorous} placeholder="Land Phosphorous Content" min="1" required />
-                        <input type="number" name="potassium" onChange={handleChangeSoil("potassium")} value={soil.potassium} placeholder="Land Potassium Content" min="1" required />
-                        <input type="number" name="ph" onChange={handleChangeSoil("ph")} value={soil.ph} placeholder="Land PH " min="1" required />
+                        <input className="add-input-select" type="number" name="nitrogen" onChange={handleChangeSoil("nitrogen")} value={soil.nitrogen} placeholder="Land Nitrogen Content" min="1" required />
+                        <input className="add-input-select" type="number" name="phosphorous" onChange={handleChangeSoil("phosphorous")} value={soil.phosphorous} placeholder="Land Phosphorous Content" min="1" required />
+                        <input className="add-input-select" type="number" name="potassium" onChange={handleChangeSoil("potassium")} value={soil.potassium} placeholder="Land Potassium Content" min="1" required />
+                        <input className="add-input-select" type="number" name="ph" onChange={handleChangeSoil("ph")} value={soil.ph} placeholder="Land PH " min="1" required />
 
                         <div style={{color:'black'}}>Or Predict <a href="www.google.com">here</a></div>
                         <div style={{color:'black'}}>
                             <p >Land Image </p>
-                            <input type="file" name="photo" accept="image/*" placeholder="Choose A Photo" onChange={handleChange("photo")} />
+                            <input className="add-input-select" type="file" name="photo" accept="image/*" placeholder="Choose A Photo" onChange={handleChange("photo")} />
                         </div>
                     </div>
                     <div className="form-submit" style={{marginTop: '10%', marginLeft: '40%'}}>
-                        <input type="submit" name="submit" onClick={onSubmit} className="submit" value="Submit" />
+                        <input className="add-input-select" type="submit" name="submit" onClick={onSubmit} className="submit" value="Submit" />
                     </div>
                 </form>
             </div>
