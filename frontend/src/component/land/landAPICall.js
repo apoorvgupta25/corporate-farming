@@ -7,3 +7,11 @@ export const getAllLands = () => {
     })
     .catch(err => console.log(err));
 };
+
+export const getLand = (landId) => {
+    return fetch(`${API}/land/${landId}`, { method: "GET" })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}

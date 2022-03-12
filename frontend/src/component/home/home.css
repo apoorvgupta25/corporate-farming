@@ -1,3 +1,7 @@
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}
+
 .list-container {
 
     width: 70%;

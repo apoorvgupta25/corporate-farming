@@ -3,7 +3,9 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 import Home from './component/home/home';
 import AllLands from './component/land/allLands';
+import Land from './component/land/land';
 import AllProducts from './component/product/allProducts';
+import Product from './component/product/product';
 
 import {PrivateRoute, FarmerRoute, CorporateRoute} from './auth/protectedRoute';
 
@@ -26,6 +28,9 @@ export default function AllRoutes(){
                 <Route path="/" exact element={<Home/>}/>
                 <Route path="/lands" exact element={<AllLands/>}/>
                 <Route path="/products" exact element={<AllProducts/>}/>
+
+                <Route path="/land/:landId" exact element={<Land/>}/>
+                <Route path="/product/:productId" exact element={<Product/>}/>
 
                 <Route path="/signin" exact element={<Signin/>}/>
                 <Route path="/signup" exact element={<Signup/>}/>

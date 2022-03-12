@@ -1,55 +1,71 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
 
-*{
+/* *{
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
-}
-body{
+} */
+
+/* .container-detail{
+    height: 100%;
     line-height: 1.5;
     background-image: url('bgimage-land.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-}
+} */
 
 .content-section {
     display: none;
     margin-top: 3%;
     font-weight: bolder;
 }
+.content-section h4 {
+    font-size: 18px;
+}
 
 .segmentedButton{
     width: 33.3%;
 }
 
+.card {
+    height: 100%;
+}
+
 .card-wrapper{
-    /* width: 70%;
-    height: 70%; */
     margin: 1%;
     height: auto;
     padding: 2%;
-    /* padding-right: 3%; */
     border-radius: 15px;
+    background-color:whitesmoke;
+    height: auto;
+    /* width: 70%;
+    height: 70%; */
+    /* padding-right: 3%; */
     /* margin-top: 15%;
     margin-bottom: 15%; */
 }
 
 img{
     margin-bottom: 2%;
-    /* height: auto; */
-    /* padding-bottom: 2%; */
     width: 100%;
     display: block;
+    /* height: auto; */
+    /* padding-bottom: 2%; */
 }
 
+.land-imgs {
+    height: 40rem;
+    padding:1rem;
+    /* border-radius: 20px; */
+}
 .land-content{
     padding: 2rem 1rem;
     /* margin-bottom: 8%; */
 }
 .land-title{
-    font-size: 3rem;
+    font-size: 2rem;
     text-transform: capitalize;
     font-weight: 700;
     position: relative;
@@ -68,42 +84,31 @@ img{
 
 .land-price{
     margin: 1rem 0;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 700;
 }
-.land-price span{
-    font-weight: 400;
+
+.land-detail{
+    margin-top: 5%;margin-bottom: 5%;
 }
 
-.land-detail h2{
-    text-transform: capitalize;
-    color: #12263a;
-    padding-bottom: 0.6rem;
-}
 .land-detail p{
     font-size: 0.9rem;
     padding: 0.3rem;
     opacity: 0.8;
+    font-weight: 700;
+    font-size: medium;
 }
-.land-detail ul{
-    margin: 1rem 0;
-    font-size: 0.9rem;
+
+.land-detail h3{
+    font-weight: bold
 }
-.land-detail ul li{
-    margin: 0;
-    list-style: none;
-    background: url(shoes_images/checked.png) left center no-repeat;
-    background-size: 18px;
-    padding-left: 1.7rem;
-    margin: 0.4rem 0;
-    font-weight: 600;
-    opacity: 0.9;
-}
-.land-detail ul li span{
-    font-weight: 400;
-}
+
 .purchase-info{
     margin: 1.5rem 0;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
 }
 .purchase-info input,
 .purchase-info .btn{

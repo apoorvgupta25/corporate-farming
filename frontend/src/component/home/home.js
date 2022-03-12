@@ -99,14 +99,16 @@ function Card({land}) {
 
     return (
         <div className="land">
-            <img className="land__img" src={imageURL} />
-            <div className="land__body">
-                <h2 className="land__title">{title}</h2>
-                <p className="land__location">{location}</p>
-                <p className="land__duration">{duration}</p>
-                <p className="land__size">{landSize}</p>
-                <h3 className="land__price">{price}</h3>
-            </div>
+            <Link style={{textDecoration:'None'}} to={`/land/${land._id}`}>
+                <img className="land__img" src={imageURL} />
+                <div className="land__body">
+                    <h2 className="land__title">{title}</h2>
+                    <p className="land__location">{location}</p>
+                    <p className="land__duration">{duration}</p>
+                    <p className="land__size">{landSize}</p>
+                    <h3 className="land__price">{price}</h3>
+                </div>
+            </Link>
         </div>
     );
 }
@@ -128,25 +130,28 @@ function List({prod}){
     }
 
     return (
+        <Link style={{textDecoration:'None'}} to={`/product/${prod._id}`}>
         <div className="list-item">
-            <div className="item-title">{title}</div>
-            <div className="item-crop">
-                <p className="tiny-text">Crop Name</p>
-                <p className="regular-text">{cropName}</p>
-            </div>
-            <div className="item-price">
-                <p className="tiny-text">Price</p>
-                <p className="regular-text">{price}</p>
-            </div>
-            <div className="item-harvest">
-                <p className="tiny-text">Harvest Month</p>
-                <p className="regular-text">{harvestMonth}</p>
-            </div>
-            <div className="item-delivery">
-                <p className="tiny-text">Delivery Month</p>
-                <p className="regular-text">{deliveryMonth}</p>
-            </div>
+                <div className="item-title">{title}</div>
+                <div className="item-crop">
+                    <p className="tiny-text">Crop Name</p>
+                    <p className="regular-text">{cropName}</p>
+                </div>
+                <div className="item-price">
+                    <p className="tiny-text">Price</p>
+                    <p className="regular-text">{price}</p>
+                </div>
+                <div className="item-harvest">
+                    <p className="tiny-text">Harvest Month</p>
+                    <p className="regular-text">{harvestMonth}</p>
+                </div>
+                <div className="item-delivery">
+                    <p className="tiny-text">Delivery Month</p>
+                    <p className="regular-text">{deliveryMonth}</p>
+                </div>
+
         </div>
+        </Link>
 
     )
 }
