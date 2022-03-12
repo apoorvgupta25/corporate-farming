@@ -13,11 +13,11 @@ const productSchema = new mongoose.Schema(
     cropName: String,
     cropSubType: String,
     price: Number,
-    paymentbeforeharvest: Number,
+    paymentBeforeharvest: Number,
     minimumOrderQuantity: Number,
     maximumOrderQuantity: Number,
-    HarvestMonth: String,
-    DeliveryMonth: String,
+    harvestMonth: String,
+    deliveryMonth: String,
   },
   { timestamps: true }
 );

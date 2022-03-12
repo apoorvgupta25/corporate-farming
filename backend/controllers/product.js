@@ -19,13 +19,27 @@ exports.createProduct = (req, res) => {
     const product = new Product(req.body);
     product.farmer = req.profile._id;
 
+    const {
+        title, description, farmer, cropName, cropSubType, price, paymentBeforeharvest, minimumOrderQuantity,
+        maximumOrderQuantity, harvestMonth, deliveryMonth
+    } = product;
+
+    console.log(product);
+
+    if(!title || !description || !cropName || !cropSubType || !price || !paymentBeforeharvest  ||
+        !minimumOrderQuantity || !maximumOrderQuantity || !harvestMonth || !deliveryMonth){
+            return res.status(400).json({
+                error: "Please Include all fields"
+            });
+    }
+
     product.save((err, product) => {
         if(err){
             return res.status(400).json({
                 error: "Not able to save the Product in db"
             });
         }
-        res.json({product});
+        res.json(product);
     });
 };
 

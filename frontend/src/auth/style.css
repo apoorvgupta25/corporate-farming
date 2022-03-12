@@ -3,7 +3,7 @@
     padding: 0;
     font-family: sans-serif;
 }
-.hero{
+.container-sign{
     height: 100%;
     width: 100%;
     background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(background.jpg);
@@ -11,15 +11,31 @@
     background-size: cover;
     position: absolute;
 }
-.form-box{
+.form-box-login{
     width: 380px;
-    height: 480px;
+    height: 350px;
     position: relative;
+    margin-top: 3rem !important;
     margin: 6% auto;
     background: #ffffff;
     padding:5px;
     overflow: hidden;
+    border-radius: 10px;
 }
+
+.form-box-signup{
+    width: 380px;
+    height: 500px;
+    position: relative;
+    margin-top: 3rem !important;
+    margin: 6% auto;
+    background: #ffffff;
+    padding:5px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+
 .button-box{
     width: 220px;
     margin: 35px auto;
@@ -27,14 +43,18 @@
     box-shadow: 0 0 20px 9px #ff61241f;
     border-radius: 30px;
 }
+
 .toggle-btn{
     padding: 10px 30px;
-    cursor: pointer;
     background: transparent;
     border: 0;
     outline: none;
     position: relative;
+    text-align: center;
+    /* background: linear-gradient(to right, #ff105f,#ffad06); */
+    /* border-radius: 30px; */
 }
+
 #btn{
     top:0;
     left:0;
@@ -51,7 +71,11 @@
     position: absolute;
     width: 280px;
     transition: .5s;
+    left: 50px;
+    display: inline-block;
+    text-align: center;
 }
+
 .input-field{
     width:100%;
     padding: 10px 0;
@@ -69,13 +93,14 @@
     cursor: pointer;
     display: block;
     margin: auto;
+    margin-top: 2rem;
     background: linear-gradient(to right, #ff105f,#ffad06);
     border: 0;
     outline: none;
     border-radius: 30px;
 }
 .check-box{
-    margin: 30px 10px 30px 0;
+    margin: 50px 10px 30px 0;
 }
 span{
     color: #777;
@@ -83,15 +108,3 @@ span{
     bottom: 68px;
     position: absolute;
 }
-
-#login{
-    left: 50px;
-
-}
-
-#register{
-    left: 450px;
-}
-
-
-
