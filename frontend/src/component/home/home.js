@@ -1,4 +1,5 @@
 import React, {useState, useEffect}  from "react";
+import {Link} from 'react-router-dom';
 
 import './home.css';
 import './home.scss';
@@ -58,6 +59,8 @@ function Home() {
                 })}
             </div>
 
+            <Link to="/lands" className="move-right" >more Lands...</Link>
+
             <h2 className="text-center font-weight-bold">Products</h2>
             <div className="list-container">
                 {products.map((prod, index) => {
@@ -69,14 +72,13 @@ function Home() {
                 })}
             </div>
 
+            <Link to="/products" className="move-right mb-3" >more Products...</Link>
+
           </div>
       );
 }
 
-/*
 
-
-*/
 function Card({land}) {
 
     var title = "title";
@@ -148,6 +150,8 @@ function List({prod}){
 
     )
 }
+
+export {List, Card};
 
 export default Home;
 

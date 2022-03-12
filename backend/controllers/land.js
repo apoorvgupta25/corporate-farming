@@ -79,13 +79,21 @@ exports.getLand = (req, res) => {
 };
 
 exports.getAllLands = (req, res) => {
-    Land.find().select("-photo").populate("farmer", "_id name").exec((err, lands) => {
-        if(err){
-            return res.status(400).json({
-                error: "No Product Found"
-            });
-        }
-        res.json(lands);
+    let limit = req.query.limit ? parseInt(req.query.limit) : 1000000;
+    let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+
+    Land.find()
+        .select("-photo")
+        .populate("farmer", "_id name")
+        .sort([[sortBy, 'descending']])
+        .limit(limit)
+        .exec((err, lands) => {
+            if(err){
+                return res.status(400).json({
+                    error: "No Product Found"
+                });
+            }
+            res.json(lands);
     });
 };
 

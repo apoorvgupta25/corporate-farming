@@ -1,7 +1,7 @@
 import {API} from '../../backend';
 
 export const getRecent3Lands = () => {
-    return fetch(`${API}/lands`, { method: "GET" })
+    return fetch(`${API}/lands?limit=3&sortBy=createdAt`, { method: "GET" })
     .then(response => {
         return response.json();
     })
@@ -9,7 +9,7 @@ export const getRecent3Lands = () => {
 };
 
 export const getRecent3Products = () => {
-    return fetch(`${API}/products`, { method: "GET" })
+    return fetch(`${API}/products?limit=3&sortBy=createdAt`, { method: "GET" })
     .then(response => {
         return response.json();
     })

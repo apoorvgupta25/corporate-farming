@@ -46,13 +46,20 @@ exports.getProduct = (req, res) => {
 };
 
 exports.getAllProducts = (req, res) => {
-    Product.find().populate("farmer", "_id name").exec((err, products) => {
-        if(err){
-            return res.status(400).json({
-                error: "No Product Found"
-            });
-        }
-        res.json(products);
+    let limit = req.query.limit ? parseInt(req.query.limit) : 1000000;
+    let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+
+    Product.find()
+        .populate("farmer", "_id name")
+        .sort([[sortBy, 'descending']])
+        .limit(limit)
+        .exec((err, products) => {
+            if(err){
+                return res.status(400).json({
+                    error: "No Product Found"
+                });
+            }
+            res.json(products);
     });
 };
 

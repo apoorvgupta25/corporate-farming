@@ -45,17 +45,14 @@
 
 .item-price {
     margin-left: 3rem;
-
 }
 
 .item-harvest {
     margin-left: 3rem;
-
 }
 
 .item-delivery {
     margin-left: 3rem;
-
 }
 
 
@@ -65,4 +62,10 @@
 
 .regular-text {
 
+}
+
+.move-right{
+    display: block;
+    margin-right: 3rem;
+    text-align: right;
 }

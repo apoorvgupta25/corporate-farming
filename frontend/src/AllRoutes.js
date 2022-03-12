@@ -2,6 +2,8 @@ import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 import Home from './component/home/home';
+import AllLands from './component/land/allLands';
+import AllProducts from './component/product/allProducts';
 
 import {PrivateRoute, FarmerRoute, CorporateRoute} from './auth/protectedRoute';
 
@@ -22,6 +24,9 @@ export default function AllRoutes(){
         <Router>
             <Routes>
                 <Route path="/" exact element={<Home/>}/>
+                <Route path="/lands" exact element={<AllLands/>}/>
+                <Route path="/products" exact element={<AllProducts/>}/>
+
                 <Route path="/signin" exact element={<Signin/>}/>
                 <Route path="/signup" exact element={<Signup/>}/>
 
