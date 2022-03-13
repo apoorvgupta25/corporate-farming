@@ -40,6 +40,63 @@ const Product = () => {
 
     var imgsrc = 'https://images-prod.healthline.com/hlcmsresource/images/AN_images/tomatoes-1296x728-feature.jpg';
 
+    function s1() {
+
+        const b1 = document.getElementById("btn1");
+        const b2 = document.getElementById("btn2");
+        const b3 = document.getElementById("btn3");
+        const sec1 = document.getElementById("section1");
+        const sec2 = document.getElementById("section2");
+        const sec3 = document.getElementById("section3");
+        b2.classList.remove("active");
+        b3.classList.remove("active");
+
+        sec2.style.display = "none";
+        sec3.style.display = "none";
+
+        sec1.style.display = "block";
+        b1.addClass("active");
+    }
+
+    function s2() {
+
+        const b1 = document.getElementById("btn1");
+        const b2 = document.getElementById("btn2");
+        const b3 = document.getElementById("btn3");
+        const sec1 = document.getElementById("section1");
+        const sec2 = document.getElementById("section2");
+        const sec3 = document.getElementById("section3");
+
+        b1.classList.remove("active");
+        b3.classList.remove("active");
+
+        sec1.style.display = "none";
+        sec3.style.display = "none";
+
+        sec2.style.display = "block";
+        b2.addClass("active");
+        
+    }
+
+    function s3() {
+
+        const b1 = document.getElementById("btn1");
+        const b2 = document.getElementById("btn2");
+        const b3 = document.getElementById("btn3");
+        const sec1 = document.getElementById("section1");
+        const sec2 = document.getElementById("section2");
+        const sec3 = document.getElementById("section3");
+
+        b1.classList.remove("active");
+        b2.classList.remove("active");
+
+        sec1.style.display = "none";
+        sec2.style.display = "none";
+
+        sec3.style.display = "block";
+        b3.addClass("active");
+    }
+
     return (
         <>
         <Navbar/>
@@ -65,23 +122,23 @@ const Product = () => {
                     </div>
 
                     <div className="btn-group btn-group-lg" style={{width: '100%'}}>
-                        <button type="button" data-section="section1" className="btn btn-primary segmentedButton active">Product Details</button>
-                        <button type="button" data-section="section2" className="btn btn-primary segmentedButton">Land Details</button>
-                        <button type="button" data-section="section3" className="btn btn-primary segmentedButton">Farmer Details</button>
+                        <button type="button" onClick={s1} id="btn1" className="btn btn-primary segmentedButton active">Product Details</button>
+                        <button type="button" onClick={s2} id="btn2" className="btn btn-primary segmentedButton">Land Details</button>
+                        <button type="button" onClick={s3} id="btn3" className="btn btn-primary segmentedButton">Farmer Details</button>
                     </div>
 
-                    <div className="content-section" id="section1" style={{display: 'block'}}>
+                    <div id="section1" style={{display: 'block'}}>
                         <h4>Order Capacity: {product.minimumOrderQuantity} - {product.maximumOrderQuantity}</h4>
                         <h4>Harvest Month: {product.harvestMonth}</h4>
                         <h4>Delivery Month: {product.deliveryMonth}</h4>
                         <h4>Payment before Harvest: ₹ {product.paymentBeforeharvest}</h4>
                     </div>
-                    <div className="content-section" id="section2">
+                    <div id="section2" style={{display: 'none'}}>
                         <h4>Land Size (in acres): 10</h4>
                         <h4>Rainfall: 10 mm</h4>
                         <h4>📍: Jalgaon</h4>
                     </div>
-                    <div className="content-section" id="section3">
+                    <div id="section3" style={{display: 'none'}}>
                         <h4>🤵: {product.farmer.name}</h4>
                         <h4>📱: 999459545</h4>
                         <h4>✉: rahul.mahadik@gmail.com</h4>
