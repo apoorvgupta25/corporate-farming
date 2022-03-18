@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom';
 import {API} from '../../backend';
 import Navbar from '../Navbar';
 import $ from 'jquery';
-
+import Topbar from "../topbar/topbar";
 // import './land.css';
 import '../land_product_style.css';
 // import './section.js';
@@ -112,7 +112,7 @@ const Land = () => {
 
     return (
         <>
-        <Navbar/>
+        <Topbar/>
         <div className="">
             <div className="card-wrapper" >
                 <div className="card">

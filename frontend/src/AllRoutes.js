@@ -6,7 +6,7 @@ import AllLands from './component/land/allLands';
 import Land from './component/land/land';
 import AllProducts from './component/product/allProducts';
 import Product from './component/product/product';
-
+import CropPrediction from './component/cropPrediction/cropPrediction'
 import {PrivateRoute, FarmerRoute, CorporateRoute} from './auth/protectedRoute';
 
 import Signin from './auth/signin';
@@ -34,6 +34,8 @@ export default function AllRoutes(){
 
                 <Route path="/signin" exact element={<Signin/>}/>
                 <Route path="/signup" exact element={<Signup/>}/>
+
+                <Route path="/cropPrediction" exact element={<CropPrediction/>}/>
 
                 <Route path='/dashboard/:userId' exact element={<PrivateRoute><FarmerDashboard/></PrivateRoute>}/>
 

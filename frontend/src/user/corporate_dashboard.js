@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import {signout} from '../auth/authAPICalls';
 import {isAuth} from '../auth/authAPICalls';
-
+import Topbar from '../component/topbar/topbar';
 import './corporate_dashboard.css';
 
 const CorporateDashboard = ({ match }) => {
@@ -55,7 +55,9 @@ const CorporateDashboard = ({ match }) => {
     };
 
     return (
+        
         <div className="">
+            <Topbar/>
             <h1 className="text-center mt-5 mb-5">Dashboard</h1>
             <div className="container bg-warning p-3">
                 <div className="row">

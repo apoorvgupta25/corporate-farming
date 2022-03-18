@@ -7,6 +7,7 @@ import Navbar from '../Navbar';
 
 // import './product.css';
 import '../land_product_style.css';
+import Topbar from "../topbar/topbar";
 
 const Product = () => {
 
@@ -99,7 +100,7 @@ const Product = () => {
 
     return (
         <>
-        <Navbar/>
+        <Topbar/>
         <div className="card-wrapper">
             <div className="card">
                 <div className="imgs">

@@ -6,7 +6,7 @@ import './home.scss';
 
 import {getRecent3Lands, getRecent3Products} from './homeAPICall'
 import Navbar from '../Navbar';
-
+import Topbar from '../topbar/topbar';
 import {API} from '../../backend';
 
 function Home() {
@@ -47,7 +47,7 @@ function Home() {
 
       return (
           <div>
-            <Navbar/>
+            <Topbar/>
             <h2 className="text-center font-weight-bold">Land for Lease</h2>
             <div className="wrapper">
                 {lands.map((land, index) => {

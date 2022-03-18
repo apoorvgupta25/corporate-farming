@@ -4,7 +4,7 @@ import {getAllProducts} from './productAPICall';
 
 import {List} from '../home/home'
 import Navbar from '../Navbar';
-
+import Topbar from "../topbar/topbar";
 import '../home/home.scss';
 
 const AllProducts = () => {
@@ -29,7 +29,7 @@ const AllProducts = () => {
 
     return (
         <>
-        <Navbar/>
+         <Topbar/>
         <h2 className="text-center font-weight-bold">Products</h2>
         <div className="list-container">
             {products.map((prod, index) => {

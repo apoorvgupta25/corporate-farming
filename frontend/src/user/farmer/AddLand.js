@@ -192,7 +192,7 @@ const AddLand = () => {
                         </div>
                     </div>
                     <div className="form-submit" style={{marginTop: '10%', marginLeft: '40%'}}>
-                        <input className="add-input-select" type="submit" name="submit" onClick={onSubmit} className="submit" value="Submit" />
+                        <input className="add-input-select" type="submit" name="submit" onClick={onSubmit} value="Submit" />
                     </div>
                 </form>
             </div>

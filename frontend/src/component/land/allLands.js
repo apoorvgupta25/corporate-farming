@@ -4,7 +4,7 @@ import {getAllLands} from './landAPICall'
 
 import Navbar from '../Navbar';
 import {Card} from '../home/home'
-
+import Topbar from "../topbar/topbar";
 import '../home/home.css';
 
 const AllLands = () => {
@@ -29,7 +29,7 @@ const AllLands = () => {
 
     return (
         <>
-        <Navbar/>
+        <Topbar/>
         <h2 className="text-center font-weight-bold">Land for Lease</h2>
         <div className="wrapper">
             {lands.map((land, index) => {

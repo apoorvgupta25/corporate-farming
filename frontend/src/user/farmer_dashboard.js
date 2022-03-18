@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import {signout} from '../auth/authAPICalls';
 import {isAuth} from '../auth/authAPICalls';
-
+import Topbar from '../component/topbar/topbar';
 import './farmer_dashboard.css';
 
 const FarmerDashboard = ({ match }) => {
@@ -64,6 +64,7 @@ const FarmerDashboard = ({ match }) => {
 
     return (
         <div className="">
+            <Topbar/>
             <h1 className="text-center mt-5 mb-5">Dashboard</h1>
             <div className="container bg-warning p-3">
                 <div className="row">
