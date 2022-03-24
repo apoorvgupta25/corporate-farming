@@ -6,10 +6,12 @@ import {List} from '../home/home'
 import Navbar from '../Navbar';
 import Topbar from "../topbar/topbar";
 import '../home/home.scss';
+import ThreeDotsWave from '../animation/ThreeDotsWave';
 
 const AllProducts = () => {
 
     const [products, setProducts] = useState([]);
+    const [isLoading, setLoading] = useState(true);
 
     const getProductData = () => {
         getAllProducts()
@@ -19,6 +21,7 @@ const AllProducts = () => {
             } else {
                 setProducts(data);
             }
+            setLoading(false);
         })
     };
 
@@ -26,6 +29,9 @@ const AllProducts = () => {
         getProductData()
     },[])
 
+    if (isLoading){
+        return <ThreeDotsWave/>;
+    }
 
     return (
         <>

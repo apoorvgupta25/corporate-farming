@@ -48,7 +48,7 @@ function Home() {
       return (
           <div>
             <Topbar/>
-            <h2 className="text-center font-weight-bold">Land for Lease</h2>
+            <h2 className="text-center font-weight-bold mt-3">Land for Lease</h2>
             <div className="wrapper">
                 {lands.map((land, index) => {
                     return (

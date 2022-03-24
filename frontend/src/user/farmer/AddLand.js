@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {Link, Navigate} from 'react-router-dom';
+import { Alert } from 'reactstrap';
 
 import './add.css';
 import {isAuth} from '../../auth/authAPICalls'
 import {addLandToDB} from './farmerAPICalls'
 import Topbar from "../../component/topbar/topbar";
-
+import CircleModal from '../../component/animation/CircleModal';
 
 const AddLand = () => {
 
@@ -33,6 +34,8 @@ const AddLand = () => {
             percentage:'',
         },
         error: '',
+        saving: false,
+        createdId: '',
         formData: new FormData()
     });
 
@@ -46,6 +49,8 @@ const AddLand = () => {
         rainfall,
         expectedProfit,
         error,
+        saving,
+        createdId,
         formData
     } = values;
 
@@ -95,28 +100,36 @@ const AddLand = () => {
 
     const successMessage = () => {
         return (
-            <div className="alert alert-success m-2 p-0 pt-2 mt-5" style={{display: createdLand ? "" : "none"}}>
-                <h4>{createdLand} created Successfully</h4>
-            </div>
+            <Alert
+                className="pb-0 text-center"
+                color="success"
+                style={{ display: createdLand ? '' : 'none' }}
+            >
+                <h5><Link to={`/land/${createdId}`} className="text-primary">{createdLand}</Link> Created Successfully</h5>
+            </Alert>
         )
     }
 
     const errorMessage = () => {
         return (
-            <div className="alert alert-danger m-2 p-0 pt-2 mt-5" style={{display: error ? "" : "none"}}>
-                <h4>{error}</h4>
-            </div>
+            <Alert
+                className="pb-0 text-center"
+                color="danger"
+                style={{ display: error ? '' : 'none' }}
+            >
+                <h5>{error}</h5>
+            </Alert>
         )
     }
 
     const onSubmit = event => {
     event.preventDefault();
-    setValues({...values, error:"" ,loading: true});
+    setValues({...values, error:"", saving: true});
 
     addLandToDB(user._id, token, formData)
         .then(data => {
             if(data.error){
-                setValues({...values, error: data.error})
+                setValues({...values, error: data.error, saving: false})
             }
             else{
                 setValues({...values,
@@ -142,7 +155,9 @@ const AddLand = () => {
                         exactAmount: '',
                         percentage:'',
                     },
+                    saving: false,
                     createdLand: data.title,
+                    createdId: data._id
                 })
             }
         })
@@ -154,13 +169,13 @@ const AddLand = () => {
     return (
         <>
         <Topbar/>
+        <CircleModal saving={saving}/>
 
         <div className="add-main bg-cont-land">
             <div className="add-container">
-                {successMessage()}
-                {errorMessage()}
 
                 <form method="POST" className="add-form">
+                    {errorMessage()}
                     <h2 className="add-heading" align="center">Land Lease</h2>
 
                     <div className="form-group-1">
@@ -198,6 +213,7 @@ const AddLand = () => {
                     <div className="form-submit" style={{marginTop: '10%', marginLeft: '40%'}}>
                         <input className="add-input-select" type="submit" name="submit" onClick={onSubmit} value="Submit" />
                     </div>
+                    {successMessage()}
                 </form>
             </div>
         </div>

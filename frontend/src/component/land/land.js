@@ -6,9 +6,9 @@ import {API} from '../../backend';
 import Navbar from '../Navbar';
 import $ from 'jquery';
 import Topbar from "../topbar/topbar";
-// import './land.css';
 import '../land_product_style.css';
 // import './section.js';
+import ThreeDotsWave from '../animation/ThreeDotsWave';
 
 const Land = () => {
 
@@ -35,11 +35,11 @@ const Land = () => {
         getLand(landId)
         .then(data => {
             if (data.error) {
-                setLoading(false);
+                console.log(data.error);
             } else {
                 setLand(data);
-                setLoading(false);
             }
+            setLoading(false);
         })
     };
 
@@ -48,7 +48,7 @@ const Land = () => {
     },[])
 
     if (isLoading){
-        return <div>Loading...</div>;
+        return <ThreeDotsWave/>;
     }
 
     var imageURL = `${API}/land/photo/${land._id}`;
@@ -88,7 +88,7 @@ const Land = () => {
 
         sec2.style.display = "block";
         b2.addClass("active");
-        
+
     }
 
     function s3() {
@@ -136,7 +136,7 @@ const Land = () => {
                             <p>{land.description}</p>
                         </div>
 
-                        <div className="btn-group btn-group-lg" style={{width: '100%'}}> 
+                        <div className="btn-group btn-group-lg" style={{width: '100%'}}>
                             <button type="button" onClick={s1} id="btn1" className="btn btn-primary segmentedButton active">Land Details</button>
                             <button type="button" onClick={s2} id="btn2" className="btn btn-primary segmentedButton">Soil Details</button>
                             <button type="button" onClick={s3} id="btn3" className="btn btn-primary segmentedButton">Farmer Details</button>

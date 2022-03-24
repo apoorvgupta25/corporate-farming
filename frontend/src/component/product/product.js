@@ -5,9 +5,9 @@ import {useParams} from 'react-router-dom';
 import {API} from '../../backend';
 import Navbar from '../Navbar';
 
-// import './product.css';
 import '../land_product_style.css';
 import Topbar from "../topbar/topbar";
+import ThreeDotsWave from '../animation/ThreeDotsWave';
 
 const Product = () => {
 
@@ -20,11 +20,11 @@ const Product = () => {
         getProduct(productId)
         .then(data => {
             if (data.error) {
-                setLoading(false);
+                console.log(data.error);
             } else {
                 setProduct(data);
-                setLoading(false);
             }
+            setLoading(false);
         })
     };
 
@@ -33,7 +33,7 @@ const Product = () => {
     },[])
 
     if (isLoading){
-        return <div>Loading...</div>;
+        return <ThreeDotsWave/>;
     }
 
     // No Land Details
@@ -76,7 +76,7 @@ const Product = () => {
 
         sec2.style.display = "block";
         b2.addClass("active");
-        
+
     }
 
     function s3() {

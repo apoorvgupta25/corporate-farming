@@ -6,10 +6,12 @@ import Navbar from '../Navbar';
 import {Card} from '../home/home'
 import Topbar from "../topbar/topbar";
 import '../home/home.css';
+import ThreeDotsWave from '../animation/ThreeDotsWave';
 
 const AllLands = () => {
 
     const [lands, setLands] = useState([]);
+    const [isLoading, setLoading] = useState(true);
 
     const getLandData = () => {
         getAllLands()
@@ -19,6 +21,8 @@ const AllLands = () => {
             } else {
                 setLands(data);
             }
+            setLoading(false);
+
         })
     };
 
@@ -26,6 +30,9 @@ const AllLands = () => {
         getLandData()
     },[])
 
+    if (isLoading){
+        return <ThreeDotsWave/>;
+    }
 
     return (
         <>
