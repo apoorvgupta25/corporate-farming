@@ -4,6 +4,7 @@ import {Link, Navigate} from 'react-router-dom';
 import './add.css';
 import {isAuth} from '../../auth/authAPICalls'
 import {addProductToDB} from './farmerAPICalls'
+import Topbar from "../../component/topbar/topbar";
 
 const AddProduct = () => {
 
@@ -37,7 +38,7 @@ const AddProduct = () => {
 
     const successMessage = () => {
         return (
-            <div className="alert alert-success mt-3" style={{display: createdProduct ? "" : "none"}}>
+            <div className="alert alert-success m-2 p-0 pt-2 mt-5" style={{display: createdProduct ? "" : "none"}}>
                 <h4>{createdProduct} created Successfully</h4>
             </div>
         )
@@ -45,8 +46,8 @@ const AddProduct = () => {
 
       const errorMessage = () => {
           return (
-              <div className="alert alert-danger mt-3" style={{display: error ? "" : "none"}}>
-                  <h4>{error}</h4>
+              <div className="alert alert-danger m-2 p-0 pt-2 mt-5" style={{display: error ? "" : "none"}}>
+                  <h4 className="text-center">{error}</h4>
               </div>
           )
       }
@@ -81,13 +82,15 @@ const AddProduct = () => {
 
       return (
 
+        <>
+        <Topbar/>
+
         <div className="add-main bg-cont-product">
             <div className="add-container">
                 {successMessage()}
                 {errorMessage()}
 
-                <form method="POST" className="add-form" id="land-form">
-                    <Link to={`/farmer/dashboard/${isAuth().user._id}`} className="btn btn-md btn-dark mr-4">Dashboard</Link>
+                <form method="POST" className="add-form">
                     <h2 className="add-heading" align="center">Fruits & Veggies</h2>
                     <div className="form-group-1">
                         <input className="add-input-select" type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
@@ -107,7 +110,7 @@ const AddProduct = () => {
                 </form>
             </div>
         </div>
-
+        </>
 
     )
 

@@ -10,7 +10,7 @@ export default function Topbar() {
     <div className="topbarContainer">
       <div className="topbarLeft">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <em className="logo">Corp-Farm</em>
+          <div className="logo">Corp-Farm</div>
         </Link>
       </div>
       <div className="topbarCenter">
@@ -20,7 +20,7 @@ export default function Topbar() {
           placeholder="Search for lands/ products"
           className="searchInput"
         />
-   
+
     </div>
       </div>
       <div className="topbarRight">
@@ -43,14 +43,14 @@ export default function Topbar() {
           )}
           {!isAuth() && (
             <Link to="/signin" style={{ textDecoration: 'none', color: 'white' }}>
-              <em className="topbarLink">SignIn</em>
+              <div className="topbarLink">SignIn</div>
             </Link>
            )}
           {!isAuth() && (
             <Link to="/signup" style={{ textDecoration: 'none', color: 'white' }}>
-              <em className="topbarLink">SignUp</em>
+              <div className="topbarLink">SignUp</div>
             </Link>
-            )}  
+            )}
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
@@ -60,18 +60,18 @@ export default function Topbar() {
           </div>
           <div className="topbarIconItem">
           {isAuth() && isAuth().user.role === 0 && (
-                       
+
             <Link to={`/farmer/dashboard/${isAuth().user._id}`} style={{ textDecoration:'none', color: 'white'}}>
               <Person />
             </Link>
-                               
-          )}  
+
+          )}
           {isAuth() && isAuth().user.role === 1 && (
-                              
+
             <Link to={`/corporate/dashboard/${isAuth().user._id}`} style={{ textDecoration:'none', color: 'white'}}>
               <Person />
             </Link>
-                                      
+
           )}
           </div>
         </div>
@@ -79,4 +79,3 @@ export default function Topbar() {
     </div>
   );
 }
-

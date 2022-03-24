@@ -1,5 +1,6 @@
 .topbarContainer {
-  height: 50px;
+  height: 5rem;
+  /* margin-bottom: 1rem; */
   width: 100%;
   background-color: #1877f2;
   display: flex;
@@ -14,8 +15,8 @@
 }
 
 .logo {
-  font-size: 24px;
-  margin-left: 20px;
+  font-size: 2rem;
+  margin-left: 2rem;
   font-weight: bold;
   color: white;
   cursor: pointer;
@@ -36,7 +37,7 @@
 
 .searchIcon {
   font-size: 20px !important;
-  margin-left: 10px;
+  margin-left: 1rem;
 }
 
 .searchInput {
@@ -57,8 +58,9 @@
 }
 
 .topbarLink {
-  margin-right: 10px;
-  font-size: 14px;
+  margin-right: 1rem;
+  font-size: 1rem;
+  display:inline;
   cursor: pointer;
 }
 
@@ -67,7 +69,7 @@
 }
 
 .topbarIconItem {
-  margin-right: 15px;
+  margin-right: 1rem;
   cursor: pointer;
   position: relative;
 }

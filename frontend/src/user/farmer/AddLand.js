@@ -4,6 +4,8 @@ import {Link, Navigate} from 'react-router-dom';
 import './add.css';
 import {isAuth} from '../../auth/authAPICalls'
 import {addLandToDB} from './farmerAPICalls'
+import Topbar from "../../component/topbar/topbar";
+
 
 const AddLand = () => {
 
@@ -93,7 +95,7 @@ const AddLand = () => {
 
     const successMessage = () => {
         return (
-            <div className="alert alert-success mt-3" style={{display: createdLand ? "" : "none"}}>
+            <div className="alert alert-success m-2 p-0 pt-2 mt-5" style={{display: createdLand ? "" : "none"}}>
                 <h4>{createdLand} created Successfully</h4>
             </div>
         )
@@ -101,7 +103,7 @@ const AddLand = () => {
 
     const errorMessage = () => {
         return (
-            <div className="alert alert-danger mt-3" style={{display: error ? "" : "none"}}>
+            <div className="alert alert-danger m-2 p-0 pt-2 mt-5" style={{display: error ? "" : "none"}}>
                 <h4>{error}</h4>
             </div>
         )
@@ -150,13 +152,15 @@ const AddLand = () => {
     var states = new Array("Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttaranchal", "Uttar Pradesh", "West Bengal");
 
     return (
+        <>
+        <Topbar/>
+
         <div className="add-main bg-cont-land">
             <div className="add-container">
                 {successMessage()}
                 {errorMessage()}
 
-                <form method="POST" className="add-form" id="land-form">
-                    <Link to={`/farmer/dashboard/${isAuth().user._id}`} className="btn btn-md btn-dark">Dashboard</Link>
+                <form method="POST" className="add-form">
                     <h2 className="add-heading" align="center">Land Lease</h2>
 
                     <div className="form-group-1">
@@ -197,6 +201,7 @@ const AddLand = () => {
                 </form>
             </div>
         </div>
+        </>
     )
 }
 
