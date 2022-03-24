@@ -21,7 +21,6 @@ const FarmerDashboard = ({ match }) => {
     const adminLeftSide = () => {
         return (
             <div>
-                <h4 className="card-header bg-dark"><Link to="/" style={{ textDecoration:'none', color: 'white'}}>Corp-Farm</Link></h4>
                 <ul className="list-group">
                     <li className="list-group-item">
                         <Link to="/farmer/add/land" className="text-success" style={{ textDecoration:'none'}}>Create Land</Link>
@@ -43,7 +42,6 @@ const FarmerDashboard = ({ match }) => {
     const adminRightSide = () => {
         return (
             <div className="mb-4">
-                <h4 className="bg-dark text-white card-header">Info</h4>
                 <ul className="list-group">
                     <li className="list-group-item">
                         <div className="badge badge-success mr-2">Name</div> {name}
