@@ -21,7 +21,7 @@ const CorporateDashboard = ({ match }) => {
 
     const adminLeftSide = () => {
         return (
-            <div className="card">
+            <div>
                 <h4 className="card-header bg-dark"><Link to="/" style={{ textDecoration:'none', color: 'white'}}>Corp-Farm</Link></h4>
                 <ul className="list-group">
                     <li className="list-group-item">
@@ -34,8 +34,8 @@ const CorporateDashboard = ({ match }) => {
 
     const adminRightSide = () => {
         return (
-            <div className="card mb-4">
-                <h4 className="card-header">Info</h4>
+            <div className="mb-4">
+                <h4 className="bg-dark text-white card-header">Info</h4>
                 <ul className="list-group">
                     <li className="list-group-item">
                         <div className="badge badge-success mr-2">Name</div> {name}
@@ -46,16 +46,14 @@ const CorporateDashboard = ({ match }) => {
                     <li className="list-group-item">
                         <div className="badge badge-success mr-2">Role</div> {roleType}
                     </li>
-                    <li className="list-group-item">
-                        <Link to="/signin" onClick={signoutUser} className="btn btn-primary">Sign Out</Link>
-                    </li>
                 </ul>
+                <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 pull-right text-white">Sign Out</Link>
             </div>
         );
     };
 
     return (
-        
+
         <div className="">
             <Topbar/>
             <h1 className="text-center mt-5 mb-5">Dashboard</h1>
