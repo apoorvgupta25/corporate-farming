@@ -7,6 +7,7 @@ import Navbar from '../Navbar';
 
 import '../land_product_style.css';
 import Topbar from "../topbar/topbar";
+import ChatNowButton from "../chatNowButton/chatNowButton";
 import ThreeDotsWave from '../animation/ThreeDotsWave';
 
 const Product = () => {
@@ -146,9 +147,7 @@ const Product = () => {
                     </div>
 
                     <div className="purchase-info">
-                        <button type="button" className="btn" style={{fontSize:'x-large'}}>
-                        Bid Now <i className="fas fa-gavel"></i>
-                        </button>
+                        <ChatNowButton userId={product.farmer._id}/>
                     </div>
                 </div>
             </div>

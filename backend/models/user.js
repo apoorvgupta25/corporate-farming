@@ -20,6 +20,10 @@ var userSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    friends:{
+        type: Array,
+        default: [],
+    },
     encry_password:{
         type: String,
         required: true

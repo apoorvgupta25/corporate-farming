@@ -55,7 +55,9 @@ export default function Topbar() {
         <div className="topbarIcons">
           <div className="topbarIconItem">
           {isAuth() && (
-            <Chat />
+             <Link to={`/messenger`} style={{ textDecoration:'none', color: 'white'}}>
+               <Chat />
+            </Link>
           )}
           </div>
           <div className="topbarIconItem">

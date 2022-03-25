@@ -8,7 +8,7 @@ import AllProducts from './component/product/allProducts';
 import Product from './component/product/product';
 import CropPrediction from './component/cropPrediction/cropPrediction'
 import {PrivateRoute, FarmerRoute, CorporateRoute} from './auth/protectedRoute';
-
+import Messenger from './component/messenger/messenger';
 import Signin from './auth/signin';
 import Signup from './auth/signup';
 
@@ -36,7 +36,7 @@ export default function AllRoutes(){
                 <Route path="/signup" exact element={<Signup/>}/>
 
                 <Route path="/cropPrediction" exact element={<CropPrediction/>}/>
-
+                <Route path="/messenger" exact element={<Messenger/>}/>
                 <Route path='/dashboard/:userId' exact element={<PrivateRoute><FarmerDashboard/></PrivateRoute>}/>
 
                 <Route path='/farmer/dashboard/:userId' exact element={<FarmerRoute><FarmerDashboard/></FarmerRoute>}/>
