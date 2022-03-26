@@ -23,6 +23,9 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  border: 2px black solid;
+  border-radius: 10px;
+  margin: 1rem;
 }
 
 .chatBoxTop {
@@ -65,6 +68,13 @@
   padding: 10px;
   height: 100%;
 }
+
+.chatMenuWrapper{
+    border: 2px black solid;
+    border-radius: 10px;
+    margin: 1rem;
+}
+
 
 .noConversationText {
   position: absolute;

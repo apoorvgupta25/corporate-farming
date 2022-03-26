@@ -4,6 +4,8 @@
   padding: 10px;
   cursor: pointer;
   margin-top: 20px;
+  border: 2px black solid;
+  border-radius: 10px;
 }
 
 .conversation:hover {

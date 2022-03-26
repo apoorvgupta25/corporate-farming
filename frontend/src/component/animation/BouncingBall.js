@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 
 const ballStyle = {
     display: "block",
-    width: "1rem",
-    height: "1rem",
+    width: "0.75rem",
+    height: "0.75rem",
     backgroundColor: "black",
     borderRadius: "0.5rem"
 };
@@ -22,22 +22,23 @@ const bounceTransition = {
     }
 };
 
+const ballContainer = {
+    width: "2rem",
+    height: "2rem",
+    margin: "0 auto",
+    display: "flex",
+    justifyContent: "space-around"
+}
+
 const BouncingBall = () => {
     return (
-        <div
-            style={{
-            width: "2rem",
-            height: "2rem",
-            display: "flex",
-            justifyContent: "space-around"
-            }}
-        >
-            <motion.span
+        <div style={ballContainer}>
+            <motion.div
                 style={ballStyle}
                 transition={bounceTransition}
                 animate={{
                 y: ["100%", "-100%"],
-                backgroundColor: ["#ff6699", "#6666ff"]
+                backgroundColor: ["#6666ff", "#ff6699"]
                 }}
             />
         </div>

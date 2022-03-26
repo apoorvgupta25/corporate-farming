@@ -5,11 +5,15 @@ import { getAllConversations, getAllMessages, postMessage } from "./messengerAPI
 import {isAuth} from '../../auth/authAPICalls';
 import AllConversations from "../conversion/allConversions";
 import Message from "../message/message";
+import BouncingBall from '../animation/BouncingBall';
+
 export default function Messenger() {
   const [currentChat, setCurrentChat] = useState(null);
-  const [conversations, setConversations] = useState([]);   
+  const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [isLoading, setLoading] = useState(true);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {
@@ -24,7 +28,7 @@ export default function Messenger() {
       postMessage(message)
         .then(data => {
             if (data.error) {
-              
+
             } else {
                 setMessages([...messages, data]);
                 setNewMessage("");
@@ -43,6 +47,7 @@ export default function Messenger() {
           } else {
               setConversations(data);
           }
+          setLoading(false);
       })
   }
 
@@ -54,6 +59,7 @@ export default function Messenger() {
     useEffect(() => {
         getConversationData()
     },[])
+
 
     const getMessages = () => {
       getAllMessages(currentChat)
@@ -68,14 +74,17 @@ export default function Messenger() {
     useEffect(() => {
       getMessages();
     }, [currentChat]);
-  
+
+
   return (
     <>
       <Topbar />
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-      
+            <h3 className="font-weight-bold text-dark">Chats</h3>
+
+          {isLoading && <BouncingBall/>}
           {conversations.map((c) => (
             <div onClick={() => setCurrentChat(getConversationId(c._id))}>
               <AllConversations user={c.name}/>
@@ -113,11 +122,10 @@ export default function Messenger() {
                 Open a conversation to start a chat.
               </span>
             )}
-            
+
          </div>
         </div>
     </div>
     </>
   );
 }
-

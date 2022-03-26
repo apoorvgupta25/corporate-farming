@@ -1,9 +1,9 @@
 const Message = require('../models/message')
 
 exports.addMessage = async (req, res) => {
-  console.log(req);
+  // console.log(req);
     const newMessage = new Message(req.body);
-  
+
     try {
       const savedMessage = await newMessage.save();
       res.status(200).json(savedMessage);
