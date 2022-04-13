@@ -15,8 +15,10 @@ import Signup from './auth/signup';
 import FarmerDashboard from './user/farmer_dashboard';
 import AddLand from './user/farmer/AddLand';
 import ManageLand from './user/farmer/ManageLand';
+import UpdateLand from './user/farmer/UpdateLand';
 import AddProduct from './user/farmer/AddProduct';
 import ManageProduct from './user/farmer/ManageProduct';
+import UpdateProduct from './user/farmer/UpdateProduct';
 
 import CorporateDashboard from './user/corporate_dashboard';
 
@@ -42,8 +44,10 @@ export default function AllRoutes(){
                 <Route path='/farmer/dashboard/:userId' exact element={<FarmerRoute><FarmerDashboard/></FarmerRoute>}/>
                 <Route path='/farmer/add/land' exact element={<FarmerRoute><AddLand/></FarmerRoute>}/>
                 <Route path='/farmer/manage/land' exact element={<FarmerRoute><ManageLand/></FarmerRoute>}/>
+                <Route path='/farmer/land/update/:landId' exact element={<FarmerRoute><UpdateLand/></FarmerRoute>}/>
                 <Route path='/farmer/add/product' exact element={<FarmerRoute><AddProduct/></FarmerRoute>}/>
                 <Route path='/farmer/manage/product' exact element={<FarmerRoute><ManageProduct/></FarmerRoute>}/>
+                <Route path='/farmer/product/update/:productId' exact element={<FarmerRoute><UpdateProduct/></FarmerRoute>}/>
 
                 <Route path='/corporate/dashboard/:userId' exact element={<CorporateRoute><CorporateDashboard/></CorporateRoute>}/>
             </Routes>
