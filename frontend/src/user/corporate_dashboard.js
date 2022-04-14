@@ -19,18 +19,6 @@ const CorporateDashboard = ({ match }) => {
     if(role === 1)
         roleType = "Corporate";
 
-    const adminLeftSide = () => {
-        return (
-            <div>
-                <ul className="list-group">
-                    <li className="list-group-item">
-                        <Link to="/create" className="text-success" style={{ textDecoration:'none'}}>Create</Link>
-                    </li>
-                </ul>
-            </div>
-        );
-    };
-
     const adminRightSide = () => {
         return (
             <div className="mb-4">
@@ -57,8 +45,7 @@ const CorporateDashboard = ({ match }) => {
             <h1 className="text-center mt-5 mb-5">Dashboard</h1>
             <div className="container bg-warning p-3">
                 <div className="row">
-                    <div className="col-sm-3">{adminLeftSide()}</div>
-                    <div className="col-sm-9">{adminRightSide()}</div>
+                    <div className="col-sm-12">{adminRightSide()}</div>
                 </div>
             </div>
 
