@@ -52,9 +52,9 @@ exports.getFriends = async (req, res) => {
 }
 
   //follow a user
-  
+
   exports.followUser = async (req, res) => {
-   
+
     if (req.params.currentUserId !== req.params.userId) {
       try {
         const user = await User.findById(req.params.userId);
@@ -73,9 +73,9 @@ exports.getFriends = async (req, res) => {
       res.status(403).json("you can't follow yourself");
     }
   }
-  
+
   //unfollow a user
-  
+
   exports.UnfollowUser = async (req, res) => {
     if (req.params.currentUserId !== req.params.userId) {
       try {
@@ -95,3 +95,58 @@ exports.getFriends = async (req, res) => {
       res.status(403).json("you can't unfollow yourself");
     }
   }
+
+// Unverified Users
+exports.getAllUnverifiedFarmers = (req, res) => {
+    User.find({role: 0, verification: "Unverified"}).exec((err, users) => {
+        if(err || !users){
+            return res.status(400).json({
+                error: "No user found in DB"
+            })
+        }
+        res.json(users)
+    })
+};
+
+// Verified Users
+exports.getAllVerifiedFarmers = (req, res) => {
+    User.find({role: 0, verification: "Verified"}).exec((err, users) => {
+        if(err || !users){
+            return res.status(400).json({
+                error: "No user found in DB"
+            })
+        }
+        res.json(users)
+    })
+};
+
+// Invalid Users
+exports.getAllInvalidFarmers = (req, res) => {
+    User.find({role: 0, verification: "Invalid"}).exec((err, users) => {
+        if(err || !users){
+            return res.status(400).json({
+                error: "No user found in DB"
+            })
+        }
+        res.json(users)
+    })
+};
+
+exports.getVerificationEnums = (req, res) => {
+    res.json(User.schema.path("verification").enumValues);
+}
+
+exports.updateVerification = (req, res) => {
+    User.updateOne(
+        {_id: req.body.farmerId},
+        {$set: {verification: req.body.verification}},
+        (err, updatedFarmer) => {
+            if(err){
+                return res.status(400).json({
+                    error: err
+                });
+            }
+            res.json(updatedFarmer);
+        }
+    )
+}

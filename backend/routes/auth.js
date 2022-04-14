@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const { check } = require('express-validator');
 
-const { signout, signup, signin, isSignedIn, isAuthenticated, isFarmer, isCorporate } = require('../controllers/auth');
+const { signout, signup, signin, isSignedIn, isAuthenticated, isFarmer, isCorporate, isAdmin } = require('../controllers/auth');
 const {getUserById} = require('../controllers/user')
 
 router.param('userId', getUserById)
@@ -30,5 +30,10 @@ router.get('/farmertest/:userId', isSignedIn, isAuthenticated, isFarmer, (req, r
 router.get('/corptest/:userId', isSignedIn, isAuthenticated, isCorporate, (req, res) =>{
     res.send('Corporate Test Route');
 });
+
+router.get('/admintest/:userId', isSignedIn, isAuthenticated, isAdmin, (req, res) =>{
+    res.send('Admin Test Route');
+});
+
 
 module.exports = router;

@@ -24,12 +24,30 @@ var userSchema = new mongoose.Schema({
         type: Array,
         default: [],
     },
+    contact:{
+        type: Number,
+        maxlength: 10,
+        trim: true
+    },
+    aadhaar:{
+        type: Number,
+        maxlength: 12,
+        trim: true
+    },
+    verification: {
+        type: String,
+        default: "Unverified",
+        enum: ["Verified", "Invalid", "Unverified"]
+    },
     encry_password:{
         type: String,
         required: true
     },
     salt: String,
 },{timestamps: true});
+
+// db.users.updateMany({role:1}, {$set:{"verification": "Pending"}})
+// db.users.updateMany({}, {$unset: {verification:1}})
 
 // virutals
 userSchema.virtual("password")

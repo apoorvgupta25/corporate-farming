@@ -23,6 +23,7 @@ exports.signup = (req,res) => {
             name: user.name,
             email: user.email,
             role: user.role,
+            verification: user.verification,
             id: user._id
         });
     });
@@ -55,8 +56,8 @@ exports.signin = (req,res) => {
 
         res.cookie("token", token, {expire: new Date() + 9999});
 
-        const { _id, name, role, email} = user;
-        return res.json({token, user: { _id, name, role, email}});
+        const { _id, name, role, email, verification} = user;
+        return res.json({token, user: { _id, name, role, email, verification}});
     });
 };
 
@@ -84,7 +85,7 @@ exports.isAuthenticated = (req,res,next) =>{
 };
 
 exports.isFarmer = (req,res,next) =>{
-    if(req.profile.role === 1){
+    if(req.profile.role === 1 || req.profile.role === 2){
         return res.status(403).json({
             error: "You are NOT a Farmer, ACCESS DENIED"
         });
@@ -93,10 +94,21 @@ exports.isFarmer = (req,res,next) =>{
 };
 
 exports.isCorporate = (req,res,next) =>{
-    if(req.profile.role === 0){
+    if(req.profile.role === 0 || req.profile.role === 2){
         return res.status(403).json({
             error: "You are NOT a Corporate, ACCESS DENIED"
         });
     }
     next();
+};
+
+exports.isAdmin = (req,res,next) =>{
+    // console.log("Admin", req.profile.role);
+    if(req.profile.role === 2){
+        next();
+    } else{
+        return res.status(403).json({
+            error: "You are NOT an Admin, ACCESS DENIED"
+        });
+    }
 };
