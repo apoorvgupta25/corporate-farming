@@ -75,6 +75,14 @@ export default function Topbar() {
             </Link>
 
           )}
+
+          {isAuth() && isAuth().user.role === 2 && (
+
+            <Link to={`/admin/dashboard/${isAuth().user._id}`} style={{ textDecoration:'none', color: 'white'}}>
+              <Person />
+            </Link>
+
+          )}
           </div>
         </div>
       </div>

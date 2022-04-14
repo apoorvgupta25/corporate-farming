@@ -31,6 +31,9 @@ const Signin = () => {
             else if(user && user.role === 1){
                 return <Navigate to={`/corporate/dashboard/${user._id}`}/>
             }
+            else if(user && user.role === 2){
+                return <Navigate to={`/admin/dashboard/${user._id}`}/>
+            }
         }
 
         if(isAuth()){

@@ -7,7 +7,7 @@ import Land from './component/land/land';
 import AllProducts from './component/product/allProducts';
 import Product from './component/product/product';
 import CropPrediction from './component/cropPrediction/cropPrediction'
-import {PrivateRoute, FarmerRoute, CorporateRoute} from './auth/protectedRoute';
+import {PrivateRoute, FarmerRoute, CorporateRoute, AdminRoute} from './auth/protectedRoute';
 import Messenger from './component/messenger/messenger';
 import Signin from './auth/signin';
 import Signup from './auth/signup';
@@ -21,6 +21,9 @@ import ManageProduct from './user/farmer/ManageProduct';
 import UpdateProduct from './user/farmer/UpdateProduct';
 
 import CorporateDashboard from './user/corporate_dashboard';
+
+import AdminDashboard from './user/admin_dashboard';
+import ManageVerification from './user/admin/ManageVerification';
 
 export default function AllRoutes(){
 
@@ -50,6 +53,10 @@ export default function AllRoutes(){
                 <Route path='/farmer/product/update/:productId' exact element={<FarmerRoute><UpdateProduct/></FarmerRoute>}/>
 
                 <Route path='/corporate/dashboard/:userId' exact element={<CorporateRoute><CorporateDashboard/></CorporateRoute>}/>
+
+                <Route path='/admin/dashboard/:userId' exact element={<AdminRoute><AdminDashboard/></AdminRoute>}/>
+                <Route path='/admin/verification' exact element={<AdminRoute><ManageVerification/></AdminRoute>}/>
+
             </Routes>
         </Router>
     )

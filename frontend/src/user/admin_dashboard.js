@@ -1,38 +1,28 @@
-import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import React, {useState} from 'react';
+import {Link, Navigate} from 'react-router-dom';
 
 import {signout} from '../auth/authAPICalls';
 import {isAuth} from '../auth/authAPICalls';
 import Topbar from '../component/topbar/topbar';
-import './farmer_dashboard.css';
 
-const FarmerDashboard = ({ match }) => {
+const AdminDashboard = () => {
 
     const signoutUser = () => {
         signout()
     }
 
-    const {user: {name, email, role, verification}} = isAuth();
-    console.log(isAuth());
+    const {user: {name, email, role}} = isAuth();
+
     var roleType = "Farmer";
-    if(role === 1)
-        roleType = "Corporate";
+    if(role === 2)
+        roleType = "Admin";
 
     const adminLeftSide = () => {
         return (
             <div>
                 <ul className="list-group">
                     <li className="list-group-item">
-                        <Link to="/farmer/add/land" className="text-success" style={{ textDecoration:'none'}}>Create Land</Link>
-                    </li>
-                    <li className="list-group-item">
-                        <Link to="/farmer/manage/land" className=" text-success" style={{ textDecoration:'none'}}>Manage Land</Link>
-                    </li>
-                    <li className="list-group-item">
-                        <Link to="/farmer/add/product" className=" text-success" style={{ textDecoration:'none'}}>Create Product</Link>
-                    </li>
-                    <li className="list-group-item">
-                        <Link to="/farmer/manage/product" className=" text-success" style={{ textDecoration:'none'}}>Manage Product</Link>
+                        <Link to="/admin/verification" className="text-success" style={{ textDecoration:'none'}}>Verification</Link>
                     </li>
                 </ul>
             </div>
@@ -52,10 +42,6 @@ const FarmerDashboard = ({ match }) => {
                     <li className="list-group-item">
                         <div className="badge badge-success mr-2">Role</div> {roleType}
                     </li>
-                    <li className="list-group-item">
-                        <div className="badge badge-success mr-2">Status</div> {verification}
-                    </li>
-
                 </ul>
                 <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 pull-right text-white">Sign Out</Link>
             </div>
@@ -63,9 +49,10 @@ const FarmerDashboard = ({ match }) => {
     };
 
     return (
-        <div>
+
+        <div className="">
             <Topbar/>
-            <h1 className="text-center mt-5 mb-5">Dashboard</h1>
+            <h1 className="text-center mt-5 mb-5">Admin Dashboard</h1>
             <div className="container bg-warning p-3">
                 <div className="row">
                     <div className="col-sm-3">{adminLeftSide()}</div>
@@ -76,4 +63,5 @@ const FarmerDashboard = ({ match }) => {
         </div>
     );
 }
-export default FarmerDashboard;
+
+export default AdminDashboard;
