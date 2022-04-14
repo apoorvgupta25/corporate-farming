@@ -24,7 +24,7 @@ const Signin = () => {
     }
 
     const performRedirect = () => {
-        if(didRedirect){
+        if(didRedirect || isAuth()){
             if(user && user.role === 0){
                 return <Navigate to={`/farmer/dashboard/${user._id}`}/>
             }
@@ -34,10 +34,6 @@ const Signin = () => {
             else if(user && user.role === 2){
                 return <Navigate to={`/admin/dashboard/${user._id}`}/>
             }
-        }
-
-        if(isAuth()){
-            return <Navigate to='/' />
         }
     }
 

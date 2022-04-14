@@ -8,7 +8,7 @@ const PrivateRoute = ({ children }) => {
 }
 
 const FarmerRoute = ({ children }) => {
-    return (isAuth() && isAuth().user.role === 0) ? children : <Navigate to='/signin' />;
+    return (isAuth() && isAuth().user.role === 0 && isAuth().user.verification=="Verified") ? children : <Navigate to='/signin' />;
 }
 
 const CorporateRoute = ({ children }) => {

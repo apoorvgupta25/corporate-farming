@@ -6,6 +6,8 @@ import {isAuth} from '../auth/authAPICalls';
 import Topbar from '../component/topbar/topbar';
 import './farmer_dashboard.css';
 
+import { ReactComponent as Exaclamation }  from '../assets/exaclamation4.svg'
+
 const FarmerDashboard = ({ match }) => {
 
     const signoutUser = () => {
@@ -72,6 +74,7 @@ const FarmerDashboard = ({ match }) => {
                     <div className="col-sm-9">{adminRightSide()}</div>
                 </div>
             </div>
+            <div className="text-danger text-center font-weight-bold"><Exaclamation style={{width: "1.5rem"}}/>Note: Invalid and Unverified Farmers Cannot Add Land and Products</div>
 
         </div>
     );

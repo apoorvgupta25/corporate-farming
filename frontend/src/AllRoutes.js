@@ -44,7 +44,7 @@ export default function AllRoutes(){
                 <Route path="/messenger" exact element={<Messenger/>}/>
                 <Route path='/dashboard/:userId' exact element={<PrivateRoute><FarmerDashboard/></PrivateRoute>}/>
 
-                <Route path='/farmer/dashboard/:userId' exact element={<FarmerRoute><FarmerDashboard/></FarmerRoute>}/>
+                <Route path='/farmer/dashboard/:userId' exact element={<PrivateRoute><FarmerDashboard/></PrivateRoute>}/>
                 <Route path='/farmer/add/land' exact element={<FarmerRoute><AddLand/></FarmerRoute>}/>
                 <Route path='/farmer/manage/land' exact element={<FarmerRoute><ManageLand/></FarmerRoute>}/>
                 <Route path='/farmer/land/update/:landId' exact element={<FarmerRoute><UpdateLand/></FarmerRoute>}/>
