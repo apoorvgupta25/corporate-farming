@@ -47,7 +47,7 @@ export default function Topbar() {
             </Link>
            )}
           {!isAuth() && (
-            <Link to="/signup" style={{ textDecoration: 'none', color: 'white' }}>
+            <Link to="/signup/farmer" style={{ textDecoration: 'none', color: 'white' }}>
               <div className="topbarLink">SignUp</div>
             </Link>
             )}

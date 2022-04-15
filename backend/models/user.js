@@ -34,6 +34,11 @@ var userSchema = new mongoose.Schema({
         maxlength: 12,
         trim: true
     },
+    cin:{
+        type: String,
+        maxlength: 21,
+        trim: true
+    },
     verification: {
         type: String,
         default: "Unverified",

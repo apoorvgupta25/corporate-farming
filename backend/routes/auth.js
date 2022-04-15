@@ -8,11 +8,11 @@ const {getUserById} = require('../controllers/user')
 router.param('userId', getUserById)
 
 router.post('/signup',[
-    check('name', 'Name should be 5 characters').isLength({ min: 5 }),
+    check('name', 'Name should be atleast 5 characters').isLength({ min: 5 }),
     check('email', 'Enter valid email').isEmail(),
     check('password')
       .isLength({ min: 6 })
-      .withMessage('Password should be 6 characters'),
+      .withMessage('Password should be atleast 6 characters'),
   ],signup);
 
 router.post('/signin',[

@@ -25,16 +25,21 @@
 
 .form-box-signup{
     width: 380px;
-    height: 500px;
     position: relative;
-    margin-top: 3rem !important;
-    margin: 6% auto;
+    /* margin-top: 3rem !important; */
+    margin: 0 auto;
     background: #ffffff;
     padding:5px;
     overflow: hidden;
     border-radius: 10px;
 }
+.farmer {
+    height: 575px;
+}
 
+.corporate {
+    height: 525px;
+}
 
 .button-box{
     width: 220px;
