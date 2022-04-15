@@ -3,7 +3,7 @@ const _ = require('lodash')
 
 exports.getProductById = (req, res, next, id) => {
 
-    Product.findById(id).populate("farmer", "_id name").exec((err, prod) => {
+    Product.findById(id).populate("farmer", "_id name email contact").exec((err, prod) => {
         if(err){
             return res.status(400).json({
                 error: "Product not found in db"
@@ -50,7 +50,7 @@ exports.getAllProducts = (req, res) => {
     let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
 
     Product.find()
-        .populate("farmer", "_id name")
+        .populate("farmer", "_id name email contact")
         .sort([[sortBy, 'descending']])
         .limit(limit)
         .exec((err, products) => {

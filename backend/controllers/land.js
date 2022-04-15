@@ -5,7 +5,7 @@ const fs = require('fs');
 
 exports.getLandById = (req, res, next, id) => {
 
-    Land.findById(id).populate("farmer", "_id name").exec((err, lnd) => {
+    Land.findById(id).populate("farmer", "_id name email contact").exec((err, lnd) => {
         if(err){
             return res.status(400).json({
                 error: "Land not found in db"
@@ -84,7 +84,7 @@ exports.getAllLands = (req, res) => {
 
     Land.find()
         .select("-photo")
-        .populate("farmer", "_id name")
+        .populate("farmer", "_id name email contact")
         .sort([[sortBy, 'descending']])
         .limit(limit)
         .exec((err, lands) => {

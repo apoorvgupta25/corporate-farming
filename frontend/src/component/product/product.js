@@ -142,8 +142,8 @@ const Product = () => {
                     </div>
                     <div id="section3" style={{display: 'none'}}>
                         <h4>🤵: {product.farmer.name}</h4>
-                        <h4>📱: 999459545</h4>
-                        <h4>✉: rahul.mahadik@gmail.com</h4>
+                        <h4>📱: +91 {product.farmer.contact}</h4>
+                        <h4>✉: {product.farmer.email}</h4>
                     </div>
 
                     <div className="purchase-info">
