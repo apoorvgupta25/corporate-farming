@@ -8,6 +8,7 @@ import {getRecent3Lands, getRecent3Products} from './homeAPICall'
 import Navbar from '../Navbar';
 import Topbar from '../topbar/topbar';
 import {API} from '../../backend';
+import BouncingBall from '../animation/BouncingBall';
 
 function Home() {
 
@@ -45,12 +46,17 @@ function Home() {
         getProductData()
     },[])
 
+    console.log(lands.length);
+    console.log(products.length);
+
+
       return (
           <div>
             <Topbar/>
             <h2 className="text-center font-weight-bold mt-3">Land for Lease</h2>
             <div className="wrapper">
-                {lands.map((land, index) => {
+                {lands.length == 0 && <BouncingBall/>}
+                {lands.length > 0 && lands.map((land, index) => {
                     return (
                         <div key={index}>
                             <Card land={land}/>
@@ -63,7 +69,8 @@ function Home() {
 
             <h2 className="text-center font-weight-bold">Products</h2>
             <div className="list-container">
-                {products.map((prod, index) => {
+                {products.length == 0 && <BouncingBall/>}
+                {products.length > 0 && products.map((prod, index) => {
                     return (
                         <div key={index}>
                             <List prod={prod}/>

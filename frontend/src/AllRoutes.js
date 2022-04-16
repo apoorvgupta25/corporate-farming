@@ -10,7 +10,8 @@ import CropPrediction from './component/cropPrediction/cropPrediction'
 import {PrivateRoute, FarmerRoute, CorporateRoute, AdminRoute} from './auth/protectedRoute';
 import Messenger from './component/messenger/messenger';
 import Signin from './auth/signin';
-import Signup from './auth/signup';
+import SignupFarmer from './auth/signupFarmer';
+import SignupCorporate from './auth/signupCorporate';
 
 import FarmerDashboard from './user/farmer_dashboard';
 import AddLand from './user/farmer/AddLand';
@@ -38,7 +39,8 @@ export default function AllRoutes(){
                 <Route path="/product/:productId" exact element={<Product/>}/>
 
                 <Route path="/signin" exact element={<Signin/>}/>
-                <Route path="/signup" exact element={<Signup/>}/>
+                <Route path="/signup/farmer" exact element={<SignupFarmer/>}/>
+                <Route path="/signup/corporate" exact element={<SignupCorporate/>}/>
 
                 <Route path="/cropPrediction" exact element={<CropPrediction/>}/>
                 <Route path="/messenger" exact element={<Messenger/>}/>

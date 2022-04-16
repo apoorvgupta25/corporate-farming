@@ -42,8 +42,8 @@ exports.getFriends = async (req, res) => {
       );
       let friendList = [];
       friends.map((friend) => {
-        const { _id, name} = friend;
-        friendList.push({ _id, name });
+        const { _id, name, contact} = friend;
+        friendList.push({ _id, name, contact });
       });
       res.status(200).json(friendList)
     } catch (err) {

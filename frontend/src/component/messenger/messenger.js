@@ -9,6 +9,7 @@ import BouncingBall from '../animation/BouncingBall';
 
 export default function Messenger() {
   const [currentChat, setCurrentChat] = useState(null);
+  const [receiverNumber, setReceiverNumber] = useState(null);
   const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -25,7 +26,7 @@ export default function Messenger() {
     const receiverId = "";
 
     try {
-      postMessage(message)
+      postMessage(message,receiverNumber,isAuth().user.role)
         .then(data => {
             if (data.error) {
 
@@ -86,7 +87,7 @@ export default function Messenger() {
 
           {isLoading && <BouncingBall/>}
           {conversations.map((c) => (
-            <div onClick={() => setCurrentChat(getConversationId(c._id))}>
+            <div onClick={function() {setCurrentChat(getConversationId(c._id)); setReceiverNumber(c.contact)}}>
               <AllConversations user={c.name}/>
               </div>
             ))}

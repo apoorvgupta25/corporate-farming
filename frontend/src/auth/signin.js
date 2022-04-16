@@ -3,7 +3,7 @@ import {Link, Navigate} from 'react-router-dom';
 
 import {signin, authenticate, isAuth} from './authAPICalls';
 
-import './style.css';
+import './signin_signup.css';
 
 const Signin = () => {
 
@@ -107,7 +107,7 @@ const Signin = () => {
                     <button type="submit" className="submit-btn" onClick={onSubmit}>Signin</button>
 
                     <div className="mt-3">
-                        <Link to="/signup">Register Here</Link>
+                        <Link to="/signup/farmer">Register Here</Link>
                     </div>
 
                 </form>

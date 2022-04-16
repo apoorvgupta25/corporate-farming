@@ -1,8 +1,23 @@
 const Message = require('../models/message')
 
 exports.addMessage = async (req, res) => {
-  // console.log(req);
-    const newMessage = new Message(req.body);
+ 
+    const newMessage = new Message(req.body.message);
+    const contact = req.body.contact;
+    const isCorporate = req.body.isCorporate;
+    if (isCorporate == 1) {
+        const accountSid = process.env.TWILIO_ACCOUNT_SID;
+        const authToken = process.env.TWILIO_AUTH_TOKEN;
+        const client = require('twilio')(accountSid, authToken);
+        
+        client.messages
+          .create({
+            body: newMessage.text,
+            from: '+19853042594',
+            to: "+91".concat(contact),
+          })
+          .then(message => console.log(message.sid));
+    }
 
     try {
       const savedMessage = await newMessage.save();
