@@ -1,20 +1,26 @@
 import "./messenger.css";
 import Topbar from "../topbar/topbar";
-import React, {useState, useEffect}  from "react";
+import React, {useState, useRef, useEffect}  from "react";
 import { getAllConversations, getAllMessages, postMessage } from "./messengerAPICall";
 import {isAuth} from '../../auth/authAPICalls';
 import AllConversations from "../conversion/allConversions";
 import Message from "../message/message";
 import BouncingBall from '../animation/BouncingBall';
+import {useNavigate} from 'react-router-dom'
+
 
 export default function Messenger() {
+  if(!window.location.hash.includes("#reloaded")) {
+    window.location.href += "#reloaded";
+    window.location.reload();
+  }
   const [currentChat, setCurrentChat] = useState(null);
   const [receiverNumber, setReceiverNumber] = useState(null);
   const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [isLoading, setLoading] = useState(true);
-
+  const scrollRef = useRef();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {
@@ -76,7 +82,9 @@ export default function Messenger() {
       getMessages();
     }, [currentChat]);
 
-
+    useEffect(() => {
+      scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
   return (
     <>
       <Topbar />
@@ -101,7 +109,7 @@ export default function Messenger() {
               <>
                 <div className="chatBoxTop">
                   {messages.map((m) => (
-                    <div >
+                    <div ref={scrollRef}>
                       <Message message={m} own={m.sender === isAuth().user._id} />
                     </div>
                   ))}
