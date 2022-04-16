@@ -8,26 +8,111 @@ import Topbar from "../topbar/topbar";
 import '../home/home.scss';
 import ThreeDotsWave from '../animation/ThreeDotsWave';
 
+import ReactPaginate from 'react-paginate';
+
+import '../home/home.css';
+
 const AllProducts = () => {
 
     const [products, setProducts] = useState([]);
     const [isLoading, setLoading] = useState(true);
 
-    const getProductData = () => {
+    const [pageNumber, setPageNumber] = useState(0);
+
+    const [showNoProduct, setShowNoProduct] = useState(false);
+
+    const productsPerPage = 10;
+    const pagesVisited = pageNumber * productsPerPage;
+
+    const pageCount = Math.ceil(products.length / productsPerPage);
+
+    const changePage = ({ selected }) => {
+        setPageNumber(selected);
+    };
+
+    const months = new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+
+    const NoProductDisplay = () => <div className="noProducts">
+        <b style={myStyle2}>Sorry!</b>
+        <b style={myStyle2}>No Products Available</b>
+    </div>;
+
+    const mystyle = {
+        marginRight: "21rem",
+        display: "flex", 
+        justifyContent: "flex-end"
+    };
+
+    const myStyle2 = {
+        fontFamily: "Fontdiner Swanky,cursive",
+        fontSize: "4rem",
+        color: "#4b62d1",
+        marginBottom: "1rem",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+    }
+
+    const [sortType, setSortType] = useState('pricelh');
+
+    const [filterType, setFilterType] = useState('All Months');
+
+    useEffect(() => {
         getAllProducts()
         .then(data => {
+            console.log(data);
             if (data.error) {
                 console.log(data.error);
             } else {
-                setProducts(data);
-            }
-            setLoading(false);
-        })
-    };
 
-    useEffect(() => {
-        getProductData()
-    },[])
+                var filteredArray = data;
+
+                if (filterType != "All Months"){
+                    filteredArray = data.filter(function (el)
+                    {
+                        console.log(typeof el.deliveryMonth);
+                        const monthNumber = parseInt(el.deliveryMonth.split("-")[1]);
+                        const filterMonth = months.indexOf(filterType)+1;
+                        return filterMonth == monthNumber;
+                    }
+                    );
+                }                 
+
+                var sorted = [];
+                if (sortType == "pricelh"){
+                    sorted = [...filteredArray].sort((a, b) => a.price - b.price);
+                } else if (sortType == "pricehl") {
+                    sorted = [...filteredArray].sort((a, b) => b.price - a.price);
+                } else if (sortType == "pbhhl") {
+                    sorted = [...filteredArray].sort((a, b) => b.paymentBeforeharvest - a.paymentBeforeharvest);
+                } else if (sortType == "pbhlh") {
+                    sorted = [...filteredArray].sort((a, b) => a.paymentBeforeharvest - b.paymentBeforeharvest);
+                } else if (sortType == "minoqhl") {
+                    sorted = [...filteredArray].sort((a, b) => b.minimumOrderQuantity - a.minimumOrderQuantity);
+                } else if (sortType == "minoqlh") {
+                    sorted = [...filteredArray].sort((a, b) => a.minimumOrderQuantity - b.minimumOrderQuantity);
+                } else if (sortType == "maxoqhl") {
+                    sorted = [...filteredArray].sort((a, b) => b.maximumOrderQuantity - a.maximumOrderQuantity);
+                } else if (sortType == "maxoqlh") {
+                    sorted = [...filteredArray].sort((a, b) => a.maximumOrderQuantity - b.maximumOrderQuantity);
+                } else {
+                    sorted = [...filteredArray].sort((a, b) => b.updatedAt - a.updatedAt);
+                }
+
+                if (sorted.length == 0){
+                    setShowNoProduct(true)
+                }else{
+                    setShowNoProduct(false)
+                }
+
+                setProducts(sorted)
+                console.log(sorted);
+                setLoading(false);
+
+            }
+
+        })
+    }, [sortType,filterType,showNoProduct]); 
 
     if (isLoading){
         return <ThreeDotsWave/>;
@@ -36,9 +121,31 @@ const AllProducts = () => {
     return (
         <>
          <Topbar/>
-        <h2 className="text-center font-weight-bold">Products</h2>
+        <h2 className="text-center font-weight-bold">Products</h2><br></br>
+        <div style={mystyle}>
+            <b>Filter By Delivery Month:&nbsp;</b> 
+            <select onChange={(e) => setFilterType(e.target.value)}>
+                <option value="All Months">All Months</option>
+                {months.map(month => {
+                return <option value={month}>{month}</option>;
+                })}
+            </select>&nbsp;&nbsp;&nbsp;        
+            <b>Sort By:&nbsp;</b> 
+            <select onChange={(e) => setSortType(e.target.value)}> 
+                <option value="pricelh">Price (Low to High)</option>
+                <option value="pricehl">Price (High to Low)</option>
+                <option value="pbhlh">Payment Before Harvest (Low to High)</option>
+                <option value="pbhhl">Payment Before Harvest (High to Low)</option>
+                <option value="minoqlh">Min. Order Quantity (Small to Large)</option>
+                <option value="minoqhl">Min. Order Quantity (Large to Small)</option>
+                <option value="maxoqlh">Max. Order Quantity (Small to Large)</option>
+                <option value="maxoqhl">Max. Order Quantity (Large to Small)</option>
+            </select>
+        </div><br></br>
+        {showNoProduct ? <NoProductDisplay /> : null}
+
         <div className="list-container">
-            {products.map((prod, index) => {
+            {products.slice(pagesVisited, pagesVisited + productsPerPage).map((prod, index) => {
                 return (
                     <div key={index}>
                         <List prod={prod}/>
@@ -46,6 +153,18 @@ const AllProducts = () => {
                 )
             })}
         </div>
+
+        {!showNoProduct ? <ReactPaginate
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={"paginationBttns"}
+            previousLinkClassName={"previousBttn"}
+            nextLinkClassName={"nextBttn"}
+            disabledClassName={"paginationDisabled"}
+            activeClassName={"paginationActive"} /> : null
+        }
         </>
 
     )
