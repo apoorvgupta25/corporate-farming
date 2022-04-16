@@ -9,13 +9,18 @@ export const getAllConversations = (userId) => {
 };
 
 
-export const postMessage = (message) => {
+export const postMessage = (message,contact,isCorporate) => {
+    const body = {
+        "message": message,
+        "contact": contact,
+        "isCorporate": isCorporate
+    }
     return fetch(`${API}/messages/`, { method: "POST",
     headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
     },
-        body: JSON.stringify(message)
+    body: JSON.stringify(body) 
      })
     .then(response => {
         return response.json();
