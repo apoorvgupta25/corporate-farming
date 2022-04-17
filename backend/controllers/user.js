@@ -31,37 +31,73 @@ exports.getAllUsers = (req, res) => {
     })
 };
 
-//get friends
 exports.getFriends = async (req, res) => {
-    try {
-      const user = await User.findById(req.params.userId);
-      const friends = await Promise.all(
-        user.friends.map((friendId) => {
-          return User.findById(friendId);
-        })
-      );
-      let friendList = [];
-      friends.map((friend) => {
-        const { _id, name, contact} = friend;
-        friendList.push({ _id, name, contact });
-      });
-      res.status(200).json(friendList)
-    } catch (err) {
-      res.status(500).json(err);
-    }
+  try {
+    const user = await User.findById(req.params.userId);
+    let friendList = [];
+    user.friends.map((friend) => {
+      const { friendId, name, contact, productId, productName, isprod} = friend;
+      if (friendId == undefined){
+
+      }else{
+        friendList.push({ friendId, name, contact, productId, productName, isprod});
+      }
+      
+    });
+   console.log(friendList);
+    res.status(200).json(friendList)
+  } catch (err) {
+    res.status(500).json(err);
+  }
 }
 
   //follow a user
+  const containsObject = (obj, list) =>{
+    var x;
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i].friendId == obj.friendId && list[i].productId == obj.productId) {
+          console.log("true returned");  
+          return true;
+        }
+    }
 
+}
   exports.followUser = async (req, res) => {
-
+    //console.log(req.params);
+    //console.log("--------------------");
+    //console.log(req.body);
     if (req.params.currentUserId !== req.params.userId) {
       try {
         const user = await User.findById(req.params.userId);
         const currentUser = await User.findById(req.params.currentUserId);
-        if (!user.friends.includes(req.params.currentUserId)) {
-          await user.updateOne({ $push: { friends: req.params.currentUserId } });
-          await currentUser.updateOne({ $push: { friends: req.params.userId } });
+        const newUser =  {
+          friendId : req.params.currentUserId,
+          name : currentUser.name,
+          contact : currentUser.contact, 
+          productId : req.body.productId,
+          productName: req.body.productName,
+          isprod: req.body.isprod,
+        }
+        if(newUser.contact == undefined){
+           newUser.contact = null;
+        }
+       // console.log(newUser);
+        const newUser2 =  {
+          friendId : req.params.userId,
+          name : user.name,
+          contact : user.contact,
+          productId : req.body.productId,
+          productName: req.body.productName,
+          isprod: req.body.isprod,
+        }
+        if(newUser2.contact == undefined){
+          newUser.contact = null;
+        }
+        if (!containsObject(newUser, user.friends)) {
+          
+          await user.updateOne({ $push: { friends: newUser}});
+          await currentUser.updateOne({ $push: { friends: newUser2} });
           res.status(200).json("user has been followed");
         } else {
           res.status(403).json("you allready follow this user");

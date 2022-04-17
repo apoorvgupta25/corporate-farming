@@ -147,7 +147,7 @@ const Product = () => {
                     </div>
 
                     <div className="purchase-info">
-                        <ChatNowButton userId={product.farmer._id}/>
+                        <ChatNowButton userId={product.farmer._id} productId={product._id} productName={product.title} isprod="1"/>
                     </div>
                 </div>
             </div>
