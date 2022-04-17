@@ -7,14 +7,13 @@ const {getUserById, getUser, getFriends, followUser, UnfollowUser,
 const {isAuthenticated, isSignedIn, isAdmin} = require('../controllers/auth')
 
 router.param('userId', getUserById)
-
 router.get('/user/:userId', isSignedIn, isAuthenticated, getUser)
 
 
 //get friends
 router.get("/friends/:userId", getFriends);
 //follow a user
-router.put("/follow/:currentUserId/:userId", followUser)
+router.put("/follow/:currentUserId/:userId/", followUser)
 //unfollow a user
 router.put("/unfollow/:currentUserId/:userId", UnfollowUser);
 

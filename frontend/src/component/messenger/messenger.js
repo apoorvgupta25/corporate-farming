@@ -6,8 +6,7 @@ import {isAuth} from '../../auth/authAPICalls';
 import AllConversations from "../conversion/allConversions";
 import Message from "../message/message";
 import BouncingBall from '../animation/BouncingBall';
-import {useNavigate} from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 
 export default function Messenger() {
   if(!window.location.hash.includes("#reloaded")) {
@@ -15,6 +14,9 @@ export default function Messenger() {
     window.location.reload();
   }
   const [currentChat, setCurrentChat] = useState(null);
+  const [productName, setproductName] = useState('');
+  const [productId, setproductId] = useState('');
+  const [isprod, setisprod] = useState('');
   const [receiverNumber, setReceiverNumber] = useState(null);
   const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -57,10 +59,20 @@ export default function Messenger() {
           setLoading(false);
       })
   }
-
-  const getConversationId = (id) => {
-    if (id.toString() < isAuth().user._id.toString()) return id.toString() +"_"+isAuth().user._id.toString();
-    if (id.toString() > isAuth().user._id.toString()) return isAuth().user._id.toString() +"_"+id.toString();
+  
+  const getlink = (productId, isprod) => {
+    let link = "";
+    if(isprod == 0){
+      link  = "/land/"+productId.toString();
+    }else{
+      link = "/product/"+productId.toString();
+    }
+     
+    return link;
+  }
+  const getConversationId = (productId,id) => {
+    if (id.toString() < isAuth().user._id.toString()) return productId.toString()+id.toString() +"_"+isAuth().user._id.toString();
+    if (id.toString() > isAuth().user._id.toString()) return productId.toString()+isAuth().user._id.toString() +"_"+id.toString();
   }
 
     useEffect(() => {
@@ -95,7 +107,7 @@ export default function Messenger() {
 
           {isLoading && <BouncingBall/>}
           {conversations.map((c) => (
-            <div onClick={function() {setCurrentChat(getConversationId(c._id)); setReceiverNumber(c.contact)}}>
+            <div onClick={function() {setCurrentChat(getConversationId(c.productId,c.friendId)); setReceiverNumber(c.contact); setproductName(c.productName); setproductId(c.productId); setisprod(c.isprod)}}>
               <AllConversations user={c.name}/>
               </div>
             ))}
@@ -103,10 +115,20 @@ export default function Messenger() {
           </div>
 
           </div>
+          
           <div className="chatBox">
+          
           <div className="chatBoxWrapper">
+          
                {currentChat ? (
               <>
+                <div>{productName}
+                <Link to={getlink(productId,isprod)} style={{ textDecoration: 'none', color: 'white' }}>
+                  <button className="btn btn-success btn-sm float-right ml-1">
+                      About
+                  </button>
+                </Link>
+                </div>
                 <div className="chatBoxTop">
                   {messages.map((m) => (
                     <div ref={scrollRef}>

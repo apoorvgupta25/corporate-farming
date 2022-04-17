@@ -162,7 +162,7 @@ const Land = () => {
                         </div>
 
                         <div className="purchase-info" >
-                            <ChatNowButton userId={land.farmer._id}/>
+                            <ChatNowButton userId={land.farmer._id} productId={land._id} productName={land.title} isprod="0"/>
                         </div>
                     </div>
                 </div>

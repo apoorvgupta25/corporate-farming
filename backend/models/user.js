@@ -21,8 +21,8 @@ var userSchema = new mongoose.Schema({
         required: true
     },
     friends:{
-        type: Array,
-        default: [],
+        type : Array , 
+        default : ['friendId', 'productId', 'productName','name','contact']    
     },
     contact:{
         type: Number,
