@@ -93,7 +93,7 @@ app = Flask(__name__)
 
 # render disease prediction result page
 
-@ app.route('/', methods=['GET', 'POST'])
+@ app.route('/cropDiseasePred', methods=['GET', 'POST'])
 def home():
     title = 'Disease Detection'
 
@@ -101,6 +101,7 @@ def home():
         if 'file' not in request.files:
             return redirect(request.url)
         file = request.files.get('file')
+        print(file)
         if not file:
             return render_template('disease.html', title=title)
         try:

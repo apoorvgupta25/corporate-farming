@@ -27,7 +27,7 @@ export default function Topbar() {
         <div className="topbarLinks">
           {isAuth() && (
           <Link
-            to={`/cropDP/`}
+            to={`/cropDiseasePrediction/`}
             style={{ textDecoration: "none", color: "white" }}
           >
             <em className="topbarLink">Crop Disease Prediction</em>
