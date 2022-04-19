@@ -1,5 +1,5 @@
 disease_dic = {
-    'Apple___Apple_scab': """ <b>Crop</b>: Apple <br/>Disease: Apple Scab<br/>
+    'Apple___Apple_scab': """Crop: Apple <br/>Disease: Apple Scab<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. Apple scab overwinters primarily in fallen leaves and in the soil. Disease development is favored by wet, cool weather that generally occurs in spring and early summer.
@@ -13,7 +13,7 @@ disease_dic = {
         <br/>3. Water in the evening or early morning hours (avoid overhead irrigation) to give the leaves time to dry out before infection can occur.
         <br/>4. Spread a 3- to 6-inch layer of compost under trees, keeping it away from the trunk, to cover soil and prevent splash dispersal of the fungal spores.""",
 
-    'Apple___Black_rot': """ <b>Crop</b>: Apple <br/>Disease: Black Rot<br/>
+    'Apple___Black_rot': """ Crop: Apple <br/>Disease: Black Rot<br/>
         <br/> Cause of disease:
 
         <br/><br/>Black rot is caused by the fungus Diplodia seriata (syn Botryosphaeria obtusa).The fungus can infect dead tissue as well as living trunks, branches, leaves and fruits. In wet weather, spores are released from these infections and spread by wind or splashing water. The fungus infects leaves and fruit through natural openings or minor wounds.
@@ -26,7 +26,7 @@ disease_dic = {
         <br/>4. Remove infected plant material from the area.
         <br/>5. Be sure to remove the stumps of any apple trees you cut down. Dead stumps can be a source of spores.""",
 
-    'Apple___Cedar_apple_rust': """ <b>Crop</b>: Apple <br/>Disease: Cedar Apple Rust<br/>
+    'Apple___Cedar_apple_rust': """ Crop: Apple <br/>Disease: Cedar Apple Rust<br/>
         <br/> Cause of disease:
 
         <br/><br/>Cedar apple rust (Gymnosporangium juniperi-virginianae) is a fungal disease that depends on two species to spread and develop. It spends a portion of its two-year life cycle on Eastern red cedar (Juniperus virginiana). The pathogen’s spores develop in late fall on the juniper as a reddish brown gall on young branches of the trees.
@@ -40,21 +40,21 @@ disease_dic = {
 
 
 
-    'Apple___healthy': """ <b>Crop</b>: Apple <br/>Disease: No disease<br/>
+    'Apple___healthy': """ Crop: Apple <br/>Disease: No disease<br/>
 
         <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
 
 
 
 
-    'Blueberry___healthy': """ <b>Crop</b>: Blueberry <br/>Disease: No disease<br/>
+    'Blueberry___healthy': """ Crop: Blueberry <br/>Disease: No disease<br/>
 
         <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
 
 
 
 
-    'Cherry_(including_sour)___Powdery_mildew': """ <b>Crop</b>: Cherry <br/>Disease: Powdery Mildew<br/>
+    'Cherry_(including_sour)___Powdery_mildew': """ Crop: Cherry <br/>Disease: Powdery Mildew<br/>
         <br/> Cause of disease:
 
         <br/><br/>Podosphaera clandestina, a fungus that most commonly infects young, expanding leaves but can also be found on buds, fruit and fruit stems. It overwinters as small, round, black bodies (chasmothecia) on dead leaves, on the orchard floor, or in tree crotches. Colonies produce more (asexual) spores generally around shuck fall and continue the disease cycle.
@@ -67,12 +67,12 @@ disease_dic = {
         
         <br/>3. Follow cultural practices that promote good air circulation, such as pruning, and moderate shoot growth through judicious nitrogen management.""",
 
-    'Cherry_(including_sour)___healthy': """ <b>Crop</b>: Cherry <br/>Disease: No disease<br/>
+    'Cherry_(including_sour)___healthy': """ Crop: Cherry <br/>Disease: No disease<br/>
 
         <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
 
 
-    'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot': """ <b>Crop</b>: Corn <br/>Disease: Grey Leaf Spot<br/>
+    'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot': """ Crop: Corn <br/>Disease: Grey Leaf Spot<br/>
         <br/> Cause of disease:
 
         <br/><br/>Gray leaf spot lesions on corn leaves hinder photosynthetic activity, reducing carbohydrates allocated towards grain fill. The extent to which gray leaf spot damages crop yields can be estimated based on the extent to which leaves are infected relative to grainfill. Damage can be more severe when developing lesions progress past the ear leaf around pollination time.	Because a decrease in functioning leaf area limits photosynthates dedicated towards grainfill, the plant might mobilize more carbohydrates from the stalk to fill kernels.
@@ -96,7 +96,7 @@ disease_dic = {
 
 
 
-    'Corn_(maize)___Common_rust_': """ <b>Crop</b>: Corn(maize) <br/>Disease: Common Rust<br/>
+    'Corn_(maize)___Common_rust_': """ Crop: Corn(maize) <br/>Disease: Common Rust<br/>
         <br/> Cause of disease:
 
         <br/><br/>Common corn rust, caused by the fungus Puccinia sorghi, is the most frequently occurring of the two primary rust diseases of corn in the U.S., but it rarely causes significant yield losses in Ohio field (dent) corn. Occasionally field corn, particularly in the southern half of the state, does become severely affected when weather conditions favor the development and spread of rust fungus
@@ -107,7 +107,7 @@ disease_dic = {
         <br/>2. However, popcorn and sweet corn can be quite susceptible. In seasons where considerable rust is present on the lower leaves prior to silking and the weather is unseasonably cool and wet, an early fungicide application may be necessary for effective disease control. Numerous fungicides are available for rust control. """,
 
 
-    'Corn_(maize)___Northern_Leaf_Blight': """ <b>Crop</b>: Corn(maize) <br/>Disease: Northern Leaf Blight
+    'Corn_(maize)___Northern_Leaf_Blight': """ Crop: Corn(maize) <br/>Disease: Northern Leaf Blight
         <br/>
         <br/> Cause of disease:
 
@@ -119,7 +119,7 @@ disease_dic = {
         <br/>2. Scouting fields and monitoring local conditions is vital to control this disease.""",
 
 
-    'Grape___Black_rot': """ <b>Crop</b>: Grape <br/>Disease: Black Rot<br/>
+    'Grape___Black_rot': """ Crop: Grape <br/>Disease: Black Rot<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. The black rot fungus overwinters in canes, tendrils, and leaves on the grape vine and on the ground. Mummified berries on the ground or those that are still clinging to the vines become the major infection source the following spring.
@@ -136,12 +136,12 @@ disease_dic = {
         
         <br/>3. Use protective fungicide sprays. Pesticides registered to protect the developing new growth include copper, captan, ferbam, mancozeb, maneb, triadimefon, and ziram. Important spraying times are as new shoots are 2 to 4 inches long, and again when they are 10 to 15 inches long, just before bloom, just after bloom, and when the fruit has set.""",
 
-    'Corn_(maize)___healthy': """ <b>Crop</b>: Corn(maize) <br/>Disease: No disease<br/>
+    'Corn_(maize)___healthy': """ Crop: Corn(maize) <br/>Disease: No disease<br/>
 
         <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
 
 
-    'Grape___Esca_(Black_Measles)': """ <b>Crop</b>: Grape <br/>Disease: Black Measles<br/>
+    'Grape___Esca_(Black_Measles)': """ Crop: Grape <br/>Disease: Black Measles<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. Black Measles is caused by a complex of fungi that includes several species of Phaeoacremonium, primarily by P. aleophilum (currently known by the name of its sexual stage, Togninia minima), and by Phaeomoniella chlamydospora.
@@ -161,7 +161,7 @@ disease_dic = {
         
         <br/>3. The fungicides labeled as pruning-wound protectants, consider using alternative materials, such as a wound sealant with 5 percent boric acid in acrylic paint (Tech-Gro B-Lock), which is effective against Eutypa dieback and Esca, or an essential oil (Safecoat VitiSeal).""",
 
-    'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)': """ <b>Crop</b>: Grape <br/>Disease: Leaf Blight<br/>
+    'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)': """ Crop: Grape <br/>Disease: Leaf Blight<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. Apple scab overwinters primarily in fallen leaves and in the soil. Disease development is favored by wet, cool weather that generally occurs in spring and early summer.
@@ -175,20 +175,20 @@ disease_dic = {
         <br/>3. Water in the evening or early morning hours (avoid overhead irrigation) to give the leaves time to dry out before infection can occur.
         <br/>4. Spread a 3- to 6-inch layer of compost under trees, keeping it away from the trunk, to cover soil and prevent splash dispersal of the fungal spores.""",
 
-    'Grape___healthy': """ <b>Crop</b>: Grape <br/>Disease: No disease<br/>
+    'Grape___healthy': """ Crop: Grape <br/>Disease: No disease<br/>
 
         <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
 
 
-    'Corn_(maize)___healthy': """ <b>Crop</b>: Corn(maize) <br/>Disease: No disease<br/>
+    'Corn_(maize)___healthy': """ Crop: Corn(maize) <br/>Disease: No disease<br/>
 
         <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
 
 
-    'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)': """<b> Crop</b> : Grape <br/> Disease: Leaf Spot""",
+    'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)': """ Crop : Grape <br/> Disease: Leaf Spot""",
 
 
-    'Orange___Haunglongbing_(Citrus_greening)': """ <b>Crop</b>: Orange <br/>Disease: Citrus Greening<br/>
+    'Orange___Haunglongbing_(Citrus_greening)': """ Crop: Orange <br/>Disease: Citrus Greening<br/>
         <br/> Cause of disease:
 
         <br/><br/>  Huanglongbing (HLB) or citrus greening is the most severe citrus disease, currently devastating the citrus industry worldwide. The presumed causal bacterial agent Candidatus Liberibacter spp. affects tree health as well as fruit development, ripening and quality of citrus fruits and juice.
@@ -203,7 +203,7 @@ disease_dic = {
 
 
 
-    'Peach___Bacterial_spot': """ <b>Crop</b>: Peach <br/>Disease: Bacterial Spot<br/>
+    'Peach___Bacterial_spot': """ Crop: Peach <br/>Disease: Bacterial Spot<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. The disease is caused by four species of Xanthomonas (X. euvesicatoria, X. gardneri, X. perforans, and X. vesicatoria). In North Carolina, X. perforans is the predominant species associated with bacterial spot on tomato and X. euvesicatoria is the predominant species associated with the disease on pepper.
@@ -220,7 +220,7 @@ disease_dic = {
         <br/>4. Do not spray, tie, harvest, or handle wet plants as that can spread the disease.""",
 
 
-    'Pepper,_bell___Bacterial_spot': """ <b>Crop</b>: Pepper <br/>Disease: Bacterial Spot<br/>
+    'Pepper,_bell___Bacterial_spot': """ Crop: Pepper <br/>Disease: Bacterial Spot<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. Bacterial spot is caused by several species of gram-negative bacteria in the genus Xanthomonas.
@@ -235,38 +235,38 @@ disease_dic = {
         
         <br/>3. Pepper plants are routinely sprayed with copper-containing bactericides to maintain a "protective" cover on the foliage and fruit.""",
 
-    'Peach___healthy': """ <b>Crop</b>: Peach <br/>Disease: No disease<br/>
+    'Peach___healthy': """ Crop: Peach <br/>Disease: No disease<br/>
 
         <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
 
-    'Pepper,_bell___healthy': """ <b>Crop</b>: Pepper <br/>Disease: No disease<br/>
-
-        <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
-
-
-    'Potato___healthy': """ <b>Crop</b>: Potato <br/>Disease: No disease<br/>
-
-        <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
-
-    'Raspberry___healthy': """ <b>Crop</b>: Raspberry <br/>Disease: No disease<br/>
+    'Pepper,_bell___healthy': """ Crop: Pepper <br/>Disease: No disease<br/>
 
         <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
 
 
-    'Soybean___healthy': """ <b>Crop</b>: Soyabean <br/>Disease: No disease<br/>
+    'Potato___healthy': """ Crop: Potato <br/>Disease: No disease<br/>
 
         <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
 
-    'Strawberry___healthy': """ <b>Crop</b>: Strawberry <br/>Disease: No disease<br/>
-
-        <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
-
-    'Tomato___healthy': """ <b>Crop</b>: Tomato <br/>Disease: No disease<br/>
+    'Raspberry___healthy': """ Crop: Raspberry <br/>Disease: No disease<br/>
 
         <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
 
 
-    'Potato___Early_blight': """ <b>Crop</b>: Potato <br/>Disease: Early Blight<br/>
+    'Soybean___healthy': """ Crop: Soyabean <br/>Disease: No disease<br/>
+
+        <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
+
+    'Strawberry___healthy': """ Crop: Strawberry <br/>Disease: No disease<br/>
+
+        <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
+
+    'Tomato___healthy': """ Crop: Tomato <br/>Disease: No disease<br/>
+
+        <br/><br/> Don't worry. Your crop is healthy. Keep it up !!!""",
+
+
+    'Potato___Early_blight': """ Crop: Potato <br/>Disease: Early Blight<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. Early blight (EB) is a disease of potato caused by the fungus Alternaria solani. It is found wherever potatoes are grown. 
@@ -283,7 +283,7 @@ disease_dic = {
         <br/>4. Allow tubers to mature before digging, dig when vines are dry, not wet, and avoid excessive wounding of potatoes during harvesting and handling.""",
 
 
-    'Potato___Late_blight': """ <b>Crop</b>: Potato <br/>Disease: Late Blight<br/>
+    'Potato___Late_blight': """ Crop: Potato <br/>Disease: Late Blight<br/>
 
         Late blight is a potentially devastating disease of potato, infecting leaves, stems and fruits of plants. The disease spreads quickly in fields and can result in total crop failure if untreated. Late blight of potato was responsible for the Irish potato famine of the late 1840s.              
         <br/> Cause of disease:
@@ -302,7 +302,7 @@ disease_dic = {
         <br/>3. If infection is found in only a few plants within a field, infected plants should be removed, disced-under, killed with herbicide or flame-killed to avoid spreading through the entire field.""",
 
 
-    'Squash___Powdery_mildew': """ <b>Crop</b>: Squash <br/>Disease: Powdery mildew<br/>
+    'Squash___Powdery_mildew': """ Crop: Squash <br/>Disease: Powdery mildew<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. Powdery mildew infections favor humid conditions with temperatures around 68-81° F
@@ -321,7 +321,7 @@ disease_dic = {
         <br/>4. If susceptible varieties are growing in an area where powdery mildew has resulted in yield loss in the past, fungicide may be necessary.""",
 
 
-    'Strawberry___Leaf_scorch': """ <b>Crop</b>: Strawberry <br/>Disease: Leaf Scorch<br/>
+    'Strawberry___Leaf_scorch': """ Crop: Strawberry <br/>Disease: Leaf Scorch<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. Scorched strawberry leaves are caused by a fungal infection which affects the foliage of strawberry plantings. The fungus responsible is called Diplocarpon earliana.
@@ -337,7 +337,7 @@ disease_dic = {
 
 
 
-    'Tomato___Bacterial_spot': """ <b>Crop</b>: Tomato <br/>Disease: Bacterial Spot<br/>
+    'Tomato___Bacterial_spot': """ Crop: Tomato <br/>Disease: Bacterial Spot<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. The disease is caused by four species of Xanthomonas (X. euvesicatoria, X. gardneri, X. perforans, and X. vesicatoria). In North Carolina, X. perforans is the predominant species associated with bacterial spot on tomato and X. euvesicatoria is the predominant species associated with the disease on pepper.
@@ -353,7 +353,7 @@ disease_dic = {
 
 
 
-    'Tomato___Early_blight': """ <b>Crop</b>: Tomato <br/>Disease: Early Blight<br/>
+    'Tomato___Early_blight': """Crop: Tomato <br/>Disease: Early Blight<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. Early blight can be caused by two different closely related fungi, Alternaria tomatophila and Alternaria solani.
@@ -370,7 +370,7 @@ disease_dic = {
 
 
 
-    'Tomato___Late_blight': """ <b>Crop</b>: Tomato <br/>Disease: Late Blight<br/>
+    'Tomato___Late_blight': """ Crop: Tomato <br/>Disease: Late Blight<br/>
 
         Late blight is a potentially devastating disease of tomato, infecting leaves, stems and fruits of plants. The disease spreads quickly in fields and can result in total crop failure if untreated.              
         <br/> Cause of disease:
@@ -382,7 +382,7 @@ disease_dic = {
 
 
 
-    'Tomato___Leaf_Mold': """ <b>Crop</b>: Tomato <br/>Disease: Leaf Mold<br/>
+    'Tomato___Leaf_Mold': """Crop: Tomato <br/>Disease: Leaf Mold<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. Leaf mold is caused by the fungus Passalora fulva (previously called Fulvia fulva or Cladosporium fulvum). It is not known to be pathogenic on any plant other than tomato.
@@ -401,7 +401,7 @@ disease_dic = {
         <br/>7. Remove crop residue at the end of the season. Burn it or bury it away from tomato production areas.""",
 
 
-    'Tomato___Septoria_leaf_spot': """ <b>Crop</b>: Tomato <br/>Disease: Leaf Spot<br/>
+    'Tomato___Septoria_leaf_spot': """ Crop: Tomato <br/>Disease: Leaf Spot<br/>
         <br/> Cause of disease:
 
         <br/><br/> Septoria leaf spot is caused by a fungus, Septoria lycopersici. It is one of the most destructive diseases of tomato foliage and is particularly severe in areas where wet, humid weather persists for extended periods.
@@ -417,7 +417,7 @@ disease_dic = {
 
 
 
-    'Tomato___Spider_mites Two-spotted_spider_mite': """ <b>Crop</b>: Tomato <br/>Disease: Two-spotted spider mite<br/>
+    'Tomato___Spider_mites Two-spotted_spider_mite': """ Crop: Tomato <br/>Disease: Two-spotted spider mite<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. The two-spotted spider mite is the most common mite species that attacks vegetable and fruit crops.
@@ -432,7 +432,7 @@ disease_dic = {
         <br/>3. Overhead irrigation or prolonged periods of rain can help reduce populations.""",
 
 
-    'Tomato___Target_Spo': """ <b>Crop</b>: Tomato <br/>Disease: Target Spot<br/>
+    'Tomato___Target_Spo': """ Crop: Tomato <br/>Disease: Target Spot<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. The fungus causes plants to lose their leaves; it is a major disease. If infection occurs before the fruit has developed, yields are low.
@@ -447,7 +447,7 @@ disease_dic = {
         <br/>4. Do not use overhead irrigation; otherwise, it will create conditions for spore production and infection.""",
 
 
-    'Tomato___Tomato_Yellow_Leaf_Curl_Virus': """ <b>Crop</b>: Tomato <br/>Disease: Yellow Leaf Curl Virus<br/>
+    'Tomato___Tomato_Yellow_Leaf_Curl_Virus': """ Cro: Tomato <br/>Disease: Yellow Leaf Curl Virus<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. TYLCV is transmitted by the insect vector Bemisia tabaci in a persistent-circulative nonpropagative manner. The virus can be efficiently transmitted during the adult stages.
@@ -463,7 +463,7 @@ disease_dic = {
 
 
 
-    'Tomato___Tomato_mosaic_virus': """ <b>Crop</b>: Tomato <br/>Disease: Mosaic Virus<br/>
+    'Tomato___Tomato_mosaic_virus': """ Crop: Tomato <br/>Disease: Mosaic Virus<br/>
         <br/> Cause of disease:
 
         <br/><br/> 1. Tomato mosaic virus and tobacco mosaic virus can exist for two years in dry soil or leaf debris, but will only persist one month if soil is moist. The viruses can also survive in infected root debris in the soil for up to two years.

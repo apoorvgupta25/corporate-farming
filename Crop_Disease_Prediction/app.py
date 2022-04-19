@@ -1,9 +1,11 @@
 # Importing essential libraries and modules
 
-from flask import Flask, render_template, request, Markup
+from flask import Flask, render_template, request, Markup,jsonify,redirect
+from flask_cors import CORS, cross_origin
 import numpy as np
 import pandas as pd
 from utils.disease import disease_dic
+# from utils.fertilizer import fertilizer_dic
 import requests
 import config
 import pickle
@@ -12,6 +14,7 @@ import torch
 from torchvision import transforms
 from PIL import Image
 from utils.model import ResNet9
+import json
 # ==============================================================================================
 
 # -------------------------LOADING THE TRAINED MODELS -----------------------------------------------
@@ -82,41 +85,40 @@ def predict_image(img, model=disease_model):
     # Pick index with highest probability
     _, preds = torch.max(yb, dim=1)
     prediction = disease_classes[preds[0].item()]
-    # Retrieve the class label
+
+    print(prediction)
     return prediction
 
-# ===============================================================================================
-# ------------------------------------ FLASK APP -------------------------------------------------
-
-
 app = Flask(__name__)
+CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-# render disease prediction result page
 
-@ app.route('/cropDiseasePred', methods=['GET', 'POST'])
+# render home page
+@ app.route('/', methods=['GET', 'POST'])
 def home():
-    title = 'Disease Detection'
+    title = 'Crop Disease Detection'
+
+    if request.method == "GET":
+        return redirect("https://corp-farm.netlify.app/cropDiseasePrediction", code=302)
 
     if request.method == 'POST':
         if 'file' not in request.files:
-            return redirect(request.url)
+            print("File not passed")
         file = request.files.get('file')
-        print(file)
         if not file:
-            return render_template('disease.html', title=title)
+            print("no image given")
         try:
             img = file.read()
-
             prediction = predict_image(img)
-
             prediction = Markup(str(disease_dic[prediction]))
-            return render_template('disease-result.html', prediction=prediction, title=title)
+            return json_response({"prediction":prediction})
         except:
             pass
-    return render_template('disease.html', title=title)
+    return json_response({"prediction":prediction})
 
+def json_response(payload, status=200):
+     return (json.dumps(payload), status, {'content-type': 'application/json'})
 
-
-# ===============================================================================================
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
