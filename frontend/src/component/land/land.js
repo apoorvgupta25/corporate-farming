@@ -1,4 +1,5 @@
 import React, {useState, useEffect}  from "react";
+import {Link} from 'react-router-dom';
 
 import {getLand} from './landAPICall'
 import {useParams} from 'react-router-dom';
@@ -8,24 +9,9 @@ import $ from 'jquery';
 import Topbar from "../topbar/topbar";
 import '../land_product_style.css';
 import ChatNowButton from "../chatNowButton/chatNowButton";
-// import './section.js';
 import ThreeDotsWave from '../animation/ThreeDotsWave';
 
 const Land = () => {
-
-    // const Demo=()=>
-    // {
-    //     $(".btn").on("click", function() {
-
-    //         $('.btn-group').on('click', '.btn', function() {
-    //             $(this).addClass('active').siblings().removeClass('active');
-    //         });
-    //         //hide all sections
-    //         $(".content-section").hide();
-    //         //show the section depending on which button was clicked
-    //         $("#" + $(this).attr("data-section")).show();
-    //     });
-    // }
 
     const { landId } = useParams();
 
@@ -124,6 +110,7 @@ const Land = () => {
 
                     <div className="content">
                         <h2 className="title">{land.title}</h2>
+                        <a href="https://dilrmp.gov.in/faces/rptPhysicalHome/rptStateRoRonWebDetail.xhtml" target="_blank" className="pull-right">Verify Land Here</a>
 
                         <div className="price">
                             <h3>₹ {land.expectedProfit.exactAmount} ({land.expectedProfit.percentage} %)</h3>
