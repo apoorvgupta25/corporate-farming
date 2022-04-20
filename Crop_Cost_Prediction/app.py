@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Mar  2 21:46:27 2019
-
-@author: PRATYUSH, Rahul, Somya, Abhay
-"""
 
 from crypt import methods
 from flask import Flask, render_template
@@ -474,8 +469,3 @@ if __name__ == "__main__":
     commodity_list.append(wheat)
 
     app.run(debug=True)
-
-
-
-
-
