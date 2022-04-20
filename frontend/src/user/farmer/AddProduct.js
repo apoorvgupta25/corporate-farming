@@ -36,6 +36,11 @@ const AddProduct = () => {
 
     const {user, token} = isAuth();
 
+    var crops = new Array('Banana', 'Brinjal', 'Cabbages', 'Cardamom', 'Cashew nuts', 'Cauliflowers', 'Chickpeas', 'Coconuts', 'Coffee', 'Coriander', 'Cotton', 'Dry beans',
+                            'Fennel', 'Garlic', 'Ginger', 'Gourds', 'Green peas', 'Groundnut', 'Guavas', 'Jowar', 'Lady Finger', 'Lemons', 'Lentil',
+                            'Limes', 'Mangoes', 'Onions', 'Pigeon peas', 'Potatoes', 'Pumpkins', 'Rice', 'Sesame seeds', 'Sugarcane',
+                            'Tea', 'Tomatoes', 'Turmeric', 'Wheat', 'Others');
+
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value});
     }
@@ -109,7 +114,13 @@ const AddProduct = () => {
                     <div className="form-group-1">
                         <input className="add-input-select" type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
                         <input className="add-input-select" type="text" name="description" onChange={handleChange("description")} value={description} placeholder="Description" required />
-                        <input className="add-input-select" type="text" name="cropName" onChange={handleChange("cropName")} value={cropName} placeholder="Crop" required />
+                        <select className="add-input-select" name="cropName" onChange={handleChange("cropName")} >
+                            <option>Select</option>
+                            {crops.map((crop, index) => {
+                                return ( <option value={crop} key={crop} >{crop}</option> )
+                                })
+                            }
+                        </select>
                         <input className="add-input-select" type="text" name="cropSubType" onChange={handleChange("cropSubType")} value={cropSubType} placeholder="Crop - Subtype" />
                         <input className="add-input-select" type="number" name="price" onChange={handleChange("price")} value={price} placeholder="Price (per kg.)" min="1" required />
                         <input className="add-input-select" type="number" name="paymentBeforeharvest" onChange={handleChange("paymentBeforeharvest")} value={paymentBeforeharvest} placeholder="Payment before Harvest" min="1" required />

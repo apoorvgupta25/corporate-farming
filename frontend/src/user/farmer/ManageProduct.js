@@ -82,7 +82,7 @@ const ManageProduct = () => {
                                   <td>{prod.deliveryMonth} / {prod.harvestMonth}</td>
                                   <td className="p-3">
                                       <Link className="btn btn-success" to={`/farmer/product/update/${prod._id}`}>
-                                          <div className="">Update</div>
+                                          <div className="text-white">Update</div>
                                       </Link>
                                   </td>
                                   <td>

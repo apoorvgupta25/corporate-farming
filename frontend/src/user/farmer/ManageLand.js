@@ -80,7 +80,7 @@ const ManageLand = () => {
                                   <td>₹{land.expectedProfit.exactAmount} ({land.expectedProfit.percentage}%)</td>
                                   <td className="p-3">
                                       <Link className="btn btn-success" to={`/farmer/land/update/${land._id}`}>
-                                          <div className="">Update</div>
+                                          <div className="text-white">Update</div>
                                       </Link>
                                   </td>
                                   <td>

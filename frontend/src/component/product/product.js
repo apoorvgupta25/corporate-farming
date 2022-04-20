@@ -99,13 +99,25 @@ const Product = () => {
         b3.addClass("active");
     }
 
+
+
+    // <img src={Rice} alt = "Product image" style={{height:'100%',borderRadius: '20px'}} className="img" />
+    // <CropImage productImg={'Rice'}/>
+
+    var filename = 'Others'
+    if(product.cropName != "Others") {
+        filename = product.cropName
+    }
+
+    console.log(filename);
+
     return (
         <>
         <Topbar/>
         <div className="card-wrapper">
             <div className="card">
                 <div className="imgs">
-                    <img src={imgsrc} alt = "Product image" style={{height:'100%',borderRadius: '20px'}} className="img" />
+                    <img src={require(`../../assets/crops/${filename}.jpg`)} />
                 </div>
 
                 <div className="content">
