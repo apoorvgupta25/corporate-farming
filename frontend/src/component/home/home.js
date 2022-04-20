@@ -46,10 +46,6 @@ function Home() {
         getProductData()
     },[])
 
-    console.log(lands.length);
-    console.log(products.length);
-
-
       return (
           <div>
             <Topbar/>

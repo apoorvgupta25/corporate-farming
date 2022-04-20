@@ -1,28 +1,28 @@
 
 body {
-    font-family: 'open sans';
+    /* font-family: 'open sans'; */
     overflow-x: hidden; }
-  
+
   img {
     width: 50vw;
     max-width: 100%;
     padding: 1%;
     min-height: 100%;
  }
-  
+
   .card {
     margin-top: 50px;
     background: #eee;
     /* padding: 3em; */
     line-height: 1.5em; }
-  
+
   @media screen and (min-width: 997px) {
     .wrapper {
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex; } }
-  
+
   .add-to-cart {
     background: #ff9f1a;
     padding: 1.2em 1.5em;
@@ -45,7 +45,7 @@ body {
     border: 0;
     clear:both;
     display:block;
-    width: 96%;               
+    width: 96%;
     background-color:black;
     height: 1px;
     opacity: 0.5;

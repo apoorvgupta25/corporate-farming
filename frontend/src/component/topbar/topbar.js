@@ -14,42 +14,21 @@ export default function Topbar() {
         </Link>
       </div>
       <div className="topbarCenter">
-      <div className="searchbar">
-        <Search className="searchIcon" />
-        <input
-          placeholder="Search for lands/ products"
-          className="searchInput"
-        />
-
-    </div>
+          <div className="topbarLinks">
+              <Link to={`/disease/prediction/`} className="topbarLink">Disease Prediction</Link>
+              <Link to={`/crop/prediction/`} className="topbarLink">Crop Prediction</Link>
+              <Link to={`/weather/prediction`} className="topbarLink">Weather Prediction</Link>
+              <Link to={`/cost/prediction`} className="topbarLink">Cost Prediction</Link>
+          </div>
       </div>
+
       <div className="topbarRight">
         <div className="topbarLinks">
-          {isAuth() && (
-          <Link
-            to={`/cropDiseasePrediction/`}
-            style={{ textDecoration: "none", color: "white" }}
-          >
-            <em className="topbarLink">Crop Disease Prediction</em>
-          </Link>
-          )}
-          {isAuth() && (
-          <Link
-            to={`/cropPrediction/`}
-            style={{ textDecoration: "none", color: "white" }}
-          >
-            <em className="topbarLink">Crop-prediction</em>
-          </Link>
-          )}
           {!isAuth() && (
-            <Link to="/signin" style={{ textDecoration: 'none', color: 'white' }}>
-              <div className="topbarLink">SignIn</div>
-            </Link>
+            <Link to="/signin" className="topbarLink">SignIn</Link>
            )}
           {!isAuth() && (
-            <Link to="/signup/farmer" style={{ textDecoration: 'none', color: 'white' }}>
-              <div className="topbarLink">SignUp</div>
-            </Link>
+            <Link to="/signup/farmer" className="topbarLink">SignUp</Link>
             )}
         </div>
         <div className="topbarIcons">

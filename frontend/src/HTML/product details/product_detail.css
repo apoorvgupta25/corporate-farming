@@ -4,13 +4,13 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
 }
 body{
     line-height: 1.5;
     background-image: url('https://images8.alphacoders.com/361/thumb-1920-361036.jpg');
     background-repeat: no-repeat;
-    background-attachment: fixed;  
+    background-attachment: fixed;
     background-size: cover;
 }
 

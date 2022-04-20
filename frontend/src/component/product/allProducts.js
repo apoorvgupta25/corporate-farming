@@ -39,7 +39,7 @@ const AllProducts = () => {
 
     const mystyle = {
         marginRight: "21rem",
-        display: "flex", 
+        display: "flex",
         justifyContent: "flex-end"
     };
 
@@ -60,7 +60,6 @@ const AllProducts = () => {
     useEffect(() => {
         getAllProducts()
         .then(data => {
-            console.log(data);
             if (data.error) {
                 console.log(data.error);
             } else {
@@ -76,7 +75,7 @@ const AllProducts = () => {
                         return filterMonth == monthNumber;
                     }
                     );
-                }                 
+                }
 
                 var sorted = [];
                 if (sortType == "pricelh"){
@@ -106,13 +105,12 @@ const AllProducts = () => {
                 }
 
                 setProducts(sorted)
-                console.log(sorted);
                 setLoading(false);
 
             }
 
         })
-    }, [sortType,filterType,showNoProduct]); 
+    }, [sortType,filterType,showNoProduct]);
 
     if (isLoading){
         return <ThreeDotsWave/>;
@@ -121,17 +119,17 @@ const AllProducts = () => {
     return (
         <>
          <Topbar/>
-        <h2 className="text-center font-weight-bold">Products</h2><br></br>
+        <h2 className="text-center font-weight-bold mt-3">Products</h2><br></br>
         <div style={mystyle}>
-            <b>Filter By Delivery Month:&nbsp;</b> 
+            <b>Filter By Delivery Month:&nbsp;</b>
             <select onChange={(e) => setFilterType(e.target.value)}>
                 <option value="All Months">All Months</option>
                 {months.map(month => {
                 return <option value={month}>{month}</option>;
                 })}
-            </select>&nbsp;&nbsp;&nbsp;        
-            <b>Sort By:&nbsp;</b> 
-            <select onChange={(e) => setSortType(e.target.value)}> 
+            </select>&nbsp;&nbsp;&nbsp;
+            <b>Sort By:&nbsp;</b>
+            <select onChange={(e) => setSortType(e.target.value)}>
                 <option value="pricelh">Price (Low to High)</option>
                 <option value="pricehl">Price (High to Low)</option>
                 <option value="pbhlh">Payment Before Harvest (Low to High)</option>
