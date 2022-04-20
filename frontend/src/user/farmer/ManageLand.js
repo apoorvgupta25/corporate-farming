@@ -74,7 +74,7 @@ const ManageLand = () => {
                             return (
                                 <tr key={index}>
                                   <td><img src={`${API}/land/photo/${land._id}`} alt="" style={{height:'125px', width:'auto', paddingBottom: '1rem'}} /></td>
-                                  <td>{land.title}</td>
+                                  <td><Link to={`/land/${land._id}`} target="_blank">{land.title}</Link></td>
                                   <td>{land.bondTime}</td>
                                   <td>{land.landProperties.city}, {land.landProperties.state}</td>
                                   <td>₹{land.expectedProfit.exactAmount} ({land.expectedProfit.percentage}%)</td>
