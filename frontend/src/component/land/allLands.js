@@ -34,7 +34,7 @@ const AllLands = () => {
 
     const mystyle = {
         marginRight: "10rem",
-        display: "flex", 
+        display: "flex",
         justifyContent: "flex-end"
     };
 
@@ -51,11 +51,10 @@ const AllLands = () => {
     const [sortType, setSortType] = useState('pricelh');
 
     const [filterType, setFilterType] = useState('All States');
-  
+
     useEffect(() => {
         getAllLands()
         .then(data => {
-            console.log(data);
             if (data.error) {
                 console.log(data.error);
             } else {
@@ -68,7 +67,7 @@ const AllLands = () => {
                         return el.landProperties.state == filterType;
                     }
                     );
-                }                 
+                }
 
                 var sorted = [];
                 if (sortType == "pricelh"){
@@ -94,13 +93,12 @@ const AllLands = () => {
                 }
 
                 setLands(sorted)
-                console.log(data);
                 setLoading(false);
 
             }
 
         })
-    }, [sortType,filterType,showNoLand]); 
+    }, [sortType,filterType,showNoLand]);
 
     if (isLoading){
         return <ThreeDotsWave/>;
@@ -109,17 +107,17 @@ const AllLands = () => {
     return (
         <>
         <Topbar/>
-        <h2 className="text-center font-weight-bold">Land for Lease</h2><br></br>
+        <h2 className="text-center font-weight-bold mt-3">Land for Lease</h2><br></br>
         <div style={mystyle}>
-            <b>Filter By State:&nbsp;</b> 
+            <b>Filter By State:&nbsp;</b>
             <select onChange={(e) => setFilterType(e.target.value)}>
                 <option value="All States">All States</option>
                 {states.map(state => {
                 return <option value={state}>{state}</option>;
                 })}
-            </select>&nbsp;&nbsp;        
-            <b>Sort By:&nbsp;</b> 
-            <select onChange={(e) => setSortType(e.target.value)}> 
+            </select>&nbsp;&nbsp;
+            <b>Sort By:&nbsp;</b>
+            <select onChange={(e) => setSortType(e.target.value)}>
                 <option value="pricelh">Price (Low to High)</option>
                 <option value="pricehl">Price (High to Low)</option>
                 <option value="bondlh">Bond Time (Low to High)</option>
@@ -129,7 +127,7 @@ const AllLands = () => {
             </select>
         </div><br></br>
         {showNoLand ? <NoLandDisplay /> : null}
-        
+
         <div className="wrapper">
             {lands.slice(pagesVisited, pagesVisited + landsPerPage).map((land, index) => {
                 return (

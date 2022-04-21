@@ -81,7 +81,7 @@ a, a:visited, a:hover, a:active {
     display: flex;
     justify-content: center;
   }
-  
+
   .paginationBttns a {
     padding: 10px;
     margin: 8px;
@@ -90,17 +90,17 @@ a, a:visited, a:hover, a:active {
     color: #2b2eff;
     cursor: pointer;
   }
-  
+
   .paginationBttns a:hover {
     color: white;
     background-color: #2b2eff;
   }
-  
+
   .paginationActive a {
     color: white;
     background-color: #2b2eff;
   }
-  
+
   .paginationDisabled a {
     color:white;
     background-color: grey;

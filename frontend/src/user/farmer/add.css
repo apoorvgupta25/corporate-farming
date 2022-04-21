@@ -9,7 +9,7 @@ display-flex {
 	padding: 0;
 	font-weight: 700;
 	color: #222;
-	font-family: roboto slab;
+	font-family: inherit;
 	font-size: 2rem;
 	margin-bottom: 30px;
 	text-transform: uppercase
@@ -30,7 +30,7 @@ display-flex {
 	-ms-background-size: cover;
 	background-position: center center;
 	font-weight: 400;
-	font-family: roboto slab;
+	font-family: inherit;
 	margin: 0
 }
 
@@ -65,7 +65,7 @@ display-flex {
 	padding: 5px 0;
 	color: #222;
 	margin-bottom: 31px;
-	font-family: roboto slab;
+	font-family: inherit;
 
 	outline: none;
 	appearance: unset!important;

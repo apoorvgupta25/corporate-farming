@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+# -*- coding: utf-8 -*-
+
+from crypt import methods
+>>>>>>> eaad33f2e33e1384897eee59d0d0d79d4c501497
 from flask import Flask, render_template
 from flask_cors import CORS, cross_origin
 import numpy as np

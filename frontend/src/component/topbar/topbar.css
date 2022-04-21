@@ -11,7 +11,7 @@
 }
 
 .topbarLeft {
-  flex: 3;
+  flex: 2;
 }
 
 .logo {
@@ -23,7 +23,7 @@
 }
 
 .topbarCenter {
-  flex: 5;
+  flex: 7;
 }
 
 .searchbar {
@@ -50,7 +50,7 @@
 }
 
 .topbarRight {
-  flex: 4;
+  flex: 2;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -58,10 +58,18 @@
 }
 
 .topbarLink {
-  margin-right: 1rem;
+  margin-right: 2rem;
   font-size: 1rem;
   display:inline;
+  color: white;
+  text-decoration: none !important;
   cursor: pointer;
+}
+.topbarLink:visited{
+    color: white;
+}
+.topbarLink:hover{
+    color: black;
 }
 
 .topbarIcons {

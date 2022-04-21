@@ -3,4 +3,8 @@ sklearn
 numpy
 pandas
 flask-cors
+<<<<<<< HEAD
 gunicorn
+=======
+gunicorn == 20.0.4
+>>>>>>> eaad33f2e33e1384897eee59d0d0d79d4c501497

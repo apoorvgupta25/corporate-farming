@@ -74,7 +74,7 @@ const ManageProduct = () => {
                             .map((prod, index) => {
                             return (
                                 <tr key={index}>
-                                  <td>{prod.title}</td>
+                                  <td><Link to={`/product/${prod._id}`} target="_blank">{prod.title}</Link></td>
                                   <td>{prod.cropName}</td>
                                   <td>₹ {prod.price}</td>
                                   <td>₹ {prod.paymentBeforeharvest}</td>
@@ -82,7 +82,7 @@ const ManageProduct = () => {
                                   <td>{prod.deliveryMonth} / {prod.harvestMonth}</td>
                                   <td className="p-3">
                                       <Link className="btn btn-success" to={`/farmer/product/update/${prod._id}`}>
-                                          <div className="">Update</div>
+                                          <div className="text-white">Update</div>
                                       </Link>
                                   </td>
                                   <td>

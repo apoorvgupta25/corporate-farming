@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 web: gunicorn app:app --log-level=debug
+=======
+web: gunicorn app:app --log-level debug
+>>>>>>> eaad33f2e33e1384897eee59d0d0d79d4c501497
