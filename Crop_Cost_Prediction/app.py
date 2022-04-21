@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Mar  2 21:46:27 2019
-
-@author: PRATYUSH, Rahul, Somya, Abhay
-"""
-
-from crypt import methods
 from flask import Flask, render_template
 from flask_cors import CORS, cross_origin
 import numpy as np
@@ -13,13 +5,16 @@ import pandas as pd
 from datetime import datetime
 import crops
 import random
+import logging
 
 # import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-cors = CORS(app, resources={r"/ticker": {"origins": "https://corp-farm.netlify.app/cropCP"}})
+gunicorn_logger = logging.getLogger('gunicorn.error')
+app.logger.handlers = gunicorn_logger.handlers
+app.logger.setLevel(gunicorn_logger.level)
 
 commodity_dict = {
     "arhar": "static/Arhar.csv",
@@ -76,12 +71,14 @@ base = {
 }
 commodity_list = []
 
-
 class Commodity:
 
     def __init__(self, csv_name):
         self.name = csv_name
         dataset = pd.read_csv(csv_name)
+        app.logger.debug("89")
+        app.logger.debug(len(dataset))
+        
         self.X = dataset.iloc[:, :-1].values
         self.Y = dataset.iloc[:, 3].values
 
@@ -98,8 +95,11 @@ class Commodity:
         # fask=regressor_tree.predict(fsa)
 
     def getPredictedValue(self, value):
+        # print(value)
+        app.logger.debug("106",value)
         if value[1]>=2019:
             fsa = np.array(value).reshape(1, 3)
+            app.logger.debug("108",fsa)
             #print(" ",self.regressor.predict(fsa)[0])
             return self.regressor.predict(fsa)[0]
         else:
@@ -107,6 +107,7 @@ class Commodity:
             x=[]
             for i in c:
                 x.append(i.tolist())
+            app.logger.debug("117",x)     
             fsa = [value[0], value[1]]
             ind = 0
             for i in range(0,len(x)):
@@ -116,15 +117,70 @@ class Commodity:
             #print(index, " ",ind)
             #print(x[ind])
             #print(self.Y[i])
+            app.logger.debug("127",self.Y[i])  
             return self.Y[i]
 
     def getCropName(self):
         a = self.name.split('.')
         return a[0]
 
+arhar = Commodity(commodity_dict["arhar"])
+commodity_list.append(arhar)
+bajra = Commodity(commodity_dict["bajra"])
+commodity_list.append(bajra)
+barley = Commodity(commodity_dict["barley"])
+commodity_list.append(barley)
+copra = Commodity(commodity_dict["copra"])
+commodity_list.append(copra)
+cotton = Commodity(commodity_dict["cotton"])
+commodity_list.append(cotton)
+sesamum = Commodity(commodity_dict["sesamum"])
+commodity_list.append(sesamum)
+gram = Commodity(commodity_dict["gram"])
+commodity_list.append(gram)
+groundnut = Commodity(commodity_dict["groundnut"])
+commodity_list.append(groundnut)
+jowar = Commodity(commodity_dict["jowar"])
+commodity_list.append(jowar)
+maize = Commodity(commodity_dict["maize"])
+commodity_list.append(maize)
+masoor = Commodity(commodity_dict["masoor"])
+commodity_list.append(masoor)
+moong = Commodity(commodity_dict["moong"])
+commodity_list.append(moong)
+niger = Commodity(commodity_dict["niger"])
+commodity_list.append(niger)
+paddy = Commodity(commodity_dict["paddy"])
+commodity_list.append(paddy)
+ragi = Commodity(commodity_dict["ragi"])
+commodity_list.append(ragi)
+rape = Commodity(commodity_dict["rape"])
+commodity_list.append(rape)
+jute = Commodity(commodity_dict["jute"])
+commodity_list.append(jute)
+safflower = Commodity(commodity_dict["safflower"])
+commodity_list.append(safflower)
+soyabean = Commodity(commodity_dict["soyabean"])
+commodity_list.append(soyabean)
+sugarcane = Commodity(commodity_dict["sugarcane"])
+commodity_list.append(sugarcane)
+sunflower = Commodity(commodity_dict["sunflower"])
+commodity_list.append(sunflower)
+urad = Commodity(commodity_dict["urad"])
+commodity_list.append(urad)
+wheat = Commodity(commodity_dict["wheat"])
+commodity_list.append(wheat)
 
-@app.route('/cropCP',methods=['GET'])
+
+@app.route('/')
 def index():
+    
+    app.logger.debug("INNNNNNNNNNNNN")
+    app.logger.debug("INNNNNNNNNNNNN")
+    app.logger.debug("INNNNNNNNNNNNN")
+    app.logger.debug("INNNNNNNNNNNNN")
+    app.logger.debug("INNNNNNNNNNNNN")
+    
     context = {
         "top5": TopFiveWinners(),
         "bottom5": TopFiveLosers(),
@@ -133,8 +189,54 @@ def index():
     return render_template('index.html', context=context)
 
 
-@app.route('/cropCP/commodity/<name>',methods=['GET'])
+@app.route('/commodity/<name>')
 def crop_profile(name):
+    arhar = Commodity(commodity_dict["arhar"])
+    commodity_list.append(arhar)
+    bajra = Commodity(commodity_dict["bajra"])
+    commodity_list.append(bajra)
+    barley = Commodity(commodity_dict["barley"])
+    commodity_list.append(barley)
+    copra = Commodity(commodity_dict["copra"])
+    commodity_list.append(copra)
+    cotton = Commodity(commodity_dict["cotton"])
+    commodity_list.append(cotton)
+    sesamum = Commodity(commodity_dict["sesamum"])
+    commodity_list.append(sesamum)
+    gram = Commodity(commodity_dict["gram"])
+    commodity_list.append(gram)
+    groundnut = Commodity(commodity_dict["groundnut"])
+    commodity_list.append(groundnut)
+    jowar = Commodity(commodity_dict["jowar"])
+    commodity_list.append(jowar)
+    maize = Commodity(commodity_dict["maize"])
+    commodity_list.append(maize)
+    masoor = Commodity(commodity_dict["masoor"])
+    commodity_list.append(masoor)
+    moong = Commodity(commodity_dict["moong"])
+    commodity_list.append(moong)
+    niger = Commodity(commodity_dict["niger"])
+    commodity_list.append(niger)
+    paddy = Commodity(commodity_dict["paddy"])
+    commodity_list.append(paddy)
+    ragi = Commodity(commodity_dict["ragi"])
+    commodity_list.append(ragi)
+    rape = Commodity(commodity_dict["rape"])
+    commodity_list.append(rape)
+    jute = Commodity(commodity_dict["jute"])
+    commodity_list.append(jute)
+    safflower = Commodity(commodity_dict["safflower"])
+    commodity_list.append(safflower)
+    soyabean = Commodity(commodity_dict["soyabean"])
+    commodity_list.append(soyabean)
+    sugarcane = Commodity(commodity_dict["sugarcane"])
+    commodity_list.append(sugarcane)
+    sunflower = Commodity(commodity_dict["sunflower"])
+    commodity_list.append(sunflower)
+    urad = Commodity(commodity_dict["urad"])
+    commodity_list.append(urad)
+    wheat = Commodity(commodity_dict["wheat"])
+    commodity_list.append(wheat)
     max_crop, min_crop, forecast_crop_values = TwelveMonthsForecast(name)
     prev_crop_values = TwelveMonthPrevious(name)
     forecast_x = [i[0] for i in forecast_crop_values]
@@ -161,28 +263,9 @@ def crop_profile(name):
         "current_price": current_price,
         "image_url":crop_data[0],
         "prime_loc":crop_data[1],
-        "type_c":crop_data[2],
-        "export":crop_data[3]
+        "type_c":crop_data[2]
     }
     return render_template('commodity.html', context=context)
-
-@app.route('/ticker/<item>/<number>')
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
-def ticker(item, number):
-    n = int(number)
-    i = int(item)
-    data = SixMonthsForecast()
-    context = str(data[n][i])
-
-    if i == 2 or i == 5:
-        context = '₹' + context
-    elif i == 3 or i == 6:
-
-        context = context + '%'
-
-    #print('context: ', context)
-    return context
-
 
 def TopFiveWinners():
     current_month = datetime.now().month
@@ -194,7 +277,15 @@ def TopFiveWinners():
     prev_month_prediction = []
     change = []
 
+    app.logger.debug("214")
+    app.logger.debug(current_rainfall)
+
+    app.logger.debug("217")
+    app.logger.debug(len(commodity_list))
+
     for i in commodity_list:
+        app.logger.debug("218")
+        app.logger.debug(i)
         current_predict = i.getPredictedValue([float(current_month), current_year, current_rainfall])
         current_month_prediction.append(current_predict)
         prev_predict = i.getPredictedValue([float(prev_month), current_year, prev_rainfall])
@@ -424,58 +515,5 @@ def TwelveMonthPrevious(name):
         new_crop_price.append(crop_price[i])
     return new_crop_price
 
-
-if __name__ == "__main__":
-    arhar = Commodity(commodity_dict["arhar"])
-    commodity_list.append(arhar)
-    bajra = Commodity(commodity_dict["bajra"])
-    commodity_list.append(bajra)
-    barley = Commodity(commodity_dict["barley"])
-    commodity_list.append(barley)
-    copra = Commodity(commodity_dict["copra"])
-    commodity_list.append(copra)
-    cotton = Commodity(commodity_dict["cotton"])
-    commodity_list.append(cotton)
-    sesamum = Commodity(commodity_dict["sesamum"])
-    commodity_list.append(sesamum)
-    gram = Commodity(commodity_dict["gram"])
-    commodity_list.append(gram)
-    groundnut = Commodity(commodity_dict["groundnut"])
-    commodity_list.append(groundnut)
-    jowar = Commodity(commodity_dict["jowar"])
-    commodity_list.append(jowar)
-    maize = Commodity(commodity_dict["maize"])
-    commodity_list.append(maize)
-    masoor = Commodity(commodity_dict["masoor"])
-    commodity_list.append(masoor)
-    moong = Commodity(commodity_dict["moong"])
-    commodity_list.append(moong)
-    niger = Commodity(commodity_dict["niger"])
-    commodity_list.append(niger)
-    paddy = Commodity(commodity_dict["paddy"])
-    commodity_list.append(paddy)
-    ragi = Commodity(commodity_dict["ragi"])
-    commodity_list.append(ragi)
-    rape = Commodity(commodity_dict["rape"])
-    commodity_list.append(rape)
-    jute = Commodity(commodity_dict["jute"])
-    commodity_list.append(jute)
-    safflower = Commodity(commodity_dict["safflower"])
-    commodity_list.append(safflower)
-    soyabean = Commodity(commodity_dict["soyabean"])
-    commodity_list.append(soyabean)
-    sugarcane = Commodity(commodity_dict["sugarcane"])
-    commodity_list.append(sugarcane)
-    sunflower = Commodity(commodity_dict["sunflower"])
-    commodity_list.append(sunflower)
-    urad = Commodity(commodity_dict["urad"])
-    commodity_list.append(urad)
-    wheat = Commodity(commodity_dict["wheat"])
-    commodity_list.append(wheat)
-
+if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-
-
