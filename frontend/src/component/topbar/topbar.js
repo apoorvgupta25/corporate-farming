@@ -4,13 +4,15 @@ import { Link } from "react-router-dom";
 import React from "react";
 
 import {isAuth, signout} from '../../auth/authAPICalls';
+import logo from '../../assets/logo/corp-farm-logo.png';
 
 export default function Topbar() {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <div className="logo">Corp-Farm</div>
+            <img className="logoImg" src={logo}/>
+            <div className="logo">Corp-Farm</div>
         </Link>
       </div>
       <div className="topbarCenter">
@@ -19,17 +21,13 @@ export default function Topbar() {
               <Link to={`/crop/prediction/`} className="topbarLink">Crop Prediction</Link>
               <Link to={`/weather/prediction`} className="topbarLink">Weather Prediction</Link>
               <Link to={`/cost/prediction`} className="topbarLink">Cost Prediction</Link>
-          </div>
-      </div>
 
-      <div className="topbarRight">
-        <div className="topbarLinks">
-          {!isAuth() && (
-            <Link to="/signin" className="topbarLink">SignIn</Link>
-           )}
-          {!isAuth() && (
-            <Link to="/signup/farmer" className="topbarLink">SignUp</Link>
-            )}
+              {!isAuth() && (
+                <Link to="/signin" className="topbarLink">SignIn</Link>
+              )}
+              {!isAuth() && (
+                <Link to="/signup/farmer" className="topbarLink">SignUp</Link>
+              )}
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
