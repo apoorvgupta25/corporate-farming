@@ -54,7 +54,7 @@ const AddLand = () => {
         formData
     } = values;
 
-
+    const [count, setCount] = useState(0);
     const {user, token} = isAuth();
 
     const handleChange = name => event => {
@@ -62,6 +62,8 @@ const AddLand = () => {
         formData.set(name, value);
 
         setValues({...values, [name]: value});
+        if(name=='title')
+            setCount(event.target.value.length);
     }
 
     const handleChangeLocation = name => event => {
@@ -179,7 +181,8 @@ const AddLand = () => {
                     <h2 className="add-heading" align="center">Land Lease</h2>
 
                     <div className="form-group-1">
-                        <input className="add-input-select" type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
+                        <p className="text-dark pull-right">{count}/16</p>
+                        <input className="add-input-select" maxlength='16' type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
                         <input className="add-input-select" type="text" name="description" onChange={handleChange("description")} value={description} placeholder="Description" required />
 
                         <input className="add-input-select" type="number" name="exactAmount" onChange={handleChangeExpectedProfit("exactAmount")} value={expectedProfit.exactAmount} placeholder="Land Leasing Price" min="1" required />

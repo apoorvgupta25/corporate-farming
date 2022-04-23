@@ -40,6 +40,7 @@ const UpdateProduct = () => {
                             'Tea', 'Tomatoes', 'Turmeric', 'Wheat', 'Others');
 
 
+    const [count, setCount] = useState(0);
     const [loading, setLoading] = useState(true)
 
     const {user, token} = isAuth();
@@ -82,6 +83,9 @@ const UpdateProduct = () => {
 
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value});
+
+        if(name=='title')
+            setCount(event.target.value.length);
     }
 
     const successMessage = () => {
@@ -154,7 +158,8 @@ const UpdateProduct = () => {
                 <form method="POST" className="add-form">
                     <h2 className="add-heading" align="center">Fruits & Veggies</h2>
                     <div className="form-group-1">
-                        <input className="add-input-select" type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
+                        <p className="text-dark pull-right">{count}/11</p>
+                        <input className="add-input-select" maxlength="11" type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
                         <input className="add-input-select" type="text" name="description" onChange={handleChange("description")} value={description} placeholder="Description" required />
                         <select className="add-input-select" name="cropName" onChange={handleChange("cropName")} >
                             <option>Select</option>
