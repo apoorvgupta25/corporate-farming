@@ -116,7 +116,7 @@ const Land = () => {
                             <h3>₹ {land.expectedProfit.exactAmount} ({land.expectedProfit.percentage} %)</h3>
                         </div>
                         <div>
-                            <h5>🕒 : {land.bondTime}</h5>
+                            <h5>🕒 : {land.bondTime} months</h5>
                         </div>
 
                         <div className="detail">
