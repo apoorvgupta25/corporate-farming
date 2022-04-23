@@ -102,8 +102,6 @@ const Product = () => {
 
 
     // <img src={Rice} alt = "Product image" style={{height:'100%',borderRadius: '20px'}} className="img" />
-    // <CropImage productImg={'Rice'}/>
-
     var filename = 'Others'
     if(product.cropName != "Others") {
         filename = product.cropName

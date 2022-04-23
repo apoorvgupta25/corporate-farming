@@ -16,7 +16,7 @@ const AllLands = () => {
 
     const [showNoLand, setShowNoLand] = useState(false);
 
-    const landsPerPage = 10;
+    const landsPerPage = 8;
     const pagesVisited = pageNumber * landsPerPage;
 
     const pageCount = Math.ceil(lands.length / landsPerPage);
@@ -128,7 +128,7 @@ const AllLands = () => {
         </div><br></br>
         {showNoLand ? <NoLandDisplay /> : null}
 
-        <div className="wrapper">
+        <div className="wrapper mb-5">
             {lands.slice(pagesVisited, pagesVisited + landsPerPage).map((land, index) => {
                 return (
                     <div key={index}>

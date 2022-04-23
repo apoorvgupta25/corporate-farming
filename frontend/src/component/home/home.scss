@@ -30,15 +30,15 @@ body {
 }
 
 .wrapper {
-  margin: 2rem;
+  margin: 1.5rem;
   display: grid;
-  gap: 1rem;
+  gap: 4rem;
   grid-template-columns: 1fr;
   justify-content: center;
 }
 
 .land {
-  box-shadow: 0 0 10px 5px $clr-gray300;
+  box-shadow: 0 5px 12px 0 rgba(0,0,0,0.4);
   border-radius: $radius;
   min-width: 28rem;
   display: flex;
@@ -55,6 +55,7 @@ body {
   }
   &__title {
     line-height: 1.4rem;
+    font-size: 1.75vw;
     margin-bottom: 0.5rem;
   }
 
@@ -127,8 +128,9 @@ body {
 }
 
 .land:hover {
-    transform: translateY(0) scale(1.05);
-    transition: all .3s ease-in-out
+    box-shadow: 0 5px 12px 0 rgba(0,0,0,0.5);
+    transform: translateY(0) scale(1.025);
+    transition: all .4s ease-in-out
 }
 
 @media screen and (min-width: 600px) {
@@ -140,6 +142,7 @@ body {
     flex-direction: column;
     text-align: center;
     min-width: 14rem;
+    // margin-left: 1rem;
 
     &__img {
       width: 100%;
