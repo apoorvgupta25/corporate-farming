@@ -13,3 +13,11 @@ code {
     monospace;
     */
 }
+
+.btn-primary{
+    background-color: #1A2D40 !important;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus   {
+    background-color: #FFD200 !important;
+}
