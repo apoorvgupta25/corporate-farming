@@ -18,7 +18,7 @@ export default function Topbar() {
               <Link to={`/disease/prediction/`} className="topbarLink">Disease Prediction</Link>
               <Link to={`/crop/prediction/`} className="topbarLink">Crop Prediction</Link>
               <Link to={`/weather/prediction`} className="topbarLink">Weather Prediction</Link>
-              <Link to={`/cost/prediction`} className="topbarLink">Cost Prediction</Link>
+              <Link to={`/cropcost/prediction`} className="topbarLink">Cost Prediction</Link>
           </div>
       </div>
 
