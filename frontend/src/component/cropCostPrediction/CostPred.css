@@ -1,0 +1,11 @@
+div.main {
+    padding: 5px 50px 75px 50px;
+}
+
+span,img {
+    vertical-align: middle;
+ }
+
+.brand-logo > span,.brand-logo > img {
+    vertical-align: middle;
+}

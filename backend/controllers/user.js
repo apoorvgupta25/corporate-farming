@@ -61,6 +61,7 @@ exports.getFriends = async (req, res) => {
           return true;
         }
     }
+    return false;
 
 }
   exports.followUser = async (req, res) => {

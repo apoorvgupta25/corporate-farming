@@ -8,6 +8,8 @@ import AllProducts from './component/product/allProducts';
 import Product from './component/product/product';
 import CropPrediction from './component/cropPrediction/cropPrediction';
 import CropDiseasePrediction from './component/cropDiseasePrediction/cropDiseasePrediction';
+import CropCostPrediction from './component/cropCostPrediction/cropCostPrediction';
+import CropCommodity from './component/cropCostPrediction/cropCommodity';
 
 import {PrivateRoute, FarmerRoute, CorporateRoute, AdminRoute} from './auth/protectedRoute';
 import Messenger from './component/messenger/messenger';
@@ -46,6 +48,9 @@ export default function AllRoutes(){
 
                 <Route path="/crop/prediction" exact element={<CropPrediction/>}/>
                 <Route path="/disease/prediction" exact element={<CropDiseasePrediction/>}/>
+
+                <Route path="/cropcost/prediction" exact element={<CropCostPrediction/>}/>
+                <Route path="/commodity/:commodityName" exact element={<CropCommodity/>}/>
 
                 <Route path="/messenger" exact element={<Messenger/>}/>
                 <Route path='/dashboard/:userId' exact element={<PrivateRoute><FarmerDashboard/></PrivateRoute>}/>
