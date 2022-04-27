@@ -12,6 +12,9 @@ span,img {
 
 .chart-container{
     margin: 0 auto;
-    width: 85%;
-    height: 24rem !important;
+    width: 80%;
+    height: 20rem !important;
+}
+.bg-grey{
+    background-color: #eee;
 }

@@ -101,14 +101,11 @@ function CropCommodity() {
     return (
         <div>
             <Topbar/>
-            <h2 className="header ml-5 text-center text-capitalize">{pred["name"]}</h2>
-            <div className="mx-auto card horizontal medium grey lighten-3 ml-5 pb-5" style={{width: "800px",height: "450px"}}>
-                <div className="card-stacked">
-                    <div className="card-content black-text pr-10" style={{paddingBottom: "24px"}}>
-                        <table>
-                        <tr>
-                            <th>Basic Information</th>
-                        </tr>
+            <h2 className="text-center text-capitalize font-weight-bold mt-3">{pred["name"]}</h2>
+            <div className="mx-auto card ml-5 p-3 bg-grey" style={{width: "800px"}}>
+                <div className="">
+                    <table className="table " style={{width:"200%"}} >
+                        <tr> <th>Basic Information</th> </tr>
                         <tr>
                             <td>Current Price</td>
                             <td><b>₹ {pred["current_price"]} / quintal</b></td>
@@ -121,37 +118,31 @@ function CropCommodity() {
                             <td>Crop Type</td>
                             <td><b>{pred["type_c"]}</b></td>
                         </tr>
+                        <tr> <th>Brief Forecast</th> </tr>
                         <tr>
-                            <th>Brief Forecast</th>
+                            <td><p>Min. crop price time</p></td>
+                            <td><b>{pred["min_crop"][0]}</b></td>
+                            <td><b>₹ {pred["min_crop"][1]}</b></td>
                         </tr>
                         <tr>
-                        <td><p>Min. crop price time</p></td>
-                        <td><b>{pred["min_crop"][0]}</b></td>
-                        <td><b>₹ {pred["min_crop"][1]}</b></td>
+                            <td><p>Max. crop price time</p></td>
+                            <td><b>{pred["max_crop"][0]}</b></td>
+                            <td><b>₹ {pred["max_crop"][1]}</b><br></br></td>
                         </tr>
-                        <tr>
-                        <td><p>Max. crop price time</p></td>
-                        <td><b>{pred["max_crop"][0]}</b></td>
-                        <td><b>₹ {pred["max_crop"][1]}</b><br></br></td>
-                        </tr>
-                        </table>
-                    </div>
+                    </table>
                 </div>
             </div>
+
             <div>
-                <div className="row">
-                    <div className="col-3">
+                <div className="row mt-5">
+                    <div className="col-3" style={{marginLeft: "7rem"}}>
                         <h4 className="ml-5 text-center">Forecast Trends</h4>
-                        <table className="striped ml-5">
-                            <thead>
-                            {thData()}
-                            </thead>
-                            <tbody>
-                            {tdData()}
-                            </tbody>
+                        <table className="table table-striped table-hover ml-5">
+                            <thead> {thData()} </thead>
+                            <tbody> {tdData()} </tbody>
                         </table>
                     </div>
-                    <div className="col-9 pl-5">
+                    <div className="col-8 pl-3">
                         <h4 className="text-center">Price Trend</h4><br></br>
                         <div className="chart-container">
                             <Line
