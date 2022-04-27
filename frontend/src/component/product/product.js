@@ -4,6 +4,7 @@ import {getProduct} from './productAPICall'
 import {useParams} from 'react-router-dom';
 import {API} from '../../backend';
 import Navbar from '../Navbar';
+import {isAuth, signout} from '../../auth/authAPICalls';
 
 import '../land_product_style.css';
 import Topbar from "../topbar/topbar";
@@ -36,11 +37,6 @@ const Product = () => {
     if (isLoading){
         return <ThreeDotsWave/>;
     }
-
-    // No Land Details
-    // Farmer Contact Number
-
-    var imgsrc = 'https://images-prod.healthline.com/hlcmsresource/images/AN_images/tomatoes-1296x728-feature.jpg';
 
     function s1() {
 
@@ -107,8 +103,6 @@ const Product = () => {
         filename = product.cropName
     }
 
-    console.log(filename);
-
     return (
         <>
         <Topbar/>
@@ -130,7 +124,7 @@ const Product = () => {
 
                     <div className="detail">
                         <h3>Product Description </h3>
-                        <p>{product.description}</p>
+                        <h5>{product.description}</h5>
                     </div>
 
                     <div className="btn-group btn-group-lg" style={{width: '100%'}}>
@@ -156,9 +150,11 @@ const Product = () => {
                         <h4>✉: {product.farmer.email}</h4>
                     </div>
 
-                    <div className="purchase-info">
-                        <ChatNowButton userId={product.farmer._id} productId={product._id} productName={product.title} isprod="1"/>
-                    </div>
+                    {isAuth() && isAuth().user.role==1 &&(
+                        <div className="purchase-info">
+                            <ChatNowButton userId={product.farmer._id} productId={product._id} productName={product.title} isprod="1"/>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

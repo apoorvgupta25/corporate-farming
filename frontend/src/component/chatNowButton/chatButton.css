@@ -3,12 +3,12 @@
   margin-bottom: 10px;
   border: none;
   background-color: #1A2D40;
-  color: white;
+  color: #FFD200;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 7px 20px;
   display: flex;
   align-items: center;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   cursor: pointer;
 }
