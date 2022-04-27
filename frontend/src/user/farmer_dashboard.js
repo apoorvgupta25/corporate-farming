@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom';
 import {signout} from '../auth/authAPICalls';
 import {isAuth} from '../auth/authAPICalls';
 import Topbar from '../component/topbar/topbar';
-import './farmer_dashboard.css';
+import './dashboard.css';
+import '../index.css';
 
 import { ReactComponent as Exaclamation }  from '../assets/exaclamation4.svg'
 
@@ -59,7 +60,7 @@ const FarmerDashboard = ({ match }) => {
                     </li>
 
                 </ul>
-                <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 pull-right text-white">Sign Out</Link>
+                <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 pull-right">Sign Out</Link>
             </div>
         );
     };
@@ -68,7 +69,7 @@ const FarmerDashboard = ({ match }) => {
         <div>
             <Topbar/>
             <h1 className="text-center mt-5 mb-5">Dashboard</h1>
-            <div className="container bg-success p-3">
+            <div className="container bg-green p-3">
                 <div className="row">
                     <div className="col-sm-3">{adminLeftSide()}</div>
                     <div className="col-sm-9">{adminRightSide()}</div>

@@ -11,8 +11,8 @@ export default function CropPrediction() {
 
     const [result, setResults] = useState();
     const [error, setError] = useState(false);
-   
-    
+
+
     const [values, setValues] = useState({
         temperature: '',
         humidity: '',
@@ -37,7 +37,7 @@ export default function CropPrediction() {
     const handleChange = name => event => {
         setValues({...values, [name]: event.target.value});
     }
-    
+
     const handleChangeSoil = name => event => {
         setValues({
             ...values,
@@ -46,10 +46,10 @@ export default function CropPrediction() {
                 [name]: event.target.value
             }
         });
-    }    
-    
-    const onSubmit = event => {  
-        event.preventDefault() 
+    }
+
+    const onSubmit = event => {
+        event.preventDefault()
         getcropPrediction(soil.nitrogen,soil.phosphorous,soil.potassium,soil.ph,humidity,rainfall,temperature)
         .then(data => {
             if (data.error) {
@@ -80,14 +80,14 @@ return (
         <Topbar/>
 
         {errorMessage()}
-    <div className="add-main bg-cont-land">
-        <div className="add-container">
+    <div className="add-main bg-cont-farm">
+        <div className="add-container mx-auto">
 
             <form method="GET" className="add-form" id="land-form">
                 <h2 className="add-heading" align="center">Crop Prediction</h2>
 
                 <div className="form-group-1">
-                   
+
 
                     <input className="add-input-select" type="number" name="rainfall" onChange={handleChange("rainfall")} value={rainfall} placeholder="Rainfall in area (mm)" min="1" required />
                     <input className="add-input-select" type="number" name="humidity" onChange={handleChange("humidity")} value={humidity} placeholder="Humidity in percentage" min="1" required />
@@ -98,8 +98,8 @@ return (
                     <input className="add-input-select" type="number" name="ph" onChange={handleChangeSoil("ph")} value={soil.ph} placeholder="Land PH " min="1" required />
 
                 </div>
-                <div className="form-submit" style={{marginTop: '10%', marginLeft: '40%'}}>
-                    <input className="add-input-select" type="submit" name="submit" onClick={onSubmit} value="Submit" />
+                <div className="form-submit" style={{marginTop: '10%', padding: '10px 30px'}}>
+                    <input className="btn btn-primary w-100" type="submit" name="submit" onClick={onSubmit} value="Submit" />
                 </div>
             </form>
             {successMessage()}

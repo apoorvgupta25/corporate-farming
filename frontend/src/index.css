@@ -16,8 +16,13 @@ code {
 
 .btn-primary{
     background-color: #1A2D40 !important;
+    color: #FFD200 !important;
+    border-radius: 7px;
+    font-size: 1.25rem;
+    outline: none;
 }
 
 .btn-primary:hover, .btn-primary:active, .btn-primary:focus   {
     background-color: #FFD200 !important;
+    color: #1A2D40 !important;
 }

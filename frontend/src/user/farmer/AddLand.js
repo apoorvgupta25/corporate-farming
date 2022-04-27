@@ -174,7 +174,7 @@ const AddLand = () => {
         <CircleModal saving={saving}/>
 
         <div className="add-main bg-cont-land">
-            <div className="add-container">
+            <div className="add-container mx-auto">
 
                 <form method="POST" className="add-form">
                     {errorMessage()}
@@ -213,8 +213,8 @@ const AddLand = () => {
                             <input className="add-input-select" type="file" name="photo" accept="image/*" placeholder="Choose A Photo" onChange={handleChange("photo")} />
                         </div>
                     </div>
-                    <div className="form-submit" style={{marginTop: '10%', marginLeft: '40%'}}>
-                        <input className="add-input-select" type="submit" name="submit" onClick={onSubmit} value="Submit" />
+                    <div className="form-submit" style={{marginTop: '10%', padding: '10px 30px'}}>
+                        <input className="btn btn-primary w-100" type="submit" name="submit" onClick={onSubmit} value="Submit" />
                     </div>
                     {successMessage()}
                 </form>

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {signout} from '../auth/authAPICalls';
 import {isAuth} from '../auth/authAPICalls';
 import Topbar from '../component/topbar/topbar';
-import './corporate_dashboard.css';
+import './dashboard.css';
 
 const CorporateDashboard = ({ match }) => {
 
@@ -43,7 +43,7 @@ const CorporateDashboard = ({ match }) => {
         <div className="">
             <Topbar/>
             <h1 className="text-center mt-5 mb-5">Dashboard</h1>
-            <div className="container bg-success p-3">
+            <div className="container bg-green p-3">
                 <div className="row">
                     <div className="col-sm-12">{adminRightSide()}</div>
                 </div>
