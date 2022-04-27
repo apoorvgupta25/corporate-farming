@@ -23,7 +23,10 @@ const AdminDashboard = () => {
             <div>
                 <ul className="list-group">
                     <li className="list-group-item">
-                        <Link to="/admin/verification" className="text-success" style={{ textDecoration:'none'}}>Verification</Link>
+                        <Link to="/admin/farmer/verification" className="text-success" style={{ textDecoration:'none'}}>Verify Farmers</Link>
+                    </li>
+                    <li className="list-group-item">
+                        <Link to="/admin/corporate/verification" className="text-success" style={{ textDecoration:'none'}}>Verify Corporates</Link>
                     </li>
                 </ul>
             </div>

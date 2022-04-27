@@ -12,14 +12,11 @@ import './manageVerification.css';
 
 import { ReactComponent as Elink }  from '../../assets/external-link.svg'
 
-const ManageVerification = () => {
+const ManageFarmerVerification = () => {
 
     const [farmers, setFarmers] = useState([])
     const [verifiedFarmers, setVerifiedFarmers] = useState([])
     const [invalidFarmers, setInvalidFarmers] = useState([])
-    const [corporates, setCorporates] = useState([])
-    const [verifiedCorporates, setVerifiedCorporates] = useState([])
-    const [invalidCorporates, setInvalidCorporates] = useState([])
     const [loading, setLoading] = useState(true)
 
     const [statusEnums, setStatusEnums] = useState([])
@@ -43,24 +40,6 @@ const ManageVerification = () => {
         getInvalidFarmers(user._id, token)
         .then(data => {
             setInvalidFarmers(data)
-            setLoading(false);
-        });
-
-        getUnverifiedCorporates(user._id, token)
-        .then(data => {
-            setCorporates(data)
-            setLoading(false);
-        });
-
-        getVerifiedCorporates(user._id, token)
-        .then(data => {
-            setVerifiedCorporates(data)
-            setLoading(false);
-        });
-
-        getInvalidCorporates(user._id, token)
-        .then(data => {
-            setInvalidCorporates(data)
             setLoading(false);
         });
     };
@@ -104,15 +83,16 @@ const ManageVerification = () => {
     return (
         <div className="text-dark">
             <Topbar/>
+
+            <div className="text-center h1 mt-3">
+                Verify Aadhaar Numbers
+                <a href="https://myaadhaar.uidai.gov.in/verifyAadhaar" target="_blank">
+                 <Elink style={{width:"1.5rem", marginLeft:"1rem"}}/>
+                </a>
+            </div>
+
             <div className="row">
                 <div className="col-6">
-                    <div className="text-center h1 mt-3">
-                        Verify Aadhaar Numbers
-                        <a href="https://myaadhaar.uidai.gov.in/verifyAadhaar" target="_blank">
-                         <Elink style={{width:"1.5rem", marginLeft:"1rem"}}/>
-                        </a>
-                    </div>
-
                     <div className="farmer-container">
                         <div className="h2 mt-3">Unverified Farmers</div>
                         {farmers.map((farmer, index) => {
@@ -135,10 +115,11 @@ const ManageVerification = () => {
                             )
                         })}
                     </div>
+                </div>
 
-
+                <div className="col-6">
                     <div className="farmer-container">
-                    <div className="h2 mt-3">Verified Farmers</div>
+                        <div className="h2 mt-3">Verified Farmers</div>
                         {verifiedFarmers.map((farmer, index) => {
                             return (
                                 <div key={index}>
@@ -158,12 +139,10 @@ const ManageVerification = () => {
                                 </div>
                             )
                         })}
-
                     </div>
 
-
                     <div className="farmer-container">
-                    <div className="h2 mt-3">Invalid Farmers</div>
+                        <div className="h2 mt-3">Invalid Farmers</div>
                         {invalidFarmers.map((farmer, index) => {
                             return (
                                 <div key={index}>
@@ -183,98 +162,12 @@ const ManageVerification = () => {
                                 </div>
                             )
                         })}
-
                     </div>
-                </div>
-
-                <div className="col-6">
-                    <div className="text-center h1 mt-3">
-                        Verify Corporate Identification Numbers
-                        <a href="https://myaadhaar.uidai.gov.in/verifyAadhaar" target="_blank">
-                         <Elink style={{width:"1.5rem", marginLeft:"1rem"}}/>
-                        </a>
-                    </div>
-                    <div className="farmer-container">
-                        <div className="h2 mt-3">Unverified Corporates</div>
-                        {corporates.map((corporate, index) => {
-                            return (
-                                <div key={index}>
-                                    <div className="farmer-list-item">
-                                        <div className="item-name">{corporate.name}</div>
-                                        <div className="item-aadhaar"> {corporate.cin} </div>
-                                        <select className="enumSelect" placeholder="Status" onChange={handleChange(corporate._id) }>
-                                            <option>{corporate.verification}</option>
-                                            {statusEnums.map((stat, index) => {
-                                                return (
-                                                  <option value={stat} key={index}>{stat}</option>
-                                                  )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-
-                    <div className="farmer-container">
-                    <div className="h2 mt-3">Verified Farmers</div>
-                        {verifiedCorporates.map((corporate, index) => {
-                            return (
-                                <div key={index}>
-                                    <div className="farmer-list-item">
-                                        <div className="item-name">{corporate.name}</div>
-                                        <div className="item-aadhaar"> {corporate.cin} </div>
-                                        <select className="enumSelect" placeholder="Status" onChange={handleChange(corporate._id) }>
-                                            <option>{corporate.verification}</option>
-                                            {statusEnums.map((stat, index) => {
-                                                return (
-                                                  <option value={stat} key={index}>{stat}</option>
-                                                  )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                            )
-                        })}
-
-                    </div>
-
-                    <div className="farmer-container">
-                    <div className="h2 mt-3">Invalid Farmers</div>
-                        {invalidCorporates.map((corporate, index) => {
-                            return (
-                                <div key={index}>
-                                    <div className="farmer-list-item">
-                                        <div className="item-name">{corporate.name}</div>
-                                        <div className="item-aadhaar"> {corporate.cin} </div>
-                                        <select className="enumSelect" placeholder="Status" onChange={handleChange(corporate._id) }>
-                                            <option>{corporate.verification}</option>
-                                            {statusEnums.map((stat, index) => {
-                                                return (
-                                                  <option value={stat} key={index}>{stat}</option>
-                                                  )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                            )
-                        })}
-
-                    </div>
-
                 </div>
             </div>
 
         </div>
     )
 }
-/*
 
-
-
-*/
-
-export default ManageVerification;
+export default ManageFarmerVerification;

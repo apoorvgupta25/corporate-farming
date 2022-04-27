@@ -28,7 +28,8 @@ import UpdateProduct from './user/farmer/UpdateProduct';
 import CorporateDashboard from './user/corporate_dashboard';
 
 import AdminDashboard from './user/admin_dashboard';
-import ManageVerification from './user/admin/ManageVerification';
+import ManageFarmerVerification from './user/admin/ManageFarmerVerification';
+import ManageCorporateVerification from './user/admin/ManageCorporateVerification';
 
 export default function AllRoutes(){
 
@@ -66,7 +67,8 @@ export default function AllRoutes(){
                 <Route path='/corporate/dashboard/:userId' exact element={<CorporateRoute><CorporateDashboard/></CorporateRoute>}/>
 
                 <Route path='/admin/dashboard/:userId' exact element={<AdminRoute><AdminDashboard/></AdminRoute>}/>
-                <Route path='/admin/verification' exact element={<AdminRoute><ManageVerification/></AdminRoute>}/>
+                <Route path='/admin/farmer/verification' exact element={<AdminRoute><ManageFarmerVerification/></AdminRoute>}/>
+                <Route path='/admin/corporate/verification' exact element={<AdminRoute><ManageCorporateVerification/></AdminRoute>}/>
 
             </Routes>
         </Router>
