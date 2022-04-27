@@ -25,28 +25,11 @@ const AllLands = () => {
         setPageNumber(selected);
     };
 
-    const NoLandDisplay = () => <div className="noLands">
-        <b style={myStyle2}>Sorry!</b>
-        <b style={myStyle2}>No Lands Available</b>
+    const NoLandDisplay = () => <div className="not-found">
+        <b>Sorry! <br/> No Lands Available</b>
     </div>;
 
     var states = new Array("Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttaranchal", "Uttar Pradesh", "West Bengal");
-
-    const mystyle = {
-        marginRight: "10rem",
-        display: "flex",
-        justifyContent: "flex-end"
-    };
-
-    const myStyle2 = {
-        fontFamily: "Fontdiner Swanky,cursive",
-        fontSize: "4rem",
-        color: "#4b62d1",
-        marginBottom: "1rem",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
-    }
 
     const [sortType, setSortType] = useState('pricelh');
 
@@ -107,16 +90,16 @@ const AllLands = () => {
     return (
         <>
         <Topbar/>
-        <h2 className="text-center font-weight-bold mt-3">Land for Lease</h2><br></br>
-        <div style={mystyle}>
-            <b>Filter By State:&nbsp;</b>
+        <h3 className="text-center font-weight-bold mt-3">Land for Lease</h3><br></br>
+        <div className="filter-sort">
+            <b className="h4">Filter By State:&nbsp;</b>
             <select onChange={(e) => setFilterType(e.target.value)}>
                 <option value="All States">All States</option>
                 {states.map(state => {
-                return <option value={state}>{state}</option>;
+                    return <option value={state}>{state}</option>;
                 })}
             </select>&nbsp;&nbsp;
-            <b>Sort By:&nbsp;</b>
+            <b className="h4">Sort By:&nbsp;</b>
             <select onChange={(e) => setSortType(e.target.value)}>
                 <option value="pricelh">Price (Low to High)</option>
                 <option value="pricehl">Price (High to Low)</option>
