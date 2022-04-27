@@ -12,7 +12,7 @@ const CorporateDashboard = ({ match }) => {
         signout()
     }
 
-    const {user: {name, email, role}} = isAuth();
+    const {user: {name, email, role, verification}} = isAuth();
 
 
     var roleType = "Farmer";
@@ -32,6 +32,10 @@ const CorporateDashboard = ({ match }) => {
                     <li className="list-group-item">
                         <div className="badge badge-success mr-2">Role</div> {roleType}
                     </li>
+                    <li className="list-group-item">
+                        <div className="badge badge-success mr-2">Status</div> {verification}
+                    </li>
+
                 </ul>
                 <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 pull-right text-white">Sign Out</Link>
             </div>

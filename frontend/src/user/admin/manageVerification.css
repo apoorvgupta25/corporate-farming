@@ -10,9 +10,9 @@
 }
 
 .farmer-list-item {
-    /* background: #f8f8f8; */
+    background: #f8f8f8;
     height: 6rem;
-    min-width: 40rem;
+    width: 35rem;
     margin: 1rem;
     padding: 1rem;
 
@@ -25,11 +25,6 @@
 
 }
 
-.list-item:hover{
-    transform: translateY(0) scale(1.05);
-    transition: all .3s ease-in-out
-
-}
 .item-name {
     width: 15rem;
     line-height: 2rem;

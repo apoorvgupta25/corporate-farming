@@ -42,6 +42,48 @@ export const getInvalidFarmers = (userId, token) => {
     .catch(err => console.log(err));
 }
 
+export const getUnverifiedCorporates = (userId, token) => {
+    return fetch(`${API}/corporate/unverified/${userId}`,{
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response =>{
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+export const getVerifiedCorporates = (userId, token) => {
+    return fetch(`${API}/corporate/verified/${userId}`,{
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response =>{
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+export const getInvalidCorporates = (userId, token) => {
+    return fetch(`${API}/corporate/invalid/${userId}`,{
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response =>{
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
 export const getVerificationEnums = (userId, token) => {
     return fetch(`${API}/verification/enums/${userId}`,{
         method: "GET",

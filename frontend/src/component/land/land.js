@@ -150,7 +150,7 @@ const Land = () => {
                             <h4>✉: {land.farmer.email}</h4>
                         </div>
 
-                        {isAuth() && isAuth().user.role==1 &&(
+                        {isAuth() && isAuth().user.role==1 && isAuth().user.verification=="Verified" &&(
                             <div className="purchase-info" >
                                 <ChatNowButton userId={land.farmer._id} productId={land._id} productName={land.title} isprod="0"/>
                             </div>
