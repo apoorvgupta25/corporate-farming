@@ -68,7 +68,7 @@ const FarmerDashboard = ({ match }) => {
         <div>
             <Topbar/>
             <h1 className="text-center mt-5 mb-5">Dashboard</h1>
-            <div className="container bg-warning p-3">
+            <div className="container bg-success p-3">
                 <div className="row">
                     <div className="col-sm-3">{adminLeftSide()}</div>
                     <div className="col-sm-9">{adminRightSide()}</div>
