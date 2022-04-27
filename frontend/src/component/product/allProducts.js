@@ -102,16 +102,16 @@ const AllProducts = () => {
     return (
         <>
          <Topbar/>
-        <h3 className="text-center font-weight-bold mt-3">Products</h3><br></br>
+        <h2 className="text-center font-weight-bold mt-3">Products</h2><br></br>
         <div className="filter-sort">
-            <b className="h3">Filter By Delivery Month:&nbsp;</b>
+            <b className="h4">Filter By Delivery Month:&nbsp;</b>
             <select onChange={(e) => setFilterType(e.target.value)}>
                 <option value="All Months">All Months</option>
                 {months.map(month => {
                     return <option value={month}>{month}</option>;
                 })}
             </select>&nbsp;&nbsp;&nbsp;
-            <b className="h3">Sort By:&nbsp;</b>
+            <b className="h4">Sort By:&nbsp;</b>
             <select onChange={(e) => setSortType(e.target.value)}>
                 <option value="pricelh">Price (Low to High)</option>
                 <option value="pricehl">Price (High to Low)</option>

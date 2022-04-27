@@ -90,7 +90,7 @@ const AllLands = () => {
     return (
         <>
         <Topbar/>
-        <h3 className="text-center font-weight-bold mt-3">Land for Lease</h3><br></br>
+        <h2 className="text-center font-weight-bold mt-3">Land for Lease</h2><br></br>
         <div className="filter-sort">
             <b className="h4">Filter By State:&nbsp;</b>
             <select onChange={(e) => setFilterType(e.target.value)}>
