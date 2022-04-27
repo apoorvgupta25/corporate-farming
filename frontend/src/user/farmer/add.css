@@ -64,7 +64,7 @@ display-flex {
 	border-bottom: 2px solid #ebebeb;
 	padding: 5px 0;
 	color: #222;
-	margin-bottom: 31px;
+	margin-bottom: 31px !important;
 	font-family: inherit;
 
 	outline: none;

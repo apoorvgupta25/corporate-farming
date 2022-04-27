@@ -1,4 +1,4 @@
-div.main {
+/* div.main {
     padding: 5px 50px 75px 50px;
 }
 
@@ -8,4 +8,10 @@ span,img {
 
 .brand-logo > span,.brand-logo > img {
     vertical-align: middle;
+} */
+
+.chart-container{
+    margin: 0 auto;
+    width: 85%;
+    height: 24rem !important;
 }

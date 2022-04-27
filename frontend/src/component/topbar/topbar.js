@@ -20,13 +20,7 @@ export default function Topbar() {
               <Link to={`/disease/prediction/`} className="topbarLink">Disease Prediction</Link>
               <Link to={`/crop/prediction/`} className="topbarLink">Crop Prediction</Link>
               <Link to={`/weather/prediction`} className="topbarLink">Weather Prediction</Link>
-<<<<<<< HEAD
               <Link to={`/cost/prediction`} className="topbarLink">Cost Prediction</Link>
-=======
-              <Link to={`/cropcost/prediction`} className="topbarLink">Cost Prediction</Link>
-          </div>
-      </div>
->>>>>>> 037fa92db31b5fc9e06e25f9568bdf4580ef6bd4
 
               {!isAuth() && (
                 <Link to="/signin" className="topbarLink">SignIn</Link>

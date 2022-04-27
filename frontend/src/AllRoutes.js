@@ -49,7 +49,7 @@ export default function AllRoutes(){
                 <Route path="/crop/prediction" exact element={<CropPrediction/>}/>
                 <Route path="/disease/prediction" exact element={<CropDiseasePrediction/>}/>
 
-                <Route path="/cropcost/prediction" exact element={<CropCostPrediction/>}/>
+                <Route path="/cost/prediction" exact element={<CropCostPrediction/>}/>
                 <Route path="/commodity/:commodityName" exact element={<CropCommodity/>}/>
 
                 <Route path="/messenger" exact element={<Messenger/>}/>
