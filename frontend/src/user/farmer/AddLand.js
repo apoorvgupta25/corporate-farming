@@ -206,8 +206,6 @@ const AddLand = () => {
                         <input className="add-input-select" type="number" name="phosphorous" onChange={handleChangeSoil("phosphorous")} value={soil.phosphorous} placeholder="Land Phosphorous Content" min="1" required />
                         <input className="add-input-select" type="number" name="potassium" onChange={handleChangeSoil("potassium")} value={soil.potassium} placeholder="Land Potassium Content" min="1" required />
                         <input className="add-input-select" type="number" name="ph" onChange={handleChangeSoil("ph")} value={soil.ph} placeholder="Land PH " min="1" required />
-
-                        <div style={{color:'black'}}>Or Predict <a href="www.google.com">here</a></div>
                         <div style={{color:'black'}}>
                             <p >Land Image </p>
                             <input className="add-input-select" type="file" name="photo" accept="image/*" placeholder="Choose A Photo" onChange={handleChange("photo")} />
