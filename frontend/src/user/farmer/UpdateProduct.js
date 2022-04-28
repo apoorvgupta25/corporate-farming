@@ -34,10 +34,9 @@ const UpdateProduct = () => {
         updatedProduct, error, success, saving
     } = values;
 
-    var crops = new Array('Banana', 'Brinjal', 'Cabbages', 'Cardamom', 'Cashew nuts', 'Cauliflowers', 'Chickpeas', 'Coconuts', 'Coffee', 'Coriander', 'Cotton', 'Dry beans',
-                            'Fennel', 'Garlic', 'Ginger', 'Gourds', 'Green peas', 'Groundnut', 'Guavas', 'Jowar', 'Lady Finger', 'Lemons', 'Lentil',
-                            'Limes', 'Mangoes', 'Onions', 'Pigeon peas', 'Potatoes', 'Pumpkins', 'Rice', 'Sesame seeds', 'Sugarcane',
-                            'Tea', 'Tomatoes', 'Turmeric', 'Wheat', 'Others');
+    var crops = new Array('Banana', 'Brinjal', 'Cabbages', 'Cardamom', 'Cashew nuts', 'Cauliflowers', 'Chickpeas', 'Coconuts', 'Coffee', 'Coriander',
+                            'Cotton', 'Fennel', 'Garlic', 'Ginger', 'Green peas', 'Groundnut', 'Guavas', 'Jowar', 'Lady Finger', 'Lemons', 'Mangoes',
+                            'Onions', 'Potatoes', 'Rice', 'Sesame seeds', 'Sugarcane', 'Tea', 'Tomatoes', 'Turmeric', 'Wheat', 'Others');
 
 
     const [count, setCount] = useState(0);
