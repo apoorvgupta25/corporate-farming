@@ -152,7 +152,7 @@ const UpdateProduct = () => {
         <CircleModal saving={saving}/>
 
         <div className="add-main bg-cont-product">
-            <div className="add-container">
+            <div className="add-container mx-auto">
                 {errorMessage()}
 
                 <form method="POST" className="add-form">
@@ -173,11 +173,11 @@ const UpdateProduct = () => {
                         <input className="add-input-select" type="number" name="paymentBeforeharvest" onChange={handleChange("paymentBeforeharvest")} value={paymentBeforeharvest} placeholder="Payment before Harvest" min="1" required />
                         <input className="add-input-select" type="number" name="minimumOrderQuantity" onChange={handleChange("minimumOrderQuantity")} value={minimumOrderQuantity} placeholder="Minimum Production Capacity (kg.)" min="1" required />
                         <input className="add-input-select" type="number" name="maximumOrderQuantity" onChange={handleChange("maximumOrderQuantity")} value={maximumOrderQuantity} placeholder="Maximum Production Capacity (kg.)" min="1" required />
-                        <div style={{color:'black'}}>Harvest Month<input type="month" name="harvestMonth" onChange={handleChange("harvestMonth")} value={harvestMonth}/></div>
-                        <div style={{color:'black'}}>Delivery Month<input type="month" name="deliveryMonth" onChange={handleChange("deliveryMonth")} value={deliveryMonth}/></div>
+                        <div style={{color:'black'}}>Harvest Month <input type="month" style={{marginLeft: '20px'}} name="harvestMonth" onChange={handleChange("harvestMonth")} value={harvestMonth}/></div>
+                        <div style={{color:'black'}}>Delivery Month<input type="month" style={{marginLeft: '20px'}} name="deliveryMonth" onChange={handleChange("deliveryMonth")} value={deliveryMonth}/></div>
                     </div>
-                    <div className="form-submit" style={{marginTop: '10%', marginLeft: '40%'}}>
-                        <input className="add-input-select" type="submit" name="submit" onClick={onSubmit} className="submit" value="Update" />
+                    <div className="form-submit" style={{marginTop: '10%', padding: '10px 30px'}}>
+                        <input className="btn btn-primary w-100" type="submit" name="submit" onClick={onSubmit} value="Update" />
                     </div>
                     {successMessage()}
                 </form>
