@@ -87,7 +87,7 @@ const ManageCorporateVerification = () => {
 
             <div className="text-center h1 mt-3">
                 Verify Corporate Identification Numbers
-                <a href="https://myaadhaar.uidai.gov.in/verifyAadhaar" target="_blank">
+                <a href="https://www.quickcompany.in/company" target="_blank">
                  <Elink style={{width:"1.5rem", marginLeft:"1rem"}}/>
                 </a>
             </div>
@@ -121,7 +121,7 @@ const ManageCorporateVerification = () => {
 
                 <div className="col-6">
                     <div className="farmer-container">
-                        <div className="h2 mt-3">Verified Farmers</div>
+                        <div className="h2 mt-3">Verified Corporates</div>
                         {verifiedCorporates.map((corporate, index) => {
                             return (
                                 <div key={index}>
@@ -144,7 +144,7 @@ const ManageCorporateVerification = () => {
                     </div>
 
                     <div className="farmer-container">
-                        <div className="h2 mt-3">Invalid Farmers</div>
+                        <div className="h2 mt-3">Invalid Corporates</div>
                         {invalidCorporates.map((corporate, index) => {
                             return (
                                 <div key={index}>
