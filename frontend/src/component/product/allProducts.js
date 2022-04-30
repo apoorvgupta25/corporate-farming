@@ -36,7 +36,7 @@ const AllProducts = () => {
         <b>Sorry! <br/> No Products Available</b>
     </div>;
 
-    const [sortType, setSortType] = useState('pricelh');
+    const [sortType, setSortType] = useState('createdAt');
 
     const [filterType, setFilterType] = useState('All Months');
 
@@ -77,6 +77,8 @@ const AllProducts = () => {
                     sorted = [...filteredArray].sort((a, b) => b.maximumOrderQuantity - a.maximumOrderQuantity);
                 } else if (sortType == "maxoqlh") {
                     sorted = [...filteredArray].sort((a, b) => a.maximumOrderQuantity - b.maximumOrderQuantity);
+                } else if (sortType == "createdAt") {
+                    sorted = [...filteredArray].sort((a, b) => a.createdAt - b.createdAt);
                 } else {
                     sorted = [...filteredArray].sort((a, b) => b.updatedAt - a.updatedAt);
                 }
@@ -113,6 +115,7 @@ const AllProducts = () => {
             </select>&nbsp;&nbsp;&nbsp;
             <b className="h4">Sort By:&nbsp;</b>
             <select onChange={(e) => setSortType(e.target.value)}>
+                <option value="createdAt">Created (New to Old)</option>
                 <option value="pricelh">Price (Low to High)</option>
                 <option value="pricehl">Price (High to Low)</option>
                 <option value="pbhlh">Payment Before Harvest (Low to High)</option>

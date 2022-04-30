@@ -31,7 +31,7 @@ const AllLands = () => {
 
     var states = new Array("Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttaranchal", "Uttar Pradesh", "West Bengal");
 
-    const [sortType, setSortType] = useState('pricelh');
+    const [sortType, setSortType] = useState('createdAt');
 
     const [filterType, setFilterType] = useState('All States');
 
@@ -65,6 +65,8 @@ const AllLands = () => {
                     sorted = [...filteredArray].sort((a, b) => b.landProperties.totalArea - a.landProperties.totalArea);
                 } else if (sortType == "arealh") {
                     sorted = [...filteredArray].sort((a, b) => a.landProperties.totalArea - b.landProperties.totalArea);
+                } else if (sortType == "createdAt") {
+                    sorted = [...filteredArray].sort((a, b) => a.createdAt - b.createdAt);
                 } else {
                     sorted = [...filteredArray].sort((a, b) => b.updatedAt - a.updatedAt);
                 }
@@ -101,6 +103,7 @@ const AllLands = () => {
             </select>&nbsp;&nbsp;
             <b className="h4">Sort By:&nbsp;</b>
             <select onChange={(e) => setSortType(e.target.value)}>
+                <option value="createdAt">Create (New to Old)</option>
                 <option value="pricelh">Price (Low to High)</option>
                 <option value="pricehl">Price (High to Low)</option>
                 <option value="bondlh">Bond Time (Low to High)</option>
