@@ -31,7 +31,7 @@ export default function Topbar() {
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
-          {isAuth() && (
+          {isAuth() && isAuth().user.role==1 && isAuth().user.verification=="Verified" &&(
              <Link to={`/messenger`} style={{ textDecoration:'none', color: 'white'}}>
                <Chat />
             </Link>
@@ -39,26 +39,20 @@ export default function Topbar() {
           </div>
           <div className="topbarIconItem">
           {isAuth() && isAuth().user.role === 0 && (
-
             <Link to={`/farmer/dashboard/${isAuth().user._id}`} style={{ textDecoration:'none', color: 'white'}}>
               <Person />
             </Link>
-
           )}
           {isAuth() && isAuth().user.role === 1 && (
-
             <Link to={`/corporate/dashboard/${isAuth().user._id}`} style={{ textDecoration:'none', color: 'white'}}>
               <Person />
             </Link>
-
           )}
 
           {isAuth() && isAuth().user.role === 2 && (
-
             <Link to={`/admin/dashboard/${isAuth().user._id}`} style={{ textDecoration:'none', color: 'white'}}>
               <Person />
             </Link>
-
           )}
           </div>
         </div>

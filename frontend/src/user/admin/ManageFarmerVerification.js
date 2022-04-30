@@ -73,7 +73,8 @@ const ManageFarmerVerification = () => {
             if(data.error)
                 console.log(data.error);
         })
-        window.location.reload();
+        setLoading(true);
+        preload();
     }
 
     if (loading){
