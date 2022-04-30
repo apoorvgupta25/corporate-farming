@@ -31,7 +31,7 @@ export default function Topbar() {
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
-          {isAuth() && isAuth().user.role==1 && isAuth().user.verification=="Verified" &&(
+          {isAuth() && (
              <Link to={`/messenger`} style={{ textDecoration:'none', color: 'white'}}>
                <Chat />
             </Link>
