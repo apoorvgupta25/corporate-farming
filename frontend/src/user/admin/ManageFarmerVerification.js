@@ -81,8 +81,37 @@ const ManageFarmerVerification = () => {
         return <ThreeDotsWave/>;
     }
 
+    const Farmer = ({farmer}) => {
+
+        return (
+            <div className="farmer-list-item row">
+                <div className="col-6 ml-0 pl-0">
+                    <div className="h4 font-weight-bold">{farmer.name}</div>
+                    <div className="h5">Age : {farmer.age}</div>
+                    <div className="h5">Gender : {farmer.gender}</div>
+                    <div className="h5">State : {farmer.state}</div>
+                </div>
+
+                <div className="col-6">
+                    <div className="h5">Aadhaar : {farmer.aadhaar}</div>
+                    <div className="h5">Contact : {farmer.contact}</div>
+                    <select className="enumSelect" placeholder="Status" onChange={handleChange(farmer._id) }>
+                        <option>{farmer.verification}</option>
+                        {statusEnums.map((stat, index) => {
+                            return (
+                              <option value={stat} key={index}>{stat}</option>
+                              )
+                            })
+                        }
+                    </select>
+                </div>
+
+            </div>
+        )
+    }
+
     return (
-        <div className="text-dark">
+        <div className="text-dark" style={{overflowX:'hidden'}} >
             <Topbar/>
 
             <div className="text-center h1 mt-3">
@@ -94,24 +123,12 @@ const ManageFarmerVerification = () => {
 
             <div className="row">
                 <div className="col-6">
-                    <div className="farmer-container">
+                    <div className="verification-container">
                         <div className="h2 mt-3">Unverified Farmers</div>
                         {farmers.map((farmer, index) => {
                             return (
                                 <div key={index}>
-                                    <div className="farmer-list-item">
-                                        <div className="item-name">{farmer.name}</div>
-                                        <div className="item-aadhaar"> {farmer.aadhaar} </div>
-                                        <select className="enumSelect" placeholder="Status" onChange={handleChange(farmer._id) }>
-                                            <option>{farmer.verification}</option>
-                                            {statusEnums.map((stat, index) => {
-                                                return (
-                                                  <option value={stat} key={index}>{stat}</option>
-                                                  )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
+                                    <Farmer farmer={farmer}/>
                                 </div>
                             )
                         })}
@@ -119,47 +136,23 @@ const ManageFarmerVerification = () => {
                 </div>
 
                 <div className="col-6">
-                    <div className="farmer-container">
+                    <div className="verification-container">
                         <div className="h2 mt-3">Verified Farmers</div>
                         {verifiedFarmers.map((farmer, index) => {
                             return (
                                 <div key={index}>
-                                    <div className="farmer-list-item">
-                                        <div className="item-name">{farmer.name}</div>
-                                        <div className="item-aadhaar"> {farmer.aadhaar} </div>
-                                        <select className="enumSelect" placeholder="Status" onChange={handleChange(farmer._id) }>
-                                            <option>{farmer.verification}</option>
-                                            {statusEnums.map((stat, index) => {
-                                                return (
-                                                  <option value={stat} key={index}>{stat}</option>
-                                                  )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
+                                    <Farmer farmer={farmer}/>
                                 </div>
                             )
                         })}
                     </div>
 
-                    <div className="farmer-container">
+                    <div className="verification-container">
                         <div className="h2 mt-3">Invalid Farmers</div>
                         {invalidFarmers.map((farmer, index) => {
                             return (
                                 <div key={index}>
-                                    <div className="farmer-list-item">
-                                        <div className="item-name">{farmer.name}</div>
-                                        <div className="item-aadhaar"> {farmer.aadhaar} </div>
-                                        <select className="enumSelect" placeholder="Status" onChange={handleChange(farmer._id) }>
-                                            <option>{farmer.verification}</option>
-                                            {statusEnums.map((stat, index) => {
-                                                return (
-                                                  <option value={stat} key={index}>{stat}</option>
-                                                  )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
+                                    <Farmer farmer={farmer}/>
                                 </div>
                             )
                         })}

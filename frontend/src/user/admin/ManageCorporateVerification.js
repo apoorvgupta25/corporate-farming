@@ -82,8 +82,31 @@ const ManageCorporateVerification = () => {
         return <ThreeDotsWave/>;
     }
 
+    const Corporate = ({corporate}) => {
+        return (
+            <div className="corporate-list-item row ">
+                <div className="col-8 ml-0 pl-0">
+                    <div className="h4 font-weight-bold">{corporate.name}</div>
+                    <div className="h5">CIN : {corporate.cin}</div>
+
+                </div>
+
+                <div className="col-4">
+                    <select className="enumSelect " placeholder="Status" onChange={handleChange(corporate._id) }>
+                        <option>{corporate.verification}</option>
+                        {statusEnums.map((stat, index) => {
+                                return ( <option value={stat} key={index}>{stat}</option> )
+                            })
+                        }
+                    </select>
+                </div>
+
+            </div>
+        )
+    }
+
     return (
-        <div className="text-dark">
+        <div className="text-dark" style={{overflowX:'hidden'}}>
             <Topbar/>
 
             <div className="text-center h1 mt-3">
@@ -95,25 +118,11 @@ const ManageCorporateVerification = () => {
 
             <div className="row">
                 <div className="col-6">
-                    <div className="farmer-container">
+                    <div className="verification-container">
                         <div className="h2 mt-3">Unverified Corporates</div>
                         {corporates.map((corporate, index) => {
                             return (
-                                <div key={index}>
-                                    <div className="farmer-list-item">
-                                        <div className="item-name">{corporate.name}</div>
-                                        <div className="item-aadhaar"> {corporate.cin} </div>
-                                        <select className="enumSelect" placeholder="Status" onChange={handleChange(corporate._id) }>
-                                            <option>{corporate.verification}</option>
-                                            {statusEnums.map((stat, index) => {
-                                                return (
-                                                  <option value={stat} key={index}>{stat}</option>
-                                                  )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
+                                <div key={index}> <Corporate corporate={corporate}/> </div>
                             )
                         })}
                     </div>
@@ -121,51 +130,22 @@ const ManageCorporateVerification = () => {
                 </div>
 
                 <div className="col-6">
-                    <div className="farmer-container">
+                    <div className="verification-container">
                         <div className="h2 mt-3">Verified Corporates</div>
                         {verifiedCorporates.map((corporate, index) => {
                             return (
-                                <div key={index}>
-                                    <div className="farmer-list-item">
-                                        <div className="item-name">{corporate.name}</div>
-                                        <div className="item-aadhaar"> {corporate.cin} </div>
-                                        <select className="enumSelect" placeholder="Status" onChange={handleChange(corporate._id) }>
-                                            <option>{corporate.verification}</option>
-                                            {statusEnums.map((stat, index) => {
-                                                return (
-                                                  <option value={stat} key={index}>{stat}</option>
-                                                  )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
+                                <div key={index}> <Corporate corporate={corporate}/> </div>
                             )
                         })}
                     </div>
 
-                    <div className="farmer-container">
+                    <div className="verification-container">
                         <div className="h2 mt-3">Invalid Corporates</div>
                         {invalidCorporates.map((corporate, index) => {
                             return (
-                                <div key={index}>
-                                    <div className="farmer-list-item">
-                                        <div className="item-name">{corporate.name}</div>
-                                        <div className="item-aadhaar"> {corporate.cin} </div>
-                                        <select className="enumSelect" placeholder="Status" onChange={handleChange(corporate._id) }>
-                                            <option>{corporate.verification}</option>
-                                            {statusEnums.map((stat, index) => {
-                                                return (
-                                                  <option value={stat} key={index}>{stat}</option>
-                                                  )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
+                                <div key={index}> <Corporate corporate={corporate}/> </div>
                             )
                         })}
-
                     </div>
                 </div>
             </div>
@@ -173,5 +153,6 @@ const ManageCorporateVerification = () => {
 
     )
 }
+
 
 export default ManageCorporateVerification;

@@ -16,13 +16,25 @@ var userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    age: {
+        type: Number,
+        required: true
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
     role:{
         type: Number,
         required: true
     },
     friends:{
-        type : Array , 
-        default : ['friendId', 'productId', 'productName','name','contact','isprod']    
+        type : Array ,
+        default : ['friendId', 'productId', 'productName','name','contact','isprod']
     },
     contact:{
         type: Number,
