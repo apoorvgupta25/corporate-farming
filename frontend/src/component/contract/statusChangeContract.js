@@ -16,7 +16,7 @@ const StatusChangeContract = () => {
         farmer: '',
         corporate: '',
         document: '',
-        createdContract: '', 
+        createdContract: '',
         product: '',
         status: '',
         isProd: '',
@@ -89,19 +89,18 @@ const StatusChangeContract = () => {
         )
     }
 
-  
+
     const onSubmit = event => {
         event.preventDefault()
         setValues({...values, error: false, saving: true})
         const cont = {farmer, corporate, product, duration, document, status, reason,isProd};
-  
+
         updateContractInDB(contractId, user._id, token, cont)
             .then(data => {
                 if(data.error){
                     setValues({...values, error: data.error, saving: false});
                 }
                 else{
-                    console.log(data);
                     setValues({...values,
                         farmer: '',
                         corporate: '',

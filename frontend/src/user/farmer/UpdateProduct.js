@@ -124,7 +124,6 @@ const UpdateProduct = () => {
                   setValues({...values, error: data.error, saving: false});
               }
               else{
-                  console.log(data);
                   setValues({...values,
                       title: '',
                       description: '',

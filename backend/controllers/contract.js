@@ -3,7 +3,7 @@ const Contract = require('../models/contract')
 const _ = require('lodash')
 
 exports.addContract = (req, res) => {
- 
+
     const contract = new Contract(req.body);
     console.log(contract);
     const {
@@ -65,10 +65,8 @@ exports.getAllContracts = (req, res) => {
 exports.updateContract = (req, res) => {
 
     let contract = req.contract;
-    console.log(contract);
-    console.log("-----------------");
     contract = _.extend(contract, req.body)
-    console.log(contract);
+    
     contract.save((err, updatedContract) => {
         if(err){
             return res.status(400).json({
