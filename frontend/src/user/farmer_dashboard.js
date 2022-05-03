@@ -37,6 +37,9 @@ const FarmerDashboard = ({ match }) => {
                     <li className="list-group-item">
                         <Link to="/farmer/manage/product" className=" text-success" style={{ textDecoration:'none'}}>Manage Product</Link>
                     </li>
+                    <li className="list-group-item">
+                        <Link to="/contract/manage/" className=" text-success" style={{ textDecoration:'none'}}>Manage Contracts</Link>
+                    </li>
                 </ul>
             </div>
         );

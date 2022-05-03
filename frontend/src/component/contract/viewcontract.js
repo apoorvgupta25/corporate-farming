@@ -1,29 +1,33 @@
-import "./messenger.css";
+
+
+import "../messenger/messenger.css";
 import Topbar from "../topbar/topbar";
 import React, {useState, useRef, useEffect}  from "react";
-import { getAllConversations, getAllMessages, postMessage } from "./messengerAPICall";
+import { getAllMessages, postMessage } from "../messenger/messengerAPICall";
 import {isAuth} from '../../auth/authAPICalls';
-import AllConversations from "../conversion/allConversions";
 import Message from "../message/message";
 import BouncingBall from '../animation/BouncingBall';
 import { Link } from "react-router-dom";
+import {useParams} from 'react-router-dom';
+import { getContract } from "./contractAPICall";
+import { format } from "timeago.js";
 
-export default function Messenger() {
-  if(!window.location.hash.includes("#reloaded")) {
-    window.location.href += "#reloaded";
-    window.location.reload();
-  }
+export default function ViewContract() {
   const [currentChat, setCurrentChat] = useState(null);
-  const [productName, setproductName] = useState('');
-  const [farmerId, setFarmerId] = useState('');
   const [productId, setproductId] = useState('');
   const [isprod, setisprod] = useState('');
   const [receiverNumber, setReceiverNumber] = useState(null);
   const [conversations, setConversations] = useState([]);
+  
+
+ 
+
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState("");
+  const [contract, setContract] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [newMessage, setNewMessage] = useState("");
   const scrollRef = useRef();
+  const { contractId } = useParams();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {
@@ -31,8 +35,6 @@ export default function Messenger() {
       text: newMessage,
       conversationId: currentChat,
     };
-
-    const receiverId = "";
 
     try {
       postMessage(message,receiverNumber,isAuth().user.role)
@@ -49,37 +51,34 @@ export default function Messenger() {
     }
   };
 
-  const getConversationData = () => {
-      getAllConversations(isAuth().user._id)
-      .then(data => {
-          if (data.error) {
-              console.log(data.error);
-          } else {
-              setConversations(data);
-          }
-          setLoading(false);
-      })
-  }
-  
-  const getlink = (productId, isprod) => {
+  const getlink = (productId, isProd) => {
     let link = "";
-    if(isprod == 0){
-      link  = "/land/"+productId.toString();
+    if(isProd == 0){
+      link  = "/land/"+productId;
     }else{
-      link = "/product/"+productId.toString();
+      link = "/product/"+productId;
     }
      
     return link;
   }
-  const getConversationId = (productId,id) => {
-    if (id.toString() < isAuth().user._id.toString()) return productId.toString()+id.toString() +"_"+isAuth().user._id.toString();
-    if (id.toString() > isAuth().user._id.toString()) return productId.toString()+isAuth().user._id.toString() +"_"+id.toString();
-  }
+
+  const loadContract = contractId => {
+    getContract(contractId)
+    .then(data => {
+        if (data.error) {
+            console.log(data.error);
+        } else {
+            setContract(data);
+        }
+        setLoading(false);
+    })
+    };
 
     useEffect(() => {
-        getConversationData()
+        loadContract(contractId);
+        setCurrentChat(contractId);
     },[])
-
+   
 
     const getMessages = () => {
       getAllMessages(currentChat)
@@ -104,17 +103,43 @@ export default function Messenger() {
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <h3 className="font-weight-bold text-dark">Chats</h3>
-
+            <h3 className="font-weight-bold text-dark">Contract Details</h3>
+          <br></br>
           {isLoading && <BouncingBall/>}
-          {conversations.map((c) => (
-            <div onClick={function() {setCurrentChat(getConversationId(c.productId,c.friendId)); setFarmerId(c.friendId); setReceiverNumber(c.contact); setproductName(c.productName); setproductId(c.productId); setisprod(c.isprod)}}>
-              <AllConversations user={c.name}/>
-              </div>
-            ))}
-                <s />
-          </div>
+                        
+          <h4>Duration: {contract.duration}</h4>
+          <h4>Status: {contract.status}</h4>
+          {contract.status !== 'proposed' && (
+                <h4>Reason: {contract.reason}</h4>
+            )}
 
+          <h4>Document: {contract.document}</h4>
+          <h4>Created At: {format(contract.createdAt)}</h4>
+          <h4>Updated At: {format(contract.updatedAt)}</h4>
+          
+            {isAuth().user.role === 0 && contract.status === 'proposed' && (
+                <Link to={`/contract/statusChange/${contractId}/rejected`} style={{ textDecoration: 'none', color: 'white' }}>
+                    <button className="btn btn-success btn-sm float-right ml-1">
+                        Reject Contract
+                    </button>
+                </Link>
+            )}
+            {isAuth().user.role === 0 && contract.status === 'proposed' && (
+                <Link to={`/contract/statusChange/${contractId}/accepted`} style={{ textDecoration: 'none', color: 'white' }}>
+                  <button className="btn btn-success btn-sm float-right ml-1">
+                    Accept Contract
+                  </button>
+                </Link>
+                
+            )}
+            <Link target="_blank" to={getlink(contract.product,contract.isProd)} style={{ textDecoration: 'none', color: 'white' }}>
+                  <button className="btn btn-success btn-sm float-right ml-1">
+                      Product Details
+                  </button>
+            </Link>
+
+          </div>
+            <s />
           </div>
           
           <div className="chatBox">
@@ -123,21 +148,6 @@ export default function Messenger() {
           
                {currentChat ? (
               <>
-                <div>{productName}
-                {isAuth().user.role === 1 && (
-                  <Link to={`/contract/${productId}/${farmerId}/${isprod}`} style={{ textDecoration: 'none', color: 'white' }}>
-                    <button className="btn btn-success btn-sm float-right ml-1">
-                      Create Contract
-                    </button>
-                  </Link>
-                )}
-                
-                <Link to={getlink(productId,isprod)} style={{ textDecoration: 'none', color: 'white' }}>
-                  <button className="btn btn-success btn-sm float-right ml-1">
-                      About
-                  </button>
-                </Link>
-                </div>
                 <div className="chatBoxTop">
                   {messages.map((m) => (
                     <div ref={scrollRef}>
