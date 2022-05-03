@@ -2,28 +2,42 @@
   height: 5rem;
   /* margin-bottom: 1rem; */
   width: 100%;
-  background-color: #1877f2;
+  background-color: #1A2D40;
   display: flex;
+  flex-direction: row;
   align-items: center;
   position: sticky;
   top: 0;
+  padding-right: 2rem;
   z-index: 999;
 }
 
 .topbarLeft {
-  flex: 2;
+  flex: 2.5;
 }
 
 .logo {
   font-size: 2rem;
-  margin-left: 2rem;
+  margin-left: 1rem;
   font-weight: bold;
   color: white;
   cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+.logoImg{
+    margin-left: 2rem;
+    display:inline-block;
+    width: 100px;
 }
 
 .topbarCenter {
   flex: 7;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .searchbar {
@@ -53,7 +67,7 @@
   flex: 2;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-end;
   color: white;
 }
 
@@ -69,7 +83,7 @@
     color: white;
 }
 .topbarLink:hover{
-    color: black;
+    color: #FFD200;
 }
 
 .topbarIcons {

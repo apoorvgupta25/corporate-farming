@@ -1,4 +1,4 @@
-div.main {
+/* div.main {
     padding: 5px 50px 75px 50px;
 }
 
@@ -8,4 +8,28 @@ span,img {
 
 .brand-logo > span,.brand-logo > img {
     vertical-align: middle;
+} */
+
+.chart-container{
+    margin: 0 auto;
+    width: 80%;
+    height: 20rem !important;
+}
+.bg-grey{
+    background-color: #eee;
+}
+
+.card-style{
+    width: 19.5rem;
+    height: 9.5rem;
+    position: relative;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.card-style:hover{
+    border: 1px solid black;
+    font-weight: bolder;
+    transform: translateY(0) scale(1.05);
+    transition: all .4s ease-in-out
 }

@@ -32,28 +32,11 @@ const AllProducts = () => {
 
     const months = new Array("January","February","March","April","May","June","July","August","September","October","November","December");
 
-    const NoProductDisplay = () => <div className="noProducts">
-        <b style={myStyle2}>Sorry!</b>
-        <b style={myStyle2}>No Products Available</b>
+    const NoProductDisplay = () => <div className="not-found">
+        <b>Sorry! <br/> No Products Available</b>
     </div>;
 
-    const mystyle = {
-        marginRight: "21rem",
-        display: "flex",
-        justifyContent: "flex-end"
-    };
-
-    const myStyle2 = {
-        fontFamily: "Fontdiner Swanky,cursive",
-        fontSize: "4rem",
-        color: "#4b62d1",
-        marginBottom: "1rem",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
-    }
-
-    const [sortType, setSortType] = useState('pricelh');
+    const [sortType, setSortType] = useState('createdAt');
 
     const [filterType, setFilterType] = useState('All Months');
 
@@ -94,6 +77,8 @@ const AllProducts = () => {
                     sorted = [...filteredArray].sort((a, b) => b.maximumOrderQuantity - a.maximumOrderQuantity);
                 } else if (sortType == "maxoqlh") {
                     sorted = [...filteredArray].sort((a, b) => a.maximumOrderQuantity - b.maximumOrderQuantity);
+                } else if (sortType == "createdAt") {
+                    sorted = [...filteredArray].sort((a, b) => a.createdAt - b.createdAt);
                 } else {
                     sorted = [...filteredArray].sort((a, b) => b.updatedAt - a.updatedAt);
                 }
@@ -120,16 +105,17 @@ const AllProducts = () => {
         <>
          <Topbar/>
         <h2 className="text-center font-weight-bold mt-3">Products</h2><br></br>
-        <div style={mystyle}>
-            <b>Filter By Delivery Month:&nbsp;</b>
+        <div className="filter-sort">
+            <b className="h4">Filter By Delivery Month:&nbsp;</b>
             <select onChange={(e) => setFilterType(e.target.value)}>
                 <option value="All Months">All Months</option>
                 {months.map(month => {
-                return <option value={month}>{month}</option>;
+                    return <option value={month}>{month}</option>;
                 })}
             </select>&nbsp;&nbsp;&nbsp;
-            <b>Sort By:&nbsp;</b>
+            <b className="h4">Sort By:&nbsp;</b>
             <select onChange={(e) => setSortType(e.target.value)}>
+                <option value="createdAt">Created (New to Old)</option>
                 <option value="pricelh">Price (Low to High)</option>
                 <option value="pricehl">Price (High to Low)</option>
                 <option value="pbhlh">Payment Before Harvest (Low to High)</option>

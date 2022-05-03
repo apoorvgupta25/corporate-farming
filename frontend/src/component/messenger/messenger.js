@@ -15,6 +15,7 @@ export default function Messenger() {
   }
   const [currentChat, setCurrentChat] = useState(null);
   const [productName, setproductName] = useState('');
+  const [farmerId, setFarmerId] = useState('');
   const [productId, setproductId] = useState('');
   const [isprod, setisprod] = useState('');
   const [receiverNumber, setReceiverNumber] = useState(null);
@@ -59,7 +60,7 @@ export default function Messenger() {
           setLoading(false);
       })
   }
-  
+
   const getlink = (productId, isprod) => {
     let link = "";
     if(isprod == 0){
@@ -67,7 +68,7 @@ export default function Messenger() {
     }else{
       link = "/product/"+productId.toString();
     }
-     
+
     return link;
   }
   const getConversationId = (productId,id) => {
@@ -107,22 +108,36 @@ export default function Messenger() {
 
           {isLoading && <BouncingBall/>}
           {conversations.map((c) => (
-            <div onClick={function() {setCurrentChat(getConversationId(c.productId,c.friendId)); setReceiverNumber(c.contact); setproductName(c.productName); setproductId(c.productId); setisprod(c.isprod)}}>
-              <AllConversations user={c.name}/>
+            <div onClick={function() {setCurrentChat(getConversationId(c.productId,c.friendId));
+                                      setFarmerId(c.friendId);
+                                      setReceiverNumber(c.contact);
+                                      setproductName(c.productName);
+                                      setproductId(c.productId);
+                                      setisprod(c.isprod)}}
+                                      >
+              <AllConversations user={c.name} name={c.productName} type={c.isprod}/>
               </div>
             ))}
                 <s />
           </div>
 
           </div>
-          
+
           <div className="chatBox">
-          
+
           <div className="chatBoxWrapper">
-          
+
                {currentChat ? (
               <>
-                <div>{productName}
+                <div className="bg-grey p-2" style={{borderRadius: "5px"}}>{productName}
+                {isAuth().user.role === 1 && (
+                  <Link to={`/contract/${productId}/${farmerId}/${isprod}`} style={{ textDecoration: 'none', color: 'white' }}>
+                    <button className="btn btn-success btn-sm float-right ml-1">
+                      Create Contract
+                    </button>
+                  </Link>
+                )}
+
                 <Link to={getlink(productId,isprod)} style={{ textDecoration: 'none', color: 'white' }}>
                   <button className="btn btn-success btn-sm float-right ml-1">
                       About

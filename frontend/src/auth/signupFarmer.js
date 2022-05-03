@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {signup} from './authAPICalls';
 
 import './signin_signup.css';
+import Topbar from '../component/topbar/topbar';
 
 const SignupFarmer = () => {
 
@@ -97,14 +98,11 @@ const SignupFarmer = () => {
 
     return (
         <div className="container-sign">
-
-            <Link to="/" style={{ textDecoration:'none'}}>
-                <h1 className="text-center mt-5 mb-3 text-light">Corp-Farm</h1>
-            </Link>
+            <Topbar/>
 
             {successMessage()}
             {errorMessage()}
-            <div className="form-box-signup farmer">
+            <div className="form-box-signup farmer mt-5">
                 <div className="button-box">
                     <div className="toggle-btn font-weight-bold">Farmer Signup</div>
                 </div>

@@ -4,6 +4,7 @@ import {Link, Navigate} from 'react-router-dom';
 import {signout} from '../auth/authAPICalls';
 import {isAuth} from '../auth/authAPICalls';
 import Topbar from '../component/topbar/topbar';
+import './dashboard.css';
 
 const AdminDashboard = () => {
 
@@ -22,7 +23,10 @@ const AdminDashboard = () => {
             <div>
                 <ul className="list-group">
                     <li className="list-group-item">
-                        <Link to="/admin/verification" className="text-success" style={{ textDecoration:'none'}}>Verification</Link>
+                        <Link to="/admin/farmer/verification" className="text-success" style={{ textDecoration:'none'}}>Verify Farmers</Link>
+                    </li>
+                    <li className="list-group-item">
+                        <Link to="/admin/corporate/verification" className="text-success" style={{ textDecoration:'none'}}>Verify Corporates</Link>
                     </li>
                 </ul>
             </div>
@@ -53,7 +57,7 @@ const AdminDashboard = () => {
         <div className="">
             <Topbar/>
             <h1 className="text-center mt-5 mb-5">Admin Dashboard</h1>
-            <div className="container bg-warning p-3">
+            <div className="container bg-green p-3">
                 <div className="row">
                     <div className="col-sm-3">{adminLeftSide()}</div>
                     <div className="col-sm-9">{adminRightSide()}</div>

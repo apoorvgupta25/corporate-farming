@@ -62,7 +62,7 @@ function Home() {
             </div>
 
             <Link to="/lands" className="move-right" >more Lands...</Link>
-
+            <hr/>
             <h2 className="text-center font-weight-bold">Products</h2>
             <div className="list-container">
                 {products.length == 0 && <BouncingBall/>}
@@ -132,24 +132,31 @@ function List({prod}){
         deliveryMonth = prod.deliveryMonth;
     }
 
+
+    var filename = 'Others'
+    if(prod.cropName != "Others") {
+        filename = prod.cropName
+    }
+
     return (
         <Link style={{textDecoration:'None'}} to={`/product/${prod._id}`}>
         <div className="list-item">
+                <img className="item-image mr-2 mb-0" src={require(`../../assets/crops/${filename}.jpg`)} />
                 <div className="item-title">{title}</div>
                 <div className="item-crop">
-                    <p className="tiny-text">Crop Name</p>
+                    <p className="tiny-text font-weight-bold">Crop Name</p>
                     <p className="regular-text">{cropName}</p>
                 </div>
                 <div className="item-price">
-                    <p className="tiny-text">Price</p>
-                    <p className="regular-text">{price}</p>
+                    <p className="tiny-text font-weight-bold">Price</p>
+                    <p className="regular-text">₹ {price}</p>
                 </div>
                 <div className="item-harvest">
-                    <p className="tiny-text">Harvest Month</p>
+                    <p className="tiny-text font-weight-bold">Harvest Month</p>
                     <p className="regular-text">{harvestMonth}</p>
                 </div>
                 <div className="item-delivery">
-                    <p className="tiny-text">Delivery Month</p>
+                    <p className="tiny-text font-weight-bold">Delivery Month</p>
                     <p className="regular-text">{deliveryMonth}</p>
                 </div>
 

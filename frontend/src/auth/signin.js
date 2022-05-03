@@ -4,6 +4,7 @@ import {Link, Navigate} from 'react-router-dom';
 import {signin, authenticate, isAuth} from './authAPICalls';
 
 import './signin_signup.css';
+import Topbar from '../component/topbar/topbar';
 
 const Signin = () => {
 
@@ -88,17 +89,13 @@ const Signin = () => {
 
     return (
         <div className="container-sign">
-
-            <Link to="/" style={{ textDecoration:'none'}}>
-                <h1 className="text-center mt-5 text-light">Corp-Farm</h1>
-            </Link>
-
+            <Topbar/>
 
             {loadingMessage()}
             {errorMessage()}
-            <div className="form-box-login">
+            <div className="form-box-login mt-5">
                 <div className="button-box">
-                    <div className="toggle-btn">Sign In</div>
+                    <div className="toggle-btn font-weight-bold">Sign In</div>
                 </div>
 
                 <form className="input-group">

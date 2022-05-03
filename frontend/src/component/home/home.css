@@ -18,7 +18,7 @@ a, a:visited, a:hover, a:active {
     height: 7rem;
     margin: 1rem;
     padding: 1rem;
-
+    width: 55rem;
     display: flex;
     align-items: center;
 
@@ -29,13 +29,14 @@ a, a:visited, a:hover, a:active {
 }
 
 .list-item:hover{
-    transform: translateY(0) scale(1.05);
+    transform: translateY(0) scale(1.025);
     transition: all .3s ease-in-out
-
 }
+
 .item-title {
-    width: 25rem;
+    width: 15rem;
     line-height: 2rem;
+    margin-left: 2rem;
     height: 4rem;
     font-size: 2rem;
     display: flex;
@@ -61,7 +62,7 @@ a, a:visited, a:hover, a:active {
 
 
 .tiny-text {
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 .regular-text {
@@ -104,4 +105,18 @@ a, a:visited, a:hover, a:active {
   .paginationDisabled a {
     color:white;
     background-color: grey;
+  }
+
+  hr {
+      display: block;
+      height: 1px;
+      width: 50%;
+      border: 0;
+      border-top: 0.5px solid #000;
+      margin: 1em auto;
+      padding: 0;
+  }
+
+  .item-image{
+      width: 100px;
   }

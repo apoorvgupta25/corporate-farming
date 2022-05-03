@@ -34,12 +34,12 @@ const UpdateProduct = () => {
         updatedProduct, error, success, saving
     } = values;
 
-    var crops = new Array('Banana', 'Brinjal', 'Cabbages', 'Cardamom', 'Cashew nuts', 'Cauliflowers', 'Chickpeas', 'Coconuts', 'Coffee', 'Coriander', 'Cotton', 'Dry beans',
-                            'Fennel', 'Garlic', 'Ginger', 'Gourds', 'Green peas', 'Groundnut', 'Guavas', 'Jowar', 'Lady Finger', 'Lemons', 'Lentil',
-                            'Limes', 'Mangoes', 'Onions', 'Pigeon peas', 'Potatoes', 'Pumpkins', 'Rice', 'Sesame seeds', 'Sugarcane',
-                            'Tea', 'Tomatoes', 'Turmeric', 'Wheat', 'Others');
+    var crops = new Array('Banana', 'Brinjal', 'Cabbages', 'Cardamom', 'Cashew nuts', 'Cauliflowers', 'Chickpeas', 'Coconuts', 'Coffee', 'Coriander',
+                            'Cotton', 'Fennel', 'Garlic', 'Ginger', 'Green peas', 'Groundnut', 'Guavas', 'Jowar', 'Lady Finger', 'Lemons', 'Mangoes',
+                            'Onions', 'Potatoes', 'Rice', 'Sesame seeds', 'Sugarcane', 'Tea', 'Tomatoes', 'Turmeric', 'Wheat', 'Others');
 
 
+    const [count, setCount] = useState(0);
     const [loading, setLoading] = useState(true)
 
     const {user, token} = isAuth();
@@ -82,6 +82,9 @@ const UpdateProduct = () => {
 
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value});
+
+        if(name=='title')
+            setCount(event.target.value.length);
     }
 
     const successMessage = () => {
@@ -121,7 +124,6 @@ const UpdateProduct = () => {
                   setValues({...values, error: data.error, saving: false});
               }
               else{
-                  console.log(data);
                   setValues({...values,
                       title: '',
                       description: '',
@@ -148,13 +150,14 @@ const UpdateProduct = () => {
         <CircleModal saving={saving}/>
 
         <div className="add-main bg-cont-product">
-            <div className="add-container">
+            <div className="add-container mx-auto">
                 {errorMessage()}
 
                 <form method="POST" className="add-form">
                     <h2 className="add-heading" align="center">Fruits & Veggies</h2>
                     <div className="form-group-1">
-                        <input className="add-input-select" type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
+                        <p className="text-dark pull-right">{count}/11</p>
+                        <input className="add-input-select" maxlength="11" type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
                         <input className="add-input-select" type="text" name="description" onChange={handleChange("description")} value={description} placeholder="Description" required />
                         <select className="add-input-select" name="cropName" onChange={handleChange("cropName")} >
                             <option>Select</option>
@@ -168,11 +171,11 @@ const UpdateProduct = () => {
                         <input className="add-input-select" type="number" name="paymentBeforeharvest" onChange={handleChange("paymentBeforeharvest")} value={paymentBeforeharvest} placeholder="Payment before Harvest" min="1" required />
                         <input className="add-input-select" type="number" name="minimumOrderQuantity" onChange={handleChange("minimumOrderQuantity")} value={minimumOrderQuantity} placeholder="Minimum Production Capacity (kg.)" min="1" required />
                         <input className="add-input-select" type="number" name="maximumOrderQuantity" onChange={handleChange("maximumOrderQuantity")} value={maximumOrderQuantity} placeholder="Maximum Production Capacity (kg.)" min="1" required />
-                        <div style={{color:'black'}}>Harvest Month<input type="month" name="harvestMonth" onChange={handleChange("harvestMonth")} value={harvestMonth}/></div>
-                        <div style={{color:'black'}}>Delivery Month<input type="month" name="deliveryMonth" onChange={handleChange("deliveryMonth")} value={deliveryMonth}/></div>
+                        <div style={{color:'black'}}>Harvest Month <input type="month" style={{marginLeft: '20px'}} name="harvestMonth" onChange={handleChange("harvestMonth")} value={harvestMonth}/></div>
+                        <div style={{color:'black'}}>Delivery Month<input type="month" style={{marginLeft: '20px'}} name="deliveryMonth" onChange={handleChange("deliveryMonth")} value={deliveryMonth}/></div>
                     </div>
-                    <div className="form-submit" style={{marginTop: '10%', marginLeft: '40%'}}>
-                        <input className="add-input-select" type="submit" name="submit" onClick={onSubmit} className="submit" value="Update" />
+                    <div className="form-submit" style={{marginTop: '10%', padding: '10px 30px'}}>
+                        <input className="btn btn-primary w-100" type="submit" name="submit" onClick={onSubmit} value="Update" />
                     </div>
                     {successMessage()}
                 </form>

@@ -42,9 +42,9 @@ exports.getFriends = async (req, res) => {
       }else{
         friendList.push({ friendId, name, contact, productId, productName, isprod});
       }
-      
+
     });
-   console.log(friendList);
+   // console.log(friendList);
     res.status(200).json(friendList)
   } catch (err) {
     res.status(500).json(err);
@@ -57,7 +57,7 @@ exports.getFriends = async (req, res) => {
     var i;
     for (i = 0; i < list.length; i++) {
         if (list[i].friendId == obj.friendId && list[i].productId == obj.productId) {
-          console.log("true returned");  
+          // console.log("true returned");
           return true;
         }
     }
@@ -75,7 +75,7 @@ exports.getFriends = async (req, res) => {
         const newUser =  {
           friendId : req.params.currentUserId,
           name : currentUser.name,
-          contact : currentUser.contact, 
+          contact : currentUser.contact,
           productId : req.body.productId,
           productName: req.body.productName,
           isprod: req.body.isprod,
@@ -96,7 +96,7 @@ exports.getFriends = async (req, res) => {
           newUser.contact = null;
         }
         if (!containsObject(newUser, user.friends)) {
-          
+
           await user.updateOne({ $push: { friends: newUser}});
           await currentUser.updateOne({ $push: { friends: newUser2} });
           res.status(200).json("user has been followed");
@@ -133,7 +133,7 @@ exports.getFriends = async (req, res) => {
     }
   }
 
-// Unverified Users
+// Unverified Farmer
 exports.getAllUnverifiedFarmers = (req, res) => {
     User.find({role: 0, verification: "Unverified"}).exec((err, users) => {
         if(err || !users){
@@ -145,7 +145,7 @@ exports.getAllUnverifiedFarmers = (req, res) => {
     })
 };
 
-// Verified Users
+// Verified Farmer
 exports.getAllVerifiedFarmers = (req, res) => {
     User.find({role: 0, verification: "Verified"}).exec((err, users) => {
         if(err || !users){
@@ -157,9 +157,45 @@ exports.getAllVerifiedFarmers = (req, res) => {
     })
 };
 
-// Invalid Users
+// Invalid Farmer
 exports.getAllInvalidFarmers = (req, res) => {
     User.find({role: 0, verification: "Invalid"}).exec((err, users) => {
+        if(err || !users){
+            return res.status(400).json({
+                error: "No user found in DB"
+            })
+        }
+        res.json(users)
+    })
+};
+
+// Unverified Corporate
+exports.getAllUnverifiedCorporates = (req, res) => {
+    User.find({role: 1, verification: "Unverified"}).exec((err, users) => {
+        if(err || !users){
+            return res.status(400).json({
+                error: "No user found in DB"
+            })
+        }
+        res.json(users)
+    })
+};
+
+// Verified Corporate
+exports.getAllVerifiedCorporates = (req, res) => {
+    User.find({role: 1, verification: "Verified"}).exec((err, users) => {
+        if(err || !users){
+            return res.status(400).json({
+                error: "No user found in DB"
+            })
+        }
+        res.json(users)
+    })
+};
+
+// Invalid Corporate
+exports.getAllInvalidCorporates = (req, res) => {
+    User.find({role: 1, verification: "Invalid"}).exec((err, users) => {
         if(err || !users){
             return res.status(400).json({
                 error: "No user found in DB"
@@ -175,15 +211,15 @@ exports.getVerificationEnums = (req, res) => {
 
 exports.updateVerification = (req, res) => {
     User.updateOne(
-        {_id: req.body.farmerId},
+        {_id: req.body.usersId},
         {$set: {verification: req.body.verification}},
-        (err, updatedFarmer) => {
+        (err, updatedUser) => {
             if(err){
                 return res.status(400).json({
                     error: err
                 });
             }
-            res.json(updatedFarmer);
+            res.json(updatedUser);
         }
     )
 }

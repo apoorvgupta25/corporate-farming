@@ -1,18 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
-
-body {
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'PT Sans' !important;
+  font-family: 'Radio Canada' !important;
+  color: #1A2D40 !important;
 }
 
 code {
   /* font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
     */
+}
+
+.btn-primary{
+    background-color: #1A2D40 !important;
+    color: #FFD200 !important;
+    border-radius: 7px;
+    font-size: 1.25rem;
+    outline: none;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus   {
+    background-color: #FFD200 !important;
+    color: #1A2D40 !important;
 }

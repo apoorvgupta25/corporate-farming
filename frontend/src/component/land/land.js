@@ -5,6 +5,8 @@ import {getLand} from './landAPICall'
 import {useParams} from 'react-router-dom';
 import {API} from '../../backend';
 import Navbar from '../Navbar';
+import {isAuth, signout} from '../../auth/authAPICalls';
+
 import $ from 'jquery';
 import Topbar from "../topbar/topbar";
 import '../land_product_style.css';
@@ -116,12 +118,12 @@ const Land = () => {
                             <h3>₹ {land.expectedProfit.exactAmount} ({land.expectedProfit.percentage} %)</h3>
                         </div>
                         <div>
-                            <h5>🕒 : {land.bondTime}</h5>
+                            <h5>🕒 : {land.bondTime} months</h5>
                         </div>
 
                         <div className="detail">
                             <h3>Land Description </h3>
-                            <p>{land.description}</p>
+                            <h5>{land.description}</h5>
                         </div>
 
                         <div className="btn-group btn-group-lg" style={{width: '100%'}}>
@@ -148,9 +150,11 @@ const Land = () => {
                             <h4>✉: {land.farmer.email}</h4>
                         </div>
 
-                        <div className="purchase-info" >
-                            <ChatNowButton userId={land.farmer._id} productId={land._id} productName={land.title} isprod="0"/>
-                        </div>
+                        {isAuth() && isAuth().user.role==1 && isAuth().user.verification=="Verified" &&(
+                            <div className="purchase-info" >
+                                <ChatNowButton userId={land.farmer._id} productId={land._id} productName={land.title} isprod="0"/>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

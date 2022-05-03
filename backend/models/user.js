@@ -22,7 +22,7 @@ var userSchema = new mongoose.Schema({
     },
     friends:{
         type : Array , 
-        default : ['friendId', 'productId', 'productName','name','contact']    
+        default : ['friendId', 'productId', 'productName','name','contact','isprod']    
     },
     contact:{
         type: Number,

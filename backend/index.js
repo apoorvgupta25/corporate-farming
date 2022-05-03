@@ -28,11 +28,13 @@ const userRoutes = require('./routes/user');
 const productRoutes = require('./routes/product');
 const landRoutes = require('./routes/land');
 const messageRoutes = require('./routes/messages');
+const contractRoutes = require('./routes/contract');
 
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", productRoutes);
 app.use("/api", landRoutes);
+app.use("/api",contractRoutes);
 app.use("/api/messages", messageRoutes);
 
 const port = 3001;

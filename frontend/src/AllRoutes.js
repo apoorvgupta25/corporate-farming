@@ -10,9 +10,11 @@ import CropPrediction from './component/cropPrediction/cropPrediction';
 import CropDiseasePrediction from './component/cropDiseasePrediction/cropDiseasePrediction';
 import CropCostPrediction from './component/cropCostPrediction/cropCostPrediction';
 import CropCommodity from './component/cropCostPrediction/cropCommodity';
+import WeatherPrediction from './component/weatherPrediction/weatherPrediction';
 
 import {PrivateRoute, FarmerRoute, CorporateRoute, AdminRoute} from './auth/protectedRoute';
 import Messenger from './component/messenger/messenger';
+import Contract from './component/contract/contract';
 import Signin from './auth/signin';
 import SignupFarmer from './auth/signupFarmer';
 import SignupCorporate from './auth/signupCorporate';
@@ -28,7 +30,11 @@ import UpdateProduct from './user/farmer/UpdateProduct';
 import CorporateDashboard from './user/corporate_dashboard';
 
 import AdminDashboard from './user/admin_dashboard';
-import ManageVerification from './user/admin/ManageVerification';
+import ManageFarmerVerification from './user/admin/ManageFarmerVerification';
+import ManageCorporateVerification from './user/admin/ManageCorporateVerification';
+import ManageContract from './user/farmer/ManageContract';
+import ViewContract from './component/contract/viewcontract';
+import StatusChangeContract from './component/contract/statusChangeContract';
 
 export default function AllRoutes(){
 
@@ -48,11 +54,15 @@ export default function AllRoutes(){
 
                 <Route path="/crop/prediction" exact element={<CropPrediction/>}/>
                 <Route path="/disease/prediction" exact element={<CropDiseasePrediction/>}/>
-
-                <Route path="/cropcost/prediction" exact element={<CropCostPrediction/>}/>
+                <Route path="/cost/prediction" exact element={<CropCostPrediction/>}/>
                 <Route path="/commodity/:commodityName" exact element={<CropCommodity/>}/>
+                <Route path="/weather/prediction" exact element={<WeatherPrediction/>}/>
 
                 <Route path="/messenger" exact element={<Messenger/>}/>
+                <Route path="/contract/:productId/:farmerId/:isProd" exact element={<CorporateRoute><Contract/></CorporateRoute>}/>
+                <Route path='/contract/manage/' exact element={<ManageContract/>}/>
+                <Route path='/contract/statusChange/:contractId/:newstatus' exact element={<StatusChangeContract/>}/>
+                <Route path='/contract/view/:contractId' exact element={<ViewContract/>}/>
                 <Route path='/dashboard/:userId' exact element={<PrivateRoute><FarmerDashboard/></PrivateRoute>}/>
 
                 <Route path='/farmer/dashboard/:userId' exact element={<PrivateRoute><FarmerDashboard/></PrivateRoute>}/>
@@ -66,7 +76,8 @@ export default function AllRoutes(){
                 <Route path='/corporate/dashboard/:userId' exact element={<CorporateRoute><CorporateDashboard/></CorporateRoute>}/>
 
                 <Route path='/admin/dashboard/:userId' exact element={<AdminRoute><AdminDashboard/></AdminRoute>}/>
-                <Route path='/admin/verification' exact element={<AdminRoute><ManageVerification/></AdminRoute>}/>
+                <Route path='/admin/farmer/verification' exact element={<AdminRoute><ManageFarmerVerification/></AdminRoute>}/>
+                <Route path='/admin/corporate/verification' exact element={<AdminRoute><ManageCorporateVerification/></AdminRoute>}/>
 
             </Routes>
         </Router>

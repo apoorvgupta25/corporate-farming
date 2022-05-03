@@ -58,6 +58,7 @@ const ManageProduct = () => {
                 <table className="table">
                     <thead>
                         <tr>
+                          <th className="align-top"><b>Image</b></th>
                           <th className="align-top"><b>Title</b></th>
                           <th className="align-top"><b>Crop</b></th>
                           <th className="align-top"><b>Price</b></th>
@@ -72,8 +73,11 @@ const ManageProduct = () => {
                         {products
                             .filter(prod => prod.farmer._id === user._id)
                             .map((prod, index) => {
+                            var filename = 'Others'
+                            if(prod.cropName != "Others") filename = prod.cropName
                             return (
                                 <tr key={index}>
+                                  <td><img className="item-image mr-2 mb-0" src={require(`../../assets/crops/${filename}.jpg`)} /></td>
                                   <td><Link to={`/product/${prod._id}`} target="_blank">{prod.title}</Link></td>
                                   <td>{prod.cropName}</td>
                                   <td>₹ {prod.price}</td>
