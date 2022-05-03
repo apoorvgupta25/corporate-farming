@@ -17,16 +17,13 @@ var userSchema = new mongoose.Schema({
         unique: true
     },
     age: {
-        type: Number,
-        required: true
+        type: Number
     },
     gender: {
-        type: String,
-        required: true
+        type: String
     },
     state: {
-        type: String,
-        required: true
+        type: String
     },
     role:{
         type: Number,
