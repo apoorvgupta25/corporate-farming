@@ -44,7 +44,7 @@ exports.getFriends = async (req, res) => {
       }
 
     });
-   console.log(friendList);
+   // console.log(friendList);
     res.status(200).json(friendList)
   } catch (err) {
     res.status(500).json(err);
@@ -57,7 +57,7 @@ exports.getFriends = async (req, res) => {
     var i;
     for (i = 0; i < list.length; i++) {
         if (list[i].friendId == obj.friendId && list[i].productId == obj.productId) {
-          console.log("true returned");
+          // console.log("true returned");
           return true;
         }
     }

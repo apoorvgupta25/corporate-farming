@@ -5,7 +5,7 @@ const _ = require('lodash')
 exports.addContract = (req, res) => {
 
     const contract = new Contract(req.body);
-    console.log(contract);
+    // console.log(contract);
     const {
       farmer, corporate, duration, product, isProd, status, document
     } = contract;
@@ -66,7 +66,7 @@ exports.updateContract = (req, res) => {
 
     let contract = req.contract;
     contract = _.extend(contract, req.body)
-    
+
     contract.save((err, updatedContract) => {
         if(err){
             return res.status(400).json({
