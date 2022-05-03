@@ -116,7 +116,7 @@ function CropCostPrediction() {
 					<Commodity link="jowar" title="Jowar" img="jowar" />
 				</div>
 				<div className="col-4 d-flex justify-content-center">
-					<Commodity link="bajra title="Bajra img="bajra" />
+					<Commodity link="bajra" title="Bajra" img="bajra" />
 				</div>
 			</div>
 		</div>
