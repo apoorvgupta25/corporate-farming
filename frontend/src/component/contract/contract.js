@@ -13,7 +13,7 @@ const Contract = () => {
     const [values, setValues] = useState({
         duration: '',
         document: '',
-        createdContract: '', 
+        createdContract: '',
         error: '',
         success: false,
         saving: false,
@@ -93,13 +93,14 @@ const Contract = () => {
 
                 <form method="POST" className="add-form">
                     <h2 className="add-heading" align="center">New Contract</h2>
-                    <div className="form-group-1">
-                        <p className="text-dark pull-right">{count}/11</p>
-                        <input className="add-input-select" type="number" name="Duration" onChange={handleChange("duration")} value={duration} min="1" placeholder="Duration" required/>
-                        <input className="add-input-select" type="text" name="Document" onChange={handleChange("document")} value={document} placeholder="Upload pdf"  required />
-                        
-                    </div>
-                    <div className="form-submit" style={{marginTop: '10%', padding: '10px 30px'}}>
+
+                    <p className="text-dark pull-right">{count}/11</p>
+                    <label className="add-label">Duration</label>
+                    <input className="add-input" type="number" name="Duration" onChange={handleChange("duration")} value={duration} min="1" placeholder="Duration" required/>
+                    <label className="add-label">Upload PDF</label>
+                    <input className="add-input" type="text" name="Document" onChange={handleChange("document")} value={document} placeholder="Upload pdf"  required />
+
+                    <div className="form-button">
                         <input className="btn btn-primary w-100" type="submit" name="submit" onClick={onSubmit} value="Submit" />
                     </div>
                     {successMessage()}

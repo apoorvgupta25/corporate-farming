@@ -126,12 +126,12 @@ const StatusChangeContract = () => {
 
                 <form method="POST" className="add-form">
                     <h2 className="add-heading" align="center">{newstatus} Contract</h2>
-                    <div className="form-group-1">
-                        <input className="add-input-select" type="text" name="reason" onChange={handleChange("reason")} value={reason} placeholder="Reason" required />
-                        <input className="add-input-select" type="text" name="status" onChange={handleChange("status")} value={newstatus} placeholder="Status" required />
+                    <label className="add-label">Reason</label>
+                    <input className="add-input" type="text" name="reason" onChange={handleChange("reason")} value={reason} placeholder="Reason" required />
+                    <label className="add-label">Status</label>
+                    <input className="add-input" type="text" name="status" onChange={handleChange("status")} value={newstatus} placeholder="Status" required />
 
-                    </div>
-                    <div className="form-submit" style={{marginTop: '10%', padding: '10px 30px'}}>
+                    <div className="form-button">
                         <input className="btn btn-primary w-100" type="submit" name="submit" onClick={onSubmit} value="Update" />
                     </div>
                     {successMessage()}
