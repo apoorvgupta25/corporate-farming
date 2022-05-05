@@ -3,15 +3,68 @@ const {validationResult} = require('express-validator');
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 
+const _ = require('lodash')
+const formidable = require('formidable')
+const fs = require('fs');
+
 exports.signup = (req,res) => {
 
-    const errors = validationResult(req);
-    if(!errors.isEmpty()){
-        return res.status(422).json({
-            error : errors.array()[0].msg
-        });
-    };
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
 
+    form.parse(req, (err, fields, file) => {
+        if(err){
+            return res.status(400).json({
+                error: "Problem with Image"
+            });
+        }
+
+        const errors = validationResult(fields);
+        if(!errors.isEmpty()){
+            return res.status(422).json({
+                error : errors.array()[0].msg
+            });
+        };
+
+        const {name, email, age, gender, state, role, contact, aadhaar} = fields;
+
+        if(!name || !email || !age || !gender || !state){
+                return res.status(400).json({
+                    error: "Please Include all fields"
+                });
+        }
+
+        let user = new User(fields);
+
+        if(file.photo){
+            if(file.photo.size > 3000000){
+                return res.status(400).json({
+                  error: "File size too big!"
+                });
+            }
+
+            user.photo.data = fs.readFileSync(file.photo.filepath);
+            user.photo.contentType = file.photo.type;
+        }
+
+        user.save((err, user) => {
+            if(err){
+                return res.status(400).json({
+                    error: "Not able to save Land in DB"
+                });
+            }
+            res.json({
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                verification: user.verification,
+                id: user._id
+            });
+        });
+    });
+
+    // Old
+    /*
     const user = new User(req.body);
     user.save((err, user)=> {
         if(err){
@@ -27,6 +80,7 @@ exports.signup = (req,res) => {
             id: user._id
         });
     });
+    */
 };
 
 exports.signin = (req,res) => {

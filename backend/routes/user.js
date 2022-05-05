@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const {getUserById, getUser, getFriends, followUser, UnfollowUser,
+const {getUserById, getUser, profilePhoto, getFriends, followUser, UnfollowUser,
     getAllUsers, getAllUnverifiedFarmers, getAllVerifiedFarmers, getAllInvalidFarmers,
     getVerificationEnums, updateVerification, getAllUnverifiedCorporates,
     getAllVerifiedCorporates, getAllInvalidCorporates } = require('../controllers/user')
@@ -9,6 +9,7 @@ const {isAuthenticated, isSignedIn, isAdmin} = require('../controllers/auth')
 
 router.param('userId', getUserById)
 router.get('/user/:userId', isSignedIn, isAuthenticated, getUser)
+router.get('/user/profile/photo/:userId', profilePhoto);
 
 
 //get friends
