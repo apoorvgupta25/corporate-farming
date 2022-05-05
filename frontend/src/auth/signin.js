@@ -101,7 +101,7 @@ const Signin = () => {
                     <input className="input-field" placeholder="Enter Password" type="password" onChange={handleChange("password")} value={password} required/>
                     <button type="submit" className="submit-btn" onClick={onSubmit}>Signin</button>
 
-                    <div className="mt-3">
+                    <div className="my-3">
                         <Link to="/signup/farmer">Register Here</Link>
                     </div>
 

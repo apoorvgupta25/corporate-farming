@@ -5,10 +5,9 @@ export const signup = user => {
     return fetch(`${API}/signup`, {
         method: "POST",
         headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
+            Accept: "application/json"
         },
-        body: JSON.stringify(user)
+        body: user
     })
     .then(response => {
         return response.json();

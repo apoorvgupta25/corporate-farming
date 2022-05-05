@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import {API} from '../backend';
 
 import {signout} from '../auth/authAPICalls';
 import {isAuth} from '../auth/authAPICalls';
@@ -15,8 +16,8 @@ const FarmerDashboard = ({ match }) => {
         signout()
     }
 
-    const {user: {name, email, role, verification}} = isAuth();
-    console.log(isAuth());
+    const {user: {name, email, role, verification, _id}} = isAuth();
+
     var roleType = "Farmer";
     if(role === 1)
         roleType = "Corporate";
@@ -68,6 +69,14 @@ const FarmerDashboard = ({ match }) => {
         );
     };
 
+    const profileImage = () => {
+        var imageURL = `${API}/user/profile/photo/${_id}`;
+
+        return (
+            <img src={imageURL} alt="Profile Image" className="profile-image" />
+        )
+    }
+
     return (
         <div>
             <Topbar/>
@@ -75,7 +84,8 @@ const FarmerDashboard = ({ match }) => {
             <div className="container bg-green p-3">
                 <div className="row">
                     <div className="col-sm-3">{adminLeftSide()}</div>
-                    <div className="col-sm-9">{adminRightSide()}</div>
+                    <div className="col-sm-6">{adminRightSide()}</div>
+                    <div className="col-sm-3">{profileImage()}</div>
                 </div>
             </div>
             <div className="text-danger text-center font-weight-bold"><Exaclamation style={{width: "1.5rem"}}/>Note: Invalid and Unverified Farmers Cannot Add Land and Products</div>
