@@ -89,23 +89,21 @@ const SignupCorporate = () => {
 
             {successMessage()}
             {errorMessage()}
-            <div className="form-box-signup corporate mt-5">
-                <div className="button-box">
-                    <div className="toggle-btn font-weight-bold">Corporate Signup</div>
-                </div>
+            <div className="form-box corporate">
+                <div className="heading">Corporate Signup</div>
 
                 <form className="input-group">
                     <input className="input-field" placeholder="Name" onChange={handleChange("name")} value={name} required/>
                     <input className="input-field" placeholder="CIN" onChange={handleChange("cin")} value={cin} required/>
                     <input className="input-field" placeholder="Email Id" type="email" onChange={handleChange("email")} value={email} required/>
-                    <input className="input-field" placeholder="Enter Password" type="password" onChange={handleChange("password")} value={password} required/>
+                    <input className="input-field" placeholder="Password" type="password" onChange={handleChange("password")} value={password} required/>
 
                     <button type="submit" className="submit-btn" onClick={onSubmit}>Sign Up</button>
 
-                    <div className="mt-4">
+                    <div className="mt-2">
                         Already Registered? <Link to="/signin"> Login Here</Link>
                     </div>
-                    <div className="mt-4">
+                    <div className="mt-2">
                          <Link to="/signup/farmer">Register as Farmer</Link>
                     </div>
 

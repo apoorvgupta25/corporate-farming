@@ -93,10 +93,8 @@ const Signin = () => {
 
             {loadingMessage()}
             {errorMessage()}
-            <div className="form-box-login mt-5">
-                <div className="button-box">
-                    <div className="toggle-btn font-weight-bold">Sign In</div>
-                </div>
+            <div className="form-box login">
+                <div className="heading">Sign In</div>
 
                 <form className="input-group">
                     <input className="input-field" placeholder="Email Id" type="email" onChange={handleChange("email")} value={email} required/>
