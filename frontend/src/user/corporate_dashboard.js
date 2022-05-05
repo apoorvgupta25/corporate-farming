@@ -58,7 +58,7 @@ const CorporateDashboard = ({ match }) => {
 
         <div className="">
             <Topbar/>
-            <h1 className="text-center mt-5 mb-5">Dashboard</h1>
+            <h1 className="text-center mt-5 mb-5">Corporate Dashboard</h1>
             <div className="container bg-green p-3">
                 <div className="row">
                     <div className="col-sm-3">{adminLeftSide()}</div>

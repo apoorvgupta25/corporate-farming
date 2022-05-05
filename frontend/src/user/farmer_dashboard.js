@@ -16,7 +16,7 @@ const FarmerDashboard = ({ match }) => {
         signout()
     }
 
-    const {user: {name, email, role, verification, _id}} = isAuth();
+    const {user: {name, email, role, verification, _id, aadhaar, contact, age, gender, state}} = isAuth();
 
     var roleType = "Farmer";
     if(role === 1)
@@ -46,46 +46,55 @@ const FarmerDashboard = ({ match }) => {
         );
     };
 
+    const Detail = ({label, value}) => {
+        return (
+            <li className="list-group-item">
+                <div className="badge badge-success mr-2" style={{fontSize: "14px"}}>{label}</div> {value}
+            </li>
+        )
+    }
     const adminRightSide = () => {
         return (
-            <div className="mb-4">
-                <ul className="list-group">
-                    <li className="list-group-item">
-                        <div className="badge badge-success mr-2">Name</div> {name}
-                    </li>
-                    <li className="list-group-item">
-                        <div className="badge badge-success mr-2">Email</div> {email}
-                    </li>
-                    <li className="list-group-item">
-                        <div className="badge badge-success mr-2">Role</div> {roleType}
-                    </li>
-                    <li className="list-group-item">
-                        <div className="badge badge-success mr-2">Status</div> {verification}
-                    </li>
-
-                </ul>
-                <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 pull-right">Sign Out</Link>
+            <div className="row">
+                <div className="col-sm-6 pr-0">
+                    <ul className="list-group">
+                        <Detail label="Name" value={name}/>
+                        <Detail label="Email" value={email}/>
+                        <Detail label="Role" value={roleType}/>
+                        <Detail label="Status" value={verification}/>
+                        <Detail label="Aadhaar" value={aadhaar}/>
+                    </ul>
+                </div>
+                <div className="col-sm-6">
+                    <ul className="list-group">
+                        <Detail label="Contact No." value={contact}/>
+                        <Detail label="Age" value={age}/>
+                        <Detail label="State" value={state}/>
+                        <Detail label="Gender" value={gender}/>
+                    </ul>
+                </div>
             </div>
         );
     };
 
     const profileImage = () => {
-        var imageURL = `${API}/user/profile/photo/${_id}`;
-
         return (
-            <img src={imageURL} alt="Profile Image" className="profile-image" />
+            <>
+                <img src={`${API}/user/profile/photo/${_id}`} alt="Profile Image" className="profile-image" />
+                <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 w-100">Sign Out</Link>
+            </>
         )
     }
 
     return (
         <div>
             <Topbar/>
-            <h1 className="text-center mt-5 mb-5">Dashboard</h1>
+            <h1 className="text-center mt-5 mb-5">Farmer Dashboard</h1>
             <div className="container bg-green p-3">
                 <div className="row">
                     <div className="col-sm-3">{adminLeftSide()}</div>
-                    <div className="col-sm-6">{adminRightSide()}</div>
-                    <div className="col-sm-3">{profileImage()}</div>
+                    <div className="col-sm-7 pl-0">{adminRightSide()}</div>
+                    <div className="col-sm-2 pl-0">{profileImage()}</div>
                 </div>
             </div>
             <div className="text-danger text-center font-weight-bold"><Exaclamation style={{width: "1.5rem"}}/>Note: Invalid and Unverified Farmers Cannot Add Land and Products</div>

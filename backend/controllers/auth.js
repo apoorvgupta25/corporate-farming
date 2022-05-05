@@ -110,8 +110,8 @@ exports.signin = (req,res) => {
 
         res.cookie("token", token, {expire: new Date() + 9999});
 
-        const { _id, name, role, email, verification} = user;
-        return res.json({token, user: { _id, name, role, email, verification}});
+        const { _id, name, role, email, verification, aadhaar, contact, age, state, gender} = user;
+        return res.json({token, user: { _id, name, role, email, verification, aadhaar, contact, age, state, gender}});
     });
 };
 

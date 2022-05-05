@@ -86,18 +86,20 @@ const ManageFarmerVerification = () => {
 
     const Farmer = ({farmer}) => {
 
+        const profileImage = () => {
+            return (
+                <img src={`${API}/user/profile/photo/${farmer._id}`} alt="Profile Image" className="profile-image" style={{height: "210px"}}/>
+            )
+        }
         return (
             <div className="farmer-list-item row">
                 <div className="col-6 ml-0 pl-0">
-                    <div className="h4 font-weight-bold">{farmer.name}</div>
-                    <div className="h5">Age : {farmer.age}</div>
-                    <div className="h5">Gender : {farmer.gender}</div>
-                    <div className="h5">State : {farmer.state}</div>
-                </div>
-
-                <div className="col-6">
-                    <div className="h5">Aadhaar : {farmer.aadhaar}</div>
-                    <div className="h5">Contact : {farmer.contact}</div>
+                    <div className="h3 font-weight-bold">{farmer.name}</div>
+                    <div className="h5"><b>Age</b>: {farmer.age}</div>
+                    <div className="h5"><b>Gender</b>: {farmer.gender}</div>
+                    <div className="h5"><b>State</b>: {farmer.state}</div>
+                    <div className="h5"><b>Aadhaar</b>: {farmer.aadhaar}</div>
+                    <div className="h5"><b>Contact</b>: {farmer.contact}</div>
                     <select className="enumSelect" placeholder="Status" onChange={handleChange(farmer._id) }>
                         <option>{farmer.verification}</option>
                         {statusEnums.map((stat, index) => {
@@ -107,6 +109,11 @@ const ManageFarmerVerification = () => {
                             })
                         }
                     </select>
+                </div>
+
+                <div className="col-6 my-auto">
+                {profileImage()}
+
                 </div>
 
             </div>
