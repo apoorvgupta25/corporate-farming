@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link, Navigate, useParams} from 'react-router-dom';
 import { Alert } from 'reactstrap';
+import { Person, Dashboard } from "@material-ui/icons";
 
 import './add.css';
 import {isAuth} from '../../auth/authAPICalls'
@@ -114,7 +115,7 @@ const UpdateProduct = () => {
 
 
 
-  const onSubmit = event => {
+   const onSubmit = event => {
       event.preventDefault()
       setValues({...values, error: false, saving: true})
       const prod = {title, description, farmer, cropName, cropSubType, price, paymentBeforeharvest, minimumOrderQuantity, maximumOrderQuantity, harvestMonth, deliveryMonth};
@@ -152,6 +153,8 @@ const UpdateProduct = () => {
 
         <div className="add-main bg-cont-product">
             <div className="add-container mx-auto">
+                <Link className="btn btn-primary ml-3 mt-3" to={`/farmer/dashboard/${user._id}`}> <Person/> Dashboard</Link>
+                <Link className="btn btn-primary ml-3 mt-3" to={`/farmer/manage/product`}> <Dashboard/> Manage Product</Link>
                 {errorMessage()}
 
                 <form method="POST" className="add-form">

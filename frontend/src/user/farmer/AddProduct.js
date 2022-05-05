@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link, Navigate} from 'react-router-dom';
 import { Alert } from 'reactstrap';
+import { Person } from "@material-ui/icons";
 
 import './add.css';
 import {isAuth} from '../../auth/authAPICalls'
@@ -110,6 +111,7 @@ const AddProduct = () => {
 
         <div className="add-main bg-cont-product">
             <div className="add-container mx-auto">
+                <Link className="btn btn-primary ml-3 mt-3" to={`/farmer/dashboard/${user._id}`}> <Person/> Dashboard</Link>
                 {errorMessage()}
 
                 <form method="POST" className="add-form">

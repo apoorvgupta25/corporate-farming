@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link, Navigate} from 'react-router-dom';
+import { Person } from "@material-ui/icons";
 
 import {API} from '../../backend';
 import {isAuth} from '../../auth/authAPICalls';
@@ -72,9 +73,11 @@ const ManageFarmerVerification = () => {
         .then(data => {
             if(data.error)
                 console.log(data.error);
+            else{
+                setLoading(true);
+                preload();
+            }
         })
-        setLoading(true);
-        preload();
     }
 
     if (loading){
@@ -113,8 +116,9 @@ const ManageFarmerVerification = () => {
     return (
         <div className="text-dark" style={{overflowX:'hidden'}} >
             <Topbar/>
+            <Link className="btn btn-primary ml-3 mt-3" to={`/admin/dashboard/${user._id}`}> <Person/> Dashboard</Link>
 
-            <div className="text-center h1 mt-3">
+            <div className="text-center h1">
                 Verify Aadhaar Numbers
                 <a href="https://myaadhaar.uidai.gov.in/verifyAadhaar" target="_blank">
                  <Elink style={{width:"1.5rem", marginLeft:"1rem"}}/>

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link, Navigate, useParams} from 'react-router-dom';
 import { Alert } from 'reactstrap';
+import { Person, Dashboard } from "@material-ui/icons";
 
 import './add.css';
 import {isAuth} from '../../auth/authAPICalls'
@@ -217,6 +218,8 @@ const UpdateLand = () => {
 
         <div className="add-main bg-cont-land">
             <div className="add-container mx-auto">
+                <Link className="btn btn-primary ml-3 mt-3" to={`/farmer/dashboard/${user._id}`}> <Person/> Dashboard</Link>
+                <Link className="btn btn-primary ml-3 mt-3" to={`/farmer/manage/land`}> <Dashboard/> Manage Land</Link>
 
                 <form method="POST" className="add-form">
                     {errorMessage()}

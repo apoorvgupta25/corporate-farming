@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link, Navigate} from 'react-router-dom';
 import {API} from '../../backend';
+import { Person, Update, Delete } from "@material-ui/icons";
 
 import {isAuth} from '../../auth/authAPICalls';
 import {deleteLand} from './farmerAPICalls';
@@ -53,7 +54,8 @@ const ManageLand = () => {
     return (
         <div>
             <Topbar/>
-            <h1 className="text-center mt-5 mb-5">Manage Land</h1>
+            <Link className="btn btn-primary ml-5 mt-3" to={`/farmer/dashboard/${user._id}`}> <Person/> Dashboard</Link>
+            <h1 className="text-center mb-5">Manage Land</h1>
             <div className="text-dark table-responsive pl-5 pr-5">
                 <table className="table">
                     <thead>
@@ -75,16 +77,16 @@ const ManageLand = () => {
                                 <tr key={index}>
                                   <td><img src={`${API}/land/photo/${land._id}`} alt="" style={{height:'125px', width:'auto', paddingBottom: '1rem'}} /></td>
                                   <td><Link to={`/land/${land._id}`} target="_blank">{land.title}</Link></td>
-                                  <td>{land.bondTime}</td>
+                                  <td>{land.bondTime} months</td>
                                   <td>{land.landProperties.city}, {land.landProperties.state}</td>
-                                  <td>₹{land.expectedProfit.exactAmount} ({land.expectedProfit.percentage}%)</td>
+                                  <td>₹ {land.expectedProfit.exactAmount} ({land.expectedProfit.percentage}%)</td>
                                   <td className="p-3">
                                       <Link className="btn btn-success" to={`/farmer/land/update/${land._id}`}>
-                                          <div className="text-white">Update</div>
+                                          <div className="text-white"><Update/> Update</div>
                                       </Link>
                                   </td>
                                   <td>
-                                      <button onClick={() => {deleteThisLand(land._id)}} className="btn btn-danger">Delete</button>
+                                      <button onClick={() => {deleteThisLand(land._id)}} className="btn btn-danger"><Delete/></button>
                                   </td>
                                 </tr>
                              )

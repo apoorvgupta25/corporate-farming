@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link, Navigate} from 'react-router-dom';
 import {API} from '../../backend';
+import { Person, Update, Delete } from "@material-ui/icons";
 
 import {isAuth} from '../../auth/authAPICalls';
 import {deleteProduct} from './farmerAPICalls';
@@ -53,7 +54,8 @@ const ManageProduct = () => {
     return (
         <div>
             <Topbar/>
-            <h1 className="text-center mt-5 mb-5">Manage Product</h1>
+            <Link className="btn btn-primary ml-5 mt-3" to={`/farmer/dashboard/${user._id}`}> <Person/> Dashboard</Link>
+            <h1 className="text-center mb-5">Manage Product</h1>
             <div className="text-dark table-responsive pl-5 pr-5">
                 <table className="table">
                     <thead>
@@ -86,11 +88,11 @@ const ManageProduct = () => {
                                   <td>{prod.deliveryMonth} / {prod.harvestMonth}</td>
                                   <td className="p-3">
                                       <Link className="btn btn-success" to={`/farmer/product/update/${prod._id}`}>
-                                          <div className="text-white">Update</div>
+                                          <div className="text-white"><Update/>Update</div>
                                       </Link>
                                   </td>
                                   <td>
-                                      <button onClick={() => {deleteThisProduct(prod._id)}} className="btn btn-danger">Delete</button>
+                                      <button onClick={() => {deleteThisProduct(prod._id)}} className="btn btn-danger"><Delete/></button>
                                   </td>
                                 </tr>
                              )
