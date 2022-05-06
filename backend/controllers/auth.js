@@ -44,7 +44,7 @@ exports.signup = (req,res) => {
             }
 
             user.photo.data = fs.readFileSync(file.photo.filepath);
-            user.photo.contentType = file.photo.type;
+            user.photo.contentType = file.photo.mimetype;
         }
 
         user.save((err, user) => {
