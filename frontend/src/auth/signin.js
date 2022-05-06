@@ -1,10 +1,13 @@
 import React, {useState} from 'react'
 import {Link, Navigate} from 'react-router-dom';
 
-import {signin, authenticate, isAuth} from './authAPICalls';
+import {signin, authenticate, isAuth,signout} from './authAPICalls';
 
 import './signin_signup.css';
 import Topbar from '../component/topbar/topbar';
+
+import {API} from '../backend';
+
 
 const Signin = () => {
 
@@ -33,6 +36,13 @@ const Signin = () => {
                 return <Navigate to={`/corporate/dashboard/${user._id}`}/>
             }
             else if(user && user.role === 2){
+                // didRedirect = false;
+                // signout();
+                // fetch(`${API}/signout`, {
+                //     method: "GET"
+                // })
+                // .then(respose => console.log('signout success'))
+                // .catch(err => console.log(err));
                 return <Navigate to={`/admin/dashboard/${user._id}`}/>
             }
         }

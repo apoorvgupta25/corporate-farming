@@ -18,6 +18,7 @@ import Contract from './component/contract/contract';
 import Signin from './auth/signin';
 import SignupFarmer from './auth/signupFarmer';
 import SignupCorporate from './auth/signupCorporate';
+import VerifyOtp from './auth/verifyOtp';
 
 import FarmerDashboard from './user/farmer_dashboard';
 import AddLand from './user/farmer/AddLand';
@@ -51,6 +52,7 @@ export default function AllRoutes(){
                 <Route path="/signin" exact element={<Signin/>}/>
                 <Route path="/signup/farmer" exact element={<SignupFarmer/>}/>
                 <Route path="/signup/corporate" exact element={<SignupCorporate/>}/>
+                <Route path="/verifyOtp/:userId" exact element={<VerifyOtp/>}/>
 
                 <Route path="/crop/prediction" exact element={<CropPrediction/>}/>
                 <Route path="/disease/prediction" exact element={<CropDiseasePrediction/>}/>

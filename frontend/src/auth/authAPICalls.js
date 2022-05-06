@@ -27,6 +27,7 @@ export const signin = user => {
         body: JSON.stringify(user)
     })
     .then(response => {
+        console.log("response",response);
         return response.json();
     })
     .catch(err => console.log(err));
@@ -57,6 +58,7 @@ export const isAuth = () => {
         return false;
     }
     if(localStorage.getItem('jwt_corp')){
+        console.log("jwt",JSON.parse(localStorage.getItem('jwt_corp')));
         return JSON.parse(localStorage.getItem('jwt_corp'));
     }
     return false;

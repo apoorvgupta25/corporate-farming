@@ -86,3 +86,9 @@
 .check-box{
     margin: 50px 10px 30px 0;
 }
+
+.App {
+    font-family: sans-serif;
+    text-align: center;
+    padding: 20px;
+  }
