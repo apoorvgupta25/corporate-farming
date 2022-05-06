@@ -75,13 +75,11 @@ html, body{
     margin: 50px 10px 30px 0;
 }
 
-<<<<<<< HEAD
 .App {
     font-family: sans-serif;
     text-align: center;
     padding: 20px;
   }
-=======
 .profile-img-signup{
     height: 250px;
     object-fit: cover;
@@ -89,4 +87,3 @@ html, body{
     margin: 1rem auto;
     border-radius: 10px;
 }
->>>>>>> 13dc679fa7f0f5ed877fe3f995795d80e65ac7a8
