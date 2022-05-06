@@ -5,12 +5,12 @@
     align-items: center;
     flex-direction: column;
     color: black;
-    
+
 }
 
 .farmer-list-item {
     background: #f8f8f8;
-    width: 35rem;
+    width: 33rem;
     margin: 1rem;
     padding: 0.5rem 1rem;
     align-items: flex-end;

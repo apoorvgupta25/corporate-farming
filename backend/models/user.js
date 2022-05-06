@@ -16,6 +16,10 @@ var userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    photo: {
+      data: Buffer,
+      contentType: String,
+    },
     age: {
         type: Number
     },

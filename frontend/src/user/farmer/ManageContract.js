@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link, Navigate} from 'react-router-dom';
 import {API} from '../../backend';
+import { Person, Link as LinkIcon } from "@material-ui/icons";
 
 import '../../component/home/home.css';
 import {isAuth} from '../../auth/authAPICalls';
@@ -23,7 +24,7 @@ const ManageContract = () => {
     var statuses = new Array("rejected", "accepted");
 
     const {user, token} = isAuth();
-    
+
     const getId = (corporate, farmer) =>{
         if(user.role === 1){
             return corporate;
@@ -41,7 +42,7 @@ const ManageContract = () => {
         }else{
           link = "/product/"+productId;
         }
-         
+
         return link;
     }
 
@@ -77,7 +78,8 @@ const ManageContract = () => {
     return (
         <div>
             <Topbar/>
-            <h1 className="text-center mt-5 mb-5">Manage Contracts</h1>
+            <Link className="btn btn-primary ml-5 mt-3" to={`/farmer/dashboard/${user._id}`}> <Person/> Dashboard</Link>
+            <h1 className="text-center mb-5">Manage Contracts</h1>
             <div className="filter-sort">
             <b className="h4">Filter By Status:&nbsp;</b>
             <select onChange={(e) => setFilterType(e.target.value)}>
@@ -85,14 +87,14 @@ const ManageContract = () => {
                 {statuses.map(status => {
                     return <option value={status}>{status}</option>;
                 })}
-            </select>&nbsp;&nbsp;    
+            </select>&nbsp;&nbsp;
         </div><br></br>
         {showNoLand ? <NoLandDisplay /> : null}
             <div className="text-dark table-responsive pl-5 pr-5">
                 <table className="table">
                     <thead>
                         <tr>
-                          <th><b>Duration</b></th>
+                          <th><b>Duration (months)</b></th>
                           <th><b>Document</b></th>
                           <th><b>Status</b></th>
                           <th><b>Contract</b></th>
@@ -105,11 +107,11 @@ const ManageContract = () => {
                             .map((contract, index) => {
                             return (
                                 <tr key={index}>
-        
+
                                   <td>{contract.duration}</td>
                                   <td>{contract.document}</td>
                                   <td>{contract.status}</td>
-                                  
+
                                   <td className="p-3">
                                       <Link target="_blank" className="btn btn-success" to={`/contract/view/${contract._id}`}>
                                           <div className="text-white">View Contract</div>
@@ -117,7 +119,7 @@ const ManageContract = () => {
                                   </td>
                                   <td>
                                   <Link target="_blank" className="btn btn-success" to={getlink(contract.product,contract.isProd)}>
-                                          <div className="text-white">View</div>
+                                          <div className="text-white">View<LinkIcon className="ml-2"/> </div>
                                       </Link>
                                   </td>
                                 </tr>

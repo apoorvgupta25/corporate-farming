@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link, Navigate, useParams} from 'react-router-dom';
 import { Alert } from 'reactstrap';
+import { Person, Dashboard } from "@material-ui/icons";
 
 import './add.css';
 import {isAuth} from '../../auth/authAPICalls'
@@ -42,21 +43,12 @@ const UpdateLand = () => {
     });
 
     const {
-        title,
-        description,
-        bondTime,
-        landProperties,
-        soil,
-        updatedLand,
-        rainfall,
-        expectedProfit,
-        error,
-        saving,
-        formData
+        title, description, bondTime, landProperties, soil, updatedLand,
+        rainfall, expectedProfit, error, saving, formData
     } = values;
 
     const [loading, setLoading] = useState(true)
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(title.length);
 
     const {user, token} = isAuth();
     const { landId } = useParams();
@@ -148,8 +140,6 @@ const UpdateLand = () => {
         });
     }
 
-    console.log(updatedLand);
-
     const successMessage = () => {
         return (
             <Alert
@@ -215,8 +205,12 @@ const UpdateLand = () => {
 
     }
 
-    var states = new Array("Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttaranchal", "Uttar Pradesh", "West Bengal");
-
+    var states = new Array("Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
+                            "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa",
+                            "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka",
+                            "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+                            "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura",
+                            "Uttaranchal", "Uttar Pradesh", "West Bengal");
     return (
         <>
         <Topbar/>
@@ -224,44 +218,54 @@ const UpdateLand = () => {
 
         <div className="add-main bg-cont-land">
             <div className="add-container mx-auto">
+                <Link className="btn btn-primary ml-3 mt-3" to={`/farmer/dashboard/${user._id}`}> <Person/> Dashboard</Link>
+                <Link className="btn btn-primary ml-3 mt-3" to={`/farmer/manage/land`}> <Dashboard/> Manage Land</Link>
 
                 <form method="POST" className="add-form">
                     {errorMessage()}
-                    <h2 className="add-heading" align="center">Land Lease</h2>
+                    <h2 className="add-heading" align="center">Update Land Lease</h2>
 
-                    <div className="form-group-1">
-                        <p className="text-dark pull-right">{count}/16</p>
-                        <input className="add-input-select" maxlength="16" type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
-                        <input className="add-input-select" type="text" name="description" onChange={handleChange("description")} value={description} placeholder="Description" required />
+                    <label className="add-label">Title <p className="text-dark pull-right mb-0">{count}/16</p></label>
+                    <input className="add-input" maxlength='16' type="text" name="title" onChange={handleChange("title")} value={title} placeholder="Title" required />
+                    <label className="add-label">Description</label>
+                    <input className="add-input" type="text" name="description" onChange={handleChange("description")} value={description} placeholder="Description" required />
+                    <label className="add-label">Leasing Price</label>
+                    <input className="add-input" type="number" name="exactAmount" onChange={handleChangeExpectedProfit("exactAmount")} value={expectedProfit.exactAmount} placeholder="Leasing Price (₹)" min="1" required />
+                    <label className="add-label">Percentage of land Price</label>
+                    <input className="add-input" type="number" name="percentage" onChange={handleChangeExpectedProfit("percentage")} value={expectedProfit.percentage} placeholder="Percentage of land Price" min="1" required />
 
-                        <input className="add-input-select" type="number" name="exactAmount" onChange={handleChangeExpectedProfit("exactAmount")} value={expectedProfit.exactAmount} placeholder="Land Leasing Price" min="1" required />
-                        <input className="add-input-select" type="number" name="percentage" onChange={handleChangeExpectedProfit("percentage")} value={expectedProfit.percentage} placeholder="Percentage of land Price" min="1" required />
+                    <label className="add-label">State</label>
+                    <select className="add-input" name="state" onChange={handleChangeLocation("state")} >
+                        <option>-- Select --</option>
+                        {states.map((state, index) => {
+                            return ( <option value={state} key={state} >{state}</option> )
+                        })}
+                    </select>
+                    <label className="add-label">City</label>
+                    <input className="add-input" type="text" name="city" onChange={handleChangeLocation("city")} value={landProperties.city} placeholder="City" required />
+                    <label className="add-label">Area</label>
+                    <input className="add-input" type="number" name="totalArea" onChange={handleChangeLocation("totalArea")} value={landProperties.totalArea} placeholder="Land Area (In acres)" min="1" required />
+                    <label className="add-label">Address</label>
+                    <input className="add-input" type="text" name="location" onChange={handleChangeLocation("location")} value={landProperties.location} placeholder="Location" required />
 
-                        <select className="add-input-select" name="state" onChange={handleChangeLocation("state")} >
-                            <option>Select</option>
-                            {states.map((state, index) => {
-                                return ( <option value={state} key={state} >{state}</option> )
-                                })
-                            }
-                        </select>
-                        <input className="add-input-select" type="text" name="city" onChange={handleChangeLocation("city")} value={landProperties.city} placeholder="City" required />
-                        <input className="add-input-select" type="number" name="totalArea" onChange={handleChangeLocation("totalArea")} value={landProperties.totalArea} placeholder="Land Area (in acres)" min="1" required />
-                        <input className="add-input-select" type="text" name="location" onChange={handleChangeLocation("location")} value={landProperties.location} placeholder="Location" required />
+                    <label className="add-label">Bond Time (in months)</label>
+                    <input className="add-input" type="number" name="bondTime" onChange={handleChange("bondTime")} value={bondTime} placeholder="Bond Time (in months)" min="1" required />
 
-                        <input className="add-input-select" type="number" name="bondTime" onChange={handleChange("bondTime")} value={bondTime} placeholder="Bond Time (in months)" min="1" required />
-                        <input className="add-input-select" type="number" name="rainfall" onChange={handleChange("rainfall")} value={rainfall} placeholder="Rainfal in area (mm)" min="1" required />
+                    <label className="add-label">Rainfal in area (mm)</label>
+                    <input className="add-input" type="number" name="rainfall" onChange={handleChange("rainfall")} value={rainfall} placeholder="Rainfal in area (mm)" min="1" required />
+                    <label className="add-label">Land Nitrogen Content</label>
+                    <input className="add-input" type="number" name="nitrogen" onChange={handleChangeSoil("nitrogen")} value={soil.nitrogen} placeholder="Land Nitrogen Content" min="1" required />
+                    <label className="add-label">Land Phosphorous Content</label>
+                    <input className="add-input" type="number" name="phosphorous" onChange={handleChangeSoil("phosphorous")} value={soil.phosphorous} placeholder="Land Phosphorous Content" min="1" required />
+                    <label className="add-label">Land PH</label>
+                    <input className="add-input" type="number" name="ph" onChange={handleChangeSoil("ph")} value={soil.ph} placeholder="Land PH " min="1" required />
+                    <label className="add-label">Land Potassium Content</label>
+                    <input className="add-input" type="number" name="potassium" onChange={handleChangeSoil("potassium")} value={soil.potassium} placeholder="Land Potassium Content" min="1" required />
 
-                        <input className="add-input-select" type="number" name="nitrogen" onChange={handleChangeSoil("nitrogen")} value={soil.nitrogen} placeholder="Land Nitrogen Content" min="1" required />
-                        <input className="add-input-select" type="number" name="phosphorous" onChange={handleChangeSoil("phosphorous")} value={soil.phosphorous} placeholder="Land Phosphorous Content" min="1" required />
-                        <input className="add-input-select" type="number" name="potassium" onChange={handleChangeSoil("potassium")} value={soil.potassium} placeholder="Land Potassium Content" min="1" required />
-                        <input className="add-input-select" type="number" name="ph" onChange={handleChangeSoil("ph")} value={soil.ph} placeholder="Land PH " min="1" required />
+                    <label className="add-label" >Land Image </label>
+                    <input className="add-input" type="file" name="photo" accept="image/*" placeholder="Choose A Photo" onChange={handleChange("photo")} />
 
-                        <div style={{color:'black'}}>
-                            <p >Land Image </p>
-                            <input className="add-input-select" type="file" name="photo" accept="image/*" placeholder="Choose A Photo" onChange={handleChange("photo")} />
-                        </div>
-                    </div>
-                    <div className="form-submit" style={{marginTop: '10%', padding: '10px 30px'}}>
+                    <div className="form-button">
                         <input className="btn btn-primary w-100" type="submit" name="submit" onClick={onSubmit} value="Update" />
                     </div>
                     {successMessage()}

@@ -59,7 +59,7 @@ exports.addLand = (req, res) => {
             }
 
             land.photo.data = fs.readFileSync(file.photo.filepath);
-            land.photo.contentType = file.photo.type;
+            land.photo.contentType = file.photo.mimetype;
         }
 
         land.save((err, lnd) => {
@@ -128,7 +128,7 @@ exports.updateLand = (req, res) => {
             }
 
             land.photo.data = fs.readFileSync(file.photo.filepath);
-            land.photo.contentType = file.photo.type;
+            land.photo.contentType = file.photo.mimetype;
         }
 
         land.save((err, lnd) => {

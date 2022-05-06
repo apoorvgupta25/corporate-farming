@@ -1,7 +1,16 @@
 .bg-green{
     background-color: #69AE23;
+    border-radius: 5px;
 }
 
 .badge-success{
     background-color: #69AE23;
+}
+
+.profile-image{
+    width: auto;
+    float: right;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
 }

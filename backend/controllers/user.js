@@ -13,6 +13,7 @@ exports.getUserById = (req, res, next, id) => {
 };
 
 exports.getUser = (req, res) => {
+    req.profile.photo = undefined;
     req.profile.salt = undefined;
     req.profile.encry_password = undefined;
     req.profile.createdAt = undefined;
@@ -20,8 +21,16 @@ exports.getUser = (req, res) => {
     return res.json(req.profile)
 };
 
+exports.profilePhoto = (req, res, next) => {
+    if(req.profile.photo.data){
+        res.set("Content-Type", req.profile.photo.contentType);
+        return res.send(req.profile.photo.data)
+    }
+    next();
+};
+
 exports.getAllUsers = (req, res) => {
-    User.find().exec((err, users) => {
+    User.find().select("-photo").exec((err, users) => {
         if(err || !users){
             return res.status(400).json({
                 error: "No user found in DB"
@@ -70,8 +79,8 @@ exports.getFriends = async (req, res) => {
     //console.log(req.body);
     if (req.params.currentUserId !== req.params.userId) {
       try {
-        const user = await User.findById(req.params.userId);
-        const currentUser = await User.findById(req.params.currentUserId);
+        const user = await User.findById(req.params.userId).select("-photo");
+        const currentUser = await User.findById(req.params.currentUserId).select("-photo");
         const newUser =  {
           friendId : req.params.currentUserId,
           name : currentUser.name,
@@ -116,8 +125,8 @@ exports.getFriends = async (req, res) => {
   exports.UnfollowUser = async (req, res) => {
     if (req.params.currentUserId !== req.params.userId) {
       try {
-        const user = await User.findById(req.params.userId);
-        const currentUser = await User.findById(req.params.currentUserId);
+        const user = await User.findById(req.params.userId).select("-photo");
+        const currentUser = await User.findById(req.params.currentUserId).select("-photo");
         if (user.friends.includes(req.params.currentUserId)) {
           await user.updateOne({ $pull: { friends: req.params.currentUserId } });
           await currentUser.updateOne({ $pull: { friends: req.params.userId } });
@@ -135,7 +144,7 @@ exports.getFriends = async (req, res) => {
 
 // Unverified Farmer
 exports.getAllUnverifiedFarmers = (req, res) => {
-    User.find({role: 0, verification: "Unverified"}).exec((err, users) => {
+    User.find({role: 0, verification: "Unverified"}).select("-photo").exec((err, users) => {
         if(err || !users){
             return res.status(400).json({
                 error: "No user found in DB"
@@ -147,7 +156,7 @@ exports.getAllUnverifiedFarmers = (req, res) => {
 
 // Verified Farmer
 exports.getAllVerifiedFarmers = (req, res) => {
-    User.find({role: 0, verification: "Verified"}).exec((err, users) => {
+    User.find({role: 0, verification: "Verified"}).select("-photo").exec((err, users) => {
         if(err || !users){
             return res.status(400).json({
                 error: "No user found in DB"
@@ -159,7 +168,7 @@ exports.getAllVerifiedFarmers = (req, res) => {
 
 // Invalid Farmer
 exports.getAllInvalidFarmers = (req, res) => {
-    User.find({role: 0, verification: "Invalid"}).exec((err, users) => {
+    User.find({role: 0, verification: "Invalid"}).select("-photo").exec((err, users) => {
         if(err || !users){
             return res.status(400).json({
                 error: "No user found in DB"
@@ -171,7 +180,7 @@ exports.getAllInvalidFarmers = (req, res) => {
 
 // Unverified Corporate
 exports.getAllUnverifiedCorporates = (req, res) => {
-    User.find({role: 1, verification: "Unverified"}).exec((err, users) => {
+    User.find({role: 1, verification: "Unverified"}).select("-photo").exec((err, users) => {
         if(err || !users){
             return res.status(400).json({
                 error: "No user found in DB"
@@ -183,7 +192,7 @@ exports.getAllUnverifiedCorporates = (req, res) => {
 
 // Verified Corporate
 exports.getAllVerifiedCorporates = (req, res) => {
-    User.find({role: 1, verification: "Verified"}).exec((err, users) => {
+    User.find({role: 1, verification: "Verified"}).select("-photo").exec((err, users) => {
         if(err || !users){
             return res.status(400).json({
                 error: "No user found in DB"
@@ -195,7 +204,7 @@ exports.getAllVerifiedCorporates = (req, res) => {
 
 // Invalid Corporate
 exports.getAllInvalidCorporates = (req, res) => {
-    User.find({role: 1, verification: "Invalid"}).exec((err, users) => {
+    User.find({role: 1, verification: "Invalid"}).select("-photo").exec((err, users) => {
         if(err || !users){
             return res.status(400).json({
                 error: "No user found in DB"
