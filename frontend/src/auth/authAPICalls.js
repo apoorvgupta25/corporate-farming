@@ -1,4 +1,5 @@
 import {API} from '../backend';
+import Cookies from 'universal-cookie';
 
 //signup
 export const signup = user => {
@@ -43,6 +44,9 @@ export const signout = next => {
     if(typeof window !== 'undefined'){
         localStorage.removeItem('jwt_corp');
         // next();
+        const cookies = new Cookies();
+
+        cookies.remove('OTPVerified', { path: '/' });
 
         return fetch(`${API}/signout`, {
             method: "GET"
@@ -57,7 +61,6 @@ export const isAuth = () => {
         return false;
     }
     if(localStorage.getItem('jwt_corp')){
-        console.log("jwt",JSON.parse(localStorage.getItem('jwt_corp')));
         return JSON.parse(localStorage.getItem('jwt_corp'));
     }
     return false;

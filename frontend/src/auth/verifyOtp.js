@@ -15,6 +15,7 @@ import emailjs from '@emailjs/browser';
 import {Navigate,useParams,useNavigate } from 'react-router-dom';
 import { Button } from "@material-ui/core";
 import { Route, Redirect } from 'react-router';
+import Cookies from 'universal-cookie';
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -53,9 +54,11 @@ const otpVal = generateOTP();
 
 function VerifyOtp() {
 
+    const cookies = new Cookies();
+
     const navigate = useNavigate();
 
-    const userId = useParams(); 
+    const {userId} = useParams(); 
 
     const [isLoading, setLoading] = useState(true);
     const classes = useStyles();
@@ -68,6 +71,7 @@ function VerifyOtp() {
       if (code.length == 6){
         if (code.toString() == otpVal) {
           console.log("success");
+          cookies.set("OTPVerified",false,{path:'/'});
           <Route exact path="/" render={() => (
             <Redirect to={`/admin/dashboard/${userId}`}/>
           )}/>
@@ -101,13 +105,17 @@ function VerifyOtp() {
         // console.log("success");
         // <Navigate to={`/admin/dashboard/${userId}`}  />
         if (code.toString() == otpVal) {
+          cookies.set("OTPVerified",true,{path:'/'});
           console.log("success");
+          // <Navigate to={`/admin/dashboard/${userId}`}  />
           navigate(`/admin/dashboard/${userId}`);
         } else {
+          cookies.set("OTPVerified",false,{path:'/'});
           console.log(otpVal);
           console.log("error");
         }
       } else {
+        cookies.set("OTPVerified",false,{path:'/'});
         console.log("error");
       }
     }

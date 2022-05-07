@@ -1,18 +1,50 @@
-import React, {useState} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import React, {useState,useEffect} from 'react';
+import {Link, Navigate,useParams,Redirect } from 'react-router-dom';
 
 import {signout} from '../auth/authAPICalls';
 import {isAuth} from '../auth/authAPICalls';
 import Topbar from '../component/topbar/topbar';
 import './dashboard.css';
+import Cookies from 'universal-cookie';
 
 const AdminDashboard = () => {
+
+    const cookies = new Cookies();
+    const otpCookie = cookies.get("OTPVerified");
+
+    const {userId} = useParams();
 
     const signoutUser = () => {
         signout()
     }
 
     const {user: {name, email, role}} = isAuth();
+
+    // useEffect(() => {
+        
+    //     if (otpCookie != null) {
+    //       if (otpCookie != "true") {
+
+    //         const navigate = useNavigate();
+    //         navigate(`/verifyOtp/${user._id}`);
+    //       }
+    //       // const check = () => {
+    //       //   return <Link to={ `/admin/dashboard/${isAuth().user._id}`} style={{ textDecoration:'none', color: 'white'}}><Person /></Link>
+    //       // }
+    //       // check();
+    //       // console.log("exist");
+    //       // value = check();
+    //     }
+        
+    // }, []);
+
+    if (otpCookie != null) {
+        if (otpCookie != "true") {
+            return <Navigate to={`/verifyOtp/${userId}`}  />
+        }
+    } else {
+        return <Navigate to={`/verifyOtp/${userId}`}  />
+    }
 
     var roleType = "Farmer";
     if(role === 2)
