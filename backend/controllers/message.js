@@ -11,7 +11,7 @@ exports.addMessage = async (req, res) => {
         const authToken = process.env.TWILIO_AUTH_TOKEN;
         const client = require('twilio')(accountSid, authToken);
 
-        client.messages
+        await client.messages
           .create({
             body: newMessage.text,
             from: '+19853042594',
@@ -20,7 +20,7 @@ exports.addMessage = async (req, res) => {
           .then(message => console.log(message.sid));
       }
     } catch (err) {
-       res.status(500).json(err);
+       //res.status(500).json(err);
     } finally{
         try {
             const savedMessage = await newMessage.save();

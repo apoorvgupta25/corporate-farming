@@ -15,6 +15,7 @@ export default function Messenger() {
   }
   const [currentChat, setCurrentChat] = useState(null);
   const [productName, setproductName] = useState('');
+  const [friendName, setfriendName] = useState('');
   const [farmerId, setFarmerId] = useState('');
   const [productId, setproductId] = useState('');
   const [isprod, setisprod] = useState('');
@@ -112,6 +113,7 @@ export default function Messenger() {
                                       setFarmerId(c.friendId);
                                       setReceiverNumber(c.contact);
                                       setproductName(c.productName);
+                                      setfriendName(c.name);
                                       setproductId(c.productId);
                                       setisprod(c.isprod)}}
                                       >
@@ -129,7 +131,7 @@ export default function Messenger() {
 
                {currentChat ? (
               <>
-                <div className="bg-grey p-2" style={{borderRadius: "5px"}}>{productName}
+                <div className="bg-grey p-2" style={{borderRadius: "5px"}}><b>{friendName}</b> <i> {productName}</i> [{isprod==1 ?"product" :"land"}]
                 {isAuth().user.role === 1 && (
                   <Link to={`/contract/${productId}/${farmerId}/${isprod}`} style={{ textDecoration: 'none', color: 'white' }}>
                     <button className="btn btn-success btn-sm float-right ml-1">

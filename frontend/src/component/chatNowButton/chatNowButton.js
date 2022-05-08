@@ -7,7 +7,7 @@ const ChatNowButton = (param) =>  {
 const navigate = useNavigate();
   const handleClick = () => {
     FollowUser(isAuth().user._id,param.userId,param.productId,param.productName,param.isprod)
-    .then(navigate('/messenger'))
+  .then(navigate(`/quickMessenger/${param.productId}/${param.userId}/${param.isProd}/`));
    }
     return (
        <div>

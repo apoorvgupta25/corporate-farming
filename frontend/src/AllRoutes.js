@@ -14,6 +14,7 @@ import WeatherPrediction from './component/weatherPrediction/weatherPrediction';
 
 import {PrivateRoute, FarmerRoute, CorporateRoute, AdminRoute} from './auth/protectedRoute';
 import Messenger from './component/messenger/messenger';
+import QuickMessenger from './component/quickmessenger/quickMessenger';
 import Contract from './component/contract/contract';
 import Signin from './auth/signin';
 import SignupFarmer from './auth/signupFarmer';
@@ -61,6 +62,7 @@ export default function AllRoutes(){
                 <Route path="/weather/prediction" exact element={<WeatherPrediction/>}/>
 
                 <Route path="/messenger" exact element={<Messenger/>}/>
+                <Route path="/quickMessenger/:productId/:friendId/:isProd/" exact element={<CorporateRoute><QuickMessenger/></CorporateRoute>}/>
                 <Route path="/contract/:productId/:farmerId/:isProd" exact element={<CorporateRoute><Contract/></CorporateRoute>}/>
                 <Route path='/contract/manage/' exact element={<ManageContract/>}/>
                 <Route path='/contract/statusChange/:contractId/:newstatus' exact element={<StatusChangeContract/>}/>
