@@ -126,7 +126,6 @@ export default function QuickMessenger() {
                         <br></br>
                         <h3 className="font-weight-bold text-dark">Farmer Details</h3>
                         <br></br>
-                        <h4>{product.farmer._id}</h4>
                         <h4>Name: {product.farmer.name}</h4>
                         <h4>contact: {receiverNumber}</h4>
                         <h4>email: {product.farmer.email}</h4>
