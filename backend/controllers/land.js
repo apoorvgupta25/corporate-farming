@@ -32,21 +32,36 @@ exports.addLand = (req, res) => {
 
         const exactAmount = fields['expectedProfit.exactAmount']
         const percentage = fields['expectedProfit.percentage']
-        const nitrogen = fields['soil.nitrogen']
-        const phosphorous = fields['soil.phosphorous']
-        const potassium = fields['soil.potassium']
-        const ph = fields['soil.ph']
+
         const location = fields['landProperties.location']
-        const city = fields['landProperties.city']
         const state = fields['landProperties.state']
+        const district = fields['landProperties.district']
+        const taluka = fields['landProperties.taluka']
+        const village = fields['landProperties.village']
+        const survey = fields['landProperties.survey']
         const totalArea = fields['landProperties.totalArea']
 
-        if(!title || !description || !bondTime || !rainfall || !percentage || !exactAmount  ||
-            !nitrogen || !phosphorous || !potassium || !ph || !location || !city || !state || !totalArea){
-                return res.status(400).json({
-                    error: "Please Include all fields"
-                });
-        }
+        if(!title) return res.status(400).json({ error: "Please Add Title" });
+        if(!description) return res.status(400).json({ error: "Please Add Description" });
+        if(!bondTime) return res.status(400).json({ error: "Please Add Bond Time" });
+        if(!percentage) return res.status(400).json({ error: "Please Add Percentage of Land Price" });
+        if(!exactAmount) return res.status(400).json({ error: "Please Add Leasing Price" });
+        if(!location) return res.status(400).json({ error: "Please Add location" });
+        if(!state) return res.status(400).json({ error: "Please Add state" });
+        if(!district) return res.status(400).json({ error: "Please Add district" });
+        if(!taluka) return res.status(400).json({ error: "Please Add taluka" });
+        if(!village) return res.status(400).json({ error: "Please Add village" });
+        if(!survey) return res.status(400).json({ error: "Please Add survey" });
+        if(!totalArea) return res.status(400).json({ error: "Please Add totalArea" });
+
+
+        //
+        // if(!title || !description || !bondTime || !percentage || !exactAmount  ||
+        //     !state || !district || !taluka || !village || !survey || !location || !totalArea){
+        //         return res.status(400).json({
+        //             error: "Please Include all fields"
+        //         });
+        // }
 
         let land = new Land(fields);
         land.farmer = req.profile._id;
@@ -54,12 +69,23 @@ exports.addLand = (req, res) => {
         if(file.photo){
             if(file.photo.size > 3000000){
                 return res.status(400).json({
-                  error: "File size too big!"
+                  error: "Image size too big!"
                 });
             }
 
             land.photo.data = fs.readFileSync(file.photo.filepath);
             land.photo.contentType = file.photo.mimetype;
+        }
+
+        if(file.landPDF){
+            if(file.landPDF.size > 3000000){
+                return res.status(400).json({
+                  error: "File size too big!"
+                });
+            }
+
+            land.landPDF.data = fs.readFileSync(file.landPDF.filepath);
+            land.landPDF.contentType = file.landPDF.mimetype;
         }
 
         land.save((err, lnd) => {
@@ -75,6 +101,7 @@ exports.addLand = (req, res) => {
 
 exports.getLand = (req, res) => {
     req.land.photo = undefined;
+    req.land.landPDF = undefined;
     return res.json(req.land);
 };
 
@@ -83,7 +110,7 @@ exports.getAllLands = (req, res) => {
     let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
 
     Land.find()
-        .select("-photo")
+        .select("-photo -landPDF")
         .populate("farmer", "_id name email contact")
         .sort([[sortBy, 'descending']])
         .limit(limit)
@@ -123,12 +150,23 @@ exports.updateLand = (req, res) => {
         if(file.photo){
             if(file.photo.size > 3000000){
                 return res.status(400).json({
-                  error: "File size too big!"
+                  error: "Image size too big!"
                 });
             }
 
             land.photo.data = fs.readFileSync(file.photo.filepath);
             land.photo.contentType = file.photo.mimetype;
+        }
+
+        if(file.landPDF){
+            if(file.landPDF.size > 3000000){
+                return res.status(400).json({
+                  error: "File size too big!"
+                });
+            }
+
+            land.landPDF.data = fs.readFileSync(file.landPDF.filepath);
+            land.landPDF.contentType = file.landPDF.mimetype;
         }
 
         land.save((err, lnd) => {
@@ -151,6 +189,13 @@ exports.photo = (req, res, next) => {
     next();
 };
 
+exports.landPDF = (req, res, next) => {
+    if(req.land.landPDF.data){
+        res.set("Content-Type", req.land.landPDF.contentType);
+        return res.send(req.land.landPDF.data)
+    }
+    next();
+};
 
 exports.removeLand = (req, res) => {
     const land = req.land;
@@ -166,3 +211,59 @@ exports.removeLand = (req, res) => {
         });
     });
 };
+
+
+// Unverified Lands
+exports.getAllUnverifiedLands = (req, res) => {
+    Land.find({verification: "Unverified"}).select("-photo -landPDF").exec((err, lands) => {
+        if(err || !lands){
+            return res.status(400).json({
+                error: "No land found in DB"
+            })
+        }
+        res.json(lands)
+    })
+};
+
+// Verified Lands
+exports.getAllVerifiedLands = (req, res) => {
+    User.find({verification: "Verified"}).select("-photo -landPDF").exec((err, lands) => {
+        if(err || !lands){
+            return res.status(400).json({
+                error: "No land found in DB"
+            })
+        }
+        res.json(lands)
+    })
+};
+
+// Invalid Land
+exports.getAllInvalidLands = (req, res) => {
+    User.find({verification: "Invalid"}).select("-photo -landPDF").exec((err, lands) => {
+        if(err || !lands){
+            return res.status(400).json({
+                error: "No land found in DB"
+            })
+        }
+        res.json(lands)
+    })
+};
+
+exports.getVerificationEnums = (req, res) => {
+    res.json(Land.schema.path("verification").enumValues);
+}
+
+exports.updateVerification = (req, res) => {
+    Land.updateOne(
+        {_id: req.body.landId},
+        {$set: {verification: req.body.verification}},
+        (err, updatedLand) => {
+            if(err){
+                return res.status(400).json({
+                    error: err
+                });
+            }
+            res.json(updatedLand);
+        }
+    )
+}
