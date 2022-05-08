@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import {Link, Navigate,useParams,Redirect } from 'react-router-dom';
 
+import {API} from '../backend';
 import {signout} from '../auth/authAPICalls';
 import {isAuth} from '../auth/authAPICalls';
 import Topbar from '../component/topbar/topbar';
@@ -18,10 +19,10 @@ const AdminDashboard = () => {
         signout()
     }
 
-    const {user: {name, email, role}} = isAuth();
+    const {user: {name, email, role, _id}} = isAuth();
 
     // useEffect(() => {
-        
+
     //     if (otpCookie != null) {
     //       if (otpCookie != "true") {
 
@@ -35,7 +36,7 @@ const AdminDashboard = () => {
     //       // console.log("exist");
     //       // value = check();
     //     }
-        
+
     // }, []);
 
     if (otpCookie != null) {
@@ -79,10 +80,18 @@ const AdminDashboard = () => {
                         <div className="badge badge-success mr-2">Role</div> {roleType}
                     </li>
                 </ul>
-                <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 pull-right text-white">Sign Out</Link>
             </div>
         );
     };
+
+    const profileImage = () => {
+        return (
+            <>
+                <img src={`${API}/user/profile/photo/${_id}`} alt="Profile Image" className="profile-image" style={{height: "150px"}}/>
+                <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 w-100">Sign Out</Link>
+            </>
+        )
+    }
 
     return (
 
@@ -92,7 +101,8 @@ const AdminDashboard = () => {
             <div className="container bg-green p-3">
                 <div className="row">
                     <div className="col-sm-3">{adminLeftSide()}</div>
-                    <div className="col-sm-9">{adminRightSide()}</div>
+                    <div className="col-sm-7 pl-0">{adminRightSide()}</div>
+                    <div className="col-sm-2 pl-0">{profileImage()}</div>
                 </div>
             </div>
 

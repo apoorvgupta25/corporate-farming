@@ -50,7 +50,7 @@ exports.signup = (req,res) => {
         user.save((err, user) => {
             if(err){
                 return res.status(400).json({
-                    error: "Not able to save Land in DB"
+                    error: "Not able to save User in DB"
                 });
             }
             res.json({
