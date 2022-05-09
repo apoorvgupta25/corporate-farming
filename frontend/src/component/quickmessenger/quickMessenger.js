@@ -55,8 +55,8 @@ export default function QuickMessenger() {
     return link;
   }
   const getConversationId = (productId,id) => {
-    if (id.toString() < isAuth().user._id.toString()) return productId.toString()+id.toString() +"_"+isAuth().user._id.toString();
-    if (id.toString() > isAuth().user._id.toString()) return productId.toString()+isAuth().user._id.toString() +"_"+id.toString();
+    if (id.toString() < isAuth().user._id.toString()) return productId.toString()+"_"+id.toString() +"_"+isAuth().user._id.toString();
+    if (id.toString() > isAuth().user._id.toString()) return productId.toString()+"_"+isAuth().user._id.toString() +"_"+id.toString();
   }
 
   const loadProduct = (productId,isProd) => {
