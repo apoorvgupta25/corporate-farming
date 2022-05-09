@@ -5,6 +5,7 @@ import {signup} from './authAPICalls';
 
 import './signin_signup.css';
 import Topbar from '../component/topbar/topbar';
+import CircleModal from '../component/animation/CircleModal';
 
 const SignupCorporate = () => {
 
@@ -13,21 +14,23 @@ const SignupCorporate = () => {
         cin: "",
         email: "",
         password: "",
-        role: 1,
         error: "",
-        success: false
+        success: false,
+        saving: false,
+        formData: new FormData()
     });
 
     const [inValidCIN, setInValidCIN] = useState(false)
-    const {name, cin, email, password, role, error, success} = values;
+    const {name, cin, email, password, error, success, saving, formData} = values;
 
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value});
 
+        formData.set(name, event.target.value);
+
         if(name=="cin"){
             if(event.target.value.length == 21) setInValidCIN(false);
             else setInValidCIN(true);
-            console.log(name, event.target.value, inValidCIN);
         }
     }
 
@@ -61,13 +64,14 @@ const SignupCorporate = () => {
 
     const onSubmit = event => {
         event.preventDefault()
-        setValues({...values, error: false})
+        setValues({...values, error: false, saving: true})
+        formData.set("role", 1);
 
         if(!inValidCIN){
-            signup({name, cin, email, role, password})
+            signup(formData)
             .then(data => {
                 if(data.error){
-                    setValues({...values, error: data.error, success: false});
+                    setValues({...values, error: data.error, success: false, saving: false});
                 }
                 else{
                     setValues({...values,
@@ -76,6 +80,7 @@ const SignupCorporate = () => {
                         email: "",
                         password: "",
                         error: "",
+                        saving: false,
                         success: true
                     });
                 }
@@ -86,6 +91,7 @@ const SignupCorporate = () => {
     return (
         <div className="container-sign">
             <Topbar/>
+            <CircleModal saving={saving}/>
 
             {successMessage()}
             {errorMessage()}
@@ -103,7 +109,7 @@ const SignupCorporate = () => {
                     <div className="mt-2">
                         Already Registered? <Link to="/signin"> Login Here</Link>
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 mb-2">
                          <Link to="/signup/farmer">Register as Farmer</Link>
                     </div>
 

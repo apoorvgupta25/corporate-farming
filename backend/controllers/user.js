@@ -73,7 +73,7 @@ exports.getFriends = async (req, res) => {
     return false;
 
 }
-  exports.followUser = async (req, res) => {
+exports.followUser = async (req, res) => {
     //console.log(req.params);
     //console.log("--------------------");
     //console.log(req.body);
@@ -120,9 +120,8 @@ exports.getFriends = async (req, res) => {
     }
   }
 
-  //unfollow a user
-
-  exports.UnfollowUser = async (req, res) => {
+//unfollow a user
+exports.UnfollowUser = async (req, res) => {
     if (req.params.currentUserId !== req.params.userId) {
       try {
         const user = await User.findById(req.params.userId).select("-photo");
@@ -142,21 +141,11 @@ exports.getFriends = async (req, res) => {
     }
   }
 
-// Unverified Farmer
-exports.getAllUnverifiedFarmers = (req, res) => {
-    User.find({role: 0, verification: "Unverified"}).select("-photo").exec((err, users) => {
-        if(err || !users){
-            return res.status(400).json({
-                error: "No user found in DB"
-            })
-        }
-        res.json(users)
-    })
-};
+exports.getAdminUsers = (req, res) => {
+    let role = req.query.role ? parseInt(req.query.role) : 0;
+    let filterBy = req.query.filterBy ? req.query.filterBy : 'Verified';
 
-// Verified Farmer
-exports.getAllVerifiedFarmers = (req, res) => {
-    User.find({role: 0, verification: "Verified"}).select("-photo").exec((err, users) => {
+    User.find({role: role, verification: filterBy}).select("-photo").exec((err, users) => {
         if(err || !users){
             return res.status(400).json({
                 error: "No user found in DB"
@@ -164,55 +153,7 @@ exports.getAllVerifiedFarmers = (req, res) => {
         }
         res.json(users)
     })
-};
-
-// Invalid Farmer
-exports.getAllInvalidFarmers = (req, res) => {
-    User.find({role: 0, verification: "Invalid"}).select("-photo").exec((err, users) => {
-        if(err || !users){
-            return res.status(400).json({
-                error: "No user found in DB"
-            })
-        }
-        res.json(users)
-    })
-};
-
-// Unverified Corporate
-exports.getAllUnverifiedCorporates = (req, res) => {
-    User.find({role: 1, verification: "Unverified"}).select("-photo").exec((err, users) => {
-        if(err || !users){
-            return res.status(400).json({
-                error: "No user found in DB"
-            })
-        }
-        res.json(users)
-    })
-};
-
-// Verified Corporate
-exports.getAllVerifiedCorporates = (req, res) => {
-    User.find({role: 1, verification: "Verified"}).select("-photo").exec((err, users) => {
-        if(err || !users){
-            return res.status(400).json({
-                error: "No user found in DB"
-            })
-        }
-        res.json(users)
-    })
-};
-
-// Invalid Corporate
-exports.getAllInvalidCorporates = (req, res) => {
-    User.find({role: 1, verification: "Invalid"}).select("-photo").exec((err, users) => {
-        if(err || !users){
-            return res.status(400).json({
-                error: "No user found in DB"
-            })
-        }
-        res.json(users)
-    })
-};
+}
 
 exports.getVerificationEnums = (req, res) => {
     res.json(User.schema.path("verification").enumValues);

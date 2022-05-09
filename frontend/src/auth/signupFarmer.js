@@ -5,6 +5,7 @@ import {signup} from './authAPICalls';
 
 import './signin_signup.css';
 import Topbar from '../component/topbar/topbar';
+import CircleModal from '../component/animation/CircleModal';
 
 const SignupFarmer = () => {
 
@@ -19,6 +20,7 @@ const SignupFarmer = () => {
         gender: "",
         error: "",
         success: false,
+        saving: false,
         formData: new FormData()
     });
 
@@ -29,7 +31,7 @@ const SignupFarmer = () => {
     const [preview, setPreview] = useState()
     const [submitted, setSubmitted] = useState(false)
 
-    const {name, aadhaar, contact, age, state, email, password, role, error, success, formData} = values;
+    const {name, aadhaar, contact, age, state, email, password, role, error, success, saving, formData} = values;
 
     var states = new Array("Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
                             "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa",
@@ -134,15 +136,15 @@ const SignupFarmer = () => {
         setSubmitted(true);
         formData.set("role", 0);
         event.preventDefault()
-        setValues({...values, error: false})
+        setValues({...values, error: false, saving: true})
         if(validAadhaar && validContact && preview!==undefined){
             signup(formData)
             .then(data => {
+                window.scrollTo(0,0)
                 if(data.error){
-                    setValues({...values, error: data.error, success: false});
+                    setValues({...values, error: data.error, success: false, saving: false});
                 }
                 else{
-                    window.scrollTo(0, 0)
                     setValues({...values,
                         name: "",
                         aadhaar: "",
@@ -152,6 +154,7 @@ const SignupFarmer = () => {
                         email: "",
                         password: "",
                         error: "",
+                        saving: false,
                         success: true
                     });
                 }
@@ -162,6 +165,7 @@ const SignupFarmer = () => {
     return (
         <div className="container-sign">
             <Topbar/>
+            <CircleModal saving={saving}/>
             {successMessage()}
             {submitted && errorMessage()}
             <div className="form-box farmer">

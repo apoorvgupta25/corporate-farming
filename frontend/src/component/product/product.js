@@ -152,7 +152,7 @@ const Product = () => {
 
                     {isAuth() && isAuth().user.role==1 && isAuth().user.verification=="Verified" &&(
                         <div className="purchase-info">
-                            <ChatNowButton userId={product.farmer._id} productId={product._id} productName={product.title} isprod="1"/>
+                            <ChatNowButton userId={product.farmer._id} productId={product._id} productName={product.title} isProd="1"/>
                         </div>
                     )}
                 </div>

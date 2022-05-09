@@ -9,6 +9,10 @@ const landSchema = new mongoose.Schema(
       data: Buffer,
       contentType: String,
     },
+    landPDF: {
+      data: Buffer,
+      contentType: String,
+    },
     farmer: {
       type: ObjectId,
       ref: "User",
@@ -17,16 +21,19 @@ const landSchema = new mongoose.Schema(
     landProperties: {
        location: String,
        state: String,
-       city: String,
+       district: String,
+       taluka: String,
+       village: String,
+       survey: Number,
        totalArea: Number,
     },
-    bondTime: String,
-    soil: {
-      nitrogen: Number,
-      phosphorous: Number,
-      potassium: Number,
-      ph: Number,
+    remarks:String,
+    verification: {
+        type: String,
+        default: "Unverified",
+        enum: ["Verified", "Invalid", "Unverified"]
     },
+    bondTime: String,
     expectedProfit: {
       percentage: Number,
       exactAmount: Number,

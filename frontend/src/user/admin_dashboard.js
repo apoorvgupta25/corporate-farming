@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import {Link, Navigate,useParams,Redirect } from 'react-router-dom';
 
+import {API} from '../backend';
 import {signout} from '../auth/authAPICalls';
 import {isAuth} from '../auth/authAPICalls';
 import Topbar from '../component/topbar/topbar';
@@ -18,10 +19,10 @@ const AdminDashboard = () => {
         signout()
     }
 
-    const {user: {name, email, role}} = isAuth();
+    const {user: {name, email, role, _id}} = isAuth();
 
     // useEffect(() => {
-        
+
     //     if (otpCookie != null) {
     //       if (otpCookie != "true") {
 
@@ -35,7 +36,7 @@ const AdminDashboard = () => {
     //       // console.log("exist");
     //       // value = check();
     //     }
-        
+
     // }, []);
 
     if (otpCookie != null) {
@@ -53,12 +54,16 @@ const AdminDashboard = () => {
     const adminLeftSide = () => {
         return (
             <div>
+                <h4 className="card-header bg-dark text-white">Verify</h4>
                 <ul className="list-group">
                     <li className="list-group-item">
-                        <Link to="/admin/farmer/verification" className="text-success" style={{ textDecoration:'none'}}>Verify Farmers</Link>
+                        <Link to="/admin/farmer/verification" className="text-success" style={{ textDecoration:'none'}}>Farmers</Link>
                     </li>
                     <li className="list-group-item">
-                        <Link to="/admin/corporate/verification" className="text-success" style={{ textDecoration:'none'}}>Verify Corporates</Link>
+                        <Link to="/admin/corporate/verification" className="text-success" style={{ textDecoration:'none'}}>Corporates</Link>
+                    </li>
+                    <li className="list-group-item">
+                        <Link to="/admin/land/verification" className="text-success" style={{ textDecoration:'none'}}>Land</Link>
                     </li>
                 </ul>
             </div>
@@ -79,7 +84,7 @@ const AdminDashboard = () => {
                         <div className="badge badge-success mr-2">Role</div> {roleType}
                     </li>
                 </ul>
-                <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 pull-right text-white">Sign Out</Link>
+                <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 w-10 pull-right">Sign Out</Link>
             </div>
         );
     };

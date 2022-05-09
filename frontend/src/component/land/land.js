@@ -113,7 +113,6 @@ const Land = () => {
 
                     <div className="content">
                         <h2 className="title">{land.title}</h2>
-                        <a href="https://dilrmp.gov.in/faces/rptPhysicalHome/rptStateRoRonWebDetail.xhtml" target="_blank" className="pull-right">Verify Land Here</a>
 
                         <div className="price">
                             <h3>₹ {land.expectedProfit.exactAmount} ({land.expectedProfit.percentage} %)</h3>
@@ -129,21 +128,20 @@ const Land = () => {
 
                         <div className="btn-group btn-group-lg" style={{width: '100%'}}>
                             <button type="button" onClick={s1} id="btn1" className="btn btn-primary segmentedButton active">Land Details</button>
-                            <button type="button" onClick={s2} id="btn2" className="btn btn-primary segmentedButton">Soil Details</button>
+                            <button type="button" onClick={s2} id="btn2" className="btn btn-primary segmentedButton">Land Records Details</button>
                             <button type="button" onClick={s3} id="btn3" className="btn btn-primary segmentedButton">Farmer Details</button>
                         </div>
 
                         <div id="section1" style={{display: 'block'}}>
-                            <h4>Land Size (in acres): {land.landProperties.totalArea}</h4>
-                            <h4>Rainfall: {land.rainfall} mm</h4>
-                            <h4>📍: {land.landProperties.city}, {land.landProperties.state}</h4>
-                            <h4>{land.landProperties.location}</h4>
+                            <h4><b>Land Size (in acres)</b>: {land.landProperties.totalArea}</h4>
+                            <h4><b>State</b>: {land.landProperties.state}</h4>
+                            <h4><b>📍</b>: {land.landProperties.location}</h4>
                         </div>
                         <div id="section2" style={{display: 'none'}}>
-                            <h4>Nitrogen: {land.soil.nitrogen}</h4>
-                            <h4>Phosphorus: {land.soil.phosphorous}</h4>
-                            <h4>Potassium: {land.soil.potassium}</h4>
-                            <h4>pH: {land.soil.ph}</h4>
+                            <h4><b>District</b>: {land.landProperties.district}</h4>
+                            <h4><b>Taluka</b>: {land.landProperties.taluka}</h4>
+                            <h4><b>Village</b>: {land.landProperties.village}</h4>
+                            <h4><b>Survey No</b>: {land.landProperties.survey}</h4>
                         </div>
                         <div id="section3" style={{display: 'none'}}>
                             <h4>🤵: {land.farmer.name}</h4>
@@ -153,7 +151,7 @@ const Land = () => {
 
                         {isAuth() && isAuth().user.role==1 && isAuth().user.verification=="Verified" &&(
                             <div className="purchase-info" >
-                                <ChatNowButton userId={land.farmer._id} productId={land._id} productName={land.title} isprod="0"/>
+                                <ChatNowButton userId={land.farmer._id} productId={land._id} productName={land.title} isProd="0"/>
                             </div>
                         )}
                     </div>

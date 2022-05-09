@@ -19,18 +19,16 @@ const UpdateLand = () => {
         photo: '',
         landProperties: {
             state: '',
-            city: '',
+            district: '',
             location:'',
+            taluka: '',
+            village: '',
+            survey: '',
             totalArea:''
         },
-        soil:{
-            nitrogen:'',
-            phosphorous:'',
-            potassium:'',
-            ph:'',
-        },
+        remarks: '',
         bondTime: '',
-        updatedLand:'',
+        createdLand:'',
         rainfall:'',
         expectedProfit:{
             exactAmount: '',
@@ -39,11 +37,12 @@ const UpdateLand = () => {
         error: '',
         saving: false,
         createdId: '',
-        formData:new FormData()
+        formData: new FormData()
     });
 
+
     const {
-        title, description, bondTime, landProperties, soil, updatedLand,
+        title, description, bondTime, landProperties, remarks, updatedLand,
         rainfall, expectedProfit, error, saving, formData
     } = values;
 
@@ -66,16 +65,14 @@ const UpdateLand = () => {
                     bondTime: data.bondTime,
                     landProperties: {
                         state: data.landProperties.state,
-                        city: data.landProperties.city,
+                        district: data.landProperties.district,
+                        taluka: data.landProperties.taluka,
+                        village: data.landProperties.village,
+                        survey: data.landProperties.survey,
                         location: data.landProperties.location,
                         totalArea: data.landProperties.totalArea,
                     },
-                    soil:{
-                        nitrogen: data.soil.nitrogen,
-                        phosphorous: data.soil.phosphorous,
-                        potassium: data.soil.potassium,
-                        ph: data.soil.ph,
-                    },
+                    remarks: data.remarks,
                     rainfall: data.rainfall,
                     expectedProfit:{
                         exactAmount: data.expectedProfit.exactAmount,
@@ -99,7 +96,12 @@ const UpdateLand = () => {
 
 
     const handleChange = name => event => {
-        const value = name === "photo" ? event.target.files[0] : event.target.value
+        let value = event.target.value;
+        if(name === "photo")
+            value = event.target.files[0]
+        // if(name === "landPDF")
+        //     value = event.target.files[0]
+
         setValues({...values, [name]: value});
         formData.set(name, value);
         if(name=='title')
@@ -117,17 +119,7 @@ const UpdateLand = () => {
 
         formData.set('landProperties.'+name, event.target.value);
     }
-    const handleChangeSoil = name => event => {
-        setValues({
-            ...values,
-            soil: {
-                ...values.soil,
-                [name]: event.target.value
-            }
-        });
 
-        formData.set('soil.'+name, event.target.value);
-    }
     const handleChangeExpectedProfit = name => event => {
         formData.set('expectedProfit.'+name, event.target.value);
 
@@ -181,16 +173,15 @@ const UpdateLand = () => {
                     photo: '',
                     landProperties: {
                         state: '',
-                        city: '',
+                        district: '',
                         location:'',
+                        taluka: '',
+                        village: '',
+                        survey: '',
                         totalArea:'',
                     },
-                    soil:{
-                        nitrogen:'',
-                        phosphorous:'',
-                        potassium:'',
-                        ph:'',
-                    },
+                    remarks: '',
+                    landPDF: '',
                     bondTime: '',
                     rainfall: '',
                     expectedProfit:{
@@ -231,7 +222,7 @@ const UpdateLand = () => {
                     <input className="add-input" type="text" name="description" onChange={handleChange("description")} value={description} placeholder="Description" required />
                     <label className="add-label">Leasing Price</label>
                     <input className="add-input" type="number" name="exactAmount" onChange={handleChangeExpectedProfit("exactAmount")} value={expectedProfit.exactAmount} placeholder="Leasing Price (₹)" min="1" required />
-                    <label className="add-label">Percentage of land Price</label>
+                    <label className="add-label">Percentage of Land Price</label>
                     <input className="add-input" type="number" name="percentage" onChange={handleChangeExpectedProfit("percentage")} value={expectedProfit.percentage} placeholder="Percentage of land Price" min="1" required />
 
                     <label className="add-label">State</label>
@@ -241,8 +232,14 @@ const UpdateLand = () => {
                             return ( <option value={state} key={state} >{state}</option> )
                         })}
                     </select>
-                    <label className="add-label">City</label>
-                    <input className="add-input" type="text" name="city" onChange={handleChangeLocation("city")} value={landProperties.city} placeholder="City" required />
+                    <label className="add-label">District</label>
+                    <input className="add-input" type="text" name="district" onChange={handleChangeLocation("district")} value={landProperties.district} placeholder="District" />
+                    <label className="add-label">Taluka</label>
+                    <input className="add-input" type="text" name="taluka" onChange={handleChangeLocation("taluka")} value={landProperties.taluka} placeholder="Taluka" />
+                    <label className="add-label">Village</label>
+                    <input className="add-input" type="text" name="village" onChange={handleChangeLocation("village")} value={landProperties.village} placeholder="Village" />
+                    <label className="add-label">Survey No.</label>
+                    <input className="add-input" type="number" name="survey" onChange={handleChangeLocation("survey")} value={landProperties.survey} placeholder="Survey No." />
                     <label className="add-label">Area</label>
                     <input className="add-input" type="number" name="totalArea" onChange={handleChangeLocation("totalArea")} value={landProperties.totalArea} placeholder="Land Area (In acres)" min="1" required />
                     <label className="add-label">Address</label>
@@ -251,19 +248,11 @@ const UpdateLand = () => {
                     <label className="add-label">Bond Time (in months)</label>
                     <input className="add-input" type="number" name="bondTime" onChange={handleChange("bondTime")} value={bondTime} placeholder="Bond Time (in months)" min="1" required />
 
-                    <label className="add-label">Rainfal in area (mm)</label>
-                    <input className="add-input" type="number" name="rainfall" onChange={handleChange("rainfall")} value={rainfall} placeholder="Rainfal in area (mm)" min="1" required />
-                    <label className="add-label">Land Nitrogen Content</label>
-                    <input className="add-input" type="number" name="nitrogen" onChange={handleChangeSoil("nitrogen")} value={soil.nitrogen} placeholder="Land Nitrogen Content" min="1" required />
-                    <label className="add-label">Land Phosphorous Content</label>
-                    <input className="add-input" type="number" name="phosphorous" onChange={handleChangeSoil("phosphorous")} value={soil.phosphorous} placeholder="Land Phosphorous Content" min="1" required />
-                    <label className="add-label">Land PH</label>
-                    <input className="add-input" type="number" name="ph" onChange={handleChangeSoil("ph")} value={soil.ph} placeholder="Land PH " min="1" required />
-                    <label className="add-label">Land Potassium Content</label>
-                    <input className="add-input" type="number" name="potassium" onChange={handleChangeSoil("potassium")} value={soil.potassium} placeholder="Land Potassium Content" min="1" required />
-
                     <label className="add-label" >Land Image </label>
                     <input className="add-input" type="file" name="photo" accept="image/*" placeholder="Choose A Photo" onChange={handleChange("photo")} />
+
+                    <label className="add-label">Remarks</label>
+                    <input className="add-input" type="text" name="remarks" onChange={handleChangeLocation("remarks")} value={remarks} placeholder="Any Additional Remarks" />
 
                     <div className="form-button">
                         <input className="btn btn-primary w-100" type="submit" name="submit" onClick={onSubmit} value="Update" />

@@ -17,6 +17,8 @@ import { Button } from "@material-ui/core";
 import { Route, Redirect } from 'react-router';
 import Cookies from 'universal-cookie';
 
+import './signin_signup.css';
+
 const useStyles = makeStyles(theme => ({
     grid: {
       backgroundColor: "grey",
@@ -39,8 +41,8 @@ const useStyles = makeStyles(theme => ({
   }));
 
   function generateOTP() {
-          
-    // Declare a digits variable 
+
+    // Declare a digits variable
     // which stores all digits
     var digits = '0123456789';
     let OTP = '';
@@ -58,7 +60,7 @@ function VerifyOtp() {
 
     const navigate = useNavigate();
 
-    const {userId} = useParams(); 
+    const {userId} = useParams();
 
     const [isLoading, setLoading] = useState(true);
     const classes = useStyles();
@@ -126,8 +128,8 @@ function VerifyOtp() {
 
   return (
 
-    
-    <div className="App">
+
+    <div className="container-sign text-center">
         <Topbar/>
         <Grid
           container
@@ -144,17 +146,17 @@ function VerifyOtp() {
                 </Avatar>
               </Grid>
               <Grid item>
-                <Typography component="h1" variant="h5">
+                <div component="h1" className="h2 text-light font-weight-bold">
                   Verification Code
-                </Typography>
+                </div>
               </Grid>
             </Grid>
           </Grid>
           <CssBaseline />
           <Grid item xs={12} textAlign="center">
-              <Typography variant="h6">
+              <div className="h3 text-light">
                 Please enter the verification code sent on your email address
-              </Typography>
+              </div>
           </Grid>
           <Grid
             item
@@ -195,7 +197,7 @@ function VerifyOtp() {
             </Grid>
             <Grid item style={{marginTop: "2%"}}>
               <form onSubmit={checkOtp}>
-                <Button type="submit" className="btn btn-lg btn-primary btn-block" onSubmit={checkOtp}>Verify</Button>
+                <Button type="submit" className="otp-btn" onSubmit={checkOtp}>Verify</Button>
               </form>
             </Grid>
           </Grid>

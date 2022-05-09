@@ -14,6 +14,7 @@ import WeatherPrediction from './component/weatherPrediction/weatherPrediction';
 
 import {PrivateRoute, FarmerRoute, CorporateRoute, AdminRoute} from './auth/protectedRoute';
 import Messenger from './component/messenger/messenger';
+import QuickMessenger from './component/quickmessenger/quickMessenger';
 import Contract from './component/contract/contract';
 import Signin from './auth/signin';
 import SignupFarmer from './auth/signupFarmer';
@@ -33,6 +34,7 @@ import CorporateDashboard from './user/corporate_dashboard';
 import AdminDashboard from './user/admin_dashboard';
 import ManageFarmerVerification from './user/admin/ManageFarmerVerification';
 import ManageCorporateVerification from './user/admin/ManageCorporateVerification';
+import ManageLandVerification from './user/admin/ManageLandVerification';
 import ManageContract from './user/farmer/ManageContract';
 import ViewContract from './component/contract/viewcontract';
 import StatusChangeContract from './component/contract/statusChangeContract';
@@ -63,6 +65,7 @@ export default function AllRoutes(){
                 <Route path="/weather/forecast" exact element={<WeatherData/>}/>
 
                 <Route path="/messenger" exact element={<Messenger/>}/>
+                <Route path="/quickMessenger/:productId/:friendId/:isProd/" exact element={<CorporateRoute><QuickMessenger/></CorporateRoute>}/>
                 <Route path="/contract/:productId/:farmerId/:isProd" exact element={<CorporateRoute><Contract/></CorporateRoute>}/>
                 <Route path='/contract/manage/' exact element={<ManageContract/>}/>
                 <Route path='/contract/statusChange/:contractId/:newstatus' exact element={<StatusChangeContract/>}/>
@@ -82,6 +85,7 @@ export default function AllRoutes(){
                 <Route path='/admin/dashboard/:userId' exact element={<AdminRoute><AdminDashboard/></AdminRoute>}/>
                 <Route path='/admin/farmer/verification' exact element={<AdminRoute><ManageFarmerVerification/></AdminRoute>}/>
                 <Route path='/admin/corporate/verification' exact element={<AdminRoute><ManageCorporateVerification/></AdminRoute>}/>
+                <Route path='/admin/land/verification' exact element={<AdminRoute><ManageLandVerification/></AdminRoute>}/>
 
             </Routes>
         </Router>

@@ -1,7 +1,7 @@
 import {API} from '../../backend';
 
 export const getUnverifiedFarmers = (userId, token) => {
-    return fetch(`${API}/farmer/unverified/${userId}`,{
+    return fetch(`${API}/user/admin/${userId}?role=0&filterBy=Unverified`,{
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -15,7 +15,7 @@ export const getUnverifiedFarmers = (userId, token) => {
 }
 
 export const getVerifiedFarmers = (userId, token) => {
-    return fetch(`${API}/farmer/verified/${userId}`,{
+    return fetch(`${API}/user/admin/${userId}?role=0&filterBy=Verified`,{
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -29,7 +29,7 @@ export const getVerifiedFarmers = (userId, token) => {
 }
 
 export const getInvalidFarmers = (userId, token) => {
-    return fetch(`${API}/farmer/invalid/${userId}`,{
+    return fetch(`${API}/user/admin/${userId}?role=0&filterBy=Invalid`,{
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -43,7 +43,7 @@ export const getInvalidFarmers = (userId, token) => {
 }
 
 export const getUnverifiedCorporates = (userId, token) => {
-    return fetch(`${API}/corporate/unverified/${userId}`,{
+    return fetch(`${API}/user/admin/${userId}?role=1&filterBy=Unverified`,{
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -57,7 +57,7 @@ export const getUnverifiedCorporates = (userId, token) => {
 }
 
 export const getVerifiedCorporates = (userId, token) => {
-    return fetch(`${API}/corporate/verified/${userId}`,{
+    return fetch(`${API}/user/admin/${userId}?role=1&filterBy=Verified`,{
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -71,7 +71,7 @@ export const getVerifiedCorporates = (userId, token) => {
 }
 
 export const getInvalidCorporates = (userId, token) => {
-    return fetch(`${API}/corporate/invalid/${userId}`,{
+    return fetch(`${API}/user/admin/${userId}?role=1&filterBy=Invalid`,{
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -100,6 +100,79 @@ export const getVerificationEnums = (userId, token) => {
 
 export const updateVerification = (farmerId, userId, token, verificationStatus) => {
     return fetch(`${API}/verification/update/${farmerId}/${userId}`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            "Access-Control-Allow-Origin": "*"
+        },
+        body:JSON.stringify(verificationStatus)
+    })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+export const getUnverifiedLands = (userId, token) => {
+    return fetch(`${API}/lands/admin/${userId}?filterBy=Unverified`,{
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response =>{
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+export const getVerifiedLands = (userId, token) => {
+    return fetch(`${API}/lands/admin/${userId}?filterBy=Verified`,{
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response =>{
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+export const getInvalidLands = (userId, token) => {
+    return fetch(`${API}/lands/admin/${userId}?filterBy=Invalid`,{
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response =>{
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+export const getLandVerificationEnums = (userId, token) => {
+    return fetch(`${API}/verification/land/enums/${userId}`,{
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response =>{
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+export const updateLandVerification = (landId, userId, token, verificationStatus) => {
+    return fetch(`${API}/verification/land/update/${landId}/${userId}`, {
         method: "PUT",
         headers: {
             Accept: "application/json",

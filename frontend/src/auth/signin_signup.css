@@ -75,11 +75,18 @@ html, body{
     margin: 50px 10px 30px 0;
 }
 
-.App {
-    font-family: sans-serif;
-    text-align: center;
-    padding: 20px;
-  }
+
+.otp-btn{
+    background-color: #FFD200 !important;
+    color: #1A2D40 !important;
+    width: 200px;
+}
+
+.otp-btn:hover {
+    background-color: #D6B102 !important;
+}
+
+
 .profile-img-signup{
     height: 250px;
     object-fit: cover;
