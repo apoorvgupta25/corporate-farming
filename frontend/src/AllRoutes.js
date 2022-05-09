@@ -36,6 +36,7 @@ import ManageCorporateVerification from './user/admin/ManageCorporateVerificatio
 import ManageContract from './user/farmer/ManageContract';
 import ViewContract from './component/contract/viewcontract';
 import StatusChangeContract from './component/contract/statusChangeContract';
+import WeatherData from './component/weatherForecast/weatherData';
 
 export default function AllRoutes(){
 
@@ -59,6 +60,7 @@ export default function AllRoutes(){
                 <Route path="/cost/prediction" exact element={<CropCostPrediction/>}/>
                 <Route path="/commodity/:commodityName" exact element={<CropCommodity/>}/>
                 <Route path="/weather/prediction" exact element={<WeatherPrediction/>}/>
+                <Route path="/weather/forecast" exact element={<WeatherData/>}/>
 
                 <Route path="/messenger" exact element={<Messenger/>}/>
                 <Route path="/contract/:productId/:farmerId/:isProd" exact element={<CorporateRoute><Contract/></CorporateRoute>}/>
