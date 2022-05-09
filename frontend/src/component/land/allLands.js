@@ -1,13 +1,13 @@
 import React, {useState, useEffect}  from "react";
+import ReactPaginate from 'react-paginate';
 
 import {getAllLands} from './landAPICall'
 
-import Navbar from '../Navbar';
-import {Card} from '../home/home'
 import Topbar from "../topbar/topbar";
-import '../home/home.css';
+import {Card} from '../home/home'
 import ThreeDotsWave from '../animation/ThreeDotsWave';
-import ReactPaginate from 'react-paginate';
+
+import '../home/home.css';
 
 const AllLands = () => {
     const [lands, setLands] = useState([]);

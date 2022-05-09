@@ -5,7 +5,6 @@ import {API} from '../../backend';
 import {getProduct} from './productAPICall'
 import {isAuth, signout} from '../../auth/authAPICalls';
 
-import Navbar from '../Navbar';
 import Topbar from "../topbar/topbar";
 import ChatNowButton from "../chatNowButton/chatNowButton";
 import ThreeDotsWave from '../animation/ThreeDotsWave';

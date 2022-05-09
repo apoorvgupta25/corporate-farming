@@ -1,16 +1,14 @@
 import React, {useState, useEffect}  from "react";
+import ReactPaginate from 'react-paginate';
 
 import {getAllProducts} from './productAPICall';
 
-import {List} from '../home/home'
-import Navbar from '../Navbar';
 import Topbar from "../topbar/topbar";
-import '../home/home.scss';
+import {List} from '../home/home'
 import ThreeDotsWave from '../animation/ThreeDotsWave';
 
-import ReactPaginate from 'react-paginate';
-
 import '../home/home.css';
+import '../home/home.scss';
 
 const AllProducts = () => {
 

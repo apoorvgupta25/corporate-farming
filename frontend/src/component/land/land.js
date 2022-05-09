@@ -6,7 +6,6 @@ import {API} from '../../backend';
 import {getLand} from './landAPICall'
 import {isAuth, signout} from '../../auth/authAPICalls';
 
-import Navbar from '../Navbar';
 import Topbar from "../topbar/topbar";
 import ChatNowButton from "../chatNowButton/chatNowButton";
 import ThreeDotsWave from '../animation/ThreeDotsWave';

@@ -1,14 +1,14 @@
 import React, {useState, useEffect}  from "react";
 import {Link} from 'react-router-dom';
 
+import {API} from '../../backend';
+import {getRecent3Lands, getRecent3Products} from './homeAPICall'
+
+import Topbar from '../topbar/topbar';
+import BouncingBall from '../animation/BouncingBall';
+
 import './home.css';
 import './home.scss';
-
-import {getRecent3Lands, getRecent3Products} from './homeAPICall'
-import Navbar from '../Navbar';
-import Topbar from '../topbar/topbar';
-import {API} from '../../backend';
-import BouncingBall from '../animation/BouncingBall';
 
 function Home() {
 
