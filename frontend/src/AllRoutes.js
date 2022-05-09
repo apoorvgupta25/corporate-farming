@@ -10,7 +10,6 @@ import CropPrediction from './component/cropPrediction/cropPrediction';
 import CropDiseasePrediction from './component/cropDiseasePrediction/cropDiseasePrediction';
 import CropCostPrediction from './component/cropCostPrediction/cropCostPrediction';
 import CropCommodity from './component/cropCostPrediction/cropCommodity';
-import WeatherPrediction from './component/weatherPrediction/weatherPrediction';
 
 import {PrivateRoute, FarmerRoute, CorporateRoute, AdminRoute} from './auth/protectedRoute';
 import Messenger from './component/messenger/messenger';
@@ -61,7 +60,6 @@ export default function AllRoutes(){
                 <Route path="/disease/prediction" exact element={<CropDiseasePrediction/>}/>
                 <Route path="/cost/prediction" exact element={<CropCostPrediction/>}/>
                 <Route path="/commodity/:commodityName" exact element={<CropCommodity/>}/>
-                <Route path="/weather/prediction" exact element={<WeatherPrediction/>}/>
                 <Route path="/weather/forecast" exact element={<WeatherData/>}/>
 
                 <Route path="/messenger" exact element={<Messenger/>}/>

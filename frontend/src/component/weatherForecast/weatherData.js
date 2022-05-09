@@ -1,6 +1,7 @@
 // Importing modules
 import React, { useState, useEffect } from "react";
 import { Row,Card } from "reactstrap";
+import {WEATHER_API} from '../../backend';
 
 import ThreeDotsWave from '../animation/ThreeDotsWave';
 
@@ -23,24 +24,9 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
 import {
-	Box,
-	Flex,
-    Grid,
-    GridItem,
-    Container,
-	Heading,
-	Icon,
-	IconButton,
-	Image,
-	Menu,
-	MenuButton,
-	MenuItem,
-	MenuList,
-	Text,
-	Tooltip,
-	useColorMode,
-	useDisclosure,
-	useToast
+	Box, Flex, Grid, GridItem, Container, Heading, Icon, IconButton, Image, Menu,
+	MenuButton, MenuItem, MenuList, Text, Tooltip,
+	useColorMode, useDisclosure, useToast
 } from '@chakra-ui/react';
 
 var weatherData;
@@ -54,7 +40,7 @@ function WeatherData() {
 
     const setWthrData = (data) => {
         weatherData = data;
-        console.log("Weather Data",weatherData)
+        // console.log("Weather Data",weatherData)
         setDisplay(true);
     }
 
@@ -68,26 +54,24 @@ function WeatherData() {
         var longitude;
 
         function showPosition(position) {
-            console.log("latitude",position.coords.latitude);
-            console.log("longitude",position.coords.longitude);
+            // console.log("latitude",position.coords.latitude);
+            // console.log("longitude",position.coords.longitude);
 
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
 
             const WthData = async() => {
-                await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly&units=metric&appid=e764c4b57821ac8ff88f7e009122473b`, {
+                await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly&units=metric&appid=${WEATHER_API}`, {
                     method: 'GET'
                   }).then(res => res.json())
                   .then((data) => {
-                        console.log(data);
                         setWthrData(data);
-                        console.log(weatherData);
                   })
                   .catch(console.log)
                 }
             WthData();
         }
-        console.log("weatherData",weatherData);
+        // console.log("weatherData",weatherData);
 
         const handleScreenResize = () => {
 			if (window.innerWidth < 768) {
@@ -104,18 +88,18 @@ function WeatherData() {
 
         setLoading(false);
 
-        console.log("we",weatherData);
+        // console.log("we",weatherData);
 
 		return () => window.removeEventListener('resize', handleScreenResize);
     }, [weatherData]);
-    
+
     if (isLoading) {
         return <ThreeDotsWave />
     }
 
       const DailyCard = (weather) => {
 
-        console.log("Weeee",weatherData);
+        // console.log("Weeee",weatherData);
         return (
             <Box maxW='sm' borderWidth='1px' overflow='hidden' borderRadius={'10px'} marginTop={4}>
             <Box p='6' backgroundImage={'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80'}>
@@ -185,7 +169,7 @@ function WeatherData() {
 
     return (
     <>
-    <Topbar />    
+    <Topbar />
 
     <h1 align="center">Weather Forecast</h1>
 
