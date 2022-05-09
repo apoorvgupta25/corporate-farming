@@ -14,6 +14,7 @@ exports.signup = (req,res) => {
 
     form.parse(req, (err, fields, file) => {
         if(err){
+            console.log(err);
             return res.status(400).json({
                 error: "Problem with Image"
             });
@@ -28,10 +29,13 @@ exports.signup = (req,res) => {
 
         const {name, email, age, gender, state, role, contact, aadhaar} = fields;
 
-        if(!name || !email || !age || !gender || !state){
-                return res.status(400).json({
-                    error: "Please Include all fields"
-                });
+        if(!name){return res.status(400).json({ error: "Please Include Name" })}
+        if(!email){return res.status(400).json({ error: "Please Include Email" })}
+
+        if(role === 0){
+            if(!age){return res.status(400).json({ error: "Please Include Age" })}
+            if(!gender){return res.status(400).json({ error: "Please Include Gender" })}
+            if(!state){return res.status(400).json({ error: "Please Include State" })}
         }
 
         let user = new User(fields);
