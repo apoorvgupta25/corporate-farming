@@ -43,12 +43,20 @@ import {
 	useToast
 } from '@chakra-ui/react';
 
+var weatherData;
+
 function WeatherData() {
     const [isLoading, setLoading] = useState(true);
 
     const [slidesPerView, setSlidesPerView] = useState(4);
 
-    const [weatherData,setWeatherData] = useState();
+    const [display,setDisplay] = useState(false);
+
+    const setWthrData = (data) => {
+        weatherData = data;
+        console.log("Weather Data",weatherData)
+        setDisplay(true);
+    }
 
     useEffect(() => {
 
@@ -67,12 +75,12 @@ function WeatherData() {
             longitude = position.coords.longitude;
 
             const WthData = async() => {
-                await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly&appid=e764c4b57821ac8ff88f7e009122473b`, {
+                await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly&units=metric&appid=e764c4b57821ac8ff88f7e009122473b`, {
                     method: 'GET'
                   }).then(res => res.json())
                   .then((data) => {
                         console.log(data);
-                        setWeatherData(data.daily[0].humidity);
+                        setWthrData(data);
                         console.log(weatherData);
                   })
                   .catch(console.log)
@@ -80,7 +88,6 @@ function WeatherData() {
             WthData();
         }
         console.log("weatherData",weatherData);
-        // setLoading(false);
 
         const handleScreenResize = () => {
 			if (window.innerWidth < 768) {
@@ -97,6 +104,8 @@ function WeatherData() {
 
         setLoading(false);
 
+        console.log("we",weatherData);
+
 		return () => window.removeEventListener('resize', handleScreenResize);
     }, [weatherData]);
     
@@ -105,6 +114,8 @@ function WeatherData() {
     }
 
       const DailyCard = (weather) => {
+
+        console.log("Weeee",weatherData);
         return (
             <Box maxW='sm' borderWidth='1px' overflow='hidden' borderRadius={'10px'} marginTop={4}>
             <Box p='6' backgroundImage={'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80'}>
@@ -176,7 +187,9 @@ function WeatherData() {
     <>
     <Topbar />    
 
-    <Swiper
+    <h1 align="center">Weather Forecast</h1>
+
+    {display ? <Swiper
         slidesPerView={slidesPerView}
         spaceBetween={0}
         navigation
@@ -208,7 +221,7 @@ function WeatherData() {
         <SwiperSlide>
             {DailyCard(weatherData.daily[7])}
         </SwiperSlide>
-      </Swiper>
+      </Swiper> : null}
     </>
     );
 }
