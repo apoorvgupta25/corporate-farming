@@ -1,34 +1,37 @@
 import React, {useState} from 'react';
 import {Link, Navigate, useParams} from 'react-router-dom';
 import { Alert } from 'reactstrap';
+
 import { addContractToDB } from './contractAPICall';
-import '../../user/farmer/add.css'
 import {isAuth} from '../../auth/authAPICalls'
+
 import Topbar from "../../component/topbar/topbar";
 import CircleModal from '../../component/animation/CircleModal';
 
+import '../../user/farmer/add.css'
 
 const Contract = () => {
-    const {productId, farmerId,isProd } = useParams();
+    const {productId, farmerId, isProd} = useParams();
     const [values, setValues] = useState({
         duration: '',
-        document: '',
-        createdContract: '',
+        contract_document: '',
         error: '',
-        success: false,
         saving: false,
         createdId: '',
+        formData: new FormData()
     });
 
-    const {
-        duration, document, createdContract, error, success, saving, createdId
-    } = values;
+    const { duration, error,saving, createdId, formData } = values;
 
-    const [count, setCount] = useState(0);
     const {user, token} = isAuth();
 
-
     const handleChange = name => event => {
+        let value = event.target.value;
+        if(name === "contract_document")
+            value = event.target.files[0]
+
+        formData.set(name, value);
+
         setValues({...values, error: false, [name]: event.target.value});
     }
 
@@ -37,9 +40,9 @@ const Contract = () => {
             <Alert
                 className="pb-0 text-center"
                 color="success"
-                style={{ display: createdContract ? '' : 'none' }}
+                style={{ display: createdId ? '' : 'none' }}
             >
-                <h5><Link to={`/product/${createdId}`} className="text-primary">{createdContract}</Link> Created Successfully</h5>
+                <h5><Link to={`/contract/view/${createdId}`} className="text-primary">Contract </Link>Created Successfully</h5>
             </Alert>
         )
     }
@@ -56,15 +59,16 @@ const Contract = () => {
         )
     }
 
-  const onSubmit = event => {
+   const onSubmit = event => {
       event.preventDefault()
       setValues({...values, error: false, saving: true})
-      const farmer = farmerId;
-      const corporate = user._id;
-      const product = productId;
-      const contract = {farmer, corporate, isProd, duration, product, document};
-      console.log(contract);
-      addContractToDB(user._id, token, contract)
+
+      formData.set("farmer", farmerId)
+      formData.set("corporate", user._id)
+      formData.set("product", productId)
+      formData.set("isProd", isProd)
+
+      addContractToDB(user._id, token, formData)
           .then(data => {
               if(data.error){
                   setValues({...values, error: data.error, saving: false});
@@ -72,9 +76,8 @@ const Contract = () => {
               else{
                   setValues({...values,
                       duration: '',
-                      document: '',
+                      contract_document: '',
                       saving: false,
-                      createdContract: data.title,
                       createdId: data._id
                   });
               }
@@ -94,11 +97,10 @@ const Contract = () => {
                 <form method="POST" className="add-form">
                     <h2 className="add-heading" align="center">New Contract</h2>
 
-                    <p className="text-dark pull-right">{count}/11</p>
-                    <label className="add-label">Duration</label>
+                    <label className="add-label">Duration (in months)</label>
                     <input className="add-input" type="number" name="Duration" onChange={handleChange("duration")} value={duration} min="1" placeholder="Duration" required/>
-                    <label className="add-label">Upload PDF</label>
-                    <input className="add-input" type="text" name="Document" onChange={handleChange("document")} value={document} placeholder="Upload pdf"  required />
+                    <label className="add-label">Upload Contract PDF</label>
+                    <input className="add-input" type="file" name="contract_document" onChange={handleChange("contract_document")} placeholder="Upload pdf"  accept="application/pdf" required />
 
                     <div className="form-button">
                         <input className="btn btn-primary w-100" type="submit" name="submit" onClick={onSubmit} value="Submit" />

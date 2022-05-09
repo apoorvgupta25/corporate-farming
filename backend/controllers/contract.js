@@ -1,32 +1,51 @@
 const Contract = require('../models/contract')
-
 const _ = require('lodash')
+const fs = require('fs');
+const formidable = require('formidable')
 
 exports.addContract = (req, res) => {
 
-    const contract = new Contract(req.body);
-    // console.log(contract);
-    const {
-      farmer, corporate, duration, product, isProd, status, document
-    } = contract;
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
 
-    if(!farmer || !corporate || !duration || !product || !isProd || !status  ||
-        !document){
+    form.parse(req, (err, fields, file) => {
+        if(err){
+            return res.status(400).json({
+                error: "Problem with File"
+            });
+        }
+
+        const { farmer, corporate, duration, product, isProd, status, contract_document } = fields
+
+        if(!farmer || !corporate || !duration || !product || !isProd){
             return res.status(400).json({
                 error: "Please Include all fields"
             });
-    }
-
-    contract.save((err, contract) => {
-        if(err){
-            return res.status(400).json({
-                error: "Not able to save the Contract in db"
-            });
         }
-        res.json(contract);
-    });
-}
 
+        const contract = new Contract(fields);
+        if(file.contract_document){
+            if(file.contract_document.size > 3000000){
+                return res.status(400).json({
+                  error: "File size too big!"
+                });
+            }
+
+            contract.contract_document.data = fs.readFileSync(file.contract_document.filepath);
+            contract.contract_document.contentType = file.contract_document.mimetype;
+        }
+
+
+        contract.save((err, contract) => {
+            if(err){
+                return res.status(400).json({
+                    error: "Not able to save the Contract in db"
+                });
+            }
+            res.json(contract);
+        });
+    })
+}
 
 exports.getContractById = (req, res, next, id) => {
 
@@ -42,14 +61,24 @@ exports.getContractById = (req, res, next, id) => {
 };
 
 exports.getContract = (req, res) => {
+    req.contract.contract_document = undefined;
     return res.json(req.contract);
 };
+
+exports.documents = (req, res, next) => {
+    if(req.contract.contract_document.data){
+        res.set("Content-Type", req.contract.contract_document.contentType);
+        return res.send(req.contract.contract_document.data)
+    }
+    next();
+}
 
 exports.getAllContracts = (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : 1000000;
     let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
 
     Contract.find()
+        .select("-contract_document")
         .sort([[sortBy, 'descending']])
         .limit(limit)
         .exec((err, contracts) => {
@@ -64,16 +93,46 @@ exports.getAllContracts = (req, res) => {
 
 exports.updateContract = (req, res) => {
 
-    let contract = req.contract;
-    contract = _.extend(contract, req.body)
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
 
-    contract.save((err, updatedContract) => {
+    form.parse(req, (err, fields, file) => {
         if(err){
             return res.status(400).json({
-                error: "Not able to update Contract in db"
+                error: "Problem with PDF"
             });
         }
-        res.json(updatedContract);
+
+
+        let contract = req.contract;
+        const p_id = contract._id;
+        let new_contract = new Contract(fields);
+        let id_contract = new Contract({'_id': p_id});
+
+        _.merge(contract, new_contract);
+        _.merge(contract, id_contract);
+
+        Contract.find({ '_id':p_id }).deleteOne().exec();
+
+        if(file.contract_document){
+            if(file.contract_document.size > 3000000){
+                return res.status(400).json({
+                  error: "Image size too big!"
+                });
+            }
+
+            contract.contract_document.data = fs.readFileSync(file.contract_document.filepath);
+            contract.contract_document.contentType = file.photo.mimetype;
+        }
+
+        contract.save((err, contract) => {
+            if(err){
+                return res.status(400).json({
+                    error: `${err} Not able to save Land in DB`
+                });
+            }
+            res.json(contract);
+        });
     });
 };
 

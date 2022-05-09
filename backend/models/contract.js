@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const contractSchema = new mongoose.Schema(
   {
+    contract_document: {
+        data: Buffer,
+        contentType: String,
+    },
     farmer: {
       type: String,
     },
@@ -25,9 +29,6 @@ const contractSchema = new mongoose.Schema(
     reason: {
         type: String,
         default: "",
-    },
-    document: {
-        type: String
     },
 
   },

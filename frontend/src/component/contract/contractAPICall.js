@@ -7,10 +7,9 @@ export const addContractToDB = (userId, token, contract) => {
         method: "POST",
         headers: {
             Accept: "application/json",
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(contract)
+        body: contract
     })
     .then(response =>{
         return response.json();

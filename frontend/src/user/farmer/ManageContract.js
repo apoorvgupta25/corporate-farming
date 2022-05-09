@@ -109,7 +109,7 @@ const ManageContract = () => {
                                 <tr key={index}>
 
                                   <td>{contract.duration}</td>
-                                  <td>{contract.document}</td>
+                                  <td><a href={`${API}/contract/pdf/${contract._id}`} target="_blank" className="text-primary">Contract</a> </td>
                                   <td>{contract.status}</td>
 
                                   <td className="p-3">

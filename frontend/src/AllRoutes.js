@@ -64,10 +64,12 @@ export default function AllRoutes(){
 
                 <Route path="/messenger" exact element={<Messenger/>}/>
                 <Route path="/quickMessenger/:productId/:friendId/:isProd/" exact element={<CorporateRoute><QuickMessenger/></CorporateRoute>}/>
+
                 <Route path="/contract/:productId/:farmerId/:isProd" exact element={<CorporateRoute><Contract/></CorporateRoute>}/>
                 <Route path='/contract/manage/' exact element={<ManageContract/>}/>
                 <Route path='/contract/statusChange/:contractId/:newstatus' exact element={<StatusChangeContract/>}/>
                 <Route path='/contract/view/:contractId' exact element={<ViewContract/>}/>
+
                 <Route path='/dashboard/:userId' exact element={<PrivateRoute><FarmerDashboard/></PrivateRoute>}/>
 
                 <Route path='/farmer/dashboard/:userId' exact element={<PrivateRoute><FarmerDashboard/></PrivateRoute>}/>

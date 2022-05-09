@@ -1,16 +1,17 @@
-
-
-import "../messenger/messenger.css";
-import Topbar from "../topbar/topbar";
 import React, {useState, useRef, useEffect}  from "react";
-import { getAllMessages, postMessage } from "../messenger/messengerAPICall";
+import { format } from "timeago.js";
+import { Link, useParams } from "react-router-dom";
+
+import {API} from '../../backend';
 import {isAuth} from '../../auth/authAPICalls';
+import { getContract } from "./contractAPICall";
+import { getAllMessages, postMessage } from "../messenger/messengerAPICall";
+
+import Topbar from "../topbar/topbar";
 import Message from "../message/message";
 import BouncingBall from '../animation/BouncingBall';
-import { Link } from "react-router-dom";
-import {useParams} from 'react-router-dom';
-import { getContract } from "./contractAPICall";
-import { format } from "timeago.js";
+
+import "../messenger/messenger.css";
 
 export default function ViewContract() {
   const [currentChat, setCurrentChat] = useState(null);
@@ -18,9 +19,9 @@ export default function ViewContract() {
   const [isprod, setisprod] = useState('');
   const [receiverNumber, setReceiverNumber] = useState(null);
   const [conversations, setConversations] = useState([]);
-  
 
- 
+
+
 
   const [messages, setMessages] = useState([]);
   const [contract, setContract] = useState([]);
@@ -58,7 +59,7 @@ export default function ViewContract() {
     }else{
       link = "/product/"+productId;
     }
-     
+
     return link;
   }
 
@@ -78,7 +79,7 @@ export default function ViewContract() {
         loadContract(contractId);
         setCurrentChat(contractId);
     },[])
-   
+
 
     const getMessages = () => {
       getAllMessages(currentChat)
@@ -106,17 +107,17 @@ export default function ViewContract() {
             <h3 className="font-weight-bold text-dark">Contract Details</h3>
           <br></br>
           {isLoading && <BouncingBall/>}
-                        
+
           <h4>Duration: {contract.duration}</h4>
           <h4>Status: {contract.status}</h4>
           {contract.status !== 'proposed' && (
                 <h4>Reason: {contract.reason}</h4>
             )}
 
-          <h4>Document: {contract.document}</h4>
+          <h4>Document: <a href={`${API}/contract/pdf/${contract._id}`} target="_blank" className="text-primary">Contract</a> </h4>
           <h4>Created At: {format(contract.createdAt)}</h4>
           <h4>Updated At: {format(contract.updatedAt)}</h4>
-          
+
             {isAuth().user.role === 0 && contract.status === 'proposed' && (
                 <Link to={`/contract/statusChange/${contractId}/rejected`} style={{ textDecoration: 'none', color: 'white' }}>
                     <button className="btn btn-success btn-sm float-right ml-1">
@@ -130,7 +131,7 @@ export default function ViewContract() {
                     Accept Contract
                   </button>
                 </Link>
-                
+
             )}
             <Link target="_blank" to={getlink(contract.product,contract.isProd)} style={{ textDecoration: 'none', color: 'white' }}>
                   <button className="btn btn-success btn-sm float-right ml-1">
@@ -141,11 +142,11 @@ export default function ViewContract() {
           </div>
             <s />
           </div>
-          
+
           <div className="chatBox">
-          
+
           <div className="chatBoxWrapper">
-          
+
                {currentChat ? (
               <>
                 <div className="chatBoxTop">

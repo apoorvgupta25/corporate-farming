@@ -17,6 +17,7 @@
 	font-size: 1rem;
 	line-height: 1.8;
 	color: #fff;
+	min-height: 100vh;
 	background-repeat: no-repeat;
 	background-size: cover;
 	-moz-background-size: cover;
