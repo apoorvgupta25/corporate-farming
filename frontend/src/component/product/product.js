@@ -1,15 +1,15 @@
 import React, {useState, useEffect}  from "react";
-
-import {getProduct} from './productAPICall'
 import {useParams} from 'react-router-dom';
+
 import {API} from '../../backend';
-import Navbar from '../Navbar';
+import {getProduct} from './productAPICall'
 import {isAuth, signout} from '../../auth/authAPICalls';
 
-import '../land_product_style.css';
+import Navbar from '../Navbar';
 import Topbar from "../topbar/topbar";
 import ChatNowButton from "../chatNowButton/chatNowButton";
 import ThreeDotsWave from '../animation/ThreeDotsWave';
+import '../land_product_style.css';
 
 const Product = () => {
 
@@ -108,21 +108,21 @@ const Product = () => {
         <Topbar/>
         <div className="card-wrapper">
             <div className="card">
-                <div className="imgs">
-                    <img src={require(`../../assets/crops/${filename}.jpg`)} />
+                <div className="img-container">
+                    <img src={require(`../../assets/crops/${filename}.jpg`)} className="image-styling" />
                 </div>
 
                 <div className="content">
                     <h2 className="title">{product.title}</h2>
 
                     <div className="price">
-                        <h3>₹ {product.price}</h3>
+                        <h3>₹ {product.price} (Per Kg.)</h3>
                     </div>
                     <div>
                         <h5>🌿: {product.cropName} - {product.cropSubType}</h5>
                     </div>
 
-                    <div className="detail">
+                    <div className="my-3">
                         <h3>Product Description </h3>
                         <h5>{product.description}</h5>
                     </div>
@@ -133,25 +133,25 @@ const Product = () => {
                         <button type="button" onClick={s3} id="btn3" className="btn btn-primary segmentedButton">Farmer Details</button>
                     </div>
 
-                    <div id="section1" style={{display: 'block'}}>
-                        <h4>Order Capacity: {product.minimumOrderQuantity} - {product.maximumOrderQuantity}</h4>
-                        <h4>Harvest Month: {product.harvestMonth}</h4>
-                        <h4>Delivery Month: {product.deliveryMonth}</h4>
-                        <h4>Payment before Harvest: ₹ {product.paymentBeforeharvest}</h4>
+                    <div id="section1" style={{display: 'block', marginTop:'1rem'}}>
+                        <h4><b>Order Capacity</b>: {product.minimumOrderQuantity} - {product.maximumOrderQuantity} (Kg.)</h4>
+                        <h4><b>Harvest Month</b>: {product.harvestMonth}</h4>
+                        <h4><b>Delivery Month</b>: {product.deliveryMonth}</h4>
+                        <h4><b>Payment before Harvest</b>: ₹ {product.paymentBeforeharvest}</h4>
                     </div>
-                    <div id="section2" style={{display: 'none'}}>
-                        <h4>Land Size (in acres): 10</h4>
-                        <h4>Rainfall: 10 mm</h4>
-                        <h4>📍: Jalgaon</h4>
+                    <div id="section2" style={{display: 'none', marginTop:'1rem'}}>
+                        <h4><b>Land Size (in acres)</b>: 10</h4>
+                        <h4><b>Rainfall</b>: 10 mm</h4>
+                        <h4><b>Address📍</b>: Jalgaon</h4>
                     </div>
-                    <div id="section3" style={{display: 'none'}}>
+                    <div id="section3" style={{display: 'none', marginTop:'1rem'}}>
                         <h4>🤵: {product.farmer.name}</h4>
                         <h4>📱: +91 {product.farmer.contact}</h4>
                         <h4>✉: {product.farmer.email}</h4>
                     </div>
 
                     {isAuth() && isAuth().user.role==1 && isAuth().user.verification=="Verified" &&(
-                        <div className="purchase-info">
+                        <div className="d-flex justify-content-center">
                             <ChatNowButton userId={product.farmer._id} productId={product._id} productName={product.title} isProd="1"/>
                         </div>
                     )}

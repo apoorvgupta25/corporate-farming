@@ -1,17 +1,16 @@
 import React, {useState, useEffect}  from "react";
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
+import $ from 'jquery';
 
-import {getLand} from './landAPICall'
-import {useParams} from 'react-router-dom';
 import {API} from '../../backend';
-import Navbar from '../Navbar';
+import {getLand} from './landAPICall'
 import {isAuth, signout} from '../../auth/authAPICalls';
 
-import $ from 'jquery';
+import Navbar from '../Navbar';
 import Topbar from "../topbar/topbar";
-import '../land_product_style.css';
 import ChatNowButton from "../chatNowButton/chatNowButton";
 import ThreeDotsWave from '../animation/ThreeDotsWave';
+import '../land_product_style.css';
 
 const Land = () => {
 
@@ -103,12 +102,11 @@ const Land = () => {
     return (
         <>
         <Topbar/>
-        <div className="">
+        <div>
             <div className="card-wrapper" >
                 <div className="card">
-
-                    <div className="imgs">
-                        <img src={imageURL} alt="Land image" style={{height:'100%',borderRadius: '20px'}} className="img" />
+                    <div className="img-container">
+                        <img src={imageURL} alt="Land image" className="image-styling" />
                     </div>
 
                     <div className="content">
@@ -121,7 +119,7 @@ const Land = () => {
                             <h5>🕒 : {land.bondTime} months</h5>
                         </div>
 
-                        <div className="detail">
+                        <div className="my-3">
                             <h3>Land Description </h3>
                             <h5>{land.description}</h5>
                         </div>
@@ -132,25 +130,25 @@ const Land = () => {
                             <button type="button" onClick={s3} id="btn3" className="btn btn-primary segmentedButton">Farmer Details</button>
                         </div>
 
-                        <div id="section1" style={{display: 'block'}}>
+                        <div id="section1" style={{display: 'block', marginTop:'1rem'}} >
                             <h4><b>Land Size (in acres)</b>: {land.landProperties.totalArea}</h4>
                             <h4><b>State</b>: {land.landProperties.state}</h4>
-                            <h4><b>📍</b>: {land.landProperties.location}</h4>
+                            <h4><b>Address 📍</b>: {land.landProperties.location}</h4>
                         </div>
-                        <div id="section2" style={{display: 'none'}}>
+                        <div id="section2" style={{display: 'none', marginTop:'1rem'}}>
                             <h4><b>District</b>: {land.landProperties.district}</h4>
                             <h4><b>Taluka</b>: {land.landProperties.taluka}</h4>
                             <h4><b>Village</b>: {land.landProperties.village}</h4>
                             <h4><b>Survey No</b>: {land.landProperties.survey}</h4>
                         </div>
-                        <div id="section3" style={{display: 'none'}}>
+                        <div id="section3" style={{display: 'none', marginTop:'1rem'}}>
                             <h4>🤵: {land.farmer.name}</h4>
                             <h4>📱: +91 {land.farmer.contact}</h4>
                             <h4>✉: {land.farmer.email}</h4>
                         </div>
 
                         {isAuth() && isAuth().user.role==1 && isAuth().user.verification=="Verified" &&(
-                            <div className="purchase-info" >
+                            <div className="d-flex justify-content-center">
                                 <ChatNowButton userId={land.farmer._id} productId={land._id} productName={land.title} isProd="0"/>
                             </div>
                         )}

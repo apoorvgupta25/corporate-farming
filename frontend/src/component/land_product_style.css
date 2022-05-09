@@ -1,21 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
 
-/* *{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-} */
-
-/* .container-detail{
-    height: 100%;
-    line-height: 1.5;
-    background-image: url('bgimage-land.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-} */
-
 select{
     display: block;
     width: 250px;
@@ -42,49 +26,45 @@ select{
     margin-top: 3%;
     font-weight: bolder;
 }
-.content-section h4 {
-    /* font-size: 18px; */
-}
 
 .segmentedButton{
     width: 33.3%;
 }
 
 .card {
+    border-radius: 15px;
     height: 100%;
 }
 
 .card-wrapper{
-    margin: 1%;
     height: auto;
-    padding: 2%;
+    margin: 2.5rem;
+    padding: 1%;
     border-radius: 15px;
     background-color:whitesmoke;
-    height: auto;
-    /* width: 70%;
-    height: 70%; */
-    /* padding-right: 3%; */
-    /* margin-top: 15%;
-    margin-bottom: 15%; */
 }
 
 img{
     margin-bottom: 2%;
     width: 100%;
     display: block;
-    /* height: auto; */
-    /* padding-bottom: 2%; */
 }
 
-.imgs {
-    height: 40rem;
+.image-styling{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.img-container {
+    height: 35rem;
     padding:1rem;
-    /* border-radius: 20px; */
 }
 .content{
     padding: 2rem 1rem;
-    /* margin-bottom: 8%; */
 }
+
 .title{
     font-size: 2rem;
     text-transform: capitalize;
@@ -109,55 +89,6 @@ img{
     font-weight: 700;
 }
 
-.detail{
-    margin-top: 5%;margin-bottom: 5%;
-}
-
-.detail p{
-    font-size: 0.9rem;
-    padding: 0.3rem;
-    opacity: 0.8;
-    font-weight: 700;
-    font-size: medium;
-}
-
-.detail h3{
-    font-weight: bold
-}
-
-.purchase-info{
-    margin: 1.5rem 0;
-    margin-top: 5%;
-    display: flex;
-    justify-content: center;
-}
-.purchase-info input,
-.purchase-info .btn{
-    border: 1.5px solid #ddd;
-    border-radius: 25px;
-    text-align: center;
-    padding: 0.45rem 0.8rem;
-    outline: 0;
-    margin-right: 0.2rem;
-    margin-bottom: 1rem;
-}
-.purchase-info input{
-    width: 60px;
-}
-.purchase-info .btn{
-    cursor: pointer;
-    color: #fff;
-}
-.purchase-info .btn:first-of-type{
-    background: #256eff;
-}
-.purchase-info .btn:last-of-type{
-    background: #f64749;
-}
-.purchase-info .btn:hover{
-    opacity: 0.9;
-}
-
 @media screen and (min-width: 992px){
     .card{
         display: grid;
@@ -165,7 +96,7 @@ img{
         grid-gap: 1.5rem;
     }
     .card-wrapper{
-        height: 95vh;
+        /* height: 100vh; */
         display: flex;
         justify-content: center;
         align-items: center;

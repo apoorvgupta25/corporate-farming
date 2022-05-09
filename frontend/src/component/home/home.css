@@ -22,7 +22,6 @@ a, a:visited, a:hover, a:active {
     display: flex;
     align-items: center;
 
-    border-radius: 5px;
     box-shadow: 2px 2px 4px 2px rgb(0 0 0 / 15%);
     border-radius: 10px;
 
@@ -43,11 +42,6 @@ a, a:visited, a:hover, a:active {
     align-items: center;
 
 }
-
-.item-crop {
-
-}
-
 .item-price {
     margin-left: 3rem;
 }

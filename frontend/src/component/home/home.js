@@ -85,7 +85,8 @@ function Home() {
 function Card({land}) {
 
     var title = "title";
-    var location = "description";
+    var district = "description";
+    var state = "state"
     var duration = "date";
     var imageURL = "https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg";
     var landSize = "title";
@@ -93,7 +94,8 @@ function Card({land}) {
 
     if(land._id){
         title = land.title;
-        location = land.landProperties.city;
+        district = land.landProperties.district;
+        state = land.landProperties.state;
         duration = land.bondTime;
         landSize = land.landProperties.totalArea;
         price = land.expectedProfit.exactAmount;
@@ -106,7 +108,7 @@ function Card({land}) {
                 <img className="land__img" src={imageURL} />
                 <div className="land__body">
                     <h2 className="land__title">{title}</h2>
-                    <p className="land__location">{location}</p>
+                    <p className="land__location">{district}, {state}</p>
                     <p className="land__duration">{duration} months</p>
                     <p className="land__size">{landSize} acres</p>
                     <h3 className="land__price">{price}</h3>
