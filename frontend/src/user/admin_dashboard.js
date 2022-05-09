@@ -54,15 +54,16 @@ const AdminDashboard = () => {
     const adminLeftSide = () => {
         return (
             <div>
+                <h4 className="card-header bg-dark text-white">Verify</h4>
                 <ul className="list-group">
                     <li className="list-group-item">
-                        <Link to="/admin/farmer/verification" className="text-success" style={{ textDecoration:'none'}}>Verify Farmers</Link>
+                        <Link to="/admin/farmer/verification" className="text-success" style={{ textDecoration:'none'}}>Farmers</Link>
                     </li>
                     <li className="list-group-item">
-                        <Link to="/admin/corporate/verification" className="text-success" style={{ textDecoration:'none'}}>Verify Corporates</Link>
+                        <Link to="/admin/corporate/verification" className="text-success" style={{ textDecoration:'none'}}>Corporates</Link>
                     </li>
                     <li className="list-group-item">
-                        <Link to="/admin/land/verification" className="text-success" style={{ textDecoration:'none'}}>Verify Land</Link>
+                        <Link to="/admin/land/verification" className="text-success" style={{ textDecoration:'none'}}>Land</Link>
                     </li>
                 </ul>
             </div>

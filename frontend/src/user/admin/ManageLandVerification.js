@@ -95,10 +95,10 @@ const ManageLandVerification = () => {
                     <div className="h5"><b>Village </b>: {land.landProperties.village}</div>
                     <div className="h5"><b>Survey No. </b>: {land.landProperties.survey}</div>
                     <div className="h5"><b>Total Land Area </b>: {land.landProperties.totalArea} Acres</div>
-
                 </div>
 
                 <div className="col-6">
+                    <div className="h5"><a href={`${API}/land/pdf/${land._id}`} target="_blank"><b>Land Record PDF </b> </a> </div>
                     <div className="h5"><b>Name </b>: {land.farmer.name}</div>
                     <div className="h5"><b>Contact </b>: {land.farmer.contact}</div>
                     <div className="h5"><b>Email </b>: {land.farmer.email}</div>
