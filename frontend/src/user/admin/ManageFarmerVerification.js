@@ -4,8 +4,7 @@ import { Person } from "@material-ui/icons";
 
 import {API} from '../../backend';
 import {isAuth} from '../../auth/authAPICalls';
-import {getUnverifiedFarmers, getVerifiedFarmers, getInvalidFarmers, getVerificationEnums, updateVerification,
-    getUnverifiedCorporates, getVerifiedCorporates, getInvalidCorporates } from './adminAPICall';
+import {getUnverifiedFarmers, getVerifiedFarmers, getInvalidFarmers, getVerificationEnums, updateVerification} from './adminAPICall';
 import ThreeDotsWave from '../../component/animation/ThreeDotsWave';
 import Topbar from "../../component/topbar/topbar";
 
@@ -170,7 +169,6 @@ const ManageFarmerVerification = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

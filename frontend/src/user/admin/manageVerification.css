@@ -29,12 +29,20 @@
     border-radius: 10px;
 }
 
+
+.land-list-item {
+    background: #f8f8f8;
+    width: 40rem;
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    align-items: flex-end;
+    box-shadow: 2px 2px 4px 2px rgb(0 0 0 / 15%);
+    border-radius: 10px;
+}
+
 .enumSelect {
     height: 2rem;
     width: 100%;
     border-radius: 5px;
-    /* padding-left: 1px; */
-    /* width: 140px; */
-    /* background-color: #FFC107; */
     margin-bottom: 0.8rem;
 }

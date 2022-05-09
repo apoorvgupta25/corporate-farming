@@ -161,7 +161,6 @@ exports.isCorporate = (req,res,next) =>{
 };
 
 exports.isAdmin = (req,res,next) =>{
-    // console.log("Admin", req.profile.role);
     if(req.profile.role === 2){
         next();
     } else{

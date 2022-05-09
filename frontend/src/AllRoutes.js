@@ -34,6 +34,7 @@ import CorporateDashboard from './user/corporate_dashboard';
 import AdminDashboard from './user/admin_dashboard';
 import ManageFarmerVerification from './user/admin/ManageFarmerVerification';
 import ManageCorporateVerification from './user/admin/ManageCorporateVerification';
+import ManageLandVerification from './user/admin/ManageLandVerification';
 import ManageContract from './user/farmer/ManageContract';
 import ViewContract from './component/contract/viewcontract';
 import StatusChangeContract from './component/contract/statusChangeContract';
@@ -82,6 +83,7 @@ export default function AllRoutes(){
                 <Route path='/admin/dashboard/:userId' exact element={<AdminRoute><AdminDashboard/></AdminRoute>}/>
                 <Route path='/admin/farmer/verification' exact element={<AdminRoute><ManageFarmerVerification/></AdminRoute>}/>
                 <Route path='/admin/corporate/verification' exact element={<AdminRoute><ManageCorporateVerification/></AdminRoute>}/>
+                <Route path='/admin/land/verification' exact element={<AdminRoute><ManageLandVerification/></AdminRoute>}/>
 
             </Routes>
         </Router>

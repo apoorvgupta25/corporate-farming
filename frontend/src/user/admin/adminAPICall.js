@@ -114,3 +114,76 @@ export const updateVerification = (farmerId, userId, token, verificationStatus) 
     })
     .catch(err => console.log(err));
 }
+
+export const getUnverifiedLands = (userId, token) => {
+    return fetch(`${API}/lands/admin/${userId}?filterBy=Unverified`,{
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response =>{
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+export const getVerifiedLands = (userId, token) => {
+    return fetch(`${API}/lands/admin/${userId}?filterBy=Verified`,{
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response =>{
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+export const getInvalidLands = (userId, token) => {
+    return fetch(`${API}/lands/admin/${userId}?filterBy=Invalid`,{
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response =>{
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+export const getLandVerificationEnums = (userId, token) => {
+    return fetch(`${API}/verification/land/enums/${userId}`,{
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then(response =>{
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+export const updateLandVerification = (landId, userId, token, verificationStatus) => {
+    return fetch(`${API}/verification/land/update/${landId}/${userId}`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            "Access-Control-Allow-Origin": "*"
+        },
+        body:JSON.stringify(verificationStatus)
+    })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}

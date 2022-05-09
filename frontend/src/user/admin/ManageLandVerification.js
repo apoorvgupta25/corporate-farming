@@ -4,7 +4,7 @@ import { Person } from "@material-ui/icons";
 
 import {API} from '../../backend';
 import {isAuth} from '../../auth/authAPICalls';
-import {getVerificationEnums, updateVerification, getUnverifiedCorporates, getVerifiedCorporates, getInvalidCorporates } from './adminAPICall';
+import {getLandVerificationEnums, updateLandVerification, getUnverifiedLands, getVerifiedLands, getInvalidLands } from './adminAPICall';
 import ThreeDotsWave from '../../component/animation/ThreeDotsWave';
 import Topbar from "../../component/topbar/topbar";
 
@@ -12,11 +12,11 @@ import './manageVerification.css';
 
 import { ReactComponent as Elink }  from '../../assets/external-link.svg'
 
-const ManageCorporateVerification = () => {
+const ManageLandVerification = () => {
 
-    const [corporates, setCorporates] = useState([])
-    const [verifiedCorporates, setVerifiedCorporates] = useState([])
-    const [invalidCorporates, setInvalidCorporates] = useState([])
+    const [lands, setLands] = useState([])
+    const [verifiedLands, setVerifiedLands] = useState([])
+    const [invalidLands, setInvalidLands] = useState([])
     const [loading, setLoading] = useState(true)
 
     const [statusEnums, setStatusEnums] = useState([])
@@ -26,21 +26,21 @@ const ManageCorporateVerification = () => {
 
     const preload = () => {
 
-        getUnverifiedCorporates(user._id, token)
+        getUnverifiedLands(user._id, token)
         .then(data => {
-            setCorporates(data)
+            setLands(data)
             setLoading(false);
         });
 
-        getVerifiedCorporates(user._id, token)
+        getVerifiedLands(user._id, token)
         .then(data => {
-            setVerifiedCorporates(data)
+            setVerifiedLands(data)
             setLoading(false);
         });
 
-        getInvalidCorporates(user._id, token)
+        getInvalidLands(user._id, token)
         .then(data => {
-            setInvalidCorporates(data)
+            setInvalidLands(data)
             setLoading(false);
         });
     };
@@ -51,7 +51,7 @@ const ManageCorporateVerification = () => {
     }, []);
 
     const getEnums = () => {
-        getVerificationEnums(user._id, token)
+        getLandVerificationEnums(user._id, token)
         .then(data => {
             if(data.error){
                 console.log(data.error);
@@ -63,14 +63,13 @@ const ManageCorporateVerification = () => {
         })
     }
 
-    console.log(loading);
-    const handleChange = usersId => event => {
-        const usersIdStatus = {
-            "usersId": usersId,
+    const handleChange = landId => event => {
+        const landIdStatus = {
+            "landId": landId,
             "verification":event.target.value
         }
 
-        updateVerification(usersId, user._id, token, usersIdStatus)
+        updateLandVerification(landId, user._id, token, landIdStatus)
         .then(data => {
             if(data.error)
                 console.log(data.error);
@@ -85,18 +84,26 @@ const ManageCorporateVerification = () => {
         return <ThreeDotsWave/>;
     }
 
-    const Corporate = ({corporate}) => {
+    const Land = ({land}) => {
         return (
-            <div className="corporate-list-item row ">
-                <div className="col-8 ml-0 pl-0">
-                    <div className="h4 font-weight-bold">{corporate.name}</div>
-                    <div className="h5">CIN : {corporate.cin}</div>
+            <div className="land-list-item row">
+                <div className="col-6 ml-0 pl-0">
+                    <div className="h4 font-weight-bold">{land.title}</div>
+                    <div className="h5"><b>State </b>: {land.landProperties.state}</div>
+                    <div className="h5"><b>District </b>: {land.landProperties.district}</div>
+                    <div className="h5"><b>Taluka </b>: {land.landProperties.taluka}</div>
+                    <div className="h5"><b>Village </b>: {land.landProperties.village}</div>
+                    <div className="h5"><b>Survey No. </b>: {land.landProperties.survey}</div>
+                    <div className="h5"><b>Total Land Area </b>: {land.landProperties.totalArea} Acres</div>
 
                 </div>
 
-                <div className="col-4">
-                    <select className="enumSelect " placeholder="Status" onChange={handleChange(corporate._id) }>
-                        <option>{corporate.verification}</option>
+                <div className="col-6">
+                    <div className="h5"><b>Name </b>: {land.farmer.name}</div>
+                    <div className="h5"><b>Contact </b>: {land.farmer.contact}</div>
+                    <div className="h5"><b>Email </b>: {land.farmer.email}</div>
+                    <select className="enumSelect " placeholder="Status" onChange={handleChange(land._id) }>
+                        <option>{land.verification}</option>
                         {statusEnums.map((stat, index) => {
                                 return ( <option value={stat} key={index}>{stat}</option> )
                             })
@@ -114,8 +121,8 @@ const ManageCorporateVerification = () => {
             <Link className="btn btn-primary ml-3 mt-3" to={`/admin/dashboard/${user._id}`}> <Person/> Dashboard</Link>
 
             <div className="text-center h1">
-                Verify Corporate Identification Numbers
-                <a href="https://www.quickcompany.in/company" target="_blank">
+                Verify Land Records
+                <a href="https://dilrmp.gov.in/faces/rptPhysicalHome/rptStateRoRonWebDetail.xhtml" target="_blank">
                  <Elink style={{width:"1.5rem", marginLeft:"1rem"}}/>
                 </a>
             </div>
@@ -123,10 +130,10 @@ const ManageCorporateVerification = () => {
             <div className="row">
                 <div className="col-6">
                     <div className="verification-container">
-                        <div className="h2 mt-3">Unverified Corporates</div>
-                        {corporates.map((corporate, index) => {
+                        <div className="h2 mt-3">Unverified Lands</div>
+                        {lands.map((land, index) => {
                             return (
-                                <div key={index}> <Corporate corporate={corporate}/> </div>
+                                <div key={index}> <Land land={land}/> </div>
                             )
                         })}
                     </div>
@@ -135,28 +142,27 @@ const ManageCorporateVerification = () => {
 
                 <div className="col-6">
                     <div className="verification-container">
-                        <div className="h2 mt-3">Verified Corporates</div>
-                        {verifiedCorporates.map((corporate, index) => {
+                        <div className="h2 mt-3">Verified Lands</div>
+                        {verifiedLands.map((land, index) => {
                             return (
-                                <div key={index}> <Corporate corporate={corporate}/> </div>
+                                <div key={index}> <Land land={land}/> </div>
                             )
                         })}
                     </div>
 
                     <div className="verification-container">
-                        <div className="h2 mt-3">Invalid Corporates</div>
-                        {invalidCorporates.map((corporate, index) => {
+                        <div className="h2 mt-3">Invalid Lands</div>
+                        {invalidLands.map((land, index) => {
                             return (
-                                <div key={index}> <Corporate corporate={corporate}/> </div>
+                                <div key={index}> <Land land={land}/> </div>
                             )
                         })}
                     </div>
                 </div>
             </div>
         </div>
-
     )
 }
 
 
-export default ManageCorporateVerification;
+export default ManageLandVerification;

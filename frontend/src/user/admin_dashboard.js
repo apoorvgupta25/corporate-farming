@@ -61,6 +61,9 @@ const AdminDashboard = () => {
                     <li className="list-group-item">
                         <Link to="/admin/corporate/verification" className="text-success" style={{ textDecoration:'none'}}>Verify Corporates</Link>
                     </li>
+                    <li className="list-group-item">
+                        <Link to="/admin/land/verification" className="text-success" style={{ textDecoration:'none'}}>Verify Land</Link>
+                    </li>
                 </ul>
             </div>
         );
@@ -80,18 +83,10 @@ const AdminDashboard = () => {
                         <div className="badge badge-success mr-2">Role</div> {roleType}
                     </li>
                 </ul>
+                <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 w-10 pull-right">Sign Out</Link>
             </div>
         );
     };
-
-    const profileImage = () => {
-        return (
-            <>
-                <img src={`${API}/user/profile/photo/${_id}`} alt="Profile Image" className="profile-image" style={{height: "150px"}}/>
-                <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 w-100">Sign Out</Link>
-            </>
-        )
-    }
 
     return (
 
@@ -101,8 +96,7 @@ const AdminDashboard = () => {
             <div className="container bg-green p-3">
                 <div className="row">
                     <div className="col-sm-3">{adminLeftSide()}</div>
-                    <div className="col-sm-7 pl-0">{adminRightSide()}</div>
-                    <div className="col-sm-2 pl-0">{profileImage()}</div>
+                    <div className="col-sm-9">{adminRightSide()}</div>
                 </div>
             </div>
 

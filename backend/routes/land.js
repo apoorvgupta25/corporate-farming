@@ -2,8 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const {getLandById, addLand, getLand, photo, landPDF, getAllLands, updateLand, removeLand,
-    getVerificationEnums, updateVerification, getAllUnverifiedLands,
-    getAllVerifiedLands, getAllInvalidLands } = require('../controllers/land')
+    getVerificationEnums, updateVerification, getAdminLands } = require('../controllers/land')
 const {getUserById} = require('../controllers/user')
 const {isFarmer, isAuthenticated, isSignedIn, isAdmin} = require('../controllers/auth')
 
@@ -22,14 +21,9 @@ router.delete('/land/:landId/:userId', isSignedIn, isAuthenticated, isFarmer, re
 
 router.get('/lands', getAllLands);
 
-//Unverified Lands
-router.get('/land/unverified/:landId', isSignedIn, isAuthenticated, isAdmin, getAllUnverifiedLands)
-//Verified Lands
-router.get('/land/verified/:landId', isSignedIn, isAuthenticated, isAdmin, getAllVerifiedLands)
-//Invalid Lands
-router.get('/land/invalid/:landId', isSignedIn, isAuthenticated, isAdmin, getAllInvalidLands)
+router.get('/lands/admin/:userId', isSignedIn, isAuthenticated, isAdmin, getAdminLands);
 
-router.get('/verification/enums/:userId', isSignedIn, isAuthenticated, isAdmin, getVerificationEnums)
-router.put('/verification/update/:landId/:userId', isSignedIn, isAuthenticated, isAdmin, updateVerification)
+router.get('/verification/land/enums/:userId', isSignedIn, isAuthenticated, isAdmin, getVerificationEnums)
+router.put('/verification/land/update/:landId/:userId', isSignedIn, isAuthenticated, isAdmin, updateVerification)
 
 module.exports = router;

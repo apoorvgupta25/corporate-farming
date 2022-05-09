@@ -55,14 +55,6 @@ exports.addLand = (req, res) => {
         if(!totalArea) return res.status(400).json({ error: "Please Add totalArea" });
 
 
-        //
-        // if(!title || !description || !bondTime || !percentage || !exactAmount  ||
-        //     !state || !district || !taluka || !village || !survey || !location || !totalArea){
-        //         return res.status(400).json({
-        //             error: "Please Include all fields"
-        //         });
-        // }
-
         let land = new Land(fields);
         land.farmer = req.profile._id;
 
@@ -109,7 +101,7 @@ exports.getAllLands = (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : 1000000;
     let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
 
-    Land.find()
+    Land.find({verification: 'Verified'})
         .select("-photo -landPDF")
         .populate("farmer", "_id name email contact")
         .sort([[sortBy, 'descending']])
@@ -117,7 +109,7 @@ exports.getAllLands = (req, res) => {
         .exec((err, lands) => {
             if(err){
                 return res.status(400).json({
-                    error: "No Product Found"
+                    error: "No Land Found"
                 });
             }
             res.json(lands);
@@ -213,41 +205,22 @@ exports.removeLand = (req, res) => {
 };
 
 
-// Unverified Lands
-exports.getAllUnverifiedLands = (req, res) => {
-    Land.find({verification: "Unverified"}).select("-photo -landPDF").exec((err, lands) => {
-        if(err || !lands){
-            return res.status(400).json({
-                error: "No land found in DB"
-            })
-        }
-        res.json(lands)
-    })
-};
+exports.getAdminLands = (req, res) => {
+    let filterBy = req.query.filterBy ? req.query.filterBy : 'Verified';
 
-// Verified Lands
-exports.getAllVerifiedLands = (req, res) => {
-    User.find({verification: "Verified"}).select("-photo -landPDF").exec((err, lands) => {
-        if(err || !lands){
-            return res.status(400).json({
-                error: "No land found in DB"
-            })
-        }
-        res.json(lands)
-    })
-};
+    Land.find({verification: filterBy})
+        .select("-photo -landPDF")
+        .populate("farmer", "_id name email contact")
+        .exec((err, lands) => {
+            if(err){
+                return res.status(400).json({
+                    error: "No Land Found"
+                });
+            }
+            res.json(lands);
+    });
+}
 
-// Invalid Land
-exports.getAllInvalidLands = (req, res) => {
-    User.find({verification: "Invalid"}).select("-photo -landPDF").exec((err, lands) => {
-        if(err || !lands){
-            return res.status(400).json({
-                error: "No land found in DB"
-            })
-        }
-        res.json(lands)
-    })
-};
 
 exports.getVerificationEnums = (req, res) => {
     res.json(Land.schema.path("verification").enumValues);
