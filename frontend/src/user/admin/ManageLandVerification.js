@@ -131,7 +131,12 @@ const ManageLandVerification = () => {
                 <div className="col-6">
                     <div className="verification-container">
                         <div className="h2 mt-3">Unverified Lands</div>
-                        {lands.map((land, index) => {
+                        {lands.length == 0 && (
+                            <div className="text-center h3 font-weight-bold">
+                                No Lands to Show
+                            </div>
+                        )}
+                        {lands.length > 0 && lands.map((land, index) => {
                             return (
                                 <div key={index}> <Land land={land}/> </div>
                             )
@@ -143,7 +148,12 @@ const ManageLandVerification = () => {
                 <div className="col-6">
                     <div className="verification-container">
                         <div className="h2 mt-3">Verified Lands</div>
-                        {verifiedLands.map((land, index) => {
+                        {verifiedLands.length == 0 && (
+                            <div className="text-center h3 font-weight-bold">
+                                No Lands to Show
+                            </div>
+                        )}
+                        {verifiedLands.length > 0 && verifiedLands.map((land, index) => {
                             return (
                                 <div key={index}> <Land land={land}/> </div>
                             )
@@ -152,7 +162,12 @@ const ManageLandVerification = () => {
 
                     <div className="verification-container">
                         <div className="h2 mt-3">Invalid Lands</div>
-                        {invalidLands.map((land, index) => {
+                        {invalidLands.length == 0 && (
+                            <div className="text-center h3 font-weight-bold">
+                                No Lands to Show
+                            </div>
+                        )}
+                        {invalidLands.length > 0 && invalidLands.map((land, index) => {
                             return (
                                 <div key={index}> <Land land={land}/> </div>
                             )

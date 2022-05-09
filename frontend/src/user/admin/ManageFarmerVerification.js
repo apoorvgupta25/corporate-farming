@@ -135,7 +135,12 @@ const ManageFarmerVerification = () => {
                 <div className="col-6">
                     <div className="verification-container">
                         <div className="h2 mt-3">Unverified Farmers</div>
-                        {farmers.map((farmer, index) => {
+                        {farmers.length == 0 && (
+                            <div className="text-center h3 font-weight-bold">
+                                No Farmers to Show
+                            </div>
+                        )}
+                        {farmers.length > 0 && farmers.map((farmer, index) => {
                             return (
                                 <div key={index}>
                                     <Farmer farmer={farmer}/>
@@ -148,7 +153,12 @@ const ManageFarmerVerification = () => {
                 <div className="col-6">
                     <div className="verification-container">
                         <div className="h2 mt-3">Verified Farmers</div>
-                        {verifiedFarmers.map((farmer, index) => {
+                        {verifiedFarmers.length == 0 && (
+                            <div className="text-center h3 font-weight-bold">
+                                No Farmers to Show
+                            </div>
+                        )}
+                        {verifiedFarmers.length > 0 && verifiedFarmers.map((farmer, index) => {
                             return (
                                 <div key={index}>
                                     <Farmer farmer={farmer}/>
@@ -159,7 +169,12 @@ const ManageFarmerVerification = () => {
 
                     <div className="verification-container">
                         <div className="h2 mt-3">Invalid Farmers</div>
-                        {invalidFarmers.map((farmer, index) => {
+                        {invalidFarmers.length == 0 && (
+                            <div className="text-center h3 font-weight-bold">
+                                No Farmers to Show
+                            </div>
+                        )}
+                        {invalidFarmers.length > 0 && invalidFarmers.map((farmer, index) => {
                             return (
                                 <div key={index}>
                                     <Farmer farmer={farmer}/>

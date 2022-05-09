@@ -81,15 +81,22 @@ const ManageContract = () => {
             <Link className="btn btn-primary ml-5 mt-3" to={`/farmer/dashboard/${user._id}`}> <Person/> Dashboard</Link>
             <h1 className="text-center mb-5">Manage Contracts</h1>
             <div className="filter-sort">
-            <b className="h4">Filter By Status:&nbsp;</b>
-            <select onChange={(e) => setFilterType(e.target.value)}>
-                <option value="proposed">proposed</option>
-                {statuses.map(status => {
-                    return <option value={status}>{status}</option>;
-                })}
-            </select>&nbsp;&nbsp;
-        </div><br></br>
+                <b className="h4">Filter By Status:&nbsp;</b>
+                <select onChange={(e) => setFilterType(e.target.value)}>
+                    <option value="proposed">proposed</option>
+                    {statuses.map(status => {
+                        return <option value={status}>{status}</option>;
+                    })}
+                </select>&nbsp;&nbsp;
+            </div><br></br>
         {showNoLand ? <NoLandDisplay /> : null}
+
+        {contracts.length==0 && (
+            <div className="text-center h1 font-weight-bold">
+                No Contracts
+            </div>
+        )}
+        {contracts.length >0 && (
             <div className="text-dark table-responsive pl-5 pr-5">
                 <table className="table">
                     <thead>
@@ -128,6 +135,8 @@ const ManageContract = () => {
                     </tbody>
                 </table>
             </div>
+        )}
+
 
         </div>
     )

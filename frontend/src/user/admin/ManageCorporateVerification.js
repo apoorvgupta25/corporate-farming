@@ -124,7 +124,12 @@ const ManageCorporateVerification = () => {
                 <div className="col-6">
                     <div className="verification-container">
                         <div className="h2 mt-3">Unverified Corporates</div>
-                        {corporates.map((corporate, index) => {
+                        {corporates.length == 0 && (
+                            <div className="text-center h3 font-weight-bold">
+                                No Corporates to Show
+                            </div>
+                        )}
+                        {corporates.length > 0 && corporates.map((corporate, index) => {
                             return (
                                 <div key={index}> <Corporate corporate={corporate}/> </div>
                             )
@@ -136,7 +141,12 @@ const ManageCorporateVerification = () => {
                 <div className="col-6">
                     <div className="verification-container">
                         <div className="h2 mt-3">Verified Corporates</div>
-                        {verifiedCorporates.map((corporate, index) => {
+                        {verifiedCorporates.length == 0 && (
+                            <div className="text-center h3 font-weight-bold">
+                                No Corporates to Show
+                            </div>
+                        )}
+                        {verifiedCorporates.length > 0 && verifiedCorporates.map((corporate, index) => {
                             return (
                                 <div key={index}> <Corporate corporate={corporate}/> </div>
                             )
@@ -145,7 +155,12 @@ const ManageCorporateVerification = () => {
 
                     <div className="verification-container">
                         <div className="h2 mt-3">Invalid Corporates</div>
-                        {invalidCorporates.map((corporate, index) => {
+                        {invalidCorporates.length == 0 && (
+                            <div className="text-center h3 font-weight-bold">
+                                No Corporates to Show
+                            </div>
+                        )}
+                        {invalidCorporates.length > 0 && invalidCorporates.map((corporate, index) => {
                             return (
                                 <div key={index}> <Corporate corporate={corporate}/> </div>
                             )

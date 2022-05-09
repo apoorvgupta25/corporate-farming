@@ -110,7 +110,9 @@ const Land = () => {
 
                     <div className="content">
                         <h2 className="title">{land.title}</h2>
-
+                        <div className="pull-right">
+                            <a href={`${API}/land/pdf/${land._id}`} target="_blank">Land Record PDF</a>
+                        </div>
                         <div className="price">
                             <h3>₹ {land.expectedProfit.exactAmount} ({land.expectedProfit.percentage} %)</h3>
                         </div>
