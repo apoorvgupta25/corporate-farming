@@ -39,6 +39,8 @@ import ViewContract from './component/contract/viewcontract';
 import StatusChangeContract from './component/contract/statusChangeContract';
 import WeatherData from './component/weatherForecast/weatherData';
 
+import NotFound from './NotFound';
+
 export default function AllRoutes(){
 
     return (
@@ -87,6 +89,7 @@ export default function AllRoutes(){
                 <Route path='/admin/corporate/verification' exact element={<AdminRoute><ManageCorporateVerification/></AdminRoute>}/>
                 <Route path='/admin/land/verification' exact element={<AdminRoute><ManageLandVerification/></AdminRoute>}/>
 
+                <Route path='*' element={<NotFound/>}/>
             </Routes>
         </Router>
     )
