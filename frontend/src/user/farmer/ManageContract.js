@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {API} from '../../backend';
 import { Person, Link as LinkIcon } from "@material-ui/icons";
 
@@ -14,16 +14,17 @@ const ManageContract = () => {
     const [contracts, setContract] = useState([])
     const [loading, setLoading] = useState(true)
 
-    const [showNoLand, setShowNoLand] = useState(false);
+    const showNoLand = false;
+
     const [filterType, setFilterType] = useState('proposed');
 
     const NoLandDisplay = () => <div className="not-found">
         <b>Sorry! <br/> No Lands Available</b>
     </div>;
 
-    var statuses = new Array("rejected", "accepted");
+    var statuses = ["rejected", "accepted"];
 
-    const {user, token} = isAuth();
+    const {user} = isAuth();
 
     const getId = (corporate, farmer) =>{
         if(user.role === 1){
@@ -37,7 +38,7 @@ const ManageContract = () => {
 
     const getlink = (productId, isProd) => {
         let link = "";
-        if(isProd == 0){
+        if(isProd === 0){
           link  = "/land/"+productId;
         }else{
           link = "/product/"+productId;
@@ -56,7 +57,7 @@ const ManageContract = () => {
                 var filteredArray = data;
                     filteredArray = data.filter(function (el)
                     {
-                        return el.status == filterType;
+                        return el.status === filterType;
                     }
                     );
                 var sorted = [];
@@ -91,7 +92,7 @@ const ManageContract = () => {
             </div><br></br>
         {showNoLand ? <NoLandDisplay /> : null}
 
-        {contracts.length==0 && (
+        {contracts.length===0 && (
             <div className="text-center h1 font-weight-bold">
                 No Contracts
             </div>
@@ -116,7 +117,7 @@ const ManageContract = () => {
                                 <tr key={index}>
 
                                   <td>{contract.duration}</td>
-                                  <td><a href={`${API}/contract/pdf/${contract._id}`} target="_blank" className="text-primary">Contract</a> </td>
+                                  <td><a href={`${API}/contract/pdf/${contract._id}`} target="_blank" rel="noreferrer" className="text-primary">Contract</a> </td>
                                   <td>{contract.status}</td>
 
                                   <td className="p-3">

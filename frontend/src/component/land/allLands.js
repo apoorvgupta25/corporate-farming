@@ -29,7 +29,7 @@ const AllLands = () => {
         <b>Sorry! <br/> No Lands Available</b>
     </div>;
 
-    var states = new Array("Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttaranchal", "Uttar Pradesh", "West Bengal");
+    var states = ["Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttaranchal", "Uttar Pradesh", "West Bengal"];
 
     const [sortType, setSortType] = useState('createdAt');
 
@@ -44,34 +44,34 @@ const AllLands = () => {
 
                 var filteredArray = data;
 
-                if (filterType != "All States"){
+                if (filterType !== "All States"){
                     filteredArray = data.filter(function (el)
                     {
-                        return el.landProperties.state == filterType;
+                        return el.landProperties.state === filterType;
                     }
                     );
                 }
 
                 var sorted = [];
-                if (sortType == "pricelh"){
+                if (sortType === "pricelh"){
                     sorted = [...filteredArray].sort((a, b) => a.expectedProfit.exactAmount - b.expectedProfit.exactAmount);
-                } else if (sortType == "pricehl") {
+                } else if (sortType === "pricehl") {
                     sorted = [...filteredArray].sort((a, b) => b.expectedProfit.exactAmount - a.expectedProfit.exactAmount);
-                } else if (sortType == "bondhl") {
+                } else if (sortType === "bondhl") {
                     sorted = [...filteredArray].sort((a, b) => b.bondTime - a.bondTime);
-                } else if (sortType == "bondlh") {
+                } else if (sortType === "bondlh") {
                     sorted = [...filteredArray].sort((a, b) => a.bondTime - b.bondTime);
-                } else if (sortType == "areahl") {
+                } else if (sortType === "areahl") {
                     sorted = [...filteredArray].sort((a, b) => b.landProperties.totalArea - a.landProperties.totalArea);
-                } else if (sortType == "arealh") {
+                } else if (sortType === "arealh") {
                     sorted = [...filteredArray].sort((a, b) => a.landProperties.totalArea - b.landProperties.totalArea);
-                } else if (sortType == "createdAt") {
+                } else if (sortType === "createdAt") {
                     sorted = [...filteredArray].sort((a, b) => a.createdAt - b.createdAt);
                 } else {
                     sorted = [...filteredArray].sort((a, b) => b.updatedAt - a.updatedAt);
                 }
 
-                if (sorted.length == 0){
+                if (sorted.length === 0){
                     setShowNoLand(true)
                 }else{
                     setShowNoLand(false)

@@ -1,6 +1,5 @@
 // Importing modules
 import React, { useState, useEffect } from "react";
-import { Row,Card } from "reactstrap";
 import {WEATHER_API} from '../../backend';
 
 import ThreeDotsWave from '../animation/ThreeDotsWave';
@@ -8,7 +7,6 @@ import ThreeDotsWave from '../animation/ThreeDotsWave';
 import { getTimestampWeekDay,getByTimestamp } from "./utils/timestampUtils";
 
 import Topbar from "../topbar/topbar";
-import moment from 'moment';
 import 'moment-timezone';
 
 import 'swiper/css';
@@ -18,16 +16,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import './weatherForecast.css';
 
-import { Keyboard, Pagination, Navigation } from "swiper";
+import { Navigation } from "swiper";
 
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
-import {
-	Box, Flex, Grid, GridItem, Container, Heading, Icon, IconButton, Image, Menu,
-	MenuButton, MenuItem, MenuList, Text, Tooltip,
-	useColorMode, useDisclosure, useToast
-} from '@chakra-ui/react';
+import { Box, Flex, Heading, Image, Text, Tooltip } from '@chakra-ui/react';
 
 var weatherData;
 
@@ -91,7 +85,7 @@ function WeatherData() {
         // console.log("we",weatherData);
 
 		return () => window.removeEventListener('resize', handleScreenResize);
-    }, [weatherData]);
+    }, []);
 
     if (isLoading) {
         return <ThreeDotsWave />

@@ -1,5 +1,5 @@
 // Importing modules
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Container,Row,Card } from "reactstrap";
 
 import BouncingBall from '../animation/BouncingBall';
@@ -42,7 +42,7 @@ function CropDiseasePrediction() {
         setLoading(true);
         e.preventDefault();
         const formData = new FormData(e.target);
-        
+
         const Upload = async() => {
         await fetch('https://crop-disease-predict.herokuapp.com/', {
             method: 'POST',
@@ -68,12 +68,12 @@ function CropDiseasePrediction() {
                 <b>Find out which disease has been caught by your plant</b>
             </h2>
             <br />
-            
+
             <div style={formStyle}>
                 <form onSubmit={handleSubmit} className="form-signin" encType="multipart/form-data">
                     <h2 className="h4 mb-3 font-weight-normal"><b>Please Upload The Image</b></h2>
                     <input type="file" id="image" name="file" accept="image/*" className="file-custom" onChange={preview_image} />
-                    <img id="output-image" className="rounded mx-auto d-block" style={mystyle}/>
+                    <img id="output-image" className="rounded mx-auto d-block" style={mystyle} alt="diseased crop"/>
                     <button type="submit" className="btn btn-lg btn-primary btn-block">Predict</button>
                 </form>
             </div><br></br>

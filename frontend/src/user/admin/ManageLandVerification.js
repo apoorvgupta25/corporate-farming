@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { Person } from "@material-ui/icons";
 
 import {API} from '../../backend';
@@ -20,7 +20,6 @@ const ManageLandVerification = () => {
     const [loading, setLoading] = useState(true)
 
     const [statusEnums, setStatusEnums] = useState([])
-    const [showSelect, setShowSelect] = useState(false)
 
     const {user, token} = isAuth();
 
@@ -58,7 +57,6 @@ const ManageLandVerification = () => {
             }
             else{
                 setStatusEnums(data);
-                setShowSelect(true);
             }
         })
     }
@@ -98,7 +96,7 @@ const ManageLandVerification = () => {
                 </div>
 
                 <div className="col-6">
-                    <div className="h5"><a href={`${API}/land/pdf/${land._id}`} target="_blank"><b>Land Record PDF </b> </a> </div>
+                    <div className="h5"><a href={`${API}/land/pdf/${land._id}`} target="_blank" rel="noreferrer" ><b>Land Record PDF </b> </a> </div>
                     <div className="h5"><b>Name </b>: {land.farmer.name}</div>
                     <div className="h5"><b>Contact </b>: {land.farmer.contact}</div>
                     <div className="h5"><b>Email </b>: {land.farmer.email}</div>
@@ -122,7 +120,7 @@ const ManageLandVerification = () => {
 
             <div className="text-center h1">
                 Verify Land Records
-                <a href="https://dilrmp.gov.in/faces/rptPhysicalHome/rptStateRoRonWebDetail.xhtml" target="_blank">
+                <a href="https://dilrmp.gov.in/faces/rptPhysicalHome/rptStateRoRonWebDetail.xhtml" target="_blank" rel="noreferrer" >
                  <Elink style={{width:"1.5rem", marginLeft:"1rem"}}/>
                 </a>
             </div>
@@ -131,7 +129,7 @@ const ManageLandVerification = () => {
                 <div className="col-6">
                     <div className="verification-container">
                         <div className="h2 mt-3">Unverified Lands</div>
-                        {lands.length == 0 && (
+                        {lands.length === 0 && (
                             <div className="text-center h3 font-weight-bold">
                                 No Lands to Show
                             </div>
@@ -148,7 +146,7 @@ const ManageLandVerification = () => {
                 <div className="col-6">
                     <div className="verification-container">
                         <div className="h2 mt-3">Verified Lands</div>
-                        {verifiedLands.length == 0 && (
+                        {verifiedLands.length === 0 && (
                             <div className="text-center h3 font-weight-bold">
                                 No Lands to Show
                             </div>
@@ -162,7 +160,7 @@ const ManageLandVerification = () => {
 
                     <div className="verification-container">
                         <div className="h2 mt-3">Invalid Lands</div>
-                        {invalidLands.length == 0 && (
+                        {invalidLands.length === 0 && (
                             <div className="text-center h3 font-weight-bold">
                                 No Lands to Show
                             </div>

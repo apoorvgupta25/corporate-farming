@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Navigate, useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import { Alert } from 'reactstrap';
 import { Person, Dashboard } from "@material-ui/icons";
 
@@ -26,19 +26,18 @@ const UpdateProduct = () => {
         deliveryMonth:'',
         updatedProduct:'',
         error: '',
-        success: false,
         saving: false,
     });
 
     const {
         title, description, farmer, cropName, cropSubType, price, paymentBeforeharvest,
         minimumOrderQuantity, maximumOrderQuantity, harvestMonth, deliveryMonth,
-        updatedProduct, error, success, saving
+        updatedProduct, error, saving
     } = values;
 
-    var crops = new Array('Banana', 'Brinjal', 'Cabbages', 'Cardamom', 'Cashew nuts', 'Cauliflowers', 'Chickpeas', 'Coconuts', 'Coffee', 'Coriander',
-                            'Cotton', 'Fennel', 'Garlic', 'Ginger', 'Green peas', 'Groundnut', 'Guavas', 'Jowar', 'Lady Finger', 'Lemons', 'Mangoes',
-                            'Onions', 'Potatoes', 'Rice', 'Sesame seeds', 'Sugarcane', 'Tea', 'Tomatoes', 'Turmeric', 'Wheat', 'Others');
+    var crops = ['Banana', 'Brinjal', 'Cabbages', 'Cardamom', 'Cashew nuts', 'Cauliflowers', 'Chickpeas', 'Coconuts', 'Coffee', 'Coriander',
+                'Cotton', 'Fennel', 'Garlic', 'Ginger', 'Green peas', 'Groundnut', 'Guavas', 'Jowar', 'Lady Finger', 'Lemons', 'Mangoes',
+                'Onions', 'Potatoes', 'Rice', 'Sesame seeds', 'Sugarcane', 'Tea', 'Tomatoes', 'Turmeric', 'Wheat', 'Others'];
 
 
     const [count, setCount] = useState(0);
@@ -85,7 +84,7 @@ const UpdateProduct = () => {
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value});
 
-        if(name=='title')
+        if(name==='title')
             setCount(event.target.value.length);
     }
 

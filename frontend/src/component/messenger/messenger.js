@@ -33,7 +33,6 @@ export default function Messenger() {
       conversationId: currentChat,
     };
 
-    const receiverId = "";
 
     try {
       postMessage(message,receiverNumber,isAuth().user.role)
@@ -64,7 +63,7 @@ export default function Messenger() {
 
   const getlink = (productId, isprod) => {
     let link = "";
-    if(isprod == 0){
+    if(isprod === 0){
       link  = "/land/"+productId.toString();
     }else{
       link = "/product/"+productId.toString();
@@ -131,7 +130,7 @@ export default function Messenger() {
 
                {currentChat ? (
               <>
-                <div className="bg-grey p-2" style={{borderRadius: "5px"}}><b>{friendName}</b> <i> {productName}</i> [{isprod==1 ?"product" :"land"}]
+                <div className="bg-grey p-2" style={{borderRadius: "5px"}}><b>{friendName}</b> <i> {productName}</i> [{isprod===1 ?"product" :"land"}]
                 {isAuth().user.role === 1 && (
                   <Link to={`/contract/${productId}/${farmerId}/${isprod}`} style={{ textDecoration: 'none', color: 'white' }}>
                     <button className="btn btn-success btn-sm float-right ml-1">

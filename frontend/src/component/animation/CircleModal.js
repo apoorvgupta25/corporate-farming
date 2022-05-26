@@ -1,4 +1,4 @@
-import { Modal, ModalBody, Alert } from 'reactstrap';
+import { Modal, ModalBody } from 'reactstrap';
 import { motion } from "framer-motion";
 
 const containerStyle = {

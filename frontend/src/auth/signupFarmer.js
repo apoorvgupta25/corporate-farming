@@ -31,14 +31,14 @@ const SignupFarmer = () => {
     const [preview, setPreview] = useState()
     const [submitted, setSubmitted] = useState(false)
 
-    const {name, aadhaar, contact, age, state, email, password, role, error, success, saving, formData} = values;
+    const {name, aadhaar, contact, age, email, password, error, success, saving, formData} = values;
 
-    var states = new Array("Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
-                            "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa",
-                            "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka",
-                            "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
-                            "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura",
-                            "Uttaranchal", "Uttar Pradesh", "West Bengal");
+    var states = ["Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
+                    "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa",
+                    "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka",
+                    "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+                    "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura",
+                    "Uttaranchal", "Uttar Pradesh", "West Bengal"];
 
     const handleChange = name => event => {
         let value=""
@@ -47,13 +47,13 @@ const SignupFarmer = () => {
         formData.set(name, value);
 
         setValues({...values, error: false, [name]: value});
-        if(name=="aadhaar"){
-            if(event.target.value.length == 12) setValidAadhaar(true);
+        if(name==="aadhaar"){
+            if(event.target.value.length === 12) setValidAadhaar(true);
             else setValidAadhaar(false);
         }
 
-        if(name=="contact"){
-            if(event.target.value.length == 10) setValidContact(true);
+        if(name==="contact"){
+            if(event.target.value.length === 10) setValidContact(true);
             else setValidContact(false);
         }
     }
@@ -173,7 +173,7 @@ const SignupFarmer = () => {
 
                 <form className="input-group">
                     <input type="file" name="photo" accept="image/*" placeholder="Choose A Profile Photo" onChange={handleChange("photo"), onSelectFile} required='required'/>
-                    {selectedFile &&  <img src={preview} className="profile-img-signup"/> }
+                    {selectedFile &&  <img src={preview} className="profile-img-signup" alt="Profile"/> }
 
                     <input className="input-field" placeholder="Name" onChange={handleChange("name")} value={name} required/>
                     <input className="input-field" placeholder="Age" type="number" onChange={handleChange("age")} value={age} required/>

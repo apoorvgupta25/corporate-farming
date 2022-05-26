@@ -1,10 +1,10 @@
-import React, {useState, useEffect}  from "react";
+import React  from "react";
 
 import './conversion.css';
 
 const AllConversations = ({user, name, type}) => {
     var prod = ""
-    if (type==0) prod = "land"
+    if (type===0) prod = "land"
     else prod = "product"
     return (
         <>

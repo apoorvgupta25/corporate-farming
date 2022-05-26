@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Navigate, useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import { Alert } from 'reactstrap';
 import { Person, Dashboard } from "@material-ui/icons";
 
@@ -29,7 +29,6 @@ const UpdateLand = () => {
         remarks: '',
         bondTime: '',
         createdLand:'',
-        rainfall:'',
         expectedProfit:{
             exactAmount: '',
             percentage:'',
@@ -43,7 +42,7 @@ const UpdateLand = () => {
 
     const {
         title, description, bondTime, landProperties, remarks, updatedLand,
-        rainfall, expectedProfit, error, saving, formData
+        expectedProfit, error, saving, formData
     } = values;
 
     const [loading, setLoading] = useState(true)
@@ -73,7 +72,6 @@ const UpdateLand = () => {
                         totalArea: data.landProperties.totalArea,
                     },
                     remarks: data.remarks,
-                    rainfall: data.rainfall,
                     expectedProfit:{
                         exactAmount: data.expectedProfit.exactAmount,
                         percentage: data.expectedProfit.percentage,
@@ -104,7 +102,7 @@ const UpdateLand = () => {
 
         setValues({...values, [name]: value});
         formData.set(name, value);
-        if(name=='title')
+        if(name==='title')
             setCount(event.target.value.length);
     }
 
@@ -183,7 +181,6 @@ const UpdateLand = () => {
                     remarks: '',
                     landPDF: '',
                     bondTime: '',
-                    rainfall: '',
                     expectedProfit:{
                         exactAmount: '',
                         percentage:'',
@@ -196,12 +193,12 @@ const UpdateLand = () => {
 
     }
 
-    var states = new Array("Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
-                            "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa",
-                            "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka",
-                            "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
-                            "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura",
-                            "Uttaranchal", "Uttar Pradesh", "West Bengal");
+    var states = ["Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
+                    "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa",
+                    "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka",
+                    "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+                    "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura",
+                    "Uttaranchal", "Uttar Pradesh", "West Bengal"];
     return (
         <>
         <Topbar/>

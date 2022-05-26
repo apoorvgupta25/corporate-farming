@@ -28,8 +28,8 @@ const SignupCorporate = () => {
 
         formData.set(name, event.target.value);
 
-        if(name=="cin"){
-            if(event.target.value.length == 21) setInValidCIN(false);
+        if(name==="cin"){
+            if(event.target.value.length === 21) setInValidCIN(false);
             else setInValidCIN(true);
         }
     }

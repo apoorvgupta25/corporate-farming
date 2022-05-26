@@ -1,21 +1,21 @@
-import OtpInput from "react-otp-input";
-import { useState,useEffect } from "react";
-import Avatar from "@material-ui/core/Avatar";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import './signin_signup.css';
-import Topbar from '../component/topbar/topbar';
-import ThreeDotsWave from '../component/animation/ThreeDotsWave';
-import emailjs from '@emailjs/browser';
-// import  { Redirect } from 'react-router-dom';
-import {Navigate,useParams,useNavigate } from 'react-router-dom';
-import { Button } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from 'react-router-dom';
 import { Route, Redirect } from 'react-router';
 import Cookies from 'universal-cookie';
+import OtpInput from "react-otp-input";
+import emailjs from '@emailjs/browser';
+
+import { Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+
+import Topbar from '../component/topbar/topbar';
+import ThreeDotsWave from '../component/animation/ThreeDotsWave';
 
 import './signin_signup.css';
 
@@ -70,8 +70,8 @@ function VerifyOtp() {
       setCode(code);
       console.log("code1",code);
       console.log("otp",otpVal);
-      if (code.length == 6){
-        if (code.toString() == otpVal) {
+      if (code.length === 6){
+        if (code.toString() === otpVal) {
           console.log("success");
           cookies.set("OTPVerified",false,{path:'/'});
           <Route exact path="/" render={() => (
@@ -103,10 +103,10 @@ function VerifyOtp() {
 
     const checkOtp = () => {
       console.log("code",code);
-      if (code.toString() == otpVal) {
+      if (code.toString() === otpVal) {
         // console.log("success");
         // <Navigate to={`/admin/dashboard/${userId}`}  />
-        if (code.toString() == otpVal) {
+        if (code.toString() === otpVal) {
           cookies.set("OTPVerified",true,{path:'/'});
           console.log("success");
           // <Navigate to={`/admin/dashboard/${userId}`}  />

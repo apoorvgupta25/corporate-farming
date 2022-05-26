@@ -1,12 +1,11 @@
-import "./topbar.css";
-import { Search, Person, Chat } from "@material-ui/icons";
+import React from "react";
 import { Link } from "react-router-dom";
-import React,{useEffect, useState} from "react";
+import { Person, Chat } from "@material-ui/icons";
 
-import {isAuth, signout} from '../../auth/authAPICalls';
+import {isAuth} from '../../auth/authAPICalls';
 import logo from '../../assets/logo/corp-farm-logo.png';
-import Cookies from 'universal-cookie';
-import BouncingBall from '../animation/BouncingBall';
+
+import "./topbar.css";
 
 export default function Topbar() {
 
@@ -14,7 +13,7 @@ export default function Topbar() {
     <div className="topbarContainer">
       <div className="topbarLeft">
         <Link to="/" style={{ textDecoration: "none" }}>
-            <img className="logoImg" src={logo}/>
+            <img className="logoImg" src={logo} alt="Logo"/>
             <div className="logo">Corp-Farm</div>
         </Link>
       </div>

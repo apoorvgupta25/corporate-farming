@@ -1,9 +1,8 @@
 import React, {useState, useEffect}  from "react";
 import {useParams} from 'react-router-dom';
 
-import {API} from '../../backend';
 import {getProduct} from './productAPICall'
-import {isAuth, signout} from '../../auth/authAPICalls';
+import {isAuth} from '../../auth/authAPICalls';
 
 import Topbar from "../topbar/topbar";
 import ChatNowButton from "../chatNowButton/chatNowButton";
@@ -98,7 +97,7 @@ const Product = () => {
 
 
     var filename = 'Others'
-    if(product.cropName != "Others") {
+    if(product.cropName !== "Others") {
         filename = product.cropName
     }
 
@@ -108,7 +107,7 @@ const Product = () => {
         <div className="card-wrapper">
             <div className="card">
                 <div className="img-container">
-                    <img src={require(`../../assets/crops/${filename}.jpg`)} className="image-styling" />
+                    <img src={require(`../../assets/crops/${filename}.jpg`)} className="image-styling" alt="Crop" />
                 </div>
 
                 <div className="content">
@@ -149,7 +148,7 @@ const Product = () => {
                         <h4>✉: {product.farmer.email}</h4>
                     </div>
 
-                    {isAuth() && isAuth().user.role==1 && isAuth().user.verification=="Verified" &&(
+                    {isAuth() && isAuth().user.role===1 && isAuth().user.verification==="Verified" &&(
                         <div className="d-flex justify-content-center">
                             <ChatNowButton userId={product.farmer._id} productId={product._id} productName={product.title} isProd="1"/>
                         </div>

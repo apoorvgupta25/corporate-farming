@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { Alert } from 'reactstrap';
 import { Person } from "@material-ui/icons";
 
@@ -28,7 +28,6 @@ const AddLand = () => {
         landPDF: '',
         bondTime: '',
         createdLand:'',
-        rainfall:'',
         expectedProfit:{
             exactAmount: '',
             percentage:'',
@@ -40,7 +39,7 @@ const AddLand = () => {
     });
 
     const {
-        title, description, bondTime, landProperties, remarks, createdLand, rainfall,
+        title, description, bondTime, landProperties, remarks, createdLand,
         expectedProfit, error, saving, createdId, formData
     } = values;
 
@@ -57,7 +56,7 @@ const AddLand = () => {
         formData.set(name, value);
 
         setValues({...values, [name]: value});
-        if(name=='title')
+        if(name==='title')
             setCount(event.target.value.length);
     }
 
@@ -135,7 +134,6 @@ const AddLand = () => {
                     remarks: '',
                     landPDF: '',
                     bondTime: '',
-                    rainfall: '',
                     expectedProfit:{
                         exactAmount: '',
                         percentage:'',
@@ -149,12 +147,12 @@ const AddLand = () => {
 
     }
 
-    var states = new Array("Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
-                            "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa",
-                            "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka",
-                            "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
-                            "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura",
-                            "Uttaranchal", "Uttar Pradesh", "West Bengal");
+    var states = ["Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
+                    "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa",
+                    "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka",
+                    "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+                    "Nagaland", "Orissa", "Pondicherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura",
+                    "Uttaranchal", "Uttar Pradesh", "West Bengal"];
 
     return (
         <>

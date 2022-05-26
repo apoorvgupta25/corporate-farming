@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { Person } from "@material-ui/icons";
 
 import {API} from '../../backend';
@@ -20,7 +20,6 @@ const ManageFarmerVerification = () => {
     const [loading, setLoading] = useState(true)
 
     const [statusEnums, setStatusEnums] = useState([])
-    const [showSelect, setShowSelect] = useState(false)
 
     const {user, token} = isAuth();
 
@@ -57,7 +56,6 @@ const ManageFarmerVerification = () => {
             }
             else{
                 setStatusEnums(data);
-                setShowSelect(true);
             }
         })
     }
@@ -87,7 +85,7 @@ const ManageFarmerVerification = () => {
 
         const profileImage = () => {
             return (
-                <img src={`${API}/user/profile/photo/${farmer._id}`} alt="Profile Image" className="profile-image" style={{height: "210px"}}/>
+                <img src={`${API}/user/profile/photo/${farmer._id}`} alt="Profile" className="profile-image" style={{height: "210px"}}/>
             )
         }
         return (
@@ -126,7 +124,7 @@ const ManageFarmerVerification = () => {
 
             <div className="text-center h1">
                 Verify Aadhaar Numbers
-                <a href="https://myaadhaar.uidai.gov.in/verifyAadhaar" target="_blank">
+                <a href="https://myaadhaar.uidai.gov.in/verifyAadhaar" target="_blank" rel="noreferrer">
                  <Elink style={{width:"1.5rem", marginLeft:"1rem"}}/>
                 </a>
             </div>
@@ -135,7 +133,7 @@ const ManageFarmerVerification = () => {
                 <div className="col-6">
                     <div className="verification-container">
                         <div className="h2 mt-3">Unverified Farmers</div>
-                        {farmers.length == 0 && (
+                        {farmers.length === 0 && (
                             <div className="text-center h3 font-weight-bold">
                                 No Farmers to Show
                             </div>
@@ -153,7 +151,7 @@ const ManageFarmerVerification = () => {
                 <div className="col-6">
                     <div className="verification-container">
                         <div className="h2 mt-3">Verified Farmers</div>
-                        {verifiedFarmers.length == 0 && (
+                        {verifiedFarmers.length === 0 && (
                             <div className="text-center h3 font-weight-bold">
                                 No Farmers to Show
                             </div>
@@ -169,7 +167,7 @@ const ManageFarmerVerification = () => {
 
                     <div className="verification-container">
                         <div className="h2 mt-3">Invalid Farmers</div>
-                        {invalidFarmers.length == 0 && (
+                        {invalidFarmers.length === 0 && (
                             <div className="text-center h3 font-weight-bold">
                                 No Farmers to Show
                             </div>

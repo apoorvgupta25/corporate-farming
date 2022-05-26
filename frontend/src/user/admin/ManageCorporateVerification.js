@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { Person } from "@material-ui/icons";
 
-import {API} from '../../backend';
 import {isAuth} from '../../auth/authAPICalls';
 import {getVerificationEnums, updateVerification, getUnverifiedCorporates, getVerifiedCorporates, getInvalidCorporates } from './adminAPICall';
 import ThreeDotsWave from '../../component/animation/ThreeDotsWave';
@@ -20,7 +19,6 @@ const ManageCorporateVerification = () => {
     const [loading, setLoading] = useState(true)
 
     const [statusEnums, setStatusEnums] = useState([])
-    const [showSelect, setShowSelect] = useState(false)
 
     const {user, token} = isAuth();
 
@@ -58,7 +56,6 @@ const ManageCorporateVerification = () => {
             }
             else{
                 setStatusEnums(data);
-                setShowSelect(true);
             }
         })
     }
@@ -115,7 +112,7 @@ const ManageCorporateVerification = () => {
 
             <div className="text-center h1">
                 Verify Corporate Identification Numbers
-                <a href="https://www.quickcompany.in/company" target="_blank">
+                <a href="https://www.quickcompany.in/company" target="_blank"  rel="noreferrer">
                  <Elink style={{width:"1.5rem", marginLeft:"1rem"}}/>
                 </a>
             </div>
@@ -124,7 +121,7 @@ const ManageCorporateVerification = () => {
                 <div className="col-6">
                     <div className="verification-container">
                         <div className="h2 mt-3">Unverified Corporates</div>
-                        {corporates.length == 0 && (
+                        {corporates.length === 0 && (
                             <div className="text-center h3 font-weight-bold">
                                 No Corporates to Show
                             </div>
@@ -141,7 +138,7 @@ const ManageCorporateVerification = () => {
                 <div className="col-6">
                     <div className="verification-container">
                         <div className="h2 mt-3">Verified Corporates</div>
-                        {verifiedCorporates.length == 0 && (
+                        {verifiedCorporates.length === 0 && (
                             <div className="text-center h3 font-weight-bold">
                                 No Corporates to Show
                             </div>
@@ -155,7 +152,7 @@ const ManageCorporateVerification = () => {
 
                     <div className="verification-container">
                         <div className="h2 mt-3">Invalid Corporates</div>
-                        {invalidCorporates.length == 0 && (
+                        {invalidCorporates.length === 0 && (
                             <div className="text-center h3 font-weight-bold">
                                 No Corporates to Show
                             </div>

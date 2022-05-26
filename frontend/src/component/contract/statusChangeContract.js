@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Navigate, useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import { Alert } from 'reactstrap';
 import { getContract,updateContractInDB } from './contractAPICall';
 import '../../user/farmer/add.css'
@@ -10,25 +10,17 @@ import CircleModal from '../../component/animation/CircleModal';
 
 const StatusChangeContract = () => {
     const {contractId, newstatus} = useParams();
-    const [loading, setLoading] = useState('false');
     const [values, setValues] = useState({
-        duration: '',
-        farmer: '',
-        corporate: '',
-        product: '',
         status: '',
-        isProd: '',
         reason: '',
         error: '',
-        success: false,
         saving: false,
         createdId: '',
         formData: new FormData()
     });
 
     const {
-        duration, farmer,reason, corporate, product, status,
-        isProd, error, success, saving, createdId, formData
+        reason, error, saving, createdId, formData
     } = values;
 
     const {user, token} = isAuth();
@@ -41,17 +33,11 @@ const StatusChangeContract = () => {
             }
             else{
                 setValues({...values,
-                    farmer: data.farmer,
-                    corporate: data.corporate,
-                    product: data.product,
-                    duration: data.duration,
                     status: newstatus,
-                    isProd: data.isProd,
                     reason: data.reason,
                     saving:false,
                 });
             }
-            setLoading(false);
         })
         .catch()
     };
@@ -105,13 +91,8 @@ const StatusChangeContract = () => {
                 }
                 else{
                     setValues({...values,
-                        farmer: '',
-                        corporate: '',
-                        product: '',
-                        duration: '',
                         status: '',
                         createdId: data._id,
-                        isProd: '',
                         saving: false,
                     });
                 }

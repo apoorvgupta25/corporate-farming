@@ -15,12 +15,7 @@ import "../messenger/messenger.css";
 
 export default function ViewContract() {
   const [currentChat, setCurrentChat] = useState(null);
-  const [productId, setproductId] = useState('');
-  const [isprod, setisprod] = useState('');
-  const [receiverNumber, setReceiverNumber] = useState(null);
-  const [conversations, setConversations] = useState([]);
-
-
+  const receiverNumber = null;
 
 
   const [messages, setMessages] = useState([]);
@@ -54,11 +49,8 @@ export default function ViewContract() {
 
   const getlink = (productId, isProd) => {
     let link = "";
-    if(isProd == 0){
-      link  = "/land/"+productId;
-    }else{
-      link = "/product/"+productId;
-    }
+    if(isProd === 0){ link  = "/land/"+productId;}
+    else{ link = "/product/"+productId;}
 
     return link;
   }
@@ -114,7 +106,7 @@ export default function ViewContract() {
                 <h4>Reason: {contract.reason}</h4>
             )}
 
-          <h4>Document: <a href={`${API}/contract/pdf/${contract._id}`} target="_blank" className="text-primary">Contract</a> </h4>
+          <h4>Document: <a href={`${API}/contract/pdf/${contract._id}`} target="_blank" rel="noreferrer" className="text-primary">Contract</a> </h4>
           <h4>Created At: {format(contract.createdAt)}</h4>
           <h4>Updated At: {format(contract.updatedAt)}</h4>
 
@@ -133,7 +125,7 @@ export default function ViewContract() {
                 </Link>
 
             )}
-            <Link target="_blank" to={getlink(contract.product,contract.isProd)} style={{ textDecoration: 'none', color: 'white' }}>
+            <Link target="_blank" to={getlink(contract.product, contract.isProd)} style={{ textDecoration: 'none', color: 'white' }}>
                   <button className="btn btn-success btn-sm float-right ml-1">
                       Product Details
                   </button>

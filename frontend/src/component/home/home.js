@@ -51,7 +51,7 @@ function Home() {
             <Topbar/>
             <h2 className="text-center font-weight-bold mt-3">Land for Lease</h2>
             <div className="wrapper">
-                {lands.length == 0 && <BouncingBall/>}
+                {lands.length === 0 && <BouncingBall/>}
                 {lands.length > 0 && lands.map((land, index) => {
                     return (
                         <div key={index}>
@@ -65,7 +65,7 @@ function Home() {
             <hr/>
             <h2 className="text-center font-weight-bold">Products</h2>
             <div className="list-container">
-                {products.length == 0 && <BouncingBall/>}
+                {products.length === 0 && <BouncingBall/>}
                 {products.length > 0 && products.map((prod, index) => {
                     return (
                         <div key={index}>
@@ -105,7 +105,7 @@ function Card({land}) {
     return (
         <div className="land">
             <Link style={{textDecoration:'None'}} to={`/land/${land._id}`}>
-                <img className="land__img" src={imageURL} />
+                <img className="land__img" src={imageURL} alt="Land"/>
                 <div className="land__body">
                     <h2 className="land__title">{title}</h2>
                     <p className="land__location">{district}, {state}</p>
@@ -136,14 +136,14 @@ function List({prod}){
 
 
     var filename = 'Others'
-    if(prod.cropName != "Others") {
+    if(prod.cropName !== "Others") {
         filename = prod.cropName
     }
 
     return (
         <Link style={{textDecoration:'None'}} to={`/product/${prod._id}`}>
         <div className="list-item">
-                <img className="item-image mr-2 mb-0" src={require(`../../assets/crops/${filename}.jpg`)} />
+                <img className="item-image mr-2 mb-0" src={require(`../../assets/crops/${filename}.jpg`)} alt="Crop"/>
                 <div className="item-title">{title}</div>
                 <div className="item-crop">
                     <p className="tiny-text font-weight-bold">Crop Name</p>

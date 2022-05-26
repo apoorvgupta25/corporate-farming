@@ -1,7 +1,6 @@
-import React, {useState,useEffect} from 'react';
-import {Link, Navigate,useParams,Redirect } from 'react-router-dom';
+import React from 'react';
+import {Link, Navigate, useParams} from 'react-router-dom';
 
-import {API} from '../backend';
 import {signout} from '../auth/authAPICalls';
 import {isAuth} from '../auth/authAPICalls';
 import Topbar from '../component/topbar/topbar';
@@ -19,28 +18,10 @@ const AdminDashboard = () => {
         signout()
     }
 
-    const {user: {name, email, role, _id}} = isAuth();
-
-    // useEffect(() => {
-
-    //     if (otpCookie != null) {
-    //       if (otpCookie != "true") {
-
-    //         const navigate = useNavigate();
-    //         navigate(`/verifyOtp/${user._id}`);
-    //       }
-    //       // const check = () => {
-    //       //   return <Link to={ `/admin/dashboard/${isAuth().user._id}`} style={{ textDecoration:'none', color: 'white'}}><Person /></Link>
-    //       // }
-    //       // check();
-    //       // console.log("exist");
-    //       // value = check();
-    //     }
-
-    // }, []);
+    const {user: {name, email, role}} = isAuth();
 
     if (otpCookie != null) {
-        if (otpCookie != "true") {
+        if (otpCookie !== "true") {
             return <Navigate to={`/verifyOtp/${userId}`}  />
         }
     } else {

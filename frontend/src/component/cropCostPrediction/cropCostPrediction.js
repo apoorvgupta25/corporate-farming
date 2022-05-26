@@ -1,7 +1,7 @@
 // Importing modules
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Container,Row,Card, CardImg, CardBody,CardTitle, CardText } from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle} from "reactstrap";
 import './CostPred.css'
 
 import ThreeDotsWave from '../animation/ThreeDotsWave';
@@ -9,7 +9,6 @@ import ThreeDotsWave from '../animation/ThreeDotsWave';
 import Topbar from "../topbar/topbar";
 
 function CropCostPrediction() {
-	const [pred, setpred] = useState([]);
     const [isLoading, setLoading] = useState(true);
     // const [display,setDisplay] = useState(false);
 
@@ -20,7 +19,6 @@ function CropCostPrediction() {
             method: 'GET'
             }).then(res => res.json())
             .then((data) => {
-                setpred(data["prediction"]);
                 setLoading(false);
                 // setDisplay(true);
             })

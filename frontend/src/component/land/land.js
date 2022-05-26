@@ -1,10 +1,9 @@
 import React, {useState, useEffect}  from "react";
-import {Link, useParams} from 'react-router-dom';
-import $ from 'jquery';
+import {useParams} from 'react-router-dom';
 
 import {API} from '../../backend';
 import {getLand} from './landAPICall'
-import {isAuth, signout} from '../../auth/authAPICalls';
+import {isAuth} from '../../auth/authAPICalls';
 
 import Topbar from "../topbar/topbar";
 import ChatNowButton from "../chatNowButton/chatNowButton";
@@ -105,13 +104,13 @@ const Land = () => {
             <div className="card-wrapper" >
                 <div className="card">
                     <div className="img-container">
-                        <img src={imageURL} alt="Land image" className="image-styling" />
+                        <img src={imageURL} alt="Land" className="image-styling" />
                     </div>
 
                     <div className="content">
                         <h2 className="title">{land.title}</h2>
                         <div className="pull-right">
-                            <a href={`${API}/land/pdf/${land._id}`} target="_blank">Land Record PDF</a>
+                            <a href={`${API}/land/pdf/${land._id}`} target="_blank" rel="noreferrer">Land Record PDF</a>
                         </div>
                         <div className="price">
                             <h3>₹ {land.expectedProfit.exactAmount} ({land.expectedProfit.percentage} %)</h3>
@@ -148,7 +147,7 @@ const Land = () => {
                             <h4>✉: {land.farmer.email}</h4>
                         </div>
 
-                        {isAuth() && isAuth().user.role==1 && isAuth().user.verification=="Verified" &&(
+                        {isAuth() && isAuth().user.role===1 && isAuth().user.verification==="Verified" &&(
                             <div className="d-flex justify-content-center">
                                 <ChatNowButton userId={land.farmer._id} productId={land._id} productName={land.title} isProd="0"/>
                             </div>

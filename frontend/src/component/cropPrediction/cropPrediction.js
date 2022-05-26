@@ -1,7 +1,6 @@
 import Topbar from "../topbar/topbar";
 
 import React, {useState} from 'react';
-import {Link, Navigate} from 'react-router-dom';
 import {getcropPrediction} from "./cropPredictionAPICall";
 import '../../user/farmer/add.css';
 

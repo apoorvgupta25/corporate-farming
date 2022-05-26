@@ -28,7 +28,7 @@ const AllProducts = () => {
         setPageNumber(selected);
     };
 
-    const months = new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
     const NoProductDisplay = () => <div className="not-found">
         <b>Sorry! <br/> No Products Available</b>
@@ -47,41 +47,41 @@ const AllProducts = () => {
 
                 var filteredArray = data;
 
-                if (filterType != "All Months"){
+                if (filterType !== "All Months"){
                     filteredArray = data.filter(function (el)
                     {
                         console.log(typeof el.deliveryMonth);
                         const monthNumber = parseInt(el.deliveryMonth.split("-")[1]);
                         const filterMonth = months.indexOf(filterType)+1;
-                        return filterMonth == monthNumber;
+                        return filterMonth === monthNumber;
                     }
                     );
                 }
 
                 var sorted = [];
-                if (sortType == "pricelh"){
+                if (sortType === "pricelh"){
                     sorted = [...filteredArray].sort((a, b) => a.price - b.price);
-                } else if (sortType == "pricehl") {
+                } else if (sortType === "pricehl") {
                     sorted = [...filteredArray].sort((a, b) => b.price - a.price);
-                } else if (sortType == "pbhhl") {
+                } else if (sortType === "pbhhl") {
                     sorted = [...filteredArray].sort((a, b) => b.paymentBeforeharvest - a.paymentBeforeharvest);
-                } else if (sortType == "pbhlh") {
+                } else if (sortType === "pbhlh") {
                     sorted = [...filteredArray].sort((a, b) => a.paymentBeforeharvest - b.paymentBeforeharvest);
-                } else if (sortType == "minoqhl") {
+                } else if (sortType === "minoqhl") {
                     sorted = [...filteredArray].sort((a, b) => b.minimumOrderQuantity - a.minimumOrderQuantity);
-                } else if (sortType == "minoqlh") {
+                } else if (sortType === "minoqlh") {
                     sorted = [...filteredArray].sort((a, b) => a.minimumOrderQuantity - b.minimumOrderQuantity);
-                } else if (sortType == "maxoqhl") {
+                } else if (sortType === "maxoqhl") {
                     sorted = [...filteredArray].sort((a, b) => b.maximumOrderQuantity - a.maximumOrderQuantity);
-                } else if (sortType == "maxoqlh") {
+                } else if (sortType === "maxoqlh") {
                     sorted = [...filteredArray].sort((a, b) => a.maximumOrderQuantity - b.maximumOrderQuantity);
-                } else if (sortType == "createdAt") {
+                } else if (sortType === "createdAt") {
                     sorted = [...filteredArray].sort((a, b) => a.createdAt - b.createdAt);
                 } else {
                     sorted = [...filteredArray].sort((a, b) => b.updatedAt - a.updatedAt);
                 }
 
-                if (sorted.length == 0){
+                if (sorted.length === 0){
                     setShowNoProduct(true)
                 }else{
                     setShowNoProduct(false)

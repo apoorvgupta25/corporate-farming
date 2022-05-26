@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {API} from '../backend';
 
@@ -80,7 +80,7 @@ const FarmerDashboard = ({ match }) => {
     const profileImage = () => {
         return (
             <>
-                <img src={`${API}/user/profile/photo/${_id}`} alt="Profile Image" className="profile-image" />
+                <img src={`${API}/user/profile/photo/${_id}`} alt="Profile" className="profile-image" />
                 <Link to="/signin" onClick={signoutUser} className="btn btn-primary mt-3 w-100">Sign Out</Link>
             </>
         )

@@ -20,7 +20,7 @@ export default function QuickMessenger() {
   const [receiverNumber,setReceiverNumber] =useState("");
   const scrollRef = useRef();
   const { productId ,isProd, friendId} = useParams();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {
@@ -46,12 +46,12 @@ export default function QuickMessenger() {
 
   const getlink = (productId, isProd) => {
     let link = "";
-    if(isProd == 0){
+    if(isProd === 0){
       link  = "/land/"+productId;
     }else{
       link = "/product/"+productId;
     }
-     
+
     return link;
   }
   const getConversationId = (productId,id) => {
@@ -83,14 +83,14 @@ export default function QuickMessenger() {
             setLoading(false);
          })
     }
-    
+
     };
 
     useEffect(() => {
         loadProduct(productId,isProd);
         setCurrentChat(getConversationId(productId,friendId));
     },[])
-   
+
 
     const getMessages = () => {
       getAllMessages(currentChat)
@@ -119,7 +119,7 @@ export default function QuickMessenger() {
           <br></br>
           {isLoading ? (<BouncingBall/>):(
               <div>
-                
+
                         <h4>{isProd === "1" ? "Product" : "Land"}: {product.title}</h4>
                         <h4>Description: {product.description}</h4>
                         <h4>Created At: {format(product.createdAt)}</h4>
@@ -137,28 +137,28 @@ export default function QuickMessenger() {
 
 
               </div>
-          )}         
+          )}
 
 
             <Link target="_blank" to={getlink(productId,isProd)} style={{ textDecoration: 'none', color: 'white' }}>
                   <button className="btn btn-success btn-sm float-right ml-1">
-                  More Infomation About This {isProd === "1" ? "Product" : "Land"} 
+                  More Infomation About This {isProd === "1" ? "Product" : "Land"}
                   </button>
             </Link>
             <Link target="_blank" to="/messenger/" style={{ textDecoration: 'none', color: 'white' }}>
                   <button className="btn btn-success btn-sm float-right ml-1">
-                   Open all chats 
+                   Open all chats
                   </button>
             </Link>
 
           </div>
             <s />
           </div>
-          
+
           <div className="chatBox">
-          
+
           <div className="chatBoxWrapper">
-          
+
                {currentChat ? (
               <>
                 <div className="chatBoxTop">

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {API} from '../../backend';
 import { Person, Update, Delete } from "@material-ui/icons";
 

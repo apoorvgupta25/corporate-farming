@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, Navigate, useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import { Alert } from 'reactstrap';
 
 import { addContractToDB } from './contractAPICall';

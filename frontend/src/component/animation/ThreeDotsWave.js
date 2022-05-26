@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Modal, ModalBody, Alert } from 'reactstrap';
 import Topbar from "../topbar/topbar";
 
 const loadingContainer = {

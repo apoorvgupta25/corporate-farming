@@ -1,7 +1,5 @@
 // Importing modules
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Container,Row,Card, CardImg, CardBody,CardTitle, CardText } from "reactstrap";
 
 import ThreeDotsWave from '../animation/ThreeDotsWave';
 
@@ -21,7 +19,6 @@ import {
     Tooltip,
     Legend,
     } from 'chart.js';
-import { requirePropFactory } from "@material-ui/core";
 
     ChartJS.register(
     CategoryScale,
@@ -93,7 +90,7 @@ function CropCommodity() {
               <tr key={index}>
                 <td>{listValue[0]}</td>
                 <td>₹ {listValue[1]}</td>
-                <td>{listValue[2]}%<img src={icon_insert(listValue[2])} style={mystyle} /></td>
+                <td>{listValue[2]}%<img src={icon_insert(listValue[2])} style={mystyle} alt="Crop" /></td>
               </tr>
             );
     })}

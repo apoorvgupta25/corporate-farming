@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Navigate} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 
 import {isAuth} from './authAPICalls';
 
@@ -8,7 +8,7 @@ const PrivateRoute = ({ children }) => {
 }
 
 const FarmerRoute = ({ children }) => {
-    return (isAuth() && isAuth().user.role === 0 && isAuth().user.verification=="Verified") ? children : <Navigate to='/signin' />;
+    return (isAuth() && isAuth().user.role === 0 && isAuth().user.verification==="Verified") ? children : <Navigate to='/signin' />;
 }
 
 const CorporateRoute = ({ children }) => {

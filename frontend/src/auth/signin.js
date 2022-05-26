@@ -1,13 +1,11 @@
 import React, {useState} from 'react'
 import {Link, Navigate} from 'react-router-dom';
 
-import {signin, authenticate, isAuth,signout} from './authAPICalls';
+import {signin, authenticate, isAuth} from './authAPICalls';
 
-import './signin_signup.css';
 import Topbar from '../component/topbar/topbar';
 
-import {API} from '../backend';
-
+import './signin_signup.css';
 
 const Signin = () => {
 
