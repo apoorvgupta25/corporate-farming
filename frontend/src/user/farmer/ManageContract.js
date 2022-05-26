@@ -78,7 +78,7 @@ const ManageContract = () => {
     return (
         <div>
             <Topbar/>
-            <Link className="btn btn-primary ml-5 mt-3" to={`/farmer/dashboard/${user._id}`}> <Person/> Dashboard</Link>
+            <Link className="btn btn-primary ml-5 mt-3" to={`/corporate/dashboard/${user._id}`}> <Person/> Dashboard</Link>
             <h1 className="text-center mb-5">Manage Contracts</h1>
             <div className="filter-sort">
                 <b className="h4">Filter By Status:&nbsp;</b>

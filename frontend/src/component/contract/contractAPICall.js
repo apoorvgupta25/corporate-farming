@@ -36,15 +36,14 @@ export const getContract = (ContractId) => {
 }
 
 
-export const updateContractInDB = (contractId, userId, token, cont) => {
+export const updateContractInDB = (contractId, userId, token, contract) => {
     return fetch(`${API}/contract/${contractId}/${userId}`,{
         method: "PUT",
         headers: {
             Accept: "application/json",
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(cont)
+        body: contract
     })
     .then(response =>{
         return response.json();

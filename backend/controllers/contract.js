@@ -97,33 +97,21 @@ exports.updateContract = (req, res) => {
     form.keepExtensions = true;
 
     form.parse(req, (err, fields, file) => {
-        if(err){
-            return res.status(400).json({
-                error: "Problem with PDF"
-            });
-        }
-
+        console.log(fields);
 
         let contract = req.contract;
         const p_id = contract._id;
         let new_contract = new Contract(fields);
         let id_contract = new Contract({'_id': p_id});
 
+        // removing default
+        id_contract['status'] = undefined;
+        id_contract['reason'] = undefined;
+
         _.merge(contract, new_contract);
         _.merge(contract, id_contract);
 
         Contract.find({ '_id':p_id }).deleteOne().exec();
-
-        if(file.contract_document){
-            if(file.contract_document.size > 3000000){
-                return res.status(400).json({
-                  error: "Image size too big!"
-                });
-            }
-
-            contract.contract_document.data = fs.readFileSync(file.contract_document.filepath);
-            contract.contract_document.contentType = file.photo.mimetype;
-        }
 
         contract.save((err, contract) => {
             if(err){

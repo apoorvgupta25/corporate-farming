@@ -15,8 +15,6 @@ const StatusChangeContract = () => {
         duration: '',
         farmer: '',
         corporate: '',
-        document: '',
-        createdContract: '',
         product: '',
         status: '',
         isProd: '',
@@ -25,13 +23,14 @@ const StatusChangeContract = () => {
         success: false,
         saving: false,
         createdId: '',
+        formData: new FormData()
     });
 
     const {
-        duration, farmer,reason, corporate, document, product, status, isProd, createdContract, error, success, saving, createdId
+        duration, farmer,reason, corporate, product, status,
+        isProd, error, success, saving, createdId, formData
     } = values;
 
-    const [count, setCount] = useState(0);
     const {user, token} = isAuth();
 
     const preload = (contractId) => {
@@ -46,7 +45,6 @@ const StatusChangeContract = () => {
                     corporate: data.corporate,
                     product: data.product,
                     duration: data.duration,
-                    document: data.document,
                     status: newstatus,
                     isProd: data.isProd,
                     reason: data.reason,
@@ -63,6 +61,8 @@ const StatusChangeContract = () => {
     }, [])
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value});
+        formData.set(name, event.target.value);
+
     }
 
     const successMessage = () => {
@@ -70,12 +70,13 @@ const StatusChangeContract = () => {
             <Alert
                 className="pb-0 text-center"
                 color="success"
-                style={{ display: createdContract ? '' : 'none' }}
+                style={{ display: createdId ? '' : 'none' }}
             >
-                <h5><Link to={`/product/${createdId}`} className="text-primary">{createdContract}</Link> Created Successfully</h5>
+                <h5><Link to={`/contract/view/${createdId}`} className="text-primary">Contract </Link>Updated Successfully</h5>
             </Alert>
         )
     }
+
 
     const errorMessage = () => {
         return (
@@ -93,9 +94,11 @@ const StatusChangeContract = () => {
     const onSubmit = event => {
         event.preventDefault()
         setValues({...values, error: false, saving: true})
-        const cont = {farmer, corporate, product, duration, document, status, reason,isProd};
 
-        updateContractInDB(contractId, user._id, token, cont)
+        formData.set('status', newstatus);
+        formData.set('reason', reason);
+
+        updateContractInDB(contractId, user._id, token, formData)
             .then(data => {
                 if(data.error){
                     setValues({...values, error: data.error, saving: false});
@@ -106,8 +109,8 @@ const StatusChangeContract = () => {
                         corporate: '',
                         product: '',
                         duration: '',
-                        document: '',
                         status: '',
+                        createdId: data._id,
                         isProd: '',
                         saving: false,
                     });
