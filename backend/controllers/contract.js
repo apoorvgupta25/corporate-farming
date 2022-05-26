@@ -97,8 +97,7 @@ exports.updateContract = (req, res) => {
     form.keepExtensions = true;
 
     form.parse(req, (err, fields, file) => {
-        console.log(fields);
-
+    
         let contract = req.contract;
         const p_id = contract._id;
         let new_contract = new Contract(fields);
