@@ -1,7 +1,7 @@
 # Corporate Farming
 
 ---
-[Corporate Farming](https://corporate-farming.netlify.app/) is a web-based application, with an objective to open new market for farmers. This is the part of our Last Year Project wherein, we team of 4 worked on this farmer-centric application is made for the farmers and the corporates. The farmers can use this application for listing their lands on the website, which can be viewed by corporate for leasing it. Alternatively, the farmer can also sell their harvest if they are not willing to lease their land. Both of these things are contract based. The farmers can also take leverage of different prediction models on the website as well.
+[Corporate Farming](https://corporate-farming.netlify.app/) is a web-based application, created with the objective of opening new markets for farmers. This is the part of our Last Year Project wherein we worked on this farmer-centric application. Farmers can use this application to list their lands on the website, which can be leased by corporates. Alternatively, the farmer can also sell their harvest if they are not willing to lease their land. Both of these things are contract-based. Farmers can also take advantage of different prediction models on the website as well.
 
 ---
 <img src="https://raw.githubusercontent.com/apoorvgupta25/corp-farm/main/frontend/src/assets/homepage.jpg" alt="website"/>
