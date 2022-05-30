@@ -36,7 +36,7 @@ This project frontend is deployed on Netlify while backend is deployed on Heroku
 
 [Corporate Farming](https://corporate-farming.netlify.app/)
 
-## Other Team Members 🦋
+## Other Team Members
 - [Sidhhant Shaha](https://github.com/sid2475)
 - [Atharva Dave](http://github.com/asd1510)
 - [Krunal Dattani](https://github.com/Krunal-D)
