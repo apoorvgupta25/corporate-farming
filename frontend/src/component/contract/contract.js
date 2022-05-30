@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import { Alert } from 'reactstrap';
 
-import { addContractToDB } from './contractAPICall';
 import {isAuth} from '../../auth/authAPICalls'
+import { addContractToDB } from './contractAPICall';
 
 import Topbar from "../../component/topbar/topbar";
 import CircleModal from '../../component/animation/CircleModal';

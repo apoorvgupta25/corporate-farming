@@ -1,34 +1,18 @@
-// Importing modules
 import React, { useState, useEffect } from "react";
-
-import ThreeDotsWave from '../animation/ThreeDotsWave';
-
-import './CostPred.css'
-
-import Topbar from "../topbar/topbar";
 import {useParams} from 'react-router-dom';
 import {Line} from 'react-chartjs-2';
 
+import ThreeDotsWave from '../animation/ThreeDotsWave';
+import Topbar from "../topbar/topbar";
+
+import './CostPred.css'
+
 import {
     Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-    } from 'chart.js';
+    CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend,
+} from 'chart.js';
 
-    ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-    );
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 function CropCommodity() {
 
@@ -40,6 +24,7 @@ function CropCommodity() {
 
     useEffect(() => {
         loadCommodityCost(commodityName);
+        // eslint-disable-next-line
     },[])
 
     const loadCommodityCost = commodityName => {

@@ -1,12 +1,11 @@
-// Importing modules
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardImg, CardBody, CardTitle} from "reactstrap";
-import './CostPred.css'
 
 import ThreeDotsWave from '../animation/ThreeDotsWave';
-
 import Topbar from "../topbar/topbar";
+
+import './CostPred.css'
 
 function CropCostPrediction() {
     const [isLoading, setLoading] = useState(true);

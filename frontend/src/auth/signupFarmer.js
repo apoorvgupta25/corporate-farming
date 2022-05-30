@@ -3,9 +3,10 @@ import {Link} from 'react-router-dom';
 
 import {signup} from './authAPICalls';
 
-import './signin_signup.css';
 import Topbar from '../component/topbar/topbar';
 import CircleModal from '../component/animation/CircleModal';
+
+import './signin_signup.css';
 
 const SignupFarmer = () => {
 

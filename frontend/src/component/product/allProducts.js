@@ -93,6 +93,7 @@ const AllProducts = () => {
             }
 
         })
+        // eslint-disable-next-line
     }, [sortType,filterType,showNoProduct]);
 
     if (isLoading){

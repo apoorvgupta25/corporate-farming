@@ -1,15 +1,17 @@
-import "../messenger/messenger.css";
-import Topbar from "../topbar/topbar";
 import React, {useState, useRef, useEffect}  from "react";
+import { Link, useParams } from "react-router-dom";
+import { format } from "timeago.js";
+
+import { isAuth } from '../../auth/authAPICalls';
+import { getLand } from "../land/landAPICall";
+import { getProduct } from "../product/productAPICall";
 import { getAllMessages, postMessage } from "../messenger/messengerAPICall";
-import {isAuth} from '../../auth/authAPICalls';
+
+import Topbar from "../topbar/topbar";
 import Message from "../message/message";
 import BouncingBall from '../animation/BouncingBall';
-import { Link } from "react-router-dom";
-import {useParams} from 'react-router-dom';
-import { getProduct } from "../product/productAPICall";
-import { getLand } from "../land/landAPICall";
-import { format } from "timeago.js";
+
+import "../messenger/messenger.css";
 
 export default function QuickMessenger() {
   const [currentChat, setCurrentChat] = useState(null);
@@ -89,6 +91,7 @@ export default function QuickMessenger() {
     useEffect(() => {
         loadProduct(productId,isProd);
         setCurrentChat(getConversationId(productId,friendId));
+        // eslint-disable-next-line
     },[])
 
 
@@ -104,6 +107,7 @@ export default function QuickMessenger() {
     };
     useEffect(() => {
       getMessages();
+      // eslint-disable-next-line
     }, [currentChat]);
 
     useEffect(() => {

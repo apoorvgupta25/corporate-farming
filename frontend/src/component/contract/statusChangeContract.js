@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import { Alert } from 'reactstrap';
+
+import {isAuth} from '../../auth/authAPICalls';
 import { getContract,updateContractInDB } from './contractAPICall';
-import '../../user/farmer/add.css'
-import {isAuth} from '../../auth/authAPICalls'
+
 import Topbar from "../../component/topbar/topbar";
 import CircleModal from '../../component/animation/CircleModal';
 
+import '../../user/farmer/add.css';
 
 const StatusChangeContract = () => {
     const {contractId, newstatus} = useParams();
@@ -44,6 +46,7 @@ const StatusChangeContract = () => {
 
     useEffect(() => {
         preload(contractId);
+        // eslint-disable-next-line
     }, [])
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value});

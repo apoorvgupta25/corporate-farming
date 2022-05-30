@@ -1,6 +1,5 @@
-// Importing modules
 import React, { useState } from "react";
-import { Container,Row,Card } from "reactstrap";
+import { Container, Row, Card } from "reactstrap";
 
 import BouncingBall from '../animation/BouncingBall';
 

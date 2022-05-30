@@ -3,13 +3,15 @@ import {Link, useParams} from 'react-router-dom';
 import { Alert } from 'reactstrap';
 import { Person, Dashboard } from "@material-ui/icons";
 
-import './add.css';
 import {isAuth} from '../../auth/authAPICalls'
 import {updateLandInDB} from './farmerAPICalls';
 import {getLand} from '../../component/land/landAPICall'
+
 import Topbar from "../../component/topbar/topbar";
 import CircleModal from '../../component/animation/CircleModal';
 import ThreeDotsWave from '../../component/animation/ThreeDotsWave';
+
+import './add.css';
 
 const UpdateLand = () => {
 
@@ -86,6 +88,7 @@ const UpdateLand = () => {
 
     useEffect(() => {
         preload(landId);
+        // eslint-disable-next-line
     }, [])
 
     if (loading){

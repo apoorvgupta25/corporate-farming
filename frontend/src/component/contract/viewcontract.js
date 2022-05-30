@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect}  from "react";
-import { format } from "timeago.js";
 import { Link, useParams } from "react-router-dom";
+import { format } from "timeago.js";
 
 import {API} from '../../backend';
 import {isAuth} from '../../auth/authAPICalls';
@@ -70,6 +70,7 @@ export default function ViewContract() {
     useEffect(() => {
         loadContract(contractId);
         setCurrentChat(contractId);
+        // eslint-disable-next-line
     },[])
 
 
@@ -85,6 +86,7 @@ export default function ViewContract() {
     };
     useEffect(() => {
       getMessages();
+      // eslint-disable-next-line
     }, [currentChat]);
 
     useEffect(() => {

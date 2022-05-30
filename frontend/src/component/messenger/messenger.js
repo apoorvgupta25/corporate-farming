@@ -1,12 +1,15 @@
-import "./messenger.css";
-import Topbar from "../topbar/topbar";
 import React, {useState, useRef, useEffect}  from "react";
-import { getAllConversations, getAllMessages, postMessage } from "./messengerAPICall";
+import { Link } from "react-router-dom";
+
 import {isAuth} from '../../auth/authAPICalls';
+import { getAllConversations, getAllMessages, postMessage } from "./messengerAPICall";
+
 import AllConversations from "../conversion/allConversions";
 import Message from "../message/message";
+import Topbar from "../topbar/topbar";
 import BouncingBall from '../animation/BouncingBall';
-import { Link } from "react-router-dom";
+
+import "./messenger.css";
 
 export default function Messenger() {
   if(!window.location.hash.includes("#reloaded")) {
@@ -78,6 +81,7 @@ export default function Messenger() {
 
     useEffect(() => {
         getConversationData()
+        // eslint-disable-next-line
     },[])
 
 
@@ -93,6 +97,7 @@ export default function Messenger() {
     };
     useEffect(() => {
       getMessages();
+      // eslint-disable-next-line
     }, [currentChat]);
 
     useEffect(() => {

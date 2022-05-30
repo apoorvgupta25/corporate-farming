@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {API} from '../../backend';
 import { Person, Update, Delete } from "@material-ui/icons";
 
+import {API} from '../../backend';
 import {isAuth} from '../../auth/authAPICalls';
 import {deleteLand} from './farmerAPICalls';
 import {getAllLands} from '../../component/land/landAPICall';
+
 import ThreeDotsWave from '../../component/animation/ThreeDotsWave';
 import Topbar from "../../component/topbar/topbar";
 

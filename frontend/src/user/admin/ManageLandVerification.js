@@ -5,6 +5,7 @@ import { Person } from "@material-ui/icons";
 import {API} from '../../backend';
 import {isAuth} from '../../auth/authAPICalls';
 import {getLandVerificationEnums, updateLandVerification, getUnverifiedLands, getVerifiedLands, getInvalidLands } from './adminAPICall';
+
 import ThreeDotsWave from '../../component/animation/ThreeDotsWave';
 import Topbar from "../../component/topbar/topbar";
 
@@ -47,6 +48,7 @@ const ManageLandVerification = () => {
     useEffect(() => {
         preload();
         getEnums();
+        // eslint-disable-next-line
     }, []);
 
     const getEnums = () => {

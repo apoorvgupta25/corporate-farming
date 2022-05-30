@@ -4,6 +4,7 @@ import { Person } from "@material-ui/icons";
 
 import {isAuth} from '../../auth/authAPICalls';
 import {getVerificationEnums, updateVerification, getUnverifiedCorporates, getVerifiedCorporates, getInvalidCorporates } from './adminAPICall';
+
 import ThreeDotsWave from '../../component/animation/ThreeDotsWave';
 import Topbar from "../../component/topbar/topbar";
 
@@ -46,6 +47,7 @@ const ManageCorporateVerification = () => {
     useEffect(() => {
         preload();
         getEnums();
+        // eslint-disable-next-line
     }, []);
 
     const getEnums = () => {

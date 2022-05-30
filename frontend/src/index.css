@@ -6,14 +6,8 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Radio Canada' !important;
+  font-family: 'Quicksand' !important;
   color: #1A2D40 !important;
-}
-
-code {
-  /* font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-    */
 }
 
 .btn-primary{

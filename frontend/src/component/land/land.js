@@ -8,6 +8,7 @@ import {isAuth} from '../../auth/authAPICalls';
 import Topbar from "../topbar/topbar";
 import ChatNowButton from "../chatNowButton/chatNowButton";
 import ThreeDotsWave from '../animation/ThreeDotsWave';
+
 import '../land_product_style.css';
 
 const Land = () => {
@@ -32,6 +33,7 @@ const Land = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
         loadLand(landId);
+        // eslint-disable-next-line
     },[])
 
     if (isLoading){

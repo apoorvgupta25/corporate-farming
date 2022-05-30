@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { Person, Chat } from "@material-ui/icons";
 
 import {isAuth} from '../../auth/authAPICalls';
-import logo from '../../assets/logo/corp-farm-logo.png';
 
 import "./topbar.css";
+
+import logo from '../../assets/logo/corp-farm-logo.png';
 
 export default function Topbar() {
 

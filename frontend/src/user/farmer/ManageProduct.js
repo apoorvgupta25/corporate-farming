@@ -5,6 +5,7 @@ import { Person, Update, Delete } from "@material-ui/icons";
 import {isAuth} from '../../auth/authAPICalls';
 import {deleteProduct} from './farmerAPICalls';
 import {getAllProducts} from '../../component/product/productAPICall';
+
 import ThreeDotsWave from '../../component/animation/ThreeDotsWave';
 import Topbar from "../../component/topbar/topbar";
 

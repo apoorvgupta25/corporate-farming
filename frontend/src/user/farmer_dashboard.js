@@ -1,12 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {API} from '../backend';
 
-import {signout} from '../auth/authAPICalls';
-import {isAuth} from '../auth/authAPICalls';
+import {API} from '../backend';
+import {isAuth, signout} from '../auth/authAPICalls';
+
 import Topbar from '../component/topbar/topbar';
-import './dashboard.css';
+
 import '../index.css';
+import './dashboard.css';
 
 import { ReactComponent as Exaclamation }  from '../assets/exaclamation4.svg'
 

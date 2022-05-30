@@ -99,6 +99,8 @@ function VerifyOtp() {
         //     console.log(res);
         //     setLoading(false);
         // }).catch(err => console.log(err));
+        
+        // eslint-disable-next-line
     }, []);
 
     const checkOtp = () => {

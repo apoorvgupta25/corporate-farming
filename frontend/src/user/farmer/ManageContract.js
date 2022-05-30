@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {API} from '../../backend';
 import { Person, Link as LinkIcon } from "@material-ui/icons";
 
-import '../../component/home/home.css';
+import {API} from '../../backend';
 import {isAuth} from '../../auth/authAPICalls';
 import {getAllContracts} from '../../component/contract/contractAPICall';
-import ThreeDotsWave from '../../component/animation/ThreeDotsWave';
+
 import Topbar from "../../component/topbar/topbar";
+import ThreeDotsWave from '../../component/animation/ThreeDotsWave';
+
+import '../../component/home/home.css';
+
 
 const ManageContract = () => {
 

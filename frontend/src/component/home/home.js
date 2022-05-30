@@ -44,6 +44,7 @@ function Home() {
     useEffect(() => {
         getLandData()
         getProductData()
+        // eslint-disable-next-line
     },[])
 
       return (

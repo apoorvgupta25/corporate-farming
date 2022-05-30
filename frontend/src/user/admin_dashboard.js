@@ -1,11 +1,13 @@
 import React from 'react';
 import {Link, Navigate, useParams} from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 import {signout} from '../auth/authAPICalls';
 import {isAuth} from '../auth/authAPICalls';
+
 import Topbar from '../component/topbar/topbar';
+
 import './dashboard.css';
-import Cookies from 'universal-cookie';
 
 const AdminDashboard = () => {
 

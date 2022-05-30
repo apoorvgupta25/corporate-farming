@@ -3,13 +3,15 @@ import {Link, useParams} from 'react-router-dom';
 import { Alert } from 'reactstrap';
 import { Person, Dashboard } from "@material-ui/icons";
 
-import './add.css';
 import {isAuth} from '../../auth/authAPICalls'
-import {getProduct} from '../../component/product/productAPICall'
 import {updateProductInDB} from './farmerAPICalls'
+import {getProduct} from '../../component/product/productAPICall'
+
 import Topbar from "../../component/topbar/topbar";
 import CircleModal from '../../component/animation/CircleModal';
 import ThreeDotsWave from '../../component/animation/ThreeDotsWave';
+
+import './add.css';
 
 const UpdateProduct = () => {
 
@@ -74,6 +76,7 @@ const UpdateProduct = () => {
 
     useEffect(() => {
         preload(productId);
+        // eslint-disable-next-line
     }, [])
 
     if (loading){

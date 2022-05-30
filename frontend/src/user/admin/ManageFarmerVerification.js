@@ -5,6 +5,7 @@ import { Person } from "@material-ui/icons";
 import {API} from '../../backend';
 import {isAuth} from '../../auth/authAPICalls';
 import {getUnverifiedFarmers, getVerifiedFarmers, getInvalidFarmers, getVerificationEnums, updateVerification} from './adminAPICall';
+
 import ThreeDotsWave from '../../component/animation/ThreeDotsWave';
 import Topbar from "../../component/topbar/topbar";
 
@@ -46,6 +47,7 @@ const ManageFarmerVerification = () => {
     useEffect(() => {
         preload();
         getEnums();
+        // eslint-disable-next-line
     }, []);
 
     const getEnums = () => {

@@ -1,7 +1,9 @@
+import React, {useState} from 'react';
+
+import {getcropPrediction} from "./cropPredictionAPICall";
+
 import Topbar from "../topbar/topbar";
 
-import React, {useState} from 'react';
-import {getcropPrediction} from "./cropPredictionAPICall";
 import '../../user/farmer/add.css';
 
 export default function CropPrediction() {
